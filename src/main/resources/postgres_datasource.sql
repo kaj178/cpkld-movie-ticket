@@ -181,12 +181,31 @@ CREATE TABLE public."menu" (
 	PRIMARY KEY (item_id)
 );
 
+CREATE TABLE public."promotion" (
+	"promotion_id" VARCHAR(50) NOT NULL,
+	"promotion_name" TEXT NOT NULL,
+	"description" TEXT NOT NULL,
+	"start_time" TIMESTAMP NOT NULL,
+	"end_time" TIMESTAMP NOT NULL,
+	"discount" INT NOT NULL, 
+	"code" TEXT NOT NULL,
+	"url_image" TEXT NOT NULL,
+	PRIMARY KEY (promotion_id)
+);
+
 CREATE TABLE public."booking" (
 	"booking_id" VARCHAR(50) NOT NULL,
 	"number_of_tickets" INT NOT NULL,
 	"total_price" INT NOT NULL,
-	"booking_time" 
+	"booking_time" TIMESTAMP NOT NULL,
+	"show_time" TIMESTAMP NOT NULL,
+	"status" BOOLEAN NOT NULL,
+	"promotion_id" VARCHAR(50) NOT NULL,
+	PRIMARY KEY (booking_id),
+	FOREIGN KEY (promotion_id) REFERENCES public."promotion"(promotion_id)
 );
+
+
 
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public."role" ("role_id", "role_name") VALUES
@@ -282,6 +301,11 @@ INSERT INTO public."menu" ("item_id", "name", "price", "image_url", "status") VA
     ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
 
 
+SELECT * FROM public."account"
+SELECT * FROM public."customer"
+SELECT * FROM public."detail-movie-genre"
+SELECT * FROM public."format"
+SELECT * FROM public."language"
 
 
 
