@@ -1,0 +1,24 @@
+package com.cpkld;
+
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.cpkld.model.entity.Role;
+import com.cpkld.service.RoleService;
+
+@SpringBootApplication
+public class MovieTicketApplication {
+
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(MovieTicketApplication.class, args);
+        
+        RoleService roleBean = context.getBean(RoleService.class);
+        List<Role> list = roleBean.getAllRole();
+        list.stream()
+            .forEach(System.out::println);
+    }
+
+}
