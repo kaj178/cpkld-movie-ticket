@@ -206,7 +206,6 @@ CREATE TABLE public."booking" (
 );
 
 
-
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public."role" ("role_id", "role_name") VALUES
     ('ADMIN', 'Admin'),
@@ -228,6 +227,15 @@ INSERT INTO public."manager" ("manager_id", "full_name", "email", "phone_number"
 INSERT INTO public."customer" ("customer_id", "full_name", "address", "email", "phone_number", "account_id") VALUES
     ('customer001', 'Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 'customer001'),
     ('customer002', 'Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 'customer001');
+	
+INSERT INTO public.customer VALUES
+	('customer003', 'Name 3', 'Address 3', 'name3@gmail.com', 'phonenum3', 'customer001'),
+	('customer004', 'Name 4', 'Address 4', 'name4@gmail.com', 'phonenum4', 'customer001'),
+	('customer005', 'Name 5', 'Address 5', 'name5@gmail.com', 'phonenum5', 'customer001'),
+	('customer006', 'Name 6', 'Address 6', 'name6@gmail.com', 'phonenum6', 'customer001'),
+	('customer007', 'Name 7', 'Address 7', 'name7@gmail.com', 'phonenum7', 'customer001'),
+	('customer008', 'Name 8', 'Address 8', 'name8@gmail.com', 'phonenum8', 'customer001'),
+	('customer009', 'Name 9', 'Address 9', 'name9@gmail.com', 'phonenum9', 'customer001');
 
 -- Thêm dữ liệu vào bảng "movie-genre"
 INSERT INTO public."movie-genre" ("genre_id", "genre_name", "description") VALUES
