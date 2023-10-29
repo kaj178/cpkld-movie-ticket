@@ -2,8 +2,13 @@ package com.cpkld.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "role", schema = "public")
@@ -14,6 +19,17 @@ public class Role {
 
     @Column(name = "role_name")
     private String roleName;
+
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    // private List<Account> accounts = new ArrayList<>();
+
+    // public List<Account> getAccounts() {
+    //     return accounts;
+    // }
+
+    // public void setAccounts(List<Account> accounts) {
+    //     this.accounts = accounts;
+    // }
 
     public String getRoleId() {
         return roleId;

@@ -308,7 +308,7 @@ INSERT INTO public."menu" ("item_id", "name", "price", "image_url", "status") VA
     ('item001', 'Item 1', 10, 'https://item1.jpg', TRUE),
     ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
 
-
+SELECT * FROM public.role
 SELECT * FROM public."account"
 SELECT * FROM public."customer"
 SELECT * FROM public."detail-movie-genre"
