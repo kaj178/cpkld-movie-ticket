@@ -206,7 +206,6 @@ CREATE TABLE public."booking" (
 );
 
 
-
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public."role" ("role_id", "role_name") VALUES
     ('ADMIN', 'Admin'),
