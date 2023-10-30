@@ -4,10 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "customer", schema = "public")
-public class Cusomer {
+public class Customer {
     @Id
     @Column(name = "customer_id")
     private String customerId;
@@ -26,4 +28,6 @@ public class Cusomer {
 
     // @Column(name = "account_id")
     // @JoinColumn
+    @Column(name = "account_id")
+    private String accountId;
 }

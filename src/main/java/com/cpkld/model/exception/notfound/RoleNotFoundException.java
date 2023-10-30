@@ -1,4 +1,4 @@
-package com.cpkld.model.exception;
+package com.cpkld.model.exception.notfound;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
