@@ -36,7 +36,7 @@ public class CustomerApiController {
 
     /* /api/v1/customer?page={number} */
     @GetMapping(params = "page")
-    public ResponseEntity<?> getCustomersPaginated(@RequestParam("page") int page) {
+    public ResponseEntity<?> readCustomersPaginated(@RequestParam("page") int page) {
         return service.getPaginated(page);
     }
 
