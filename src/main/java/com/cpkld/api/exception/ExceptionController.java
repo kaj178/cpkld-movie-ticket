@@ -1,4 +1,4 @@
-package com.cpkld.controller;
+package com.cpkld.api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
