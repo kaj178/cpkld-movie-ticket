@@ -1,8 +1,13 @@
 package com.cpkld.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -27,7 +32,8 @@ public class Customer {
     private String phoneNumber;
 
     // @Column(name = "account_id")
-    // @JoinColumn
-    @Column(name = "account_id")
-    private String accountId;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Account.class)
+    @JoinColumn(name = "account_id", nullable = false)
+    @JsonBackReference
+    private Account account;
 }

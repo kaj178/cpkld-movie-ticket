@@ -2,12 +2,21 @@ package com.cpkld.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Data
 @Entity
 @Table(name = "role", schema = "public")
 public class Role {
+
     @Id
     @Column(name = "role_id")
     private String roleId;
@@ -15,35 +24,8 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-    // private List<Account> accounts = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Account.class, mappedBy = "role")
+    @JsonManagedReference
+    private List<Account> accounts;
 
-    // public List<Account> getAccounts() {
-    //     return accounts;
-    // }
-
-    // public void setAccounts(List<Account> accounts) {
-    //     this.accounts = accounts;
-    // }
-
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public String toString() {
-        return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
-    }
 }
