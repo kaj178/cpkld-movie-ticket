@@ -10,6 +10,10 @@ CREATE DATABASE "movie-ticket"
 	
 SET search_path TO 'movie-ticket'
 
+-- Delete Schema 'public'
+-- DROP SCHEMA public CASCADE;
+-- CREATE SCHEMA public;
+
 CREATE TABLE public."role" (
 	"role_id" VARCHAR(50) NOT NULL,
     "role_name" TEXT NOT NULL,
@@ -18,7 +22,7 @@ CREATE TABLE public."role" (
 
 CREATE TABLE public."account" (
 	"account_id" VARCHAR(50) NOT NULL,
-    "email" VARCHAR(20) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
     "password" VARCHAR(50) NOT NULL,
     "role_id" VARCHAR(50) NOT NULL,
     PRIMARY KEY (account_id),
@@ -39,7 +43,7 @@ CREATE TABLE public."customer" (
 	"customer_id" VARCHAR(50) NOT NULL,
     "full_name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "email" VARCHAR(20) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
     "phone_number" VARCHAR(10) NOT NULL,
     "account_id" VARCHAR(50) NOT NULL,
     PRIMARY KEY (customer_id),
@@ -58,7 +62,7 @@ CREATE TABLE public."studio" (
 	"studio_id" VARCHAR(50) NOT NULL,
     "studio_name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "email" VARCHAR(20) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
     "phone_number" VARCHAR(10) NOT NULL,
     PRIMARY KEY (studio_id)
 );
@@ -208,112 +212,108 @@ CREATE TABLE public."booking" (
 
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public."role" ("role_id", "role_name") VALUES
-    ('ADMIN', 'Admin'),
-    ('MANAGER', 'Manager'),
-    ('CUSTOMER', 'Customer');
+('ADMIN', 'Admin'),
+('MANAGER', 'Manager'),
+('CUSTOMER', 'Customer');
 
 -- Thêm dữ liệu vào bảng "account"
-INSERT INTO public."account" ("account_id", "email", "password", "role_id") VALUES
-    ('admin001', 'admin@example.com', 'hashed_password', 'ADMIN'),
-    ('manager001', 'manager@example.com', 'hashed_password', 'MANAGER'),
-    ('customer001', 'customer@example.com', 'hashed_password', 'CUSTOMER');
+INSERT INTO public."account" VALUES
+('admin1', 'admin1@example.com', '123', 'ADMIN'),
+('manager1', 'manager1@example.com', '123', 'MANAGER'),
+('customer1', 'customer1@example.com', '001', 'CUSTOMER'),
+('customer2', 'customer2@example.com', '002', 'CUSTOMER');
 
 -- Thêm dữ liệu vào bảng "manager"
-INSERT INTO public."manager" ("manager_id", "full_name", "email", "phone_number", "account_id") VALUES
-    ('manager001', 'John Smith', 'john@example.com', '1234567890', 'manager001'),
-    ('manager002', 'Jane Doe', 'jane@example.com', '9876543210', 'manager001');
+INSERT INTO public."manager" VALUES
+('manager1', 'John Smith', 'john@example.com', '1234567890', 'manager1'),
+('manager2', 'Jane Doe', 'jane@example.com', '9876543210', 'manager1');
 
 -- Thêm dữ liệu vào bảng "customer"
-INSERT INTO public."customer" ("customer_id", "full_name", "address", "email", "phone_number", "account_id") VALUES
-    ('customer001', 'Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 'customer001'),
-    ('customer002', 'Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 'customer001');
-	
-INSERT INTO public.customer VALUES
-	('customer003', 'Name 3', 'Address 3', 'name3@gmail.com', 'phonenum3', 'customer001'),
-	('customer004', 'Name 4', 'Address 4', 'name4@gmail.com', 'phonenum4', 'customer001'),
-	('customer005', 'Name 5', 'Address 5', 'name5@gmail.com', 'phonenum5', 'customer001'),
-	('customer006', 'Name 6', 'Address 6', 'name6@gmail.com', 'phonenum6', 'customer001'),
-	('customer007', 'Name 7', 'Address 7', 'name7@gmail.com', 'phonenum7', 'customer001'),
-	('customer008', 'Name 8', 'Address 8', 'name8@gmail.com', 'phonenum8', 'customer001'),
-	('customer009', 'Name 9', 'Address 9', 'name9@gmail.com', 'phonenum9', 'customer001');
+INSERT INTO public."customer" VALUES
+('customer1', 'Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 'customer001'),
+('customer2', 'Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 'customer1');
+('customer3', 'Name 3', 'Address 3', 'name3@gmail.com', 'phonenum3', 'customer1'),
+('customer4', 'Name 4', 'Address 4', 'name4@gmail.com', 'phonenum4', 'customer2'),
+('customer5', 'Name 5', 'Address 5', 'name5@gmail.com', 'phonenum5', 'customer1'),
+('customer6', 'Name 6', 'Address 6', 'name6@gmail.com', 'phonenum6', 'customer2'),
+('customer7', 'Name 7', 'Address 7', 'name7@gmail.com', 'phonenum7', 'customer2'),
+('customer8', 'Name 8', 'Address 8', 'name8@gmail.com', 'phonenum8', 'customer2'),
+('customer9', 'Name 9', 'Address 9', 'name9@gmail.com', 'phonenum9', 'customer1');
 
--- Thêm dữ liệu vào bảng "movie-genre"
-INSERT INTO public."movie-genre" ("genre_id", "genre_name", "description") VALUES
-    ('genre001', 'Action', 'Exciting action-packed movies'),
-    ('genre002', 'Romance', 'Heartwarming romantic films');
+-- -- Thêm dữ liệu vào bảng "movie-genre"
+-- INSERT INTO public."movie-genre" VALUES
+--     ('genre001', 'Action', 'Exciting action-packed movies'),
+--     ('genre002', 'Romance', 'Heartwarming romantic films');
 
--- Thêm dữ liệu vào bảng "studio"
-INSERT INTO public."studio" ("studio_id", "studio_name", "address", "email", "phone_number") VALUES
-    ('studio001', 'Studio A', '123 Studio St', 'studioA@example.com', '5551112222'),
-    ('studio002', 'Studio B', '456 Studio Rd', 'studioB@example.com', '5553334444');
+-- -- Thêm dữ liệu vào bảng "studio"
+-- INSERT INTO public."studio" VALUES
+--     ('studio001', 'Studio A', '123 Studio St', 'studioA@example.com', '5551112222'),
+--     ('studio002', 'Studio B', '456 Studio Rd', 'studioB@example.com', '5553334444');
 
--- Thêm dữ liệu vào bảng "language"
-INSERT INTO public."language" ("language_id", "language_name") VALUES
-    ('language001', 'English'),
-    ('language002', 'Spanish');
+-- -- Thêm dữ liệu vào bảng "language"
+-- INSERT INTO public."language" VALUES
+--     ('language001', 'English'),
+--     ('language002', 'Spanish');
 
--- Thêm dữ liệu vào bảng "movie"
-INSERT INTO public."movie" ("movie_id", "movie_name", "director", "year", "premiere", "url_trailer", "time", "age", "story", "studio_id", "language_id") VALUES
-    ('movie001', 'Movie A', 'Director A', 2023, '2023-09-30', 'https://trailerA.com', 120, 18, 'Story A', 'studio001', 'language001'),
-    ('movie002', 'Movie B', 'Director B', 2023, '2023-09-30', 'https://trailerB.com', 110, 12, 'Story B', 'studio001', 'language001');
+-- -- Thêm dữ liệu vào bảng "movie"
+-- INSERT INTO public."movie" VALUES
+--     ('movie001', 'Movie A', 'Director A', 2023, '2023-09-30', 'https://trailerA.com', 120, 18, 'Story A', 'studio001', 'language001'),
+--     ('movie002', 'Movie B', 'Director B', 2023, '2023-09-30', 'https://trailerB.com', 110, 12, 'Story B', 'studio001', 'language001');
 
--- Thêm dữ liệu vào bảng "rating"
-INSERT INTO public."rating" ("rating_id", "score", "comment", "day", "movie_id", "customer_id") VALUES
-    ('rating001', 4.5, 'Great movie!', '2023-09-30', 'movie001', 'customer001'),
-    ('rating002', 3.0, 'Not bad', '2023-09-30', 'movie001', 'customer002');
+-- -- Thêm dữ liệu vào bảng "rating"
+-- INSERT INTO public."rating" VALUES
+--     ('rating001', 4.5, 'Great movie!', '2023-09-30', 'movie001', 'customer001'),
+--     ('rating002', 3.0, 'Not bad', '2023-09-30', 'movie001', 'customer002');
 
--- Thêm dữ liệu vào bảng "detail-movie-genre"
-INSERT INTO public."detail-movie-genre" ("movie_id", "genre_id") VALUES
-    ('movie001', 'genre001'),
-    ('movie002', 'genre002');
+-- -- Thêm dữ liệu vào bảng "detail-movie-genre"
+-- INSERT INTO public."detail-movie-genre" VALUES
+--     ('movie001', 'genre001'),
+--     ('movie002', 'genre002');
 
--- Thêm dữ liệu vào bảng "format"
-INSERT INTO public."format" ("format_id", "format_name") VALUES
-    ('format001', '2D'),
-    ('format002', '3D');
+-- -- Thêm dữ liệu vào bảng "format"
+-- INSERT INTO public."format" VALUES
+--     ('format001', '2D'),
+--     ('format002', '3D');
 
--- Thêm dữ liệu vào bảng "theater"
-INSERT INTO public."theater" ("theater_id", "theater_name", "address", "phone", "number_of_room") VALUES
-    ('theater001', 'Theater A', '123 Theater St', '5555555555', 5),
-    ('theater002', 'Theater B', '456 Theater Rd', '5556666666', 3);
+-- -- Thêm dữ liệu vào bảng "theater"
+-- INSERT INTO public."theater" VALUES
+--     ('theater001', 'Theater A', '123 Theater St', '5555555555', 5),
+--     ('theater002', 'Theater B', '456 Theater Rd', '5556666666', 3);
 
--- Thêm dữ liệu vào bảng "room"
-INSERT INTO public."room" ("room_id", "room_name", "number_of_seats", "theater_id") VALUES
-    ('room001', 'Room 1', 100, 'theater001'),
-    ('room002', 'Room 2', 80, 'theater002');
+-- -- Thêm dữ liệu vào bảng "room"
+-- INSERT INTO public."room" VALUES
+--     ('room001', 'Room 1', 100, 'theater001'),
+--     ('room002', 'Room 2', 80, 'theater002');
 
--- Thêm dữ liệu vào bảng "showtime"
-INSERT INTO public."showtime" ("showtime_id", "start_time", "end_time", "price", "movie_id", "room_id", "format_id") VALUES
-    ('showtime001', '14:00:00', '16:00:00', 100, 'movie001', 'room001', 'format001'),
-    ('showtime002', '17:00:00', '19:00:00', 120, 'movie002', 'room002', 'format002');
+-- -- Thêm dữ liệu vào bảng "showtime"
+-- INSERT INTO public."showtime" VALUES
+--     ('showtime001', '14:00:00', '16:00:00', 100, 'movie001', 'room001', 'format001'),
+--     ('showtime002', '17:00:00', '19:00:00', 120, 'movie002', 'room002', 'format002');
 
--- Thêm dữ liệu vào bảng "ticket-status"
-INSERT INTO public."ticket-status" ("status_id", "status_name") VALUES
-    ('status001', 'Available'),
-    ('status002', 'Booked'),
-    ('status003', 'Sold Out');
+-- -- Thêm dữ liệu vào bảng "ticket-status"
+-- INSERT INTO public."ticket-status" VALUES
+--     ('status001', 'Available'),
+--     ('status002', 'Booked'),
+--     ('status003', 'Sold Out');
 
--- Thêm dữ liệu vào bảng "seat"
-INSERT INTO public."seat" ("seat_id", "seat_name", "type", "room_id") VALUES
-    ('seat001', 'Seat 1', 'Standard', 'room001'),
-    ('seat002', 'Seat 2', 'VIP', 'room001');
+-- -- Thêm dữ liệu vào bảng "seat"
+-- INSERT INTO public."seat" VALUES
+--     ('seat001', 'Seat 1', 'Standard', 'room001'),
+--     ('seat002', 'Seat 2', 'VIP', 'room001');
 
--- Thêm dữ liệu vào bảng "ticket"
-INSERT INTO public."ticket" ("ticket_id", "showtime_id", "seat_id", "status_id") VALUES
-    ('ticket001', 'showtime001', 'seat001', 'status001'),
-    ('ticket002', 'showtime002', 'seat002', 'status001');
+-- -- Thêm dữ liệu vào bảng "ticket"
+-- INSERT INTO public."ticket" VALUES
+--     ('ticket001', 'showtime001', 'seat001', 'status001'),
+--     ('ticket002', 'showtime002', 'seat002', 'status001');
 
--- Thêm dữ liệu vào bảng "menu"
-INSERT INTO public."menu" ("item_id", "name", "price", "image_url", "status") VALUES
-    ('item001', 'Item 1', 10, 'https://item1.jpg', TRUE),
-    ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
+-- -- Thêm dữ liệu vào bảng "menu"
+-- INSERT INTO public."menu" VALUES
+--     ('item001', 'Item 1', 10, 'https://item1.jpg', TRUE),
+--     ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
 
 SELECT * FROM public.role
 SELECT * FROM public."account"
 SELECT * FROM public."customer"
-SELECT * FROM public."detail-movie-genre"
-SELECT * FROM public."format"
-SELECT * FROM public."language"
 
 
 
