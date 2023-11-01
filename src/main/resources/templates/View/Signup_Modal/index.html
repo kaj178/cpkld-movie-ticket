@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5CT_WebMovie</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+      integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="registerModal.css" />
+  </head>
+
+  <body>
+    <div class="modal_body_container_Logout">
+      <div
+        class="modal_container"
+        style="
+          padding: 42px 40px 62px 40px;
+          background-color: #14181d;
+          width: fit-content;
+          border-radius: 8px;
+          margin: auto;
+          margin-top: 5%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          z-index: 99;
+        "
+      >
+        <div class="background-modal-container">
+          <div class="heading_Container" style="text-align: center">
+            <h2
+              style="
+                color: white;
+                font-weight: 700;
+                font-size: 36px;
+                margin-bottom: 16px;
+              "
+            >
+              Đăng ký
+            </h2>
+            <h6 style="color: #9a9fae; margin-bottom: 20px">
+              Hãy điền thông tin để tạo tài khoản
+            </h6>
+          </div>
+          <div class="info_container" style="margin-bottom: 32px">
+            <form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                    margin-right: 25px;
+                    width: 60%;
+                  "
+                  class="form-control"
+                  id="Ho"
+                  aria-describedby="Name_Ho"
+                  placeholder="Họ"
+                />
+                <input
+                  type="text"
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  class="form-control"
+                  id="Ten"
+                  aria-describedby="Name_Ten"
+                  placeholder="Tên"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="text"
+                  class="form-control"
+                  id="Email"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="text"
+                  class="form-control"
+                  id="Address"
+                  placeholder="Địa chỉ"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="text"
+                  class="form-control"
+                  id="Phone"
+                  aria-describedby="Phone_Number"
+                  placeholder="Số điện thoại"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="password"
+                  class="form-control"
+                  id="Password"
+                  aria-describedby="PassWord_User"
+                  placeholder="Mật khẩu"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="password"
+                  class="form-control"
+                  id="Password_confirm"
+                  aria-describedby="PassWord_User_Confirm"
+                  placeholder="Nhập lại mật khẩu"
+                />
+              </div>
+              <div class="form-button-place" style="text-align: center">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="btn-register"
+                  style="
+                    color: white;
+                    background-image: linear-gradient(
+                      90deg,
+                      #784ba0 0%,
+                      #ff3cac 100%
+                    );
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 0px;
+                    width: 100%;
+                  "
+                >
+                  Đăng ký
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="Changing_Section">
+            <span style="color: #9a9fae"
+              >Đã có tài khoản ?
+              <a href="../Login_Modal/LoginModal.html" style="color: #ff3cac"
+                >Đăng nhập.</a
+              ></span
+            >
+          </div>
+          <br />
+          <a href="../../index.html" id="back-home">
+            <img
+              src="../../images/arrow_right.svg"
+              style="transform: scaleX(-1)"
+            />
+            Quay lại trang chủ</a
+          >
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { RegisterAPI } from "../API/LoginAPI.js";
+      $(document).ready(() => {
+        $("#btn-register").click(() => {
+          let fullname = $("#Ho").val().trim() + " " + $("#Ten").val().trim();
+          let address = $("#Address").val().trim();
+          let phone = $("#Phone ").val().trim();
+          let email = $("#Email").val().trim();
+          let password = $("#Password").val().trim();
+          let passwordConfirm = $("#Password_confirm").val().trim();
+
+          if (
+            fullname === " " ||
+            address === "" ||
+            phone === "" ||
+            email === "" ||
+            password === "" ||
+            passwordConfirm === ""
+          ) {
+            $(".message")
+              .text("Vui lòng nhập đầy đủ thông tin")
+              .show(3000)
+              .delay(3000)
+              .hide(1);
+          } else if (password !== passwordConfirm) {
+            $(".message")
+              .text("Xác nhận mật khẩu không đúng")
+              .show(3000)
+              .delay(3000)
+              .hide(1);
+          } else {
+            RegisterAPI(
+              "../..",
+              email,
+              password,
+              fullname,
+              address,
+              phone
+            ).then((res) => {
+              if (res.success === true) {
+                console.log("a");
+                window.location.href = "../Login_Modal/LoginModal.html";
+              } else
+                $(".message")
+                  .text("Tài khoản đã tồn tại")
+                  .show(3000)
+                  .delay(3000)
+                  .hide(1);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

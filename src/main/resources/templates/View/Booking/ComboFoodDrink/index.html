@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <title>5CT_WebMovie</title>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../../index.html">
+          <div class="logo">5CT</div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: #cfcece; font-size: 28px"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto d-flex w-100">
+            <li class="nav-item">
+              <a class="nav-link nav-current" href="../../MovieList/index.html"
+                >PHIM</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Detail/index.html">LỊCH CHIẾU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html"
+                >THÔNG TIN</a
+              >
+            </li>
+            <li class="nav-item" id="login-accout">
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html"
+                >Đăng nhập</a
+              >
+            </li>
+            <li class="nav-item" id="create-accout">
+              <a class="nav-link" href="../../Signup_Modal/index.html"
+                >Đăng ký</a
+              >
+            </li>
+            <li
+              class="nav-item d-flex align-items-center ms-auto visually-hidden"
+              id="user-account"
+            >
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/"></a>
+            </li>
+            <li class="nav-item visually-hidden" id="signout">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main-container">
+      <div class="back">
+        <a href="../ChooseSeat/index.html" style="text-decoration: none">
+          <img
+            src="../../../images/arrow_right.svg"
+            style="transform: scaleX(-1)"
+          />
+          <span style="color: #ff3cac">CHỌN CHỖ NGỒI</span>
+        </a>
+      </div>
+      <p style="font-weight: bold; color: white; font-size: 20px">
+        COMBO BẮP NƯỚC
+      </p>
+      <div class="line"></div>
+      <div class="container-fluid mt-5 container-menu"></div>
+    </div>
+    <!-- Bottom bar -->
+    <div class="bottom-bar">
+      <div class="bottom-bar-item">
+        <div class="title">NGÀY</div>
+        <div class="content date-content">20.4</div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">GIỜ</div>
+        <div class="content hour-content">22:30</div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">RẠP</div>
+        <div class="content theater-content">Nam Sài Gòn</div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">PHÒNG</div>
+        <div class="content room-content">Screen 2</div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">GHẾ</div>
+        <div class="content seat-content"></div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">GIÁ VÉ</div>
+        <div class="content ticket-content">0 ₫</div>
+      </div>
+      <div class="bottom-bar-item">
+        <div class="title">COMBO</div>
+        <div class="content combo-content">0 ₫</div>
+      </div>
+      <a href="../Thanhtoan/index.html" style="text-decoration: none">
+        <button class="btn-grad">THANH TOÁN</button>
+      </a>
+      <div class="total total-content">0 ₫</div>
+    </div>
+    <!--  -->
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row d-flex">
+          <div class="col-lg-3 col-md-3 col-sm-12" id="footer-first">
+            <div class="footer-logo" style="margin-top: 0">
+              <a href="#"> <p class="logo" style="font-size: 60px">5CT</p> </a>
+              <p style="font-size: 12px; clear: left">
+                COPYRIGHT © 5CODERCUTE.COM
+                <br />
+                ALL RIGHTS RESERVED.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Về chúng tôi
+                </a>
+              </li>
+              <li><a href="#"> Liên hệ </a></li>
+              <li><a href="#"> Tuyển dụng </a></li>
+              <li><a href="#"> Blog </a></li>
+              <li><a href="#"> FAQ </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Điều khoản sử dụng
+                </a>
+              </li>
+              <li><a href="#"> Điều khoản chung </a></li>
+              <li><a href="#"> Điều khoản giao dịch </a></li>
+              <li><a href="#"> Điều khoản thanh toán </a></li>
+              <li><a href="#"> Chính sách bảo mật </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div style="margin-top: 20px">
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/email-multiple-outline.png" />
+                  hoidap@5ct.vn
+                </a>
+              </div>
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/phone.png" /> 1900 1008
+                </a>
+              </div>
+              <div class="footer-icon">
+                <a href="#"> <img src="../../../images/facebook.png" /> </a>
+                <a href="#"> <img src="../../../images/twitter.png" /> </a>
+                <a href="#"> <img src="../../../images/google-plus.png" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { getAllMenu, getDetailMenuByID } from "../../API/MenuAPI.js";
+      import { XORDecrypt } from "../../Util/EncryptXOR.js";
+      import { getCustomerByEmail } from "../../API/UserAPI.js";
+      $(document).ready(function () {
+        // Navbar for logged in
+        if (sessionStorage.getItem("Email")) {
+          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+          getCustomerByEmail("../../..", email).then((res) => {
+            let data = JSON.parse(res.user);
+            let name = data.customer.FullName;
+            $("#create-accout").addClass("visually-hidden");
+            $("#login-accout").addClass("visually-hidden");
+            $("#user-account")
+              .removeClass("visually-hidden")
+              .find("a")
+              .text(name);
+            $("#signout").removeClass("visually-hidden");
+          });
+        } else {
+          window.location.href = "../../Login_Modal/LoginModal.html";
+        }
+
+        $("#signout a").click(() => {
+          sessionStorage.removeItem("Email");
+          window.location.href = ".";
+        });
+        async function getDetailMenuByIDFunc(id) {
+          let data = await getDetailMenuByID("../../../.", id);
+          return data;
+        }
+        function toVndCurrencyFormat(number) {
+          const currencyFormat = new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+          });
+
+          return currencyFormat.format(number);
+        }
+        async function renderInformation() {
+          $(".date-content").text(sessionStorage.getItem("DayChoosing"));
+          $(".room-content").text(sessionStorage.getItem("RoomIDChoosing"));
+          $(".hour-content").text(sessionStorage.getItem("TimeChoosing"));
+          $(".theater-content").text(sessionStorage.getItem("TheaterName"));
+          let seatdata = JSON.parse(sessionStorage.getItem("ChoosingSeat"));
+          let textseatdata = "";
+          for (var i = 0; i < seatdata.length; i++) {
+            textseatdata += seatdata[i].SeatName + " ";
+          }
+          $(".seat-content").text(textseatdata);
+          // Cập nhật thông tin giá
+          let pricetorender = sessionStorage.getItem("Pricing");
+          $(".ticket-content").text(toVndCurrencyFormat(pricetorender));
+          $(".total-content").text(toVndCurrencyFormat(pricetorender));
+        }
+        renderInformation();
+        async function getAllMenuFunc() {
+          let datas = await getAllMenu("../../../.", 1);
+          console.log(datas);
+          for (const data of datas["menus"]) {
+            let VNDPrice = await toVndCurrencyFormat(data.Price);
+            const htmls = `<div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="card mb-5">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="../../../${data.ImageURL}"
+                  class="img-fluid rounded-start"
+                  alt="..."
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${data.Name}</h5>
+                  <p class="card-text">
+                    <small class="text-muted"
+                      >Giá bán: <span>${VNDPrice}</span></small
+                    >
+                  </p>
+                  <p
+                    class="card-text"
+                    style="display: flex; align-items: center"
+                  >
+                    <button itemid=${data.ItemID} type="button" class="btn-minus">-</button>
+                    <span
+                      style="
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        color: white;
+                        font-weight: normal;
+                      "
+                    >
+                      0
+                    </span>
+                    <button itemid=${data.ItemID} type="button" class="btn-plus">+</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+            $(".container-menu").append(htmls);
+          }
+          const objectstore = [];
+          $(".btn-minus").click(async function () {
+            const comboNumber = $(this).parent().find("span");
+            if (comboNumber.text() > 0) {
+              comboNumber.text(parseInt(comboNumber.text()) - 1);
+              let numbertoadd = parseInt(comboNumber.text());
+              let itemid = $(this).attr("itemid");
+              let data = await getDetailMenuByIDFunc(itemid);
+              let datatoadd = data["menu"];
+              let existingItem = objectstore.find(function (item) {
+                return (
+                  item.Name === datatoadd.Name &&
+                  item.ImageURL === datatoadd.ImageURL
+                );
+              });
+              if (existingItem) {
+                if (!existingItem.hasOwnProperty("Number")) {
+                  existingItem.Number = 1;
+                } else {
+                  existingItem.Number -= 1;
+                }
+              }
+            }
+            sessionStorage.setItem("MenuInfo", JSON.stringify(objectstore));
+            const itemTotalPrices = objectstore.map((item) => {
+              const totalPrice = Number(item.Price) * item.Number;
+              return { ...item, totalPrice };
+            });
+
+            const totalPrice = itemTotalPrices.reduce((total, item) => {
+              return total + item.totalPrice;
+            }, 0);
+            $(".combo-content").text(toVndCurrencyFormat(totalPrice));
+            sessionStorage.setItem("PriceMenu", totalPrice);
+            let pricetocal = sessionStorage.getItem("Pricing");
+            $(".total-content").text(
+              toVndCurrencyFormat(totalPrice + parseInt(pricetocal))
+            );
+            sessionStorage.setItem(
+              "TotalPrice",
+              totalPrice + parseInt(pricetocal)
+            );
+            sessionStorage.setItem("PriceMenu", totalPrice);
+          });
+          $(".btn-plus").click(async function () {
+            const comboNumber = $(this).parent().find("span");
+            comboNumber.text(parseInt(comboNumber.text()) + 1);
+            let numbertoadd = parseInt(comboNumber.text());
+            let itemid = $(this).attr("itemid");
+            let data = await getDetailMenuByIDFunc(itemid);
+            let datatoadd = data["menu"];
+            let existingItem = objectstore.find(function (item) {
+              return (
+                item.Name === datatoadd.Name &&
+                item.ImageURL === datatoadd.ImageURL
+              );
+            });
+            if (existingItem) {
+              if (!existingItem.hasOwnProperty("Number")) {
+                existingItem.Number = 1;
+              } else {
+                existingItem.Number += 1;
+              }
+            } else {
+              datatoadd.Number = 1;
+              objectstore.push(datatoadd);
+            }
+            sessionStorage.setItem("MenuInfo", JSON.stringify(objectstore));
+            const itemTotalPrices = objectstore.map((item) => {
+              const totalPrice = Number(item.Price) * item.Number;
+              return { ...item, totalPrice };
+            });
+
+            // Get the total price of all items
+            const totalPrice = itemTotalPrices.reduce((total, item) => {
+              return total + item.totalPrice;
+            }, 0);
+            $(".combo-content").text(toVndCurrencyFormat(totalPrice));
+            let pricetocal = sessionStorage.getItem("Pricing");
+            $(".total-content").text(
+              toVndCurrencyFormat(totalPrice + parseInt(pricetocal))
+            );
+            sessionStorage.setItem(
+              "TotalPrice",
+              totalPrice + parseInt(pricetocal)
+            );
+            sessionStorage.setItem("PriceMenu", totalPrice);
+          });
+        }
+
+        getAllMenuFunc();
+      });
+    </script>
+  </body>
+</html>

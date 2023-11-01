@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.modal_body_container_Logout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-image: url('../../images/bg_login.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+} 
+
+.form-group {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.btn-close-modal {
+  border: none;
+  background-color: transparent;
+  font-size: 48px;
+  position: absolute;
+  top: -4px;
+  right: 12px;
+  color: #000;
+}
+
+#back-home {
+  color: #ff3cac;
+  text-decoration: none;
+}
+
+#back-home:hover {
+  text-decoration: underline;
+}

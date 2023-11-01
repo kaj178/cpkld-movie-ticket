@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link href='https://fonts.googleapis.com/css?family=Montagu Slab' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>     
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>5CT_WebMovie</title>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../../index.html">
+          <div class="logo">5CT</div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: #cfcece; font-size: 28px"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto d-flex w-100">
+            <li class="nav-item">
+              <a class="nav-link nav-current" href="../../MovieList/index.html">PHIM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Order/index.html">LỊCH CHIẾU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html">THÔNG TIN</a>
+            </li>
+            <li class="nav-item" id="login-accout">
+              <a class="nav-link" href="../../Login_Modal/LoginModal.html">Đăng nhập</a>
+            </li>
+            <li class="nav-item" id="create-accout">
+              <a class="nav-link" href="../../Signup_Modal/index.html">Đăng ký</a>
+            </li>
+            <li
+            class="nav-item d-flex align-items-center ms-auto visually-hidden"
+            id="user-account"
+          >
+            <a class="nav-link" href="../../Account/ThongTinCaNhan/"></a>
+          </li>
+          <li class="nav-item visually-hidden" id="signout">
+            <a class="nav-link" href="#">Đăng xuất</a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main-container pb-0">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-xs-12">
+          <div class="back">
+            <a href="Combo.html" style="text-decoration: none;">
+              <img src="/images/arrow_right.svg" style="transform: scaleX(-1);"> 
+              <span style="color:#ff3cac">CHỌN PHƯƠNG THỨC THANH TOÁN</span>
+            </a>
+          </div>
+          <section class="pt-3">
+            <div class="container pb-4">
+              <div class="row">
+                <div class="col-12">
+                  <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel" data-interval="false">      
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-12 mb-3" style="display: flex;justify-content: space-between;">
+                                <a class="btn-left mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                                    <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                    </svg>
+                                    Trước
+                                </a>  
+                                <a class="btn-right" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                                    Sau
+                                    <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                    </svg>
+                                </a>
+                            </div>  
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/bidv.png" style="margin-top: 20px;">
+                                <p> BIDV </p>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/vietcombank.jpg" style="margin-top: 20px;">
+                                <p> VIETCOMBANK </p>
+                              </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/techcombank.png" style="margin-top: 20px;">
+                                <p> TECHCOMBANK </p>
+                              </div>
+                          </div>           
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row">
+                          <div class="col-md-12 mb-3" style="display: flex;justify-content: space-between;">
+                            <a class="btn-left mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                </svg>
+                                Trước
+                            </a>  
+                            <a class="btn-right" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                                Sau
+                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                </svg>
+                            </a>
+                          </div>  
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/vietin.png" style="margin-top: 20px;">
+                                <p> VIETINBANK </p>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/mbbank.png" style="margin-top: 20px;">
+                                <p> MB BANK </p>
+                              </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/vietcombank.jpg" style="margin-top: 20px;">
+                                <p> VIETCOMBANK </p>
+                              </div>
+                          </div>           
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row">
+                          <div class="col-md-12 mb-3" style="display: flex;justify-content: space-between;">
+                            <a class="btn-left mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                </svg>
+                                Trước
+                            </a>  
+                            <a class="btn-right" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                                Sau
+                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.580078 10.59L5.17008 6L0.580078 1.41L2.00008 0L8.00008 6L2.00008 12L0.580078 10.59Z" fill="#FF3CAC"/>
+                                </svg>
+                            </a>
+                        </div>  
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/mbbank.png" style="margin-top: 20px;">
+                                <p> MB BANK </p>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/techcombank.png" style="margin-top: 20px;">
+                                <p> TECHCOMBANK </p>
+                              </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="method">
+                                <img src="/images/bidv.png" style="margin-top: 20px;">
+                                <p> BIDV </p>
+                              </div>
+                          </div>           
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>          
+          <div class="atm-info">
+            <div class="atm-info-row">
+              <p style="font-size: 14px; margin-top: 20px; color: #9A9FAE"> SỐ THẺ </p>
+              <div class="input-tag">
+                <input
+                type="text"
+                class="form-control"
+                aria-label="Usernumber"
+                aria-describedby="addon-wrapping"
+                placeholder="1234 1231 2313 2311"
+                id = "atm-number"
+                />
+              </div>
+            </div>
+            <div class="atm-info-row">
+              <p style="font-size: 14px; margin-top: 20px; color: #9A9FAE"> TÊN CHỦ THẺ </p>
+              <div class="input-tag">
+                <input
+                type="text"
+                class="form-control"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
+                placeholder="NGUYEN VAN A"
+                id="user-name"
+                />
+              </div>
+            </div>
+            <div class="atm-info-row">
+              <p style="font-size: 14px; margin-top: 20px; color: #9A9FAE"> THÁNG NĂM PHÁT HÀNH </p>
+              <div class="input-tag">
+                <input
+                  type="date"
+                  class="form-control"
+                  aria-label="year"
+                  aria-describedby="addon-wrapping"
+                  placeholder="dd/mm/yy"
+                  id="year"
+                />
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Tôi đồng ý với điều khoản sử dụng và mua vé cho người có độ tuổi phù hợp
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12" style="border-left: 2px solid #2B2B2B;" id="col-bill">
+          <ul class="bill">
+            <li class="bill-row">
+              <span class="bill-row-left"> ĐƠN VỊ CHẤP NHẬN THANH TOÁN </span>
+              <span class="bill-row-right"> 5CTVN </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> MÃ ĐƠN HÀNG </span>
+              <span class="bill-row-right"> 123321456 </span>
+            </li>
+            <li class="bill-line"></li>
+            <li class="bill-row">
+              <span class="bill-row-left"> TỔNG TIỀN </span>
+              <div class="bill-row-right"> 
+                <div class="bill-money">290,000 ₫</div>
+              </div>
+            </li>
+            <li class="bill-row">
+              <!-- <a
+                href="#"
+                class="text-decoration-none"
+                data-bs-toggle="modal"
+                
+                style="width: 100%;"
+              > -->
+                <button class="btn-grad" id="bill-btn"> THANH TOÁN </button>
+              <!-- </a> -->
+            </li>
+            <li class="bill-row">
+              <p id="check-bill"></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row d-flex">
+          <div class="col-lg-3 col-md-3 col-sm-12" id="footer-first">
+            <div class="footer-logo" style="margin-top: 0">
+              <a href="#"> <p class="logo" style="font-size: 60px">5CT</p> </a>
+              <p style="font-size: 12px; clear: left">
+                COPYRIGHT © 5CODERCUTE.COM
+                <br />
+                ALL RIGHTS RESERVED.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Về chúng tôi
+                </a>
+              </li>
+              <li><a href="#"> Liên hệ </a></li>
+              <li><a href="#"> Tuyển dụng </a></li>
+              <li><a href="#"> Blog </a></li>
+              <li><a href="#"> FAQ </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Điều khoản sử dụng
+                </a>
+              </li>
+              <li><a href="#"> Điều khoản chung </a></li>
+              <li><a href="#"> Điều khoản giao dịch </a></li>
+              <li><a href="#"> Điều khoản thanh toán </a></li>
+              <li><a href="#"> Chính sách bảo mật </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div style="margin-top: 20px">
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/email-multiple-outline.png" />
+                  hoidap@5ct.vn
+                </a>
+              </div>
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/phone.png" /> 1900 1008
+                </a>
+              </div>
+              <div class="footer-icon">
+                <a href="#"> <img src="../../../images/facebook.png" /> </a>
+                <a href="#"> <img src="../../../images/twitter.png" /> </a>
+                <a href="#"> <img src="../../../images/google-plus.png" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="ModalPayment"
+      tabindex="-1"
+      aria-labelledby="ModalPaymentLable"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content p-3">
+          <div class="modal-body">
+            <div class="input-group flex-nowrap">
+              <div class="container-fluid">
+                <div class="row gy-2 gx-5">
+                  <div class="col-12">
+                    <span class="form-title"> Nhập OTP gửi về email </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-12" style="display: flex; align-items: center;">
+                    <span class="form-title"> <a href="#"> Bạn chưa nhận được OTP </a> </span>
+                    <button
+                      type="button"
+                      class="btn text-white btn-primary"
+                      id="btn_EditUser"
+                      style="border-radius: 10px"
+                    >
+                    Gửi lại OTP
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { XORDecrypt } from "../../Util/EncryptXOR.js";
+      import { getCustomerByEmail } from "../../API/UserAPI.js";
+      $(document).ready(function(){
+                // Navbar for logged in
+                if (sessionStorage.getItem("Email")) {
+          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+          getCustomerByEmail("../../..", email).then((res) => {
+            let data = JSON.parse(res.user);
+            let name = data.customer.FullName;
+            $("#create-accout").addClass("visually-hidden");
+            $("#login-accout").addClass("visually-hidden");
+            $("#user-account")
+              .removeClass("visually-hidden")
+              .find("a")
+              .text(name);
+            $("#signout").removeClass("visually-hidden");
+          });
+        } else {
+          window.location.href = "../../Login_Modal/LoginModal.html";
+        }
+        
+        function checkEnterInfo(){
+          if ($(".atm-info").css("display") == "block" && $("#atm-number").val()!="" && $("#user-name").val()!="" && $("#year").val()!="" && $("#flexCheckDefault").is(":checked")){
+            return true;
+          }
+          return false;
+        }
+        $(".method").click(function(){
+          let all_method =  $(document).find(".method");
+          for (let i = 0; i < all_method.length; i++) {
+            if ($(this).find("p").text() != $(all_method[i]).find("p").text()){
+              $(all_method[i]).css("border","1px solid white");
+              $(all_method[i]).find("p").css("color","white");
+            }
+          }
+          if ($(this).css("border")=="0.8px solid rgb(255, 60, 172)" && $(".atm-info").css("display") == "block"){
+            $(this).css("border","1px solid white")
+            $(this).find("p").css("color","white")
+            $(".atm-info").css("display","none");
+          }
+          else{
+            $(this).css("border","1px solid #ff3cac")
+            $(this).find("p").css("color","#ff3cac")
+            $(".atm-info").css("display","block");
+          }
+        })
+        $("#bill-btn").click(function(){
+          if (checkEnterInfo()){
+            $('#ModalPayment').modal('show'); 
+            $("#check-bill").text("");
+          }
+          else{
+            $("#check-bill").text("Vui lòng nhập đầy đủ phương thức thanh toán");
+            $("#check-bill").css("color","red");
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

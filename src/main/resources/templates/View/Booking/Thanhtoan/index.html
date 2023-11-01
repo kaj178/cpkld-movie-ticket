@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montagu Slab"
+      rel="stylesheet"
+    />
+
+    <title>5CT_WebMovie</title>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../../index.html">
+          <div class="logo">5CT</div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: #cfcece; font-size: 28px"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto d-flex w-100">
+            <li class="nav-item">
+              <a class="nav-link nav-current" href="../../MovieList/index.html"
+                >PHIM</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Order/index.html">LỊCH CHIẾU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html"
+                >THÔNG TIN</a
+              >
+            </li>
+            <li class="nav-item" id="login-accout">
+              <a class="nav-link" href="../../Login_Modal/LoginModal.html"
+                >Đăng nhập</a
+              >
+            </li>
+            <li class="nav-item" id="create-accout">
+              <a class="nav-link" href="../../Signup_Modal/index.html"
+                >Đăng ký</a
+              >
+            </li>
+            <li
+              class="nav-item d-flex align-items-center ms-auto visually-hidden"
+              id="user-account"
+            >
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/"></a>
+            </li>
+            <li class="nav-item visually-hidden" id="signout">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="main-container"
+      style="border-bottom: 1px solid #2b2b2b; padding-bottom: 0"
+    >
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-xs-12">
+          <div class="back">
+            <a
+              href="../ComboFoodDrink/index.html"
+              style="text-decoration: none"
+            >
+              <img
+                src="../../../images/arrow_right.svg"
+                style="transform: scaleX(-1)"
+              />
+              <span style="color: #ff3cac">CHỌN COMBO</span>
+            </a>
+          </div>
+          <div class="main-title">
+            <p style="font-size: 20px">ƯU ĐÃI</p>
+            <div class="line"></div>
+          </div>
+          <div class="main-discount">
+            <p style="font-size: 14px; margin-top: 20px; color: #9a9fae">
+              Nhập mã ưu đãi
+            </p>
+            <div class="input-tag">
+              <input
+                type="text"
+                class="form-control form-discount-content"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
+              />
+              <button class="btn-grad">Sử dụng</button>
+            </div>
+          </div>
+          <div class="main-title">
+            <p style="font-size: 20px">PHƯƠNG THỨC THANH TOÁN</p>
+            <div class="line"></div>
+          </div>
+          <div class="payment-method">
+            <div class="method-group">
+              <div class="row">
+                <div
+                  class="col-lg-12 col-md-12 col-xs-12 d-flex justify-content-center pt-5 pb-5"
+                >
+                  <div class="method" id="method-momo">
+                    <img
+                      src="../../../images/momo.jpg"
+                      style="margin-top: 20px"
+                    />
+                    <p style="font-size: 14px; color: white; margin-top: 10px">
+                      Thanh toán với MoMo
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-lg-4 col-md-4 col-xs-12"
+          style="border-left: 2px solid #2b2b2b"
+          id="col-bill"
+        >
+          <ul class="bill">
+            <li class="bill-row">
+              <span class="bill-row-left"> NGÀY CHIẾU </span>
+              <span class="bill-row-right date-content"> 20.4 </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> PHIM </span>
+              <span class="bill-row-right movie-content">
+                Người kiến và chiến binh ong
+              </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> GIỜ CHIẾU </span>
+              <span class="bill-row-right time-content"> 22:30 </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> RẠP</span>
+              <span class="bill-row-right theater-content"> Nam Sài Gòn </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> PHÒNG CHIẾU </span>
+              <span class="bill-row-right screen-content"> Screen 2 </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> GHẾ </span>
+              <span class="bill-row-right seat-content"> I2,K3 </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> GIÁ VÉ </span>
+              <span class="bill-row-right price-ticket"> 120,000 ₫ </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> COMBO </span>
+              <span class="bill-row-right menu-content"> 220,000 ₫ </span>
+            </li>
+            <li class="bill-line"></li>
+            <li class="bill-row">
+              <span class="bill-row-left"> THÀNH TIỀN </span>
+              <span class="bill-row-right all-price-content"> 340,000 ₫ </span>
+            </li>
+            <li class="bill-row">
+              <span class="bill-row-left"> KHUYẾN MÃI </span>
+              <span class="bill-row-right discount-content"> -0 ₫ </span>
+            </li>
+            <li class="bill-line"></li>
+            <li class="bill-row">
+              <span class="bill-row-left"> TỔNG TIỀN </span>
+              <div class="bill-row-right">
+                <div class="bill-money after-price-content">290,000 ₫</div>
+              </div>
+            </li>
+            <li class="bill-row">
+              <button class="btn-grad confirm-btn" id="bill-btn">
+                THANH TOÁN
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row d-flex">
+          <div class="col-lg-3 col-md-3 col-sm-12" id="footer-first">
+            <div class="footer-logo" style="margin-top: 0">
+              <a href="#"> <p class="logo" style="font-size: 60px">5CT</p> </a>
+              <p style="font-size: 12px; clear: left">
+                COPYRIGHT © 5CODERCUTE.COM
+                <br />
+                ALL RIGHTS RESERVED.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Về chúng tôi
+                </a>
+              </li>
+              <li><a href="#"> Liên hệ </a></li>
+              <li><a href="#"> Tuyển dụng </a></li>
+              <li><a href="#"> Blog </a></li>
+              <li><a href="#"> FAQ </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Điều khoản sử dụng
+                </a>
+              </li>
+              <li><a href="#"> Điều khoản chung </a></li>
+              <li><a href="#"> Điều khoản giao dịch </a></li>
+              <li><a href="#"> Điều khoản thanh toán </a></li>
+              <li><a href="#"> Chính sách bảo mật </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div style="margin-top: 20px">
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/email-multiple-outline.png" />
+                  hoidap@5ct.vn
+                </a>
+              </div>
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/phone.png" /> 1900 1008
+                </a>
+              </div>
+              <div class="footer-icon">
+                <a href="#"> <img src="../../../images/facebook.png" /> </a>
+                <a href="#"> <img src="../../../images/twitter.png" /> </a>
+                <a href="#"> <img src="../../../images/google-plus.png" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import {
+        getPromotionsVoucher,
+        getPromotionsEvent,
+        calculateTotalPrice,
+      } from "../../API/PromotionAPI.js";
+      import { AddBooking } from "../../API/BookingAPI.js";
+      import { getCustomerByEmail } from "../../API/UserAPI.js";
+      import { getMovieByID } from "../../API/MovieAPI.js";
+      import { XORDecrypt } from "../../Util/EncryptXOR.js";
+      $(document).ready(function () {
+        // Navbar for logged in
+        if (sessionStorage.getItem("Email")) {
+          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+          getCustomerByEmail("../../..", email).then((res) => {
+            let data = JSON.parse(res.user);
+            let name = data.customer.FullName;
+            $("#create-accout").addClass("visually-hidden");
+            $("#login-accout").addClass("visually-hidden");
+            $("#user-account")
+              .removeClass("visually-hidden")
+              .find("a")
+              .text(name);
+            $("#signout").removeClass("visually-hidden");
+          });
+        } else {
+          window.location.href = "../../Login_Modal/LoginModal.html";
+        }
+        async function getPromotionData() {
+          let data = await getPromotionsEvent("../../../.");
+          return data["list"];
+        }
+        async function getPromotionDiscount(promotionID) {
+          let data = await getPromotionData();
+          for (const datavoucher of data) {
+            if (datavoucher.PromotionID == promotionID) {
+              return datavoucher.Discount;
+            }
+          }
+          return 0;
+        }
+        function toVndCurrencyFormat(number) {
+          const currencyFormat = new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumFractionDigits: 0,
+          });
+
+          return currencyFormat.format(number);
+        }
+        async function renderInformation() {
+          $(".date-content").text(sessionStorage.getItem("DayChoosing"));
+          $(".room-content").text(sessionStorage.getItem("RoomIDChoosing"));
+          $(".hour-content").text(sessionStorage.getItem("TimeChoosing"));
+          $(".theater-content").text(sessionStorage.getItem("TheaterName"));
+          let seatdata = JSON.parse(sessionStorage.getItem("ChoosingSeat"));
+          let textseatdata = "";
+          for (var i = 0; i < seatdata.length; i++) {
+            textseatdata += seatdata[i].SeatName + " ";
+          }
+          $(".seat-content").text(textseatdata);
+          // Cập nhật thông tin giá
+          let pricetorender = sessionStorage.getItem("Pricing");
+          let PriceTotal = sessionStorage.getItem("TotalPrice");
+          let menuprice = sessionStorage.getItem("PriceMenu");
+          let movieid = sessionStorage.getItem("movieid");
+          let dataMovie = await getMovieByID("../../../.", movieid);
+          dataMovie = dataMovie["movie"];
+          $(".movie-content").text(dataMovie.MovieName);
+          $(".menu-content").text(toVndCurrencyFormat(menuprice));
+          $(".price-ticket").text(toVndCurrencyFormat(pricetorender));
+          $(".all-price-content").text(toVndCurrencyFormat(PriceTotal));
+          $(".after-price-content").text(toVndCurrencyFormat(PriceTotal));
+          $(".time-content").text(sessionStorage.getItem("TimeChoosing"));
+        }
+        renderInformation();
+        async function ChangePrice(PromotionPrice, newPrice) {
+          $(".discount-content").text(
+            "- " + toVndCurrencyFormat(PromotionPrice)
+          );
+          $(".after-price-content").text(toVndCurrencyFormat(newPrice));
+        }
+        $(".btn-grad").click(async () => {
+          let PromtionPrice = await calculateTotalPrice(
+            "../../../.",
+            $(".form-discount-content").val(),
+            JSON.parse(sessionStorage.getItem("TotalPrice"))
+          );
+          if (PromtionPrice.success) {
+            let newPrice = PromtionPrice.totalPrice;
+            let PromotionPrice =
+              JSON.parse(sessionStorage.getItem("TotalPrice")) - newPrice;
+            ChangePrice(PromotionPrice, newPrice);
+          }
+        });
+        $("#method-momo").click(function () {
+          if ($("#method-atm p").css("color") == "rgb(255, 60, 172)") {
+            $(this).css("border", "1px solid #ff3cac");
+            $("#method-momo p").css("color", "#ff3cac");
+            $("#method-atm").css("border", "0.8px solid rgb(154, 159, 174)");
+            $("#method-atm p").css("color", "rgb(154, 159, 174)");
+            $("#method-atm svg").css("fill", "rgb(154, 159, 174)");
+          } else {
+            if ($(this).css("border") == "0.8px solid rgb(154, 159, 174)") {
+              $(this).css("border", "1px solid #ff3cac");
+              $("#method-momo p").css("color", "#ff3cac");
+            } else {
+              $(this).css("border", "0.8px solid rgb(154, 159, 174)");
+              $("#method-momo p").css("color", "rgb(154, 159, 174)");
+            }
+          }
+        });
+        $("#method-atm").click(function () {
+          if ($("#method-momo p").css("color") == "rgb(255, 60, 172)") {
+            $(this).css("border", "1px solid #ff3cac");
+            $("#method-atm p").css("color", "#ff3cac");
+            $("#method-momo").css("border", "0.8px solid rgb(154, 159, 174)");
+            $("#method-momo p").css("color", "rgb(154, 159, 174)");
+            $("#method-atm svg").css("fill", "rgb(154, 159, 174)");
+          } else {
+            if ($(this).css("border") == "0.8px solid rgb(154, 159, 174)") {
+              $(this).css("border", "1px solid #ff3cac");
+              $("#method-atm p").css("color", "#ff3cac");
+            } else {
+              $(this).css("border", "0.8px solid rgb(154, 159, 174)");
+              $("#method-atm p").css("color", "rgb(154, 159, 174)");
+            }
+          }
+        });
+        async function FindingUserByEmailFunc(email) {
+          let data = await getCustomerByEmail("../../../.", email);
+          return data;
+        }
+        $(".confirm-btn").click(async () => {
+          const EmailUser = sessionStorage.getItem("Email");
+          let UserInfo = XORDecrypt(EmailUser);
+          let UserData = await FindingUserByEmailFunc(UserInfo);
+          let UserDataRender = JSON.parse(UserData["user"]).customer;
+          console.log(UserDataRender);
+          let customer_id = UserDataRender.CustomerID;
+          let ChoosingSeat = sessionStorage.getItem("ChoosingSeat");
+          let RoomID = sessionStorage.getItem("RoomIDChoosing");
+          let dayChoosing = sessionStorage.getItem("DayChoosing");
+          let totalPrice = sessionStorage.getItem("TotalPrice");
+          let ShowTimeID = sessionStorage.getItem("ShowTimeID");
+          let TheaterName = sessionStorage.getItem("TheaterName");
+          let MenuInfo = sessionStorage.getItem("MenuInfo");
+          let NumofTicket = sessionStorage.getItem("SelectedTicketNum");
+          var currentDate = new Date();
+          if (!NumofTicket) {
+            NumofTicket = 1;
+          }
+          console.log(NumofTicket);
+          // get the current date and time
+          var date = currentDate.getDate();
+          var month = currentDate.getMonth() + 1;
+          var year = currentDate.getFullYear();
+          var hours = currentDate.getHours();
+          var minutes = currentDate.getMinutes();
+          var seconds = currentDate.getSeconds();
+
+          // add leading zeros to the minutes and seconds
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+          }
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          // display the current date and time
+          const timetoadd =
+            year +
+            "-" +
+            month +
+            "-" +
+            date +
+            " " +
+            hours +
+            ":" +
+            minutes +
+            ":" +
+            seconds;
+          let getVoucher = $(".form-discount-content").val();
+          let resulttoadd = await AddBooking(
+            "../../../.",
+            NumofTicket,
+            timetoadd,
+            getVoucher,
+            customer_id,
+            ShowTimeID,
+            totalPrice,
+            JSON.parse(ChoosingSeat),
+            JSON.parse(MenuInfo)
+          );
+          console.log(resulttoadd);
+          if (resulttoadd.success) {
+            sessionStorage.removeItem("ChoosingSeat");
+            sessionStorage.removeItem("RoomIDChoosing");
+            sessionStorage.removeItem("DayChoosing");
+            sessionStorage.removeItem("ShowTimeID");
+            sessionStorage.removeItem("TimeChoosing");
+            sessionStorage.removeItem("TheaterName");
+            sessionStorage.removeItem("Pricing");
+            sessionStorage.removeItem("MenuInfo");
+            sessionStorage.removeItem("movieid");
+            sessionStorage.removeItem("TotalPrice");
+            sessionStorage.removeItem("PriceMenu");
+            sessionStorage.setItem("BillID", resulttoadd.id);
+            window.location.href = "../SuccessPayment/index.html";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

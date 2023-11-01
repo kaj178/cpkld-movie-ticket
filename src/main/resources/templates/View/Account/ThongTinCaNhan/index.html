@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montagu Slab"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    ></script>
+    <title>5CT_WebMovie</title>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../../index.html">
+          <div class="logo">5CT</div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: #cfcece; font-size: 28px"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto d-flex w-100">
+            <li class="nav-item">
+              <a class="nav-link nav-current" href="../../MovieList/index.html"
+                >PHIM</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../Detail/index.html">LỊCH CHIẾU</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html"
+                >THÔNG TIN</a
+              >
+            </li>
+            <li class="nav-item" id="login-accout">
+              <a class="nav-link" href="../../Login_Modal/LoginModal.html"
+                >Đăng nhập</a
+              >
+            </li>
+            <li class="nav-item" id="create-accout">
+              <a class="nav-link" href="../../Signup_Modal/index.html"
+                >Đăng ký</a
+              >
+            </li>
+            <li
+              class="nav-item d-flex align-items-center ms-auto visually-hidden"
+              id="user-account"
+            >
+              <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item visually-hidden" id="signout">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main-container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4 col-md-2"></div>
+          <div class="col-lg-4 col-md-8 col-xs-12">
+            <div class="container-fluid">
+              <div class="row justify-content-center mb-5">
+                <div class="col-12 d-flex justify-content-center">
+                  THÔNG TIN TÀI KHOẢN
+                </div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6 account-title">TÊN</div>
+                <div class="col-6 account-content name-display">ABC</div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6 account-title">EMAIL</div>
+                <div class="col-6 account-content email-display">
+                  ABC@gmail.com
+                </div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6 account-title">TÊN ĐĂNG NHẬP</div>
+                <div class="col-6 account-content user-display">ABCD</div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6 account-title">SỐ ĐIỆN THOẠI</div>
+                <div class="col-6 account-content phone-display">
+                  01021002131
+                </div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6">
+                  <a href="../LichSuDatVe/index.html" class="history-ticket">
+                    <button class="btn-grad">Xem lịch sử đặt vé</button>
+                  </a>
+                </div>
+              </div>
+              <div class="row justify-content-center mb-3">
+                <div class="col-6">
+                  <button
+                    class="btn-grad"
+                    data-bs-toggle="modal"
+                    data-bs-target="#ModalChangePassword"
+                  >
+                    Đổi mật khẩu
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-2"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row d-flex">
+          <div class="col-lg-3 col-md-3 col-sm-12" id="footer-first">
+            <div class="footer-logo" style="margin-top: 0">
+              <a href="#"> <p class="logo" style="font-size: 60px">5CT</p> </a>
+              <p style="font-size: 12px; clear: left">
+                COPYRIGHT © 5CODERCUTE.COM
+                <br />
+                ALL RIGHTS RESERVED.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Về chúng tôi
+                </a>
+              </li>
+              <li><a href="#"> Liên hệ </a></li>
+              <li><a href="#"> Tuyển dụng </a></li>
+              <li><a href="#"> Blog </a></li>
+              <li><a href="#"> FAQ </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Điều khoản sử dụng
+                </a>
+              </li>
+              <li><a href="#"> Điều khoản chung </a></li>
+              <li><a href="#"> Điều khoản giao dịch </a></li>
+              <li><a href="#"> Điều khoản thanh toán </a></li>
+              <li><a href="#"> Chính sách bảo mật </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div style="margin-top: 20px">
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/email-multiple-outline.png" />
+                  hoidap@5ct.vn
+                </a>
+              </div>
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../../images/phone.png" /> 1900 1008
+                </a>
+              </div>
+              <div class="footer-icon">
+                <a href="#"> <img src="../../../images/facebook.png" /> </a>
+                <a href="#"> <img src="../../../images/twitter.png" /> </a>
+                <a href="#"> <img src="../../../images/google-plus.png" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="ModalChangePassword"
+      tabindex="-1"
+      aria-labelledby="ModalChangePasswordLable"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content p-3">
+          <div class="modal-body">
+            <div class="input-group flex-nowrap">
+              <div class="container-fluid">
+                <div class="row mb-2">
+                  <div class="col-12">
+                    <span class="form-title"> Nhập mật khẩu cũ </span>
+                    <input
+                      type="password"
+                      class="form-control"
+                      aria-label="Producer_name"
+                      aria-describedby="addon-wrapping"
+                      id="password-old"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-12">
+                    <span class="form-title"> Nhập mật khẩu mới </span>
+                    <input
+                      type="password"
+                      class="form-control"
+                      aria-label="Producer_name"
+                      aria-describedby="addon-wrapping"
+                      id="password-new"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-12">
+                    <span class="form-title"> Xác nhận mật khẩu mới </span>
+                    <input
+                      type="password"
+                      class="form-control"
+                      aria-label="Producer_name"
+                      aria-describedby="addon-wrapping"
+                      id="password-new-confirm"
+                    />
+                  </div>
+                </div>
+                <div class="message text-danger text-center"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3"></div>
+              <div
+                class="col-6"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <button
+                  type="button"
+                  class="btn mt-2 text-white btn-main"
+                  id="btn-change-password"
+                  style="border-radius: 10px"
+                >
+                  Đổi mật khẩu
+                </button>
+              </div>
+              <div class="col-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { getCustomerByEmail, changePassword } from "../../API/UserAPI.js";
+      import { XORDecrypt } from "../../Util/EncryptXOR.js";
+      let accountID;
+      $(document).ready(function () {
+        if (sessionStorage.getItem("Email")) {
+          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+          getCustomerByEmail("../../..", email).then((res) => {
+            let data = JSON.parse(res.user);
+            let name = data.customer.FullName;
+            accountID = data.customer.account_id;
+            $("#create-accout").addClass("visually-hidden");
+            $("#login-accout").addClass("visually-hidden");
+            $("#user-account")
+              .removeClass("visually-hidden")
+              .find("a")
+              .text(name);
+            $("#signout").removeClass("visually-hidden");
+          });
+        } else {
+          window.location.href = "../../Login_Modal/LoginModal.html";
+        }
+
+        $("#signout a").click(() => {
+          sessionStorage.removeItem("Email");
+          window.location.href = ".";
+        });
+
+        $("#btn-change-password").click(() => {
+          let oldPass = $("#password-old").val();
+          let newPass = $("#password-new").val();
+          let newPassConfirm = $("#password-new-confirm").val();
+          if (newPass !== newPassConfirm) {
+            $(".message")
+              .text("Mật khẩu xác nhận không khớp")
+              .show(1)
+              .delay(3000)
+              .hide(1);
+            return;
+          }
+          changePassword("../../..", accountID, newPass, oldPass).then(
+            (res) => {
+              if (res.success)
+                $(".message")
+                  .text("Đổi mật khẩu thành công")
+                  .addClass("text-success")
+                  .removeClass("text-danger");
+              else
+                $(".message")
+                  .text("Mật khẩu cũ không đúng")
+                  .addClass("text-danger")
+                  .removeClass("text-success");
+            }
+          );
+        });
+      });
+
+      (async function TakeUserInformation() {
+        const EmailUser = sessionStorage.getItem("Email");
+        let UserInfo = XORDecrypt(EmailUser);
+        let UserData = await getCustomerByEmail("../../../.", UserInfo);
+        let UserDataRender = JSON.parse(UserData["user"]).customer;
+        console.log(UserDataRender);
+        $(".name-display").text(UserDataRender.FullName);
+        $(".email-display").text(UserInfo);
+        $(".user-display").text(UserInfo);
+        $(".phone-display").text(UserDataRender.Phone);
+      })();
+    </script>
+  </body>
+</html>

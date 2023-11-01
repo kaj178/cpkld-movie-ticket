@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        height: 100%;
+      }
+
+      .form-control {
+        background-color: #e9eeef;
+      }
+
+      .modal-content {
+        background-color: #14181d !important;
+        border-radius: 10px !important;
+      }
+
+      #btn_EditUser {
+        background: linear-gradient(
+          90deg,
+          #784ba0 0.25%,
+          #784ba0 0.26%,
+          #ff3cac 100.12%
+        );
+        border: 1px solid #303030;
+        border-radius: 10px;
+        box-shadow: none;
+      }
+
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        color: white;
+        background-image: url(/images/calendarSVG.svg);
+        cursor: pointer;
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        color: white;
+        background-color: black;
+        border: none;
+        box-sizing: border-box;
+        margin-top: 10px;
+        border-radius: 10px;
+        height: 36px;
+      }
+
+      input[type="text"]:focus,
+      input[type="date"]:focus {
+        box-sizing: border-box !important;
+        color: white;
+        background: black;
+        border: solid 1px transparent;
+        border-radius: 10px;
+        background-image: linear-gradient(black, black),
+          linear-gradient(90deg, #784ba0 0.25%, #784ba0 0.26%, #ff3cac 100.12%);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: none;
+      }
+
+      .form-title {
+        color: #9a9fae;
+      }
+
+      .icon i {
+        color: #808080;
+      }
+
+      .icon {
+        position: absolute;
+        right: 20px;
+        bottom: 8px;
+      }
+
+      .input-group {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Button trigger modal -->
+    <a
+      href="#"
+      class="text-decoration-none"
+      data-bs-toggle="modal"
+      data-bs-target="#ModalEditUser"
+    >
+      Đăng ký
+    </a>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="ModalEditUser"
+      tabindex="-1"
+      aria-labelledby="ModalEditUserLable"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content p-3">
+          <div class="modal-body">
+            <div class="input-group flex-nowrap">
+              <div class="container-fluid">
+                <div class="row gy-4 gx-5">
+                  <div class="col-6">
+                    <span class="form-title"> Họ và tên </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <span class="form-title"> Ngày sinh </span>
+                    <input
+                      type="date"
+                      class="form-control"
+                      aria-label="Birthday"
+                      aria-describedby="addon-wrapping"
+                      placeholder="dd/mm/yy"
+                      id="birthday"
+                    />
+                  </div>
+
+                  <div class="col-6">
+                    <span class="form-title"> Số điện thoại </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <span class="form-title"> Khu vực </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <span class="form-title"> Email </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <span class="form-title"> Rạp yêu thích </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <span class="form-title"> Mật khẩu </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4"></div>
+              <div
+                class="col-4"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <button
+                  type="button"
+                  class="btn mt-2 text-white btn-primary"
+                  id="btn_EditUser"
+                  style="border-radius: 10px"
+                >
+                  Sửa người dùng
+                </button>
+              </div>
+              <div class="col-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

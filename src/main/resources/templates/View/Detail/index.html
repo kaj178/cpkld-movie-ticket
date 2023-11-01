@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <title>5CT_WebMovie</title>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../index.html">
+          <div class="logo">5CT</div>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars" style="color: #cfcece; font-size: 28px"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto d-flex w-100">
+            <li class="nav-item">
+              <a class="nav-link nav-current" href="../MovieList/index.html"
+                >PHIM</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Order/index.html">LỊCH CHIẾU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Account/ThongTinCaNhan/index.html"
+                >THÔNG TIN</a
+              >
+            </li>
+            <li class="nav-item" id="login-accout">
+              <a class="nav-link" href="../Login_Modal/LoginModal.html"
+                >Đăng nhập</a
+              >
+            </li>
+            <li class="nav-item" id="create-accout">
+              <a class="nav-link" href="../Signup_Modal/index.html">Đăng ký</a>
+            </li>
+            <li
+              class="nav-item d-flex align-items-center ms-auto visually-hidden"
+              id="user-account"
+            >
+              <a class="nav-link" href="../Account/ThongTinCaNhan/"></a>
+            </li>
+            <li class="nav-item visually-hidden" id="signout">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Modal trailer -->
+    <div
+      class="modal fade"
+      id="modal-trailer"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modal-trailer"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- 16:9 aspect ratio -->
+            <div class="ratio ratio-16x9">
+              <iframe src="" frameborder="0"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide phim -->
+    <div
+      id="movie-slide"
+      class="carousel slide"
+      data-bs-ride="carousel container-sm"
+    >
+      <div class="carousel-indicators row"></div>
+      <div class="carousel-inner">
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="movie-content"></div>
+    </div>
+    <!--  -->
+    <div class="main-container">
+      <div class="section about">
+        <div class="line"></div>
+        <div class="about">
+          <div class="about-content container-fluid">
+            <div class="row mt-5">
+              <div
+                id="about-poster"
+                class="col-lg-5 col-md-6 col-sm-12 pt-5"
+              ></div>
+              <div
+                id="about-describe"
+                class="col-lg-6 col-md-6 col-sm-12"
+              ></div>
+              <div class="about-background"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section ongoing">
+        <div class="heading">
+          <h4>Phim đang chiếu</h4>
+          <div class="more">
+            <a href="">
+              <span>Xem thêm</span>
+              <img src="../../images/arrow_right.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="genre-select container-fluid">
+          <div class="row g-2 genre-container"></div>
+        </div>
+        <div class="cards-container container-fluid">
+          <div class="row g-3 movie-premier-container"></div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row d-flex">
+          <div class="col-lg-3 col-md-3 col-sm-12" id="footer-first">
+            <div class="footer-logo" style="margin-top: 0">
+              <a href="#"> <p class="logo" style="font-size: 60px">5CT</p> </a>
+              <p style="font-size: 12px; clear: left">
+                COPYRIGHT © 5CODERCUTE.COM
+                <br />
+                ALL RIGHTS RESERVED.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Về chúng tôi
+                </a>
+              </li>
+              <li><a href="#"> Liên hệ </a></li>
+              <li><a href="#"> Tuyển dụng </a></li>
+              <li><a href="#"> Blog </a></li>
+              <li><a href="#"> FAQ </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <ul style="margin-top: 20px">
+              <li>
+                <a href="#" style="color: white; font-size: 18px">
+                  Điều khoản sử dụng
+                </a>
+              </li>
+              <li><a href="#"> Điều khoản chung </a></li>
+              <li><a href="#"> Điều khoản giao dịch </a></li>
+              <li><a href="#"> Điều khoản thanh toán </a></li>
+              <li><a href="#"> Chính sách bảo mật </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div style="margin-top: 20px">
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../images/email-multiple-outline.png" />
+                  hoidap@5ct.vn
+                </a>
+              </div>
+              <div>
+                <a href="#" class="btn-footer">
+                  <img src="../../images/phone.png" /> 1900 1008
+                </a>
+              </div>
+              <div class="footer-icon">
+                <a href="#"> <img src="../../images/facebook.png" /> </a>
+                <a href="#"> <img src="../../images/twitter.png" /> </a>
+                <a href="#"> <img src="../../images/google-plus.png" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showTrailer(btn) {
+        let url = $(btn)
+          .data("trailerurl")
+          .replace("https://youtu.be", "https://youtube.com/embed");
+        let modal = $("#modal-trailer");
+        modal.find("iframe").attr("src", url);
+        $("#modal-trailer").modal("show");
+      }
+    </script>
+    <script type="module">
+      import {
+        getMovieByID,
+        getPremierMovie,
+        getByGenreID,
+      } from "../API/MovieAPI.js";
+      import { getAllGenre } from "../API/GenreAPI.js";
+      import { XORDecrypt } from "../Util/EncryptXOR.js";
+      import { getCustomerByEmail } from "../API/UserAPI.js";
+      $(document).ready(function () {
+        // Navbar for logged in
+        if (sessionStorage.getItem("Email")) {
+          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+          getCustomerByEmail("../..", email).then((res) => {
+            let data = JSON.parse(res.user);
+            let name = data.customer.FullName;
+            $("#create-accout").addClass("visually-hidden");
+            $("#login-accout").addClass("visually-hidden");
+            $("#user-account")
+              .removeClass("visually-hidden")
+              .find("a")
+              .text(name);
+            $("#signout").removeClass("visually-hidden");
+          });
+        }
+
+        $("#signout a").click(() => {
+          sessionStorage.removeItem("Email");
+          window.location.href = ".";
+        });
+
+        $(".navbar-toggler").click(function () {
+          var color = $(".navbar").css("background-color");
+          if (color == "rgba(0, 0, 0, 0.01)") {
+            $(".navbar").css("background", "rgba(0, 0, 0, 0.85)");
+          } else {
+            $(".navbar").css("background", "rgba(0, 0, 0, 0.01)");
+          }
+        });
+      });
+      getPremierMovie("../../.").then((datas) => {
+        const cuttingGenre = (data) => {
+          let storehtml = "";
+
+          data["ListGenre"].flat().forEach((element, index) => {
+            if (index == 0) {
+              storehtml += `${element.GenreName}`;
+            } else {
+              storehtml +=
+                '<span class="vertical-line">|</span>' + `${element.GenreName}`;
+            }
+          });
+          return storehtml;
+        };
+        datas.forEach(async (data, index) => {
+          let imagebannerObj = data.listImage;
+          let filteredMovies = imagebannerObj.filter(function (movie) {
+            return movie.type == "1" && movie.ImagePath;
+          });
+          function toHHMM(minutes) {
+            var hours = Math.floor(minutes / 60);
+            var mins = minutes % 60;
+            return hours + "h" + " " + mins + "m";
+          }
+          let timerender = await toHHMM(data.Time);
+          let genrehtml = await cuttingGenre(data);
+          let htmls = "";
+          htmls +=
+            `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
+                <div class="card-img">
+                  <div class="card-info">
+                    <img
+                      src="../../images/Star.svg"
+                      alt=""
+                      width="22px"
+                      height="22px"
+                    />
+                    <div class="rating">${data.rating} / 10</div>
+                    <div class="age">${data.age}</div>
+                    <div class="date">
+                      <img src="../../images/date.svg" alt="" />
+                      ${data.Premiere}
+                    </div>
+                    <div class="duration">
+                      <img src="../../images/timer.svg" alt="" />
+                      ${timerender}
+                    </div>
+                    <a href="./index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                    <button class="btn-outline" id=${data.MovieID}>Chi tiết</button>
+                    </a>
+                    <a href="../Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                      <button class="btn-main btn-book">
+                      ĐẶT VÉ
+                      <img src="../../images/Arrow_right_long.svg" alt="" />
+                    </button>
+                    </a>
+                  </div>
+                  <img class="poster" src="../../${imagebannerObj[0].ImagePath}" alt="" />
+                </div>
+
+                <div class="movie-genre">
+                 ` +
+            genrehtml +
+            `</div>
+                <div class="movie-title">${data.MovieName}</div>
+              </div>`;
+          $(".row.g-3.movie-premier-container").append(htmls);
+          $(".btn-outline").bind("click", (e) => {
+            sessionStorage.setItem("MovieIDSelected", e.target.id);
+          });
+        });
+      });
+      // Fetch API tổng
+      (async function renderMovie() {
+        const MovieIDTaking = sessionStorage.getItem("MovieIDSelected")
+          ? sessionStorage.getItem("MovieIDSelected")
+          : "M0001";
+        let data = await getMovieByID("../../.", MovieIDTaking);
+        addCarouselInner(data);
+        addIntoMovieInfo(data);
+        addIntoCasourelIndicator(data);
+        addPosterBody(data);
+        addMovieContent(data);
+      })();
+      const takeAllGenre = async () => {
+        const genreContainer = $(".row.g-2.genre-container");
+        const button = $("<button>")
+          .attr("id", "MBTN00001")
+          .addClass("btn-main all-select")
+          .text("Tất cả Phim");
+        button.on("click", () => changingBtnOnClickGetAll("MBTN00001"));
+        genreContainer.append(button);
+        const setPageNum = async () => {
+          const datas = await getAllGenre("../../.", 1);
+          return datas["pagination"]["num_pages"];
+        };
+
+        const updatePageNum = async () => {
+          const newPageNum = await setPageNum();
+          pagenum = newPageNum;
+          return pagenum;
+        };
+
+        var pagenum = await updatePageNum();
+        for (let page = 1; page <= pagenum; page++) {
+          getAllGenre("../../.", page).then((datas) => {
+            const datastorender = datas["genres"];
+            datastorender.forEach((data) => {
+              const button = $("<button>")
+                .addClass("genre-btn-click")
+                .attr("id", data.GenreID)
+                .text(data.GenreName);
+              button.on("click", () => changingBtnOnClick(data.GenreID));
+              genreContainer.append(button);
+            });
+          });
+        }
+      };
+      // Render Genre
+      (async function renderGenre() {
+        takeAllGenre();
+      })();
+      // Modal trailer
+
+      // Thêm dữ liệu vào Carousel
+      async function addCarouselInner(data) {
+        const datatoadd = data["movie"];
+        let flag = 0;
+        let htmls = ``;
+        let indicatorHTML;
+        let i = 0;
+        for (const element of datatoadd["listImage"]) {
+          if (flag == 0) {
+            flag = 1;
+            htmls = `
+            <div class="carousel-item active">
+            <div class="background">
+            <div
+              class="movie-preview-img"
+              style="
+                background-image: url('../../${element.ImagePath}');
+              "
+            >
+              <button
+                class="play-btn"
+                data-toggle="modal"
+                data-target="#modal-trailer"
+                data-trailerurl=${data.movie.URLTrailer}
+                type="button"
+                onclick="showTrailer(this)"
+              ></button>
+            </div>
+          </div></div>`;
+            indicatorHTML = `
+          <button
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide-to="${i}"
+          class="active"
+          aria-current="true"
+          aria-label="Slide ${i + 1}"
+        >
+          <img
+            class="thumbnail-img trailer-thumbnail"
+            src="../../${element.ImagePath}"
+            alt=""
+          />
+        </button>`;
+          } else {
+            htmls = `
+          <div class="carousel-item">
+            <div class="background">
+              <div
+                class="movie-preview-img"
+                style="background-image: url('../../${element.ImagePath}')"
+              ></div>
+            </div>
+          </div>`;
+            indicatorHTML = `
+          <button
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide-to="${i}"
+          aria-label="Slide ${i + 11}"
+        >
+          <img class="thumbnail-img" src="../../${element.ImagePath}" alt="" />
+        </button>`;
+          }
+
+          $(".carousel-inner").append(htmls);
+          $(".carousel-indicators").append(indicatorHTML);
+          i++;
+        }
+      }
+      // Thêm dữ liệu vào Movie
+      async function addIntoMovieInfo(data) {
+        function toHHMM(minutes) {
+          var hours = Math.floor(minutes / 60);
+          var mins = minutes % 60;
+          return hours + "h" + " " + mins + "m";
+        }
+        const datatoadd = data["movie"];
+        let timerender = await toHHMM(datatoadd.Time);
+        const htmls = `<div class="rating">
+          <div class="rating-star">
+            <img src="../../images/Star.svg" alt="" />
+           ${datatoadd.rating}
+          </div>
+          <div class="rating-imdb">IMDB 7.2</div>
+        </div>
+        <div class="movie-title">
+          ${datatoadd.MovieName}
+        </div>
+        <div class="movie-info">
+          <span class="duration">${timerender}</span>
+          <span class="dot">●</span>
+          <span class="premier-date">${datatoadd.Premiere}</span>
+        </div>
+
+        <div class="button-container">
+          <a href="../Order/index.html" style="text-decoration:None;display:block;width:100%">
+            <button class="btn-main btn-book">
+            ĐẶT VÉ
+            <img src="../../images/Arrow_right_long.svg" alt="" />
+          </button></a>
+        </div>`;
+        $(".movie-content").append(htmls);
+      }
+      // Thêm dữ liệu vào Casourel-Indicator
+      async function addIntoCasourelIndicator(data) {
+        const datatoadd = data["movie"];
+        let flag = 0;
+        let htmls = ``;
+        for (const element of datatoadd["listImage"]) {
+          if (flag == 0) {
+            flag = 1;
+            htmls += `<button
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        >
+          <img
+            class="thumbnail-img trailer-thumbnail"
+            src="../../${element.ImagePath}"
+            alt=""
+          />
+        </button>`;
+          } else {
+            htmls += `    <button
+          type="button"
+          data-bs-target="#movie-slide"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        >
+          <img class="thumbnail-img" src="../../${element.ImagePath}" alt="" />
+        </button>`;
+          }
+        }
+        $(".Casourel-Indicator").append(htmls);
+      }
+      //  Thêm dữ liệu Poster Body(about-poster)
+      async function addPosterBody(data) {
+        console.log(data);
+        const datatoadd = data["movie"];
+        const posterContainer = datatoadd.listImage[1];
+        console.log(posterContainer);
+        const htmls = `<img
+                   id="about-poster-img"
+                   src="../../${posterContainer.ImagePath}"
+                 />`;
+        $("#about-poster").append(htmls);
+      }
+      //  Thêm dữ liệu vào about-describe
+      async function addMovieContent(data) {
+        const datatoadd = data["movie"];
+        const cuttingGenre = (data) => {
+          let storehtml = "";
+          data["ListGenre"].flat().forEach((element) => {
+            storehtml += `<li>${element.GenreName}</li>`;
+          });
+          return storehtml;
+        };
+        const cuttingActor = (data) => {
+          let storehtml = "";
+          data["ListActor"].flat().forEach((element) => {
+            storehtml += `${element.NameActor}&nbsp&nbsp&nbsp&nbsp`;
+          });
+          return storehtml;
+        };
+
+        const htmls =
+          `<div class="about-kind">
+                  <ul>
+                    ` +
+          cuttingGenre(datatoadd) +
+          `
+                  </ul>
+                </div>
+                <div class="about-line">
+                  <p>Mô tả</p>
+                  <p class="about-short">
+                    ${datatoadd["story"]}
+                  </p>
+                </div>
+                <div class="about-line">
+                  <p>Ngày khởi chiếu</p>
+                  <p>${datatoadd.Premiere}</p>
+                </div>
+                <div class="about-line">
+                  <p>Diễn viên</p>
+                  <p class="about-short">
+                    ` +
+          cuttingActor(datatoadd) +
+          `
+                  </p>
+                </div>
+                <div class="about-line">
+                  <p>Đạo diễn</p>
+                  <p>${datatoadd.Director}</p>
+                </div>
+                <div class="about-line">
+                  <p>Giới hạn độ tuổi</p>
+                  <p> ${datatoadd.age}</p>
+                </div>`;
+        $("#about-describe").append(htmls);
+      }
+      function changingBtnOnClickGetAll(GenreID) {
+        const movieContainer = $(".row.g-3.movie-premier-container");
+        const GenreContainer = $(".row.g-2.genre-container");
+        movieContainer.html("");
+        const removeBtnColor = GenreContainer.find("button.btn-main");
+        removeBtnColor.removeClass("btn-main");
+        const AddingBtnColor = GenreContainer.find(`#${GenreID}`);
+        AddingBtnColor.addClass("btn-main");
+
+        getPremierMovie("../../.").then((datas) => {
+          const cuttingGenre = (data) => {
+            let storehtml = "";
+
+            data["ListGenre"].flat().forEach((element, index) => {
+              if (index == 0) {
+                storehtml += `${element.GenreName}`;
+              } else {
+                storehtml +=
+                  '<span class="vertical-line">|</span>' +
+                  `${element.GenreName}`;
+              }
+            });
+            return storehtml;
+          };
+          datas.forEach(async (data, index) => {
+            let imagebannerObj = data.listImage;
+            let filteredMovies = imagebannerObj.filter(function (movie) {
+              return movie.type == "1" && movie.ImagePath;
+            });
+            function toHHMM(minutes) {
+              var hours = Math.floor(minutes / 60);
+              var mins = minutes % 60;
+              return hours + "h" + " " + mins + "m";
+            }
+            let timerender = await toHHMM(data.Time);
+            let genrehtml = await cuttingGenre(data);
+            let htmls = "";
+            htmls +=
+              `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
+                <div class="card-img">
+                  <div class="card-info">
+                    <img
+                      src="../../images/Star.svg"
+                      alt=""
+                      width="22px"
+                      height="22px"
+                    />
+                    <div class="rating">${data.rating} / 10</div>
+                    <div class="age">${data.age}</div>
+                    <div class="date">
+                      <img src="../../images/date.svg" alt="" />
+                      ${data.Premiere}
+                    </div>
+                    <div class="duration">
+                      <img src="../../images/timer.svg" alt="" />
+                      ${timerender}
+                    </div>
+                    <a href="../Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                    <button class="btn-outline" id=${data.MovieID}>Chi tiết</button>
+                    </a>
+                    <a href="../Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                      <button class="btn-main btn-book">
+                      ĐẶT VÉ
+                      <img src="../../images/Arrow_right_long.svg" alt="" />
+                    </button>
+                    </a>
+                  </div>
+                  <img class="poster" src="../../${imagebannerObj[0].ImagePath}" alt="" />
+                </div>
+
+                <div class="movie-genre">
+                 ` +
+              genrehtml +
+              `</div>
+                <div class="movie-title">${data.MovieName}</div>
+              </div>`;
+            $(".row.g-3.movie-premier-container").append(htmls);
+            $(".btn-outline").bind("click", (e) => {
+              sessionStorage.setItem("MovieIDSelected", e.target.id);
+            });
+          });
+        });
+      }
+      function changingBtnOnClick(GenreID) {
+        const movieContainer = $(".row.g-3.movie-premier-container");
+        const GenreContainer = $(".row.g-2.genre-container");
+        movieContainer.html("");
+        const removeBtnColor = GenreContainer.find("button.btn-main");
+        removeBtnColor.removeClass("btn-main");
+        const AddingBtnColor = GenreContainer.find(`#${GenreID}`);
+        AddingBtnColor.addClass("btn-main");
+        getByGenreID("../../.", GenreID).then((datas) => {
+          const cuttingGenre = (data) => {
+            let storehtml = "";
+
+            data["ListGenre"].flat().forEach((element, index) => {
+              if (index == 0) {
+                storehtml += `${element.GenreName}`;
+              } else {
+                storehtml +=
+                  '<span class="vertical-line">|</span>' +
+                  `${element.GenreName}`;
+              }
+            });
+            return storehtml;
+          };
+          datas.forEach(async (data, index) => {
+            let imagebannerObj = data.listImage;
+            let filteredMovies = imagebannerObj.filter(function (movie) {
+              return movie.type == "1" && movie.ImagePath;
+            });
+            function toHHMM(minutes) {
+              var hours = Math.floor(minutes / 60);
+              var mins = minutes % 60;
+              return hours + "h" + " " + mins + "m";
+            }
+            let timerender = await toHHMM(data.Time);
+            let genrehtml = await cuttingGenre(data);
+            let htmls = "";
+            htmls +=
+              `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
+                <div class="card-img">
+                  <div class="card-info">
+                    <img
+                      src="../../images/Star.svg"
+                      alt=""
+                      width="22px"
+                      height="22px"
+                    />
+                    <div class="rating">${data.rating} / 10</div>
+                    <div class="age">${data.age}</div>
+                    <div class="date">
+                      <img src="../../images/date.svg" alt="" />
+                      ${data.Premiere}
+                    </div>
+                    <div class="duration">
+                      <img src="../../images/timer.svg" alt="" />
+                      ${timerender}
+                    </div>
+                    <a href="./index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                    <button class="btn-outline" id=${data.MovieID}>Chi tiết</button>
+                    </a>
+                    <a href="../Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                      <button class="btn-main btn-book">
+                      ĐẶT VÉ
+                      <img src="../../images/Arrow_right_long.svg" alt="" />
+                    </button>
+                    </a>
+                  </div>
+                  <img class="poster" src="../../${imagebannerObj[0].ImagePath}" alt="" />
+                </div>
+
+                <div class="movie-genre">
+                 ` +
+              genrehtml +
+              `</div>
+                <div class="movie-title">${data.MovieName}</div>
+              </div>`;
+            $(".row.g-3.movie-premier-container").append(htmls);
+            $(".btn-outline").bind("click", (e) => {
+              sessionStorage.setItem("MovieIDSelected", e.target.id);
+            });
+          });
+        });
+      }
+      let modalTrailer = $("#modal-trailer");
+
+      $(".play-btn").click(function () {
+        modalTrailer.modal("show");
+      });
+
+      $("#modal-trailer .close").click(function () {
+        modalTrailer.modal("hide");
+      });
+
+      let iframe = $("#modal-trailer iframe");
+
+      modalTrailer.on("hide.bs.modal", function (e) {
+        iframe.attr("src", "");
+      });
+    </script>
+  </body>
+</html>

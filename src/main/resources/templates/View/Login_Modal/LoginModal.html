@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5CT_WebMovie</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+      integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="LoginModal.css" />
+  </head>
+  <body>
+    <div class="modal_body_container_Login">
+      <div
+        class="modal_container"
+        style="
+          padding: 42px 40px 42px 40px;
+          background-color: #14181d;
+          width: fit-content;
+          border-radius: 8px;
+          margin: auto;
+          margin-top: 5%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          z-index: 99;
+          color: white;
+        "
+      >
+        <div class="background-modal-container">
+          <div class="heading_Container" style="text-align: center">
+            <h2
+              style="
+                color: white;
+                font-weight: 700;
+                font-size: 36px;
+                margin-bottom: 16px;
+              "
+            >
+              Đăng nhập
+            </h2>
+            <h6 style="color: #9a9fae; margin-bottom: 20px">
+              Hãy điền thông tin đăng nhập để đặt vé
+            </h6>
+          </div>
+          <div
+            class="info_container"
+            style="margin-bottom: 36px; margin-top: 36px"
+          >
+            <form>
+              <div class="form-group" style="margin-bottom: 36px">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="PassWord_User"
+                  placeholder="Email của bạn"
+                />
+              </div>
+              <div class="form-group" style="margin-bottom: 36px">
+                <input
+                  style="
+                    background-color: #20232d;
+                    color: #9a9fae;
+                    border: solid 1px #303030;
+                  "
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  aria-describedby="PassWord_User"
+                  placeholder="Password của bạn"
+                />
+              </div>
+
+              <div class="form-button-place" style="text-align: center">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  style="
+                    color: white;
+                    background-image: linear-gradient(
+                      90deg,
+                      #784ba0 0%,
+                      #ff3cac 100%
+                    );
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 0px;
+                    width: 100%;
+                  "
+                  id="btn-login"
+                >
+                  Đăng nhập
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="message text-danger hidden"></div>
+          <div class="Changing_Section text-center">
+            <span style="color: #9a9fae"
+              >Chưa có tài khoản?
+              <a href="../Signup_Modal/index.html" style="color: #ff3cac"
+                >Đăng ký.</a
+              ></span
+            >
+          </div>
+          <br />
+          <a href="../../index.html" id="back-home">
+            <img
+              src="../../images/arrow_right.svg"
+              style="transform: scaleX(-1)"
+            />
+            Quay lại trang chủ</a
+          >
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { LoginAPI } from "../API/LoginAPI.js";
+      import { XOREncrypt } from "../Util/EncryptXOR.js";
+      $(document).ready(() => {
+        $("#btn-login").click(() => {
+          let email = $("#email").val().trim();
+          let password = $("#password").val().trim();
+          if (email === "" || password === "") {
+            $(".message")
+              .text("Vui lòng nhập đầy đủ thông tin")
+              .show(3000)
+              .delay(3000)
+              .hide(1);
+          } else {
+            LoginAPI("../..", email, password)
+              .then((res) => {
+                console.log(res);
+                if (res.success == true) {
+                  if (res.role === "1") {
+                    let data = JSON.parse(res.user);
+                    // Lưu session Storage accountID và name
+                    let email = res;
+                    console.log(data);
+                    window.sessionStorage.setItem(
+                      "Email",
+                      XOREncrypt(data.customer.Email)
+                    );
+                    window.location.href = "../../index.html";
+                  } else {
+                    let data = JSON.parse(res.user);
+                    // Lưu session Storage accountID
+
+                    window.sessionStorage.setItem(
+                      "Email",
+                      XOREncrypt(data.manager.Email)
+                    );
+                    window.location.href = "../AdminPage/UserControl";
+                  }
+                } else
+                  $(".message")
+                    .text("Tên đăng nhập hoặc mật khẩu không đúng")
+                    .show(3000)
+                    .delay(3000)
+                    .hide(1);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
