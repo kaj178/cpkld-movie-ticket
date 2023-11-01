@@ -35,22 +35,21 @@ $("#table-content_filter").hide();
 
 $(document).ready(() => {
   let authFlag = true;
-  if (sessionStorage.getItem('Email')) {
-    let email = XORDecrypt(sessionStorage.getItem('Email'));
-    getUserByEmail("../../..", email).then(res => {
-      if (res.role !== '2') authFlag = false;
-    })
-  }
-  else authFlag = false;
+  if (sessionStorage.getItem("Email")) {
+    let email = XORDecrypt(sessionStorage.getItem("Email"));
+    getUserByEmail("../../..", email).then((res) => {
+      if (res.role !== "2") authFlag = false;
+    });
+  } else authFlag = false;
 
   if (!authFlag) {
-    window.location.href = "../../Login_Modal/LoginModal.html";
+    window.location.href = "/login";
   }
 
-  $('.logout-container').click(() => {
-    sessionStorage.removeItem('Email');
+  $(".logout-container").click(() => {
+    sessionStorage.removeItem("Email");
     window.location.href = "../../../";
-  })
+  });
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
       var data = table.rows(indexes).data();
@@ -135,13 +134,34 @@ $(document).ready(() => {
 
     if (type === "1") {
       let address = $("#ModalEditUser .address").val();
-      updateCustomer("../../..", id, email, password, fullname, address, phone).then(
+      updateCustomer(
+        "../../..",
+        id,
+        email,
+        password,
+        fullname,
+        address,
+        phone
+      ).then((res) => {
+        if (res.success == false) {
+          $("#ModalEditUser .message")
+            .text("Sửa thất bại")
+            .removeClass("success");
+        } else {
+          $("#ModalEditUser .message")
+            .text("Sửa thành công")
+            .addClass("success");
+          $(".all-user").trigger("click");
+        }
+      });
+    } else {
+      updateManager("../../..", id, email, password, fullname, phone).then(
         (res) => {
-          if (res.success == false) {
+          if (res.success == false)
             $("#ModalEditUser .message")
               .text("Sửa thất bại")
               .removeClass("success");
-          } else {
+          else {
             $("#ModalEditUser .message")
               .text("Sửa thành công")
               .addClass("success");
@@ -149,19 +169,6 @@ $(document).ready(() => {
           }
         }
       );
-    } else {
-      updateManager("../../..", id, email, password, fullname, phone).then((res) => {
-        if (res.success == false)
-          $("#ModalEditUser .message")
-            .text("Sửa thất bại")
-            .removeClass("success");
-        else {
-          $("#ModalEditUser .message")
-            .text("Sửa thành công")
-            .addClass("success");
-          $(".all-user").trigger("click");
-        }
-      });
     }
   });
 
