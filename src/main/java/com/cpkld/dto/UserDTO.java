@@ -1,4 +1,4 @@
-package com.cpkld.model.dto;
+package com.cpkld.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

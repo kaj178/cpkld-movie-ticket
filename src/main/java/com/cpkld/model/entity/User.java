@@ -1,5 +1,7 @@
 package com.cpkld.model.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -9,7 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+// import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,18 +24,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
 
     @Column(name = "email")
-    private String userEmail;
+    private String email;
 
-    @Column
-    private String userPassword;
+    @Column(name = "password")
+    private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Role.class)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
     @JoinColumn(name = "role_id", nullable = false)
     @JsonBackReference
-    private Role role;
+    private List<Role> roles;
 
     // @OneToMany(fetch = FetchType.LAZY, targetEntity = Customer.class, mappedBy = "user")
     // @JsonManagedReference

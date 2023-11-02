@@ -2,7 +2,7 @@ package com.cpkld.service;
 
 import java.util.List;
 
-import com.cpkld.model.dto.UserDTO;
+import com.cpkld.dto.UserDTO;
 import com.cpkld.model.entity.User;
 
 public interface AuthService {
