@@ -21,7 +21,7 @@ public class RoleApiController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getRoleById(@PathVariable String id) {
+    public ResponseEntity<?> getRoleById(@PathVariable Integer id) {
         return service.getById(id);
     }
 }

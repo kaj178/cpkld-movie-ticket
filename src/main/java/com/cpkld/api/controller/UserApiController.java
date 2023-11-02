@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cpkld.service.AccountService;
+import com.cpkld.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1/account")
-public class AccountApiController {
+@RequestMapping("/api/v1/user")
+public class UserApiController {
     @Autowired
-    private AccountService service;
+    private UserService service;
 
     @GetMapping
-    public ResponseEntity<?> readAllAccounts() {
+    public ResponseEntity<?> readAllUsers() {
         return service.getAll();
     }
 }

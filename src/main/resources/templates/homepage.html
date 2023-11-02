@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -70,14 +70,10 @@
               >
             </li>
             <li class="nav-item" id="login-accout">
-              <a class="nav-link" href="/login"
-                >Đăng nhập</a
-              >
+              <a class="nav-link" href="/login">Đăng nhập</a>
             </li>
             <li class="nav-item" id="create-accout">
-              <a class="nav-link" href="/signup"
-                >Đăng ký</a
-              >
+              <a class="nav-link" href="/signup">Đăng ký</a>
             </li>
             <li
               class="nav-item d-flex align-items-center ms-auto visually-hidden"
@@ -144,7 +140,7 @@
           <div class="more">
             <a href="">
               <span>Xem thêm</span>
-              <img src="./images/arrow_right.svg" alt="" />
+              <img src="/public/arrow_right.svg" alt="" />
             </a>
           </div>
         </div>
@@ -163,7 +159,7 @@
           <div class="more">
             <a href="">
               <span>Xem thêm</span>
-              <img src="./images/arrow_right.svg" alt="" />
+              <img src="/public/arrow_right.svg" alt="" />
             </a>
           </div>
         </div>
@@ -178,15 +174,13 @@
           <div class="more">
             <a href="">
               <span>Xem thêm</span>
-              <img src="./images/arrow_right.svg" alt="" />
+              <img src="/public/arrow_right.svg" alt="" />
             </a>
           </div>
         </div>
         <div class="line"></div>
         <div class="cards-container container-fluid">
-          <div class="row gx-5">
-          
-          </div>
+          <div class="row gx-5"></div>
         </div>
       </div>
     </div>
@@ -234,19 +228,19 @@
             <div style="margin-top: 20px">
               <div>
                 <a href="#" class="btn-footer">
-                  <img src="./images/email-multiple-outline.png" />
+                  <img src="/public/email-multiple-outline.png" />
                   hoidap@5ct.vn
                 </a>
               </div>
               <div>
                 <a href="#" class="btn-footer">
-                  <img src="./images/phone.png" /> 1900 1008
+                  <img src="/public/phone.png" /> 1900 1008
                 </a>
               </div>
               <div class="footer-icon">
-                <a href="#"> <img src="./images/facebook.png" /> </a>
-                <a href="#"> <img src="./images/twitter.png" /> </a>
-                <a href="#"> <img src="./images/google-plus.png" /> </a>
+                <a href="#"> <img src="/public/facebook.png" /> </a>
+                <a href="#"> <img src="/public/twitter.png" /> </a>
+                <a href="#"> <img src="/public/google-plus.png" /> </a>
               </div>
             </div>
           </div>
@@ -380,7 +374,7 @@
             <div class="movie-content">
               <div class="rating">
                 <div class="rating-star">
-                  <img src="./images/Star.svg" alt="" />
+                  <img src="/public/Star.svg" alt="" />
                   ${data.rating}
                 </div>
                 <div class="rating-imdb">IMDB 7.2</div>
@@ -409,12 +403,12 @@
               <div class="button-container">
                 <button class="btn-main btn-trailer" data-trailerurl=${data.URLTrailer} onclick="showTrailer(this)" >
                   TRAILER
-                  <img src="./images/play.svg" alt="" />
+                  <img src="/public/play.svg" alt="" />
                 </button>
                 <a href="./View/Detail/index.html" style="text-decoration:None">
                 <button class="btn-main btn-book">
                   Chi tiết
-                  <img src="./images/Arrow_right_long.svg" alt="" />
+                  <img src="/public/Arrow_right_long.svg" alt="" />
                 </button>
               </a>
               </div>
@@ -467,7 +461,7 @@
                 <div class="card-img">
                   <div class="card-info">
                     <img
-                      src="./images/Star.svg"
+                      src="/public/Star.svg"
                       alt=""
                       width="22px"
                       height="22px"
@@ -475,11 +469,11 @@
                     <div class="rating">${data.rating} / 10</div>
                     <div class="age">${data.age}</div>
                     <div class="date">
-                      <img src="./images/date.svg" alt="" />
+                      <img src="/public/date.svg" alt="" />
                       ${data.Premiere}
                     </div>
                     <div class="duration">
-                      <img src="./images/timer.svg" alt="" />
+                      <img src="/public/timer.svg" alt="" />
                       ${timetoadd}
                     </div>
                     <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
@@ -517,7 +511,7 @@
         //       </div>
 
         //       <div class="event-title">
-        //         ${element.Description} 
+        //         ${element.Description}
         //       </div>
         //     </div>`
         //     $('.event').find('.row').append(html);
@@ -557,7 +551,7 @@
                 <div class="card-img">
                   <div class="card-info">
                     <img
-                      src="./images/Star.svg"
+                      src="/public/Star.svg"
                       alt=""
                       width="22px"
                       height="22px"
@@ -565,11 +559,11 @@
                     <div class="rating">${data.rating} / 10</div>
                     <div class="age">${data.age}</div>
                     <div class="date">
-                      <img src="./images/date.svg" alt="" />
+                      <img src="/public/date.svg" alt="" />
                       ${data.Premiere}
                     </div>
                     <div class="duration">
-                      <img src="./images/timer.svg" alt="" />
+                      <img src="/public/timer.svg" alt="" />
                       ${timetoadd}
                     </div>
                     <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
@@ -632,7 +626,7 @@
                 <div class="card-img">
                   <div class="card-info">
                     <img
-                      src="./images/Star.svg"
+                      src="/public/Star.svg"
                       alt=""
                       width="22px"
                       height="22px"
@@ -640,11 +634,11 @@
                     <div class="rating">${data.rating} / 10</div>
                     <div class="age">${data.age}</div>
                     <div class="date">
-                      <img src="./images/date.svg" alt="" />
+                      <img src="/public/date.svg" alt="" />
                       ${data.Premiere}
                     </div>
                     <div class="duration">
-                      <img src="./images/timer.svg" alt="" />
+                      <img src="/public/timer.svg" alt="" />
                       ${timetoadd}
                     </div>
                     <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
@@ -707,7 +701,7 @@
                 <div class="card-img">
                   <div class="card-info">
                     <img
-                      src="./images/Star.svg"
+                      src="/public/Star.svg"
                       alt=""
                       width="22px"
                       height="22px"
@@ -715,11 +709,11 @@
                     <div class="rating">${data.rating} / 10</div>
                     <div class="age">${data.age}</div>
                     <div class="date">
-                      <img src="./images/date.svg" alt="" />
+                      <img src="/public/date.svg" alt="" />
                       ${data.Premiere}
                     </div>
                     <div class="duration">
-                      <img src="./images/timer.svg" alt="" />
+                      <img src="/public/timer.svg" alt="" />
                       ${timetoadd}
                     </div>
                     <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">

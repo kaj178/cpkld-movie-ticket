@@ -27,7 +27,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public ResponseEntity<?> getById(String id) {
+    public ResponseEntity<?> getById(Integer id) {
         Optional<Role> roleOptional = repo.findById(id);
         if (!roleOptional.isPresent()) {
             throw new RoleNotFoundException("Role not found");
@@ -44,13 +44,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public ResponseEntity<?> updateRole(String id, Role role) {
+    public ResponseEntity<?> updateRole(Integer id, Role role) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateRole'");
     }
 
     @Override
-    public ResponseEntity<?> deleteRole(String id) {
+    public ResponseEntity<?> deleteRole(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteRole'");
     }

@@ -31,9 +31,9 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // @Column(name = "account_id")
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Account.class)
-    @JoinColumn(name = "account_id", nullable = false)
+    // @Column(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
-    private Account account;
+    private User user;
 }

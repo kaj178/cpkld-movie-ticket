@@ -83,7 +83,7 @@ const addMovie = async (
       age: age,
       ListActor: listActor,
       ListGenre: listGenre,
-      ListImage: listImage
+      ListImage: listImage,
     }),
   });
   const datatorender = await data.json();
@@ -120,21 +120,16 @@ const updateMovie = async (
       LanguageID: LanguageID,
       story: story,
       age: age,
-
     }),
   });
   const datatorender = await data.json();
   return datatorender;
 };
 
-
 const deleteMovie = async (url, id) => {
-  const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?id=${id}`,
-    {
-      method: "DELETE",
-    }
-  );
+  const data = await fetch(`${url}/Controller/Movie/ajax.php?id=${id}`, {
+    method: "DELETE",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
@@ -147,5 +142,5 @@ export {
   getMovieByID,
   addMovie,
   updateMovie,
-  deleteMovie
+  deleteMovie,
 };
