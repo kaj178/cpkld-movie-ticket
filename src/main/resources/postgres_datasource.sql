@@ -15,39 +15,39 @@ SET search_path TO 'movie-ticket'
 -- CREATE SCHEMA public;
 
 CREATE TABLE public."role" (
-	"role_id" VARCHAR(50) NOT NULL,
+	"role_id" SERIAL NOT NULL,
     "role_name" TEXT NOT NULL,
     PRIMARY KEY (role_id)
 );
 
-CREATE TABLE public."account" (
-	"account_id" VARCHAR(50) NOT NULL,
+CREATE TABLE public."user" (
+	"user_id" SERIAL NOT NULL,
     "email" VARCHAR(50) NOT NULL,
     "password" VARCHAR(50) NOT NULL,
-    "role_id" VARCHAR(50) NOT NULL,
-    PRIMARY KEY (account_id),
+    "role_id" SERIAL NOT NULL,
+    PRIMARY KEY (user_id),
     FOREIGN KEY (role_id) REFERENCES public."role"(role_id)
 );
 
 CREATE TABLE public."manager" (
-	"manager_id" VARCHAR(50) NOT NULL,
+	"manager_id" SERIAL NOT NULL,
     "full_name" TEXT NOT NULL,
     "email" VARCHAR(20) NOT NULL,
     "phone_number" VARCHAR(10) NOT NULL,
-    "account_id" VARCHAR(50) NOT NULL,
+    "user_id" SERIAL NOT NULL,
     PRIMARY KEY (manager_id),
-    FOREIGN KEY (account_id) REFERENCES public."account"(account_id)
+    FOREIGN KEY (user_id) REFERENCES public."user"(user_id)
 );
 
 CREATE TABLE public."customer" (
-	"customer_id" VARCHAR(50) NOT NULL,
+	"customer_id" SERIAL NOT NULL,
     "full_name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "email" VARCHAR(50) NOT NULL,
     "phone_number" VARCHAR(10) NOT NULL,
-    "account_id" VARCHAR(50) NOT NULL,
+    "user_id" SERIAL NOT NULL,
     PRIMARY KEY (customer_id),
-    FOREIGN KEY (account_id) REFERENCES public."account"(account_id)
+    FOREIGN KEY (user_id) REFERENCES public."user"(user_id)
 );
 
 -- Thể loại phim (hành động, tình cảm,...)
@@ -211,10 +211,10 @@ CREATE TABLE public."booking" (
 
 
 -- Thêm dữ liệu vào bảng "role"
-INSERT INTO public."role" ("role_id", "role_name") VALUES
-('ADMIN', 'Admin'),
-('MANAGER', 'Manager'),
-('CUSTOMER', 'Customer');
+INSERT INTO public.role (role_name) VALUES
+('ADMIN'),
+('MANAGER'),
+('CUSTOMER');
 
 -- Thêm dữ liệu vào bảng "account"
 INSERT INTO public."account" VALUES
