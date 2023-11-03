@@ -13,7 +13,7 @@ public class HomeController {
         return "homepage";
     }
 
-    @GetMapping("/order")
+    @GetMapping("order")
     public String getOrderPage() {
         return "View/Order/index";
     }

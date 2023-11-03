@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,10 +24,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <link rel="stylesheet" href="/css/View/LoginModal/LoginModal.css" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/View/LoginModal/LoginModal.css}" />
   </head>
   <body>
-    <div class="modal_body_container_Login">
       <div
         class="modal_container"
         style="
@@ -66,7 +65,7 @@
             class="info_container"
             style="margin-bottom: 36px; margin-top: 36px"
           >
-            <form>
+            <form th:action="@{/login/auth}" method="POST">
               <div class="form-group" style="margin-bottom: 36px">
                 <input
                   style="
@@ -75,6 +74,7 @@
                     border: solid 1px #303030;
                   "
                   type="email"
+                  name="username"
                   class="form-control"
                   id="email"
                   aria-describedby="PassWord_User"
@@ -99,7 +99,7 @@
               <div class="form-button-place" style="text-align: center">
                 <button
                   class="btn btn-primary"
-                  type="button"
+                  type="submit"
                   style="
                     color: white;
                     background-image: linear-gradient(
@@ -132,7 +132,7 @@
           <br />
           <a href="../../" id="back-home">
             <img
-              src="/public/arrow_right.svg"
+              src="../public/arrow_right.svg"
               style="transform: scaleX(-1)"
             />
             Quay lại trang chủ</a
@@ -140,7 +140,7 @@
         </div>
       </div>
     </div>
-    <script type="module">
+    <!-- <script type="module">
       import { LoginAPI } from "../API/LoginAPI.js";
       import { XOREncrypt } from "../Util/EncryptXOR.js";
       $(document).ready(() => {
@@ -191,6 +191,6 @@
           }
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>

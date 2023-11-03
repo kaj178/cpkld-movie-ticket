@@ -1,5 +1,7 @@
 package com.cpkld.config;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,8 +19,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Autowired
     private UserDetailsService service;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(service)
+            .passwordEncoder(passwordEncoder());
+    }
 
     @Bean 
     public static PasswordEncoder passwordEncoder() {
@@ -29,14 +39,23 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> 
-                auth.requestMatchers("/signup/**").permitAll()
+                auth.requestMatchers("/css/**", "/js/**", "/public/**").permitAll() 
+                    .requestMatchers("/signup/**").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/").hasRole("CUSTOMER")
+                    // .requestMatchers("/").hasRole("CUSTOMER")
+                    .anyRequest().authenticated()
             )
             .formLogin(form -> 
                 form.loginPage("/login")
                     .loginProcessingUrl("/login/auth")
-                    .defaultSuccessUrl("/")
+                    .successHandler((req, res, auth) -> {
+                        Collection<? extends GrantedAuthority> auths = auth.getAuthorities();
+                        if (auths.stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                            res.sendRedirect("/admin/user-control");
+                        } else {
+                            res.sendRedirect("/");
+                        }
+                    })
                     .permitAll()
             )
             .logout(logout -> 
@@ -46,9 +65,4 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(service)
-            .passwordEncoder(passwordEncoder());
-    }
 }
