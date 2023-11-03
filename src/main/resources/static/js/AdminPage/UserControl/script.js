@@ -11,6 +11,7 @@ import { RegisterAPI } from "../../API/LoginAPI.js";
 
 let allData = [];
 let currentData = [];
+
 let table = $("#table-content").DataTable({
   select: {
     style: "single",
@@ -34,17 +35,17 @@ let table = $("#table-content").DataTable({
 $("#table-content_filter").hide();
 
 $(document).ready(() => {
-  let authFlag = true;
-  if (sessionStorage.getItem("Email")) {
-    let email = XORDecrypt(sessionStorage.getItem("Email"));
-    getUserByEmail("../../..", email).then((res) => {
-      if (res.role !== "2") authFlag = false;
-    });
-  } else authFlag = false;
+  // let authFlag = true;
+  // if (sessionStorage.getItem("Email")) {
+  //   let email = XORDecrypt(sessionStorage.getItem("Email"));
+  //   getUserByEmail("../../..", email).then((res) => {
+  //     if (res.role !== "2") authFlag = false;
+  //   });
+  // } else authFlag = false;
 
-  if (!authFlag) {
-    window.location.href = "/login";
-  }
+  // if (!authFlag) {
+  //   window.location.href = "/login";
+  // }
 
   $(".logout-container").click(() => {
     sessionStorage.removeItem("Email");
@@ -183,12 +184,12 @@ function showData() {
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
-        data[i].ManagerID ? data[i].ManagerID : data[i].CustomerID,
-        data[i].FullName,
-        data[i].Email,
-        data[i].Phone,
+        data[i].ManagerID ? data[i].ManagerID : data[i].id,
+        data[i].fullname,
+        data[i].email,
+        data[i].phone,
         data[i].password,
-        data[i].Address ? data[i].Address : "",
+        data[i].address ? data[i].address : "",
         data[i].ManagerID ? "Quản lý" : "Khách hàng",
       ])
       .draw();
@@ -200,16 +201,17 @@ async function loadAllUser() {
   let data;
   do {
     data = await getAllCustomer("../../..", page);
-    currentData.push(...data.list);
+    // console.log(data)
+    currentData.push(...data.data);
     page++;
-  } while (data.list.length != 0);
+  } while (data.data.length != 0);
   page = 1;
 
   do {
     data = await getAllManager("../../..", page);
-    currentData.push(...data.list);
+    currentData.push(...data.data);
     page++;
-  } while (data.list.length != 0);
+  } while (data.data.length != 0);
   allData = [...currentData];
 }
 
@@ -219,9 +221,10 @@ async function loadCustomer() {
   let data;
   do {
     data = await getAllCustomer("../../..", page);
-    currentData.push(...data.list);
+    currentData.push(...data.data);
     page++;
-  } while (data.list.length != 0);
+  } while (data.data.length != 0);
+  console.log(currentData);
 }
 
 async function loadManager() {

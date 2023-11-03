@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cpkld.dto.CustomerDTO;
 import com.cpkld.model.entity.Customer;
 import com.cpkld.service.CustomerService;
 
@@ -37,36 +38,16 @@ public class CustomerApiController {
     /* /api/v1/customer?page={number} */
     @GetMapping(params = "page")
     public ResponseEntity<?> readCustomersPaginated(@RequestParam("page") int page) {
-        return service.getPaginated(page);
+        return service.getPaginated(page - 1);
     }
 
-    /* 
-        /api/v1/customer 
-        {
-            "customerId": "customer010",
-            "customerFullname": "Name 10",
-            "customerAddress": "Address 10",
-            "customerEmail": "name10@gmail.com",
-            "phoneNumber": "phonenum10",
-            "accountId": "customer001"
-        }
-    */
+    /* /api/v1/customer */
     @PostMapping
-    public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
-        return service.add(customer);
+    public ResponseEntity<?> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        return service.add(customerDTO);
     }
 
-    /* 
-        /api/v1/customer/customer010 
-        {
-            "customerId": "customer010",
-            "customerFullname": "Name10",
-            "customerAddress": "Address10",
-            "customerEmail": "name10@gmail.com",
-            "phoneNumber": "phonenum10",
-            "accountId": "customer001"
-        }
-    */
+    /* /api/v1/customer/customer010 */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(
         @PathVariable Integer id, 

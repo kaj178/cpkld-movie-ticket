@@ -1,5 +1,5 @@
 const getAllCustomer = async (url = "../..", page = 1) => {
-  const urls = `${url}/Controller/User/ajax.php?action=getAllCustomer&page=${page}`;
+  const urls = `${url}/api/v1/customer?page=${page}`;
   const data = await fetch(urls, {
     method: "GET",
   });

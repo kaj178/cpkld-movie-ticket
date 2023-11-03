@@ -2,6 +2,7 @@ package com.cpkld.service;
 
 import org.springframework.http.ResponseEntity;
 
+import com.cpkld.dto.CustomerDTO;
 import com.cpkld.model.entity.Customer;
 
 public interface CustomerService {
@@ -11,7 +12,7 @@ public interface CustomerService {
 
     ResponseEntity<?> getPaginated(int page);
 
-    ResponseEntity<?> add(Customer customer);
+    ResponseEntity<?> add(CustomerDTO customerDTO);
 
     ResponseEntity<?> update(Integer id, Customer newCustomer);
 

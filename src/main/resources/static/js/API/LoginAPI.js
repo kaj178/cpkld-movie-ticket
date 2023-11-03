@@ -23,7 +23,7 @@ const RegisterAPI = async (url, email, password, fullname, address, phone) => {
     phone: phone,
   };
   const bodytoadd = JSON.stringify(bodyinput);
-  const data = await fetch(`${url}/Controller/User/ajax.php`, {
+  const data = await fetch(`${url}/api/v1/customer`, {
     method: "POST",
     body: bodytoadd,
   });

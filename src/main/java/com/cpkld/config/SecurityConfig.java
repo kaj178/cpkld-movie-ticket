@@ -42,9 +42,9 @@ public class SecurityConfig {
             // Configure accessing resources
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers("/css/**", "/js/**", "/public/**").permitAll() 
-                    .requestMatchers("/", "/api/**").permitAll()
-                    .requestMatchers("/signup/**", "/login/**").permitAll()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/**", "/api/**").permitAll()
+                    // .requestMatchers("/signup/**", "/login/**").permitAll()
+                    // .requestMatchers("/admin/**").hasRole("ADMIN")
                     // .requestMatchers("/").hasRole("CUSTOMER")
                     .anyRequest().authenticated()
             )

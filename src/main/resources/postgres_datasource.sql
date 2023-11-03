@@ -14,19 +14,20 @@ SET search_path TO 'movie-ticket'
 -- DROP SCHEMA public CASCADE;
 -- CREATE SCHEMA public;
 
-CREATE TABLE public."role" (
-	"role_id" SERIAL NOT NULL,
-    "role_name" TEXT NOT NULL,
+CREATE TABLE public.role (
+	role_id SERIAL NOT NULL,
+    role_name TEXT NOT NULL,
     PRIMARY KEY (role_id)
 );
 
-CREATE TABLE public."user" (
-	"user_id" SERIAL NOT NULL,
-    "email" VARCHAR(50) NOT NULL,
+CREATE TABLE public.user (
+	user_id SERIAL NOT NULL,
+    email VARCHAR(50) NOT NULL,
     "password" VARCHAR(50) NOT NULL,
-    "role_id" SERIAL NOT NULL,
+	status INT NOT NULL,
+    role_id SERIAL NOT NULL,
     PRIMARY KEY (user_id),
-    FOREIGN KEY (role_id) REFERENCES public."role"(role_id)
+    FOREIGN KEY (role_id) REFERENCES public.role(role_id)
 );
 
 CREATE TABLE public."admin" (
@@ -140,6 +141,7 @@ CREATE TABLE public."showtime" (
 	"start_time" TIME NOT NULL,
 	"end_time" TIME NOT NULL,
 	"price" INT NOT NULL,
+	status INT NOT NULL,
 	"movie_id" VARCHAR(50) NOT NULL,
 	"room_id" VARCHAR(50) NOT NULL,
 	"format_id" VARCHAR(50) NOT NULL,
@@ -181,7 +183,7 @@ CREATE TABLE public."menu" (
 	"name" TEXT NOT NULL,
 	"price" INT NOT NULL,
 	"image_url" TEXT NOT NULL,
-	"status" BOOLEAN NOT NULL, -- true: còn món, false: hết món
+	"status" INT NOT NULL, -- true: còn món, false: hết món
 	PRIMARY KEY (item_id)
 );
 

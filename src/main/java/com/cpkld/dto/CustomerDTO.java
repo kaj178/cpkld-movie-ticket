@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class CustomerDTO {
     private Integer id;
     
     @NotEmpty
@@ -20,11 +20,11 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
+    private String password;
+
+    @NotEmpty
     private String address;
 
     @NotEmpty
     private String phone;
-
-    @NotEmpty(message = "Password should not be empty")
-    private String password;
 }
