@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Get data by id
     @Override
-    public ResponseEntity<?> getById(String id) {
+    public ResponseEntity<?> getById(Integer id) {
         Optional<Customer> optional = repo.findById(id);
         if (!optional.isPresent()) {
             throw new CustomerNotFoundException("Customer not found");
@@ -60,7 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
     // Add new customer, if existed - throws exception
     @Override
     public ResponseEntity<?> add(Customer customer) {
-        Optional<Customer> optional = repo.findById(customer.getCustomerId());
+        Optional<Customer> optional = repo.findById(customer.getId());
         if (optional.isPresent()) {
             throw new CustomerExistedException("Customer existed");
         } else {
@@ -73,16 +73,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> update(String id, Customer newCustomer) {
+    public ResponseEntity<?> update(Integer id, Customer newCustomer) {
         Optional<Customer> optional = repo.findById(id);
         if (!optional.isPresent()) {
             throw new CustomerNotFoundException("Customer not found");
         } else {
             Customer customer = new Customer();
-            customer.setCustomerId(newCustomer.getCustomerId());
-            customer.setCustomerFullname(newCustomer.getCustomerFullname());
-            customer.setCustomerAddress(newCustomer.getCustomerAddress());
-            customer.setCustomerEmail(newCustomer.getCustomerEmail());
+            customer.setId(newCustomer.getId());
+            customer.setFullName(newCustomer.getFullName());
+            customer.setAddress(newCustomer.getAddress());
+            customer.setEmail(newCustomer.getEmail());
             customer.setPhoneNumber(newCustomer.getPhoneNumber());
             //customer.setAccountId(newCustomer.getAccountId());
             repo.save(customer);
@@ -94,7 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<?> delete(String id) {
+    public ResponseEntity<?> delete(Integer id) {
         Optional<Customer> optional = repo.findById(id);
         if (!optional.isPresent()) {
             throw new CustomerNotFoundException("Customer not found");

@@ -7,13 +7,13 @@ import com.cpkld.model.entity.Customer;
 public interface CustomerService {
     ResponseEntity<?> getAll();
 
-    ResponseEntity<?> getById(String id);
+    ResponseEntity<?> getById(Integer id);
 
     ResponseEntity<?> getPaginated(int page);
 
     ResponseEntity<?> add(Customer customer);
 
-    ResponseEntity<?> update(String id, Customer newCustomer);
+    ResponseEntity<?> update(Integer id, Customer newCustomer);
 
-    ResponseEntity<?> delete(String id);
+    ResponseEntity<?> delete(Integer id);
 } 

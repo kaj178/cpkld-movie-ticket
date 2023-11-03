@@ -37,10 +37,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            // Disable Cross Site Request Forgery ( vô hiệu hóa tính năng CSRF protection)
             .csrf(AbstractHttpConfigurer::disable)
+            // Configure accessing resources
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers("/css/**", "/js/**", "/public/**").permitAll() 
-                    .requestMatchers("/signup/**").permitAll()
+                    .requestMatchers("/", "/api/**").permitAll()
+                    .requestMatchers("/signup/**", "/login/**").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     // .requestMatchers("/").hasRole("CUSTOMER")
                     .anyRequest().authenticated()
@@ -48,6 +51,7 @@ public class SecurityConfig {
             .formLogin(form -> 
                 form.loginPage("/login")
                     .loginProcessingUrl("/login/auth")
+                    // Handle redirect after login
                     .successHandler((req, res, auth) -> {
                         Collection<? extends GrantedAuthority> auths = auth.getAuthorities();
                         if (auths.stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {

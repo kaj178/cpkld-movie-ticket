@@ -30,7 +30,7 @@ public class CustomerApiController {
 
     /* /api/v1/customer/customer001 */
     @GetMapping("/{id}")
-    public ResponseEntity<?> readCustomer(@PathVariable String id) {
+    public ResponseEntity<?> readCustomer(@PathVariable Integer id) {
         return service.getById(id);
     }
 
@@ -69,7 +69,7 @@ public class CustomerApiController {
     */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(
-        @PathVariable String id, 
+        @PathVariable Integer id, 
         @RequestBody Customer customer
     ) {
         return service.update(id, customer);
@@ -77,7 +77,7 @@ public class CustomerApiController {
 
     /* /api/v1/customer/customer010  */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCustomer(@PathVariable String id) {
+    public ResponseEntity<?> deleteCustomer(@PathVariable Integer id) {
         return service.delete(id);
     }
 

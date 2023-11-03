@@ -29,13 +29,13 @@ CREATE TABLE public."user" (
     FOREIGN KEY (role_id) REFERENCES public."role"(role_id)
 );
 
-CREATE TABLE public."manager" (
-	"manager_id" SERIAL NOT NULL,
+CREATE TABLE public."admin" (
+	"admin_id" SERIAL NOT NULL,
     "full_name" TEXT NOT NULL,
     "email" VARCHAR(20) NOT NULL,
     "phone_number" VARCHAR(10) NOT NULL,
     "user_id" SERIAL NOT NULL,
-    PRIMARY KEY (manager_id),
+    PRIMARY KEY (admin_id),
     FOREIGN KEY (user_id) REFERENCES public."user"(user_id)
 );
 
@@ -213,32 +213,22 @@ CREATE TABLE public."booking" (
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public.role (role_name) VALUES
 ('ADMIN'),
-('MANAGER'),
 ('CUSTOMER');
 
 -- Thêm dữ liệu vào bảng "account"
-INSERT INTO public."account" VALUES
-('admin1', 'admin1@example.com', '123', 'ADMIN'),
-('manager1', 'manager1@example.com', '123', 'MANAGER'),
-('customer1', 'customer1@example.com', '001', 'CUSTOMER'),
-('customer2', 'customer2@example.com', '002', 'CUSTOMER');
+INSERT INTO public.user (email, "password", role_id) VALUES
+('admin1@example.com', '123', 1),
+('customer1@example.com', '001', 2),
+('customer2@example.com', '002', 2);
 
 -- Thêm dữ liệu vào bảng "manager"
-INSERT INTO public."manager" VALUES
-('manager1', 'John Smith', 'john@example.com', '1234567890', 'manager1'),
-('manager2', 'Jane Doe', 'jane@example.com', '9876543210', 'manager1');
+INSERT INTO public.admin (full_name, email, phone_number, user_id) VALUES
+('Admin 1', 'admin1@example.com', '1234567890', 1);
 
 -- Thêm dữ liệu vào bảng "customer"
-INSERT INTO public."customer" VALUES
-('customer1', 'Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 'customer001'),
-('customer2', 'Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 'customer1');
-('customer3', 'Name 3', 'Address 3', 'name3@gmail.com', 'phonenum3', 'customer1'),
-('customer4', 'Name 4', 'Address 4', 'name4@gmail.com', 'phonenum4', 'customer2'),
-('customer5', 'Name 5', 'Address 5', 'name5@gmail.com', 'phonenum5', 'customer1'),
-('customer6', 'Name 6', 'Address 6', 'name6@gmail.com', 'phonenum6', 'customer2'),
-('customer7', 'Name 7', 'Address 7', 'name7@gmail.com', 'phonenum7', 'customer2'),
-('customer8', 'Name 8', 'Address 8', 'name8@gmail.com', 'phonenum8', 'customer2'),
-('customer9', 'Name 9', 'Address 9', 'name9@gmail.com', 'phonenum9', 'customer1');
+INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
+('Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 1),
+('Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 2);
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
 -- INSERT INTO public."movie-genre" VALUES
@@ -312,8 +302,9 @@ INSERT INTO public."customer" VALUES
 --     ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
 
 SELECT * FROM public.role
-SELECT * FROM public."account"
-SELECT * FROM public."customer"
+SELECT * FROM public.user
+SELECT * FROM public.admin
+SELECT * FROM public.customer
 
 
 
