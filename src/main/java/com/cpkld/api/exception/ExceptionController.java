@@ -8,6 +8,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.cpkld.model.exception.existed.CustomerExistedException;
 import com.cpkld.model.exception.notfound.CustomerNotFoundException;
+import com.cpkld.model.exception.notfound.ManagerNotFoundException;
 import com.cpkld.model.exception.notfound.RoleNotFoundException;
 import com.cpkld.model.response.ErrorResponse;
 
@@ -19,7 +20,7 @@ public class ExceptionController {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-
+    
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<?> handleCustomerNotFoundException(CustomerNotFoundException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
@@ -30,6 +31,12 @@ public class ExceptionController {
     public ResponseEntity<?> handleCustomerExistedException(CustomerExistedException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ManagerNotFoundException.class)
+    public ResponseEntity<?> handleManagerNotFoundException(ManagerNotFoundException ex, WebRequest req) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
 }

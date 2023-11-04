@@ -11,7 +11,7 @@ import com.cpkld.service.RoleService;
 
 @RestController
 @RequestMapping("/api/v1/role")
-public class RoleApiController {
+public class RoleApi {
     @Autowired
     private RoleService service;
 

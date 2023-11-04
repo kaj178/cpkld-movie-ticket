@@ -233,9 +233,10 @@ async function loadManager() {
   let data;
   do {
     data = await getAllManager("../../..", page);
-    currentData.push(...data.list);
+    currentData.push(...data.data);
     page++;
-  } while (data.list.length != 0);
+  } while (data.data.length != 0);
+  console.log(currentData);
 }
 
 function fillEditData(id) {

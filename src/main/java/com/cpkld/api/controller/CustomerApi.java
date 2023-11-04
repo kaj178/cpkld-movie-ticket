@@ -18,7 +18,7 @@ import com.cpkld.service.CustomerService;
 
 @RestController
 @RequestMapping("/api/v1/customer")
-public class CustomerApiController {
+public class CustomerApi {
     
     @Autowired
     private CustomerService service;

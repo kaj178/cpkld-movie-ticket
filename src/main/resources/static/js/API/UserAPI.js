@@ -8,7 +8,7 @@ const getAllCustomer = async (url = "../..", page = 1) => {
 };
 
 const getAllManager = async (url = "../..", page = 1) => {
-  const urls = `${url}/Controller/User/ajax.php?action=getAllManger&page=${page}`;
+  const urls = `${url}/api/v1/manager?page=${page}&size=`;
   const data = await fetch(urls, {
     method: "GET",
   });

@@ -1,6 +1,5 @@
 package com.cpkld.service.impl;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.cpkld.dto.CustomerDTO;
 import com.cpkld.model.entity.Customer;
-import com.cpkld.model.entity.User;
 import com.cpkld.model.exception.existed.CustomerExistedException;
 import com.cpkld.model.exception.notfound.CustomerNotFoundException;
 import com.cpkld.model.response.ApiResponse;
@@ -71,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseEntity<?> getPaginated(int page) {
         // New instance for paginating, 5 elements in 1 page, sorted by id 
-        Pageable paging = PageRequest.of(page, 5, Sort.by("id").ascending());
+        Pageable paging = PageRequest.of(page, 10, Sort.by("id").ascending());
         Page<Customer> customerList = repo.findAll(paging);
         return new ResponseEntity<>(
             new ApiResponse<>(

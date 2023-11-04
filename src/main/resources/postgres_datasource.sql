@@ -30,25 +30,36 @@ CREATE TABLE public.user (
     FOREIGN KEY (role_id) REFERENCES public.role(role_id)
 );
 
-CREATE TABLE public."admin" (
-	"admin_id" SERIAL NOT NULL,
-    "full_name" TEXT NOT NULL,
-    "email" VARCHAR(20) NOT NULL,
-    "phone_number" VARCHAR(10) NOT NULL,
-    "user_id" SERIAL NOT NULL,
+CREATE TABLE public.admin (
+	admin_id SERIAL NOT NULL,
+    full_name TEXT NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+    user_id SERIAL NOT NULL,
     PRIMARY KEY (admin_id),
-    FOREIGN KEY (user_id) REFERENCES public."user"(user_id)
+    FOREIGN KEY (user_id) REFERENCES public.user(user_id)
 );
 
-CREATE TABLE public."customer" (
-	"customer_id" SERIAL NOT NULL,
-    "full_name" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
-    "email" VARCHAR(50) NOT NULL,
-    "phone_number" VARCHAR(10) NOT NULL,
-    "user_id" SERIAL NOT NULL,
+CREATE TABLE public.manager (
+	manager_id SERIAL NOT NULL,
+    full_name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+   	user_id SERIAL NOT NULL,
+    PRIMARY KEY (manager_id),
+    FOREIGN KEY (user_id) REFERENCES public.user(user_id)
+);
+
+CREATE TABLE public.customer (
+	customer_id SERIAL NOT NULL,
+    full_name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(10) NOT NULL,
+    user_id SERIAL NOT NULL,
     PRIMARY KEY (customer_id),
-    FOREIGN KEY (user_id) REFERENCES public."user"(user_id)
+    FOREIGN KEY (user_id) REFERENCES public.user(user_id)
 );
 
 -- Thể loại phim (hành động, tình cảm,...)
@@ -215,17 +226,25 @@ CREATE TABLE public."booking" (
 -- Thêm dữ liệu vào bảng "role"
 INSERT INTO public.role (role_name) VALUES
 ('ADMIN'),
+('MANAGER'),
 ('CUSTOMER');
 
 -- Thêm dữ liệu vào bảng "account"
-INSERT INTO public.user (email, "password", role_id) VALUES
-('admin1@example.com', '123', 1),
-('customer1@example.com', '001', 2),
-('customer2@example.com', '002', 2);
+INSERT INTO public.user (email, "password", status, role_id) VALUES
+('admin1@example.com', '123', 1, 1),
+('manager1@gmail.com', '123', 1, 2),
+('manager2@gmail.com', '456', 1, 2),
+('customer1@gmail.com', '001', 1, 3),
+('customer2@gmail.com', '002', 1, 3),
+('customer3@gmail.com', '003', 1, 3);
 
 -- Thêm dữ liệu vào bảng "manager"
 INSERT INTO public.admin (full_name, email, phone_number, user_id) VALUES
 ('Admin 1', 'admin1@example.com', '1234567890', 1);
+
+INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VALUES
+('Phan Anh Khoa', 'Heaven', 'khoa@example.com', '0978263486', 2),
+('Ngo Chi Cuong', 'Unspecified', 'cuong@example.com', '0862935985', 3);
 
 -- Thêm dữ liệu vào bảng "customer"
 INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
@@ -306,6 +325,7 @@ INSERT INTO public.customer (full_name, address, email, phone_number, user_id) V
 SELECT * FROM public.role
 SELECT * FROM public.user
 SELECT * FROM public.admin
+SELECT * FROM public.manager
 SELECT * FROM public.customer
 
 
