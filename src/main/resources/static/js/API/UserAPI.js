@@ -1,4 +1,4 @@
-const getAllCustomer = async (url = "../..", page = 1) => {
+const getAllCustomer = async (url = "../..", page) => {
   const urls = `${url}/api/v1/customer?page=${page}`;
   const data = await fetch(urls, {
     method: "GET",
@@ -7,8 +7,8 @@ const getAllCustomer = async (url = "../..", page = 1) => {
   return datatorender;
 };
 
-const getAllManager = async (url = "../..", page = 1) => {
-  const urls = `${url}/api/v1/manager?page=${page}&size=`;
+const getAllManager = async (url = "../..", page) => {
+  const urls = `${url}/api/v1/manager?page=${page}`;
   const data = await fetch(urls, {
     method: "GET",
   });

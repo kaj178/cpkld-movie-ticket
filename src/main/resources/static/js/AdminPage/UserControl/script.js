@@ -32,6 +32,7 @@ let table = $("#table-content").DataTable({
     },
   },
 });
+
 $("#table-content_filter").hide();
 
 $(document).ready(() => {
@@ -51,19 +52,23 @@ $(document).ready(() => {
     sessionStorage.removeItem("Email");
     window.location.href = "../../../";
   });
+
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
       var data = table.rows(indexes).data();
       fillEditData(data[0][0]);
     }
   });
+
   $(".item-choosing-block").click(function () {
     $(".item-choosing-block .divider-mini").remove();
     $(this).append("<div class=divider-mini></div>");
   });
+
   $(".all-user").click(() => loadAllUser().then(() => showData()));
-  $(".customer").click(() => loadCustomer().then(() => showData()));
+  $(".customer").click(() => showData(loadCustomer()));
   $(".manager").click(() => loadManager().then(() => showData()));
+
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
     currentData = allData.filter((element) =>
@@ -176,7 +181,7 @@ $(document).ready(() => {
   loadAllUser().then(() => showData()); // page load
 });
 
-function showData() {
+function showData(currentData) {
   table.clear().draw();
   let data = currentData;
 
@@ -195,6 +200,7 @@ function showData() {
       .draw();
   }
 }
+
 async function loadAllUser() {
   currentData = [];
   let page = 1;
@@ -219,24 +225,22 @@ async function loadCustomer() {
   currentData = [];
   let page = 1;
   let data;
-  do {
-    data = await getAllCustomer("../../..", page);
-    currentData.push(...data.data);
-    page++;
-  } while (data.data.length != 0);
+  data = await getAllCustomer("../../..", page);
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i]);
+  }
   console.log(currentData);
+  return currentData
 }
 
 async function loadManager() {
   currentData = [];
   let page = 1;
   let data;
-  do {
-    data = await getAllManager("../../..", page);
-    currentData.push(...data.data);
-    page++;
-  } while (data.data.length != 0);
+  data = await getAllManager("../../..", page);
+  currentData.push(...data.data);
   console.log(currentData);
+  return currentData
 }
 
 function fillEditData(id) {

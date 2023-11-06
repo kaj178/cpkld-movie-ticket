@@ -17,5 +17,5 @@ public class AuthController {
     public String getSignupPage() {
         return "View/Signup_Modal/index";
     }
-
+    
 }

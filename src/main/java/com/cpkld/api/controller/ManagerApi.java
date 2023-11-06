@@ -23,8 +23,8 @@ public class ManagerApi {
     }
 
     @GetMapping(params = "page, size")
-    public ResponseEntity<?> readManagersPaginated(@RequestParam int page, @RequestParam int size) {
-        return service.getPaginated(page, size);
+    public ResponseEntity<?> readManagersPaginated(@RequestParam int page) {
+        return service.getPaginated(page);
     }
 
     @GetMapping("/{id}")

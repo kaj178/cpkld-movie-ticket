@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseEntity<?> getPaginated(int page) {
         // New instance for paginating, 5 elements in 1 page, sorted by id 
-        Pageable paging = PageRequest.of(page, 10, Sort.by("id").ascending());
+        Pageable paging = PageRequest.of(page, 5, Sort.by("id").ascending());
         Page<Customer> customerList = repo.findAll(paging);
         return new ResponseEntity<>(
             new ApiResponse<>(

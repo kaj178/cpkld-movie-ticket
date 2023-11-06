@@ -65,8 +65,8 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public ResponseEntity<?> getPaginated(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
+    public ResponseEntity<?> getPaginated(int page) {
+        Pageable pageable = PageRequest.of(page, 5, Sort.by("id").ascending());
         Page<Manager> pageList = repo.findAll(pageable);
         // for (Manager m : pageList) {
         //     System.out.println(m.toString());

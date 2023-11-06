@@ -9,7 +9,7 @@ public interface ManagerService {
 
     ResponseEntity<?> getById(Integer id);
 
-    ResponseEntity<?> getPaginated(int page, int size);
+    ResponseEntity<?> getPaginated(int page);
 
     ResponseEntity<?> add(ManagerDTO managerDTO);
 
