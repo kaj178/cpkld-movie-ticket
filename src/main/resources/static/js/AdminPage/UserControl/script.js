@@ -48,10 +48,10 @@ $(document).ready(() => {
   //   window.location.href = "/login";
   // }
 
-  $(".logout-container").click(() => {
-    sessionStorage.removeItem("Email");
-    window.location.href = "../../../";
-  });
+  // $(".logout-container").click(() => {
+  //   sessionStorage.removeItem("Email");
+  //   window.location.href = "/";
+  // });
 
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {

@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -56,14 +55,17 @@ public class SecurityConfig {
                         Collection<? extends GrantedAuthority> auths = auth.getAuthorities();
                         if (auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                             res.sendRedirect("/admin/user-control");
-                        } else {
+                        }   else {
                             res.sendRedirect("/");
                         }
                     })
                     .permitAll()
             )
             .logout(logout -> 
-                logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                logout.logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/login")
                     .permitAll()
             );
         return http.build();
