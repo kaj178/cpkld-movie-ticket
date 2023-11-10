@@ -148,7 +148,7 @@
       <div class="logo-container">
         <p class="logo-heading">5CT</p>
       </div>
-      <a href="../UserControl/index.html">
+      <a th:href="@{/admin/user-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -157,6 +157,7 @@
               viewBox="0 0 25 24"
               fill="#474851"
               xmlns="http://www.w3.org/2000/svg"
+              class="active"
             >
               <path
                 d="M12.5 0C14.0913 0 15.6174 0.632141 16.7426 1.75736C17.8679 2.88258 18.5 4.4087 18.5 6C18.5 7.5913 17.8679 9.11742 16.7426 10.2426C15.6174 11.3679 14.0913 12 12.5 12C10.9087 12 9.38258 11.3679 8.25736 10.2426C7.13214 9.11742 6.5 7.5913 6.5 6C6.5 4.4087 7.13214 2.88258 8.25736 1.75736C9.38258 0.632141 10.9087 0 12.5 0ZM12.5 3C11.7044 3 10.9413 3.31607 10.3787 3.87868C9.81607 4.44129 9.5 5.20435 9.5 6C9.5 6.79565 9.81607 7.55871 10.3787 8.12132C10.9413 8.68393 11.7044 9 12.5 9C13.2956 9 14.0587 8.68393 14.6213 8.12132C15.1839 7.55871 15.5 6.79565 15.5 6C15.5 5.20435 15.1839 4.44129 14.6213 3.87868C14.0587 3.31607 13.2956 3 12.5 3ZM12.5 13.5C16.505 13.5 24.5 15.495 24.5 19.5V24H0.5V19.5C0.5 15.495 8.495 13.5 12.5 13.5ZM12.5 16.35C8.045 16.35 3.35 18.54 3.35 19.5V21.15H21.65V19.5C21.65 18.54 16.955 16.35 12.5 16.35Z"
@@ -176,10 +177,10 @@
               </defs>
             </svg>
           </span>
-          <p class="item-description">Người dùng</p>
+          <p class="item-description active">Người dùng</p>
         </div>
       </a>
-      <a href="../FilmControl/index.html">
+      <a th:href="@{/admin/film-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -210,7 +211,7 @@
           <p class="item-description">Danh sách phim</p>
         </div>
       </a>
-      <a href="../HistoryPage/index.html">
+      <a th:href="@{/admin/history-page}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -242,7 +243,7 @@
           <p class="item-description">Lịch sử đặt vé</p>
         </div>
       </a>
-      <a href="../TimeControlPage/index.html">
+      <a th:href="@{/admin/time-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -251,7 +252,6 @@
               viewBox="0 0 24 24"
               fill="#474851"
               xmlns="http://www.w3.org/2000/svg"
-              class="active"
             >
               <path
                 d="M21.8182 17.4545V7.63636H6.54545V17.4545H21.8182ZM21.8182 2.18182C23.0182 2.18182 24 3.16364 24 4.36364V17.4545C24 18.6545 23.0182 19.6364 21.8182 19.6364H6.54545C5.33455 19.6364 4.36364 18.6545 4.36364 17.4545V4.36364C4.36364 3.16364 5.34545 2.18182 6.54545 2.18182H7.63636V0H9.81818V2.18182H18.5455V0H20.7273V2.18182H21.8182ZM2.18182 21.8182H17.4545V24H2.18182C0.970909 24 0 23.0182 0 21.8182V8.72727H2.18182V21.8182Z"
@@ -271,11 +271,11 @@
               </defs>
             </svg>
           </span>
-          <p class="item-description active">Lịch chiếu</p>
+          <p class="item-description">Lịch chiếu</p>
         </div>
       </a>
 
-      <a href="../ComboControl/index.html">
+      <a th:href="@{/admin/combo-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -306,7 +306,7 @@
           <p class="item-description">Combo</p>
         </div>
       </a>
-      <a href="../Statistic/index.html">
+      <a th:href="@{/admin/statistic}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -338,7 +338,7 @@
           <p class="item-description">Thống kê</p>
         </div>
       </a>
-      <div class="item-container logout-container">
+      <div onclick="window.location='/logout'" class="item-container logout-container">
         <span class="item-icon">
           <svg
             width="24"

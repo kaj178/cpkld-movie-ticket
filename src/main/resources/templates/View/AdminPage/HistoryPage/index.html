@@ -149,7 +149,7 @@
       <div class="logo-container">
         <p class="logo-heading">5CT</p>
       </div>
-      <a href="../UserControl/index.html">
+      <a th:href="@{/admin/user-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -158,6 +158,7 @@
               viewBox="0 0 25 24"
               fill="#474851"
               xmlns="http://www.w3.org/2000/svg"
+              class="active"
             >
               <path
                 d="M12.5 0C14.0913 0 15.6174 0.632141 16.7426 1.75736C17.8679 2.88258 18.5 4.4087 18.5 6C18.5 7.5913 17.8679 9.11742 16.7426 10.2426C15.6174 11.3679 14.0913 12 12.5 12C10.9087 12 9.38258 11.3679 8.25736 10.2426C7.13214 9.11742 6.5 7.5913 6.5 6C6.5 4.4087 7.13214 2.88258 8.25736 1.75736C9.38258 0.632141 10.9087 0 12.5 0ZM12.5 3C11.7044 3 10.9413 3.31607 10.3787 3.87868C9.81607 4.44129 9.5 5.20435 9.5 6C9.5 6.79565 9.81607 7.55871 10.3787 8.12132C10.9413 8.68393 11.7044 9 12.5 9C13.2956 9 14.0587 8.68393 14.6213 8.12132C15.1839 7.55871 15.5 6.79565 15.5 6C15.5 5.20435 15.1839 4.44129 14.6213 3.87868C14.0587 3.31607 13.2956 3 12.5 3ZM12.5 13.5C16.505 13.5 24.5 15.495 24.5 19.5V24H0.5V19.5C0.5 15.495 8.495 13.5 12.5 13.5ZM12.5 16.35C8.045 16.35 3.35 18.54 3.35 19.5V21.15H21.65V19.5C21.65 18.54 16.955 16.35 12.5 16.35Z"
@@ -177,10 +178,10 @@
               </defs>
             </svg>
           </span>
-          <p class="item-description">Người dùng</p>
+          <p class="item-description active">Người dùng</p>
         </div>
       </a>
-      <a href="../FilmControl/index.html">
+      <a th:href="@{/admin/film-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -211,7 +212,7 @@
           <p class="item-description">Danh sách phim</p>
         </div>
       </a>
-      <a href="../HistoryPage/index.html">
+      <a th:href="@{/admin/history-page}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -220,7 +221,6 @@
               viewBox="0 0 24 22"
               fill="#474851"
               xmlns="http://www.w3.org/2000/svg"
-              class="active"
             >
               <path
                 d="M14.2857 6.11111H12.5714V12.2222L17.4629 15.3267L18.2857 13.8478L14.2857 11.3056V6.11111ZM13.7143 0C10.9863 0 8.37013 1.15893 6.44119 3.22183C4.51224 5.28473 3.42857 8.08262 3.42857 11H0L4.52571 15.9256L9.14286 11H5.71429C5.71429 8.73093 6.55714 6.55479 8.05743 4.95031C9.55772 3.34583 11.5926 2.44444 13.7143 2.44444C15.836 2.44444 17.8708 3.34583 19.3711 4.95031C20.8714 6.55479 21.7143 8.73093 21.7143 11C21.7143 13.2691 20.8714 15.4452 19.3711 17.0497C17.8708 18.6542 15.836 19.5556 13.7143 19.5556C11.5086 19.5556 9.50857 18.59 8.06857 17.0378L6.44571 18.7733C8.30857 20.7778 10.8571 22 13.7143 22C16.4422 22 19.0584 20.8411 20.9874 18.7782C22.9163 16.7153 24 13.9174 24 11C24 8.08262 22.9163 5.28473 20.9874 3.22183C19.0584 1.15893 16.4422 0 13.7143 0Z"
@@ -241,10 +241,10 @@
               </defs>
             </svg>
           </span>
-          <p class="item-description active">Lịch sử đặt vé</p>
+          <p class="item-description">Lịch sử đặt vé</p>
         </div>
       </a>
-      <a href="../TimeControlPage/index.html">
+      <a th:href="@{/admin/time-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -276,7 +276,7 @@
         </div>
       </a>
 
-      <a href="../ComboControl/index.html ">
+      <a th:href="@{/admin/combo-control}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -307,7 +307,7 @@
           <p class="item-description">Combo</p>
         </div>
       </a>
-      <a href="../Statistic/index.html">
+      <a th:href="@{/admin/statistic}">
         <div class="item-container">
           <span class="item-icon">
             <svg
@@ -339,7 +339,7 @@
           <p class="item-description">Thống kê</p>
         </div>
       </a>
-      <div class="item-container logout-container">
+      <div onclick="window.location='/logout'" class="item-container logout-container">
         <span class="item-icon">
           <svg
             width="24"
