@@ -1,7 +1,5 @@
 package com.cpkld.controller.auth;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import com.cpkld.dto.UserDTO;
 import com.cpkld.model.entity.User;
 import com.cpkld.service.auth.AuthService;
 
-import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -24,11 +21,6 @@ public class AuthController {
 
     @Autowired
     private AuthService service;
-
-    @GetMapping
-    public String getHomePage(Principal principal, HttpSession session) {
-        return "homepage";
-    }
 
     @GetMapping("/login")
     public String getLoginPage() {

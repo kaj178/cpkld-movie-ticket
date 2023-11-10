@@ -83,19 +83,16 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ResponseEntity<?> add(ManagerDTO managerDTO) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
     public ResponseEntity<?> update(Integer id, ManagerDTO newManagerDTO) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
     public ResponseEntity<?> delete(Integer id) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
     

@@ -44,8 +44,8 @@ public class SecurityConfig {
                 auth.requestMatchers("/css/**", "/js/**", "/public/**").permitAll() 
                     .requestMatchers("/signup/**", "/api/**").permitAll()
                     // .requestMatchers("/signup/**", "/login/**").permitAll()
-                    // .requestMatchers("/admin/**").hasRole("ADMIN")
-                    // .requestMatchers("/").hasRole("CUSTOMER")
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/").hasRole("CUSTOMER")
                     .anyRequest().authenticated()
             )
             .formLogin(form -> 
@@ -54,7 +54,7 @@ public class SecurityConfig {
                     // Handle redirect after login
                     .successHandler((req, res, auth) -> {
                         Collection<? extends GrantedAuthority> auths = auth.getAuthorities();
-                        if (auths.stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                        if (auths.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                             res.sendRedirect("/admin/user-control");
                         } else {
                             res.sendRedirect("/");

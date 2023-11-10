@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cpkld.dto.UserDTO;
+import com.cpkld.model.CustomUserDetails;
 import com.cpkld.model.entity.Customer;
 import com.cpkld.model.entity.User;
 import com.cpkld.repository.CustomerRepository;
@@ -54,7 +55,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+        User user = userRepository.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not existed!");
+        }
+        return new CustomUserDetails(user);
     }
 
     @Override

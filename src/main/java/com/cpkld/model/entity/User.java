@@ -38,7 +38,7 @@ public class User {
     @Column(name = "status")
     private Integer status;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Role.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Role.class)
     @JoinColumn(name = "role_id", nullable = false)
     @JsonBackReference
     private Role role;

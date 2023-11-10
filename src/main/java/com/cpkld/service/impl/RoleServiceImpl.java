@@ -39,19 +39,16 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseEntity<?> addRole(Role role) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addRole'");
     }
 
     @Override
     public ResponseEntity<?> updateRole(Integer id, Role role) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateRole'");
     }
 
     @Override
     public ResponseEntity<?> deleteRole(Integer id) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteRole'");
     }
 }

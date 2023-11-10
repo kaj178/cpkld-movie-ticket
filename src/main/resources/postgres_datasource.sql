@@ -328,6 +328,10 @@ SELECT * FROM public.admin
 SELECT * FROM public.manager
 SELECT * FROM public.customer
 
+update public.user 
+set "password" = '$2a$12$xkbSzvuOLK0Yil9HQFqe3OAj/34CSLK7vK2iz2jzM7XNC/H04Zs5.' 
+where user_id = 1
+
 
 
 
