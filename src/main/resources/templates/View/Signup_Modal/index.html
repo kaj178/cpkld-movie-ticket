@@ -63,24 +63,30 @@
             </h6>
           </div>
           <div class="info_container" style="margin-bottom: 32px">
-            <form>
+            <form method="POST" 
+                  role="form"
+                  th:action="@{/signup/auth}"
+                  th:object="${user}"
+            >
               <div class="form-group">
                 <input
                   type="text"
+                  name="fullname"
+                  th:field="*{fullname}"
                   style="
                     background-color: #20232d;
                     color: #9a9fae;
                     border: solid 1px #303030;
-                    margin-right: 25px;
-                    width: 60%;
                   "
                   class="form-control"
                   id="Ho"
                   aria-describedby="Name_Ho"
-                  placeholder="Họ"
+                  placeholder="Họ và tên"
                 />
-                <input
+                <!-- <input
                   type="text"
+                  name="lastname"
+
                   style="
                     background-color: #20232d;
                     color: #9a9fae;
@@ -90,7 +96,7 @@
                   id="Ten"
                   aria-describedby="Name_Ten"
                   placeholder="Tên"
-                />
+                /> -->
               </div>
               <div class="form-group">
                 <input
@@ -100,6 +106,8 @@
                     border: solid 1px #303030;
                   "
                   type="text"
+                  name="email"
+                  th:field="*{email}"
                   class="form-control"
                   id="Email"
                   placeholder="Email"
@@ -113,6 +121,8 @@
                     border: solid 1px #303030;
                   "
                   type="text"
+                  name="address"
+                  th:field="*{address}"
                   class="form-control"
                   id="Address"
                   placeholder="Địa chỉ"
@@ -126,6 +136,8 @@
                     border: solid 1px #303030;
                   "
                   type="text"
+                  name="phone"
+                  th:field="*{phone}"
                   class="form-control"
                   id="Phone"
                   aria-describedby="Phone_Number"
@@ -140,6 +152,8 @@
                     border: solid 1px #303030;
                   "
                   type="password"
+                  name="password"
+                  th:field="*{password}"
                   class="form-control"
                   id="Password"
                   aria-describedby="PassWord_User"
@@ -154,6 +168,8 @@
                     border: solid 1px #303030;
                   "
                   type="password"
+                  name="comfirm-password"
+                  th:field="*{repeatPassword}"
                   class="form-control"
                   id="Password_confirm"
                   aria-describedby="PassWord_User_Confirm"
@@ -162,7 +178,7 @@
               </div>
               <div class="form-button-place" style="text-align: center">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary"
                   id="btn-register"
                   style="

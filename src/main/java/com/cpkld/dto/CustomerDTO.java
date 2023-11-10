@@ -27,4 +27,6 @@ public class CustomerDTO {
 
     @NotEmpty
     private String phone;
+
+    
 }

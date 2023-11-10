@@ -37,12 +37,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // Disable Cross Site Request Forgery ( vô hiệu hóa tính năng CSRF protection)
+            // Disable Cross Site Request Forgery (vô hiệu hóa tính năng CSRF protection)
             .csrf(AbstractHttpConfigurer::disable)
             // Configure accessing resources
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers("/css/**", "/js/**", "/public/**").permitAll() 
-                    .requestMatchers("/**", "/api/**").permitAll()
+                    .requestMatchers("/signup/**", "/api/**").permitAll()
                     // .requestMatchers("/signup/**", "/login/**").permitAll()
                     // .requestMatchers("/admin/**").hasRole("ADMIN")
                     // .requestMatchers("/").hasRole("CUSTOMER")

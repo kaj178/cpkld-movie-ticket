@@ -70,11 +70,17 @@
               >
             </li>
             <li class="nav-item" id="login-accout">
-              <a class="nav-link" href="/login">Đăng nhập</a>
+              <!-- <a class="nav-link" href="/login">Đăng nhập</a> -->
+              <div class="info"></div>
+                <span class="h6" style="color: white;">
+                  Welcome <span th:text="${sessionfullname}" style="color: red"></span>&nbsp;|
+                <a th:href="@{/logout}">Logout</a>
+                </span>
+              </div>
             </li>
-            <li class="nav-item" id="create-accout">
+            <!-- <li class="nav-item" id="create-accout">
               <a class="nav-link" href="/signup">Đăng ký</a>
-            </li>
+            </li> -->
             <li
               class="nav-item d-flex align-items-center ms-auto visually-hidden"
               id="user-account"

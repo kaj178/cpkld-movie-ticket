@@ -11,8 +11,8 @@ CREATE DATABASE "movie-ticket"
 SET search_path TO 'movie-ticket'
 
 -- Delete Schema 'public'
--- DROP SCHEMA public CASCADE;
--- CREATE SCHEMA public;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 CREATE TABLE public.role (
 	role_id SERIAL NOT NULL,
@@ -22,8 +22,8 @@ CREATE TABLE public.role (
 
 CREATE TABLE public.user (
 	user_id SERIAL NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    "password" VARCHAR(50) NOT NULL,
+    email TEXT NOT NULL,
+    "password" TEXT NOT NULL,
 	status INT NOT NULL,
     role_id SERIAL NOT NULL,
     PRIMARY KEY (user_id),
@@ -33,7 +33,7 @@ CREATE TABLE public.user (
 CREATE TABLE public.admin (
 	admin_id SERIAL NOT NULL,
     full_name TEXT NOT NULL,
-    email VARCHAR(20) NOT NULL,
+    email TEXT NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
     user_id SERIAL NOT NULL,
     PRIMARY KEY (admin_id),
@@ -44,7 +44,7 @@ CREATE TABLE public.manager (
 	manager_id SERIAL NOT NULL,
     full_name TEXT NOT NULL,
     address TEXT NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email TEXT NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
    	user_id SERIAL NOT NULL,
     PRIMARY KEY (manager_id),
@@ -55,7 +55,7 @@ CREATE TABLE public.customer (
 	customer_id SERIAL NOT NULL,
     full_name TEXT NOT NULL,
     address TEXT NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email TEXT NOT NULL,
     phone_number VARCHAR(10) NOT NULL,
     user_id SERIAL NOT NULL,
     PRIMARY KEY (customer_id),
