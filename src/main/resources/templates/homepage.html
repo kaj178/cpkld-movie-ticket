@@ -57,35 +57,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto d-flex w-100">
             <li class="nav-item">
-              <a class="nav-link" href="./View/MovieList/index.html">PHIM</a>
+              <a class="nav-link" href="/movie-list">PHIM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./View/Order/index.html">LỊCH CHIẾU</a>
+              <a class="nav-link" href="/order">LỊCH CHIẾU</a>
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="./View/Account/ThongTinCaNhan/index.html"
+                href="/personal-profile"
                 >THÔNG TIN</a
               >
             </li>
             <li class="nav-item" id="login-accout">
-              <!-- <a class="nav-link" href="/login">Đăng nhập</a> -->
               <div class="info"></div>
                 <span class="h6" style="color: white;">
-                  Welcome <span th:text="${sessionfullname}" style="color: red"></span>&nbsp;|
+                  Welcome <span th:text="${fullname}" style="color: rgb(255, 255, 255)(195, 106, 106)"></span>&nbsp;|
                 <a th:href="@{/logout}">Logout</a>
                 </span>
               </div>
-            </li>
-            <!-- <li class="nav-item" id="create-accout">
-              <a class="nav-link" href="/signup">Đăng ký</a>
-            </li> -->
-            <li
-              class="nav-item d-flex align-items-center ms-auto visually-hidden"
-              id="user-account"
-            >
-              <a class="nav-link" href="./View/Account/ThongTinCaNhan/"></a>
             </li>
             <li class="nav-item visually-hidden" id="signout">
               <a class="nav-link" href="#">Đăng xuất</a>
@@ -305,25 +295,25 @@
       import { getCustomerByEmail } from "./View/API/UserAPI.js";
 
       $(document).ready(function () {
-        if (sessionStorage.getItem("Email")) {
-          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
-          getCustomerByEmail(".", email).then((res) => {
-            let data = JSON.parse(res.user);
-            let name = data.customer.FullName;
-            $("#create-accout").addClass("visually-hidden");
-            $("#login-accout").addClass("visually-hidden");
-            $("#user-account")
-              .removeClass("visually-hidden")
-              .find("a")
-              .text(name);
-            $("#signout").removeClass("visually-hidden");
-          });
-        }
+        // if (sessionStorage.getItem("Email")) {
+        //   let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+        //   getCustomerByEmail(".", email).then((res) => {
+        //     let data = JSON.parse(res.user);
+        //     let name = data.customer.FullName;
+        //     $("#create-accout").addClass("visually-hidden");
+        //     $("#login-accout").addClass("visually-hidden");
+        //     $("#user-account")
+        //       .removeClass("visually-hidden")
+        //       .find("a")
+        //       .text(name);
+        //     $("#signout").removeClass("visually-hidden");
+        //   });
+        // }
 
-        $("#signout a").click(() => {
-          sessionStorage.removeItem("Email");
-          window.location.href = ".";
-        });
+        // $("#signout a").click(() => {
+        //   sessionStorage.removeItem("Email");
+        //   window.location.href = ".";
+        // });
 
         $(".navbar-toggler").click(function () {
           var color = $(".navbar").css("background-color");

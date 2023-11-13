@@ -4,14 +4,13 @@ package com.cpkld;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// import org.springframework.context.ApplicationContext;
+// import org.springframework.context.ApplicationContext; 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 // import com.cpkld.model.entity.Role;
 // import com.cpkld.service.RoleService;
 
-@SpringBootApplication
+@SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class })
 public class MovieTicketApplication {
 
     public static void main(String[] args) {

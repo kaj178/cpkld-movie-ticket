@@ -24,21 +24,21 @@ $("#table-content_filter").hide();
 let id;
 
 $(document).ready(function () {
-  if (sessionStorage.getItem("Email")) {
-    let email = XORDecrypt(window.sessionStorage.getItem("Email"));
-    getCustomerByEmail("../../..", email).then((res) => {
-      let data = JSON.parse(res.user);
-      id = data.customer.CustomerID;
-      let name = data.customer.FullName;
-      $("#create-accout").addClass("visually-hidden");
-      $("#login-accout").addClass("visually-hidden");
-      $("#user-account").removeClass("visually-hidden").find("a").text(name);
-      $("#signout").removeClass("visually-hidden");
-      loadAllBooking(id).then(() => showData());
-    });
-  } else {
-    window.location.href = "../../Login_Modal/LoginModal.html";
-  }
+  // if (sessionStorage.getItem("Email")) {
+  //   let email = XORDecrypt(window.sessionStorage.getItem("Email"));
+  //   getCustomerByEmail("../../..", email).then((res) => {
+  //     let data = JSON.parse(res.user);
+  //     id = data.customer.CustomerID;
+  //     let name = data.customer.FullName;
+  //     $("#create-accout").addClass("visually-hidden");
+  //     $("#login-accout").addClass("visually-hidden");
+  //     $("#user-account").removeClass("visually-hidden").find("a").text(name);
+  //     $("#signout").removeClass("visually-hidden");
+  //     loadAllBooking(id).then(() => showData());
+  //   });
+  // } else {
+  //   window.location.href = "../../Login_Modal/LoginModal.html";
+  // }
 
   $("#signout a").click(() => {
     sessionStorage.removeItem("Email");
