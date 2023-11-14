@@ -30,7 +30,9 @@ public class HomeController {
     }
 
     @GetMapping("/personal-profile")
-    public String getPersonalProfilePage() {
+    public String getPersonalProfilePage(Model model) {
+        CustomUserDetails tempUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("tempUser", tempUser);
         return "View/Account/ThongTinCaNhan/index";
     }
     

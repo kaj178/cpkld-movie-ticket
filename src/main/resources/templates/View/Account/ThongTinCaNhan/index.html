@@ -111,23 +111,19 @@
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">TÊN</div>
-                <div class="col-6 account-content name-display">ABC</div>
+                <div th:text="${tempUser.fullname}" class="col-6 account-content name-display"></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">EMAIL</div>
-                <div class="col-6 account-content email-display">
-                  ABC@gmail.com
-                </div>
+                <div th:text="${tempUser.username}" class="col-6 account-content email-display"></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">TÊN ĐĂNG NHẬP</div>
-                <div class="col-6 account-content user-display">ABCD</div>
+                <div th:text="${tempUser.username}" class="col-6 account-content user-display"></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">SỐ ĐIỆN THOẠI</div>
-                <div class="col-6 account-content phone-display">
-                  01021002131
-                </div>
+                <div th:text="${tempUser.phone}" class="col-6 account-content phone-display"></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6">

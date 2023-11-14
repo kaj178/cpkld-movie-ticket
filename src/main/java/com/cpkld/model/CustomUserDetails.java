@@ -15,6 +15,7 @@ public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
     private Integer status;
+    private String phone;
     private Role role;
 
     public CustomUserDetails(User user) {
@@ -22,6 +23,7 @@ public class CustomUserDetails implements UserDetails {
         this.username = user.getEmail();
         this.password = user.getPassword();
         this.status = user.getStatus();
+        this.phone = user.getCustomer().getPhoneNumber();
         this.role = user.getRole();
     }
 
@@ -48,6 +50,10 @@ public class CustomUserDetails implements UserDetails {
 
     public Integer getStatus() {
         return this.status;
+    }
+
+    public String getPhone() {
+        return this.phone;
     }
 
     @Override
