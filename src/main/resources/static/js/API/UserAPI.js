@@ -56,6 +56,7 @@ const updateCustomer = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getCustomerByEmail = async (url, email) => {
   const urls = `${url}/Controller/User/ajax.php?action=getUserByEmail&email=${email}`;
   const data = await fetch(urls, {
@@ -82,7 +83,6 @@ const getUserById = async (url, id) => {
   const datatorender = await data.json();
   return datatorender;
 };
-
 
 const updateManager = async (
   url = "../..",

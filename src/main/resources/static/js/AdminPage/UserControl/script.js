@@ -65,9 +65,9 @@ $(document).ready(() => {
     $(this).append("<div class=divider-mini></div>");
   });
 
-  $(".all-user").click(() => loadAllUser().then(() => showData()));
-  $(".customer").click(() => showData(loadCustomer()));
-  $(".manager").click(() => loadManager().then(() => showData()));
+  $(".all-user").click(() => loadAllUser().then(() => showData(currentData)));
+  $(".customer").click(() => loadCustomer().then(() => showCustomerData(currentData)));
+  $(".manager").click(() => loadManager().then(() => showManagerData(currentData)));
 
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
@@ -178,7 +178,7 @@ $(document).ready(() => {
     }
   });
 
-  loadAllUser().then(() => showData()); // page load
+  loadAllUser().then(() => showData(currentData)); // page load
 });
 
 function showData(currentData) {
@@ -201,23 +201,63 @@ function showData(currentData) {
   }
 }
 
+function showManagerData(currentData) {
+  table.clear().draw();
+  let data = currentData;
+
+  let numRow = data.length;
+  for (let i = 0; i < numRow; i++) {
+    table.row
+      .add([
+        data[i].id,
+        data[i].fullname,
+        data[i].email,
+        data[i].phone,
+        data[i].password,
+        data[i].address ? data[i].address : "",
+        "Quản lý"
+      ])
+      .draw();
+  }
+}
+
+function showCustomerData(currentData) {
+  table.clear().draw();
+  let data = currentData;
+
+  let numRow = data.length;
+  for (let i = 0; i < numRow; i++) {
+    table.row
+      .add([
+        data[i].id,
+        data[i].fullname,
+        data[i].email,
+        data[i].phone,
+        data[i].password,
+        data[i].address ? data[i].address : "",
+        "Khách hàng"
+      ])
+      .draw();
+  }
+}
+
 async function loadAllUser() {
   currentData = [];
   let page = 1;
   let data;
   do {
-    data = await getAllCustomer("../../..", page);
+    data = await getAllCustomer("../..", page);
     // console.log(data)
     currentData.push(...data.data);
     page++;
-  } while (data.data.length != 0);
+  } while (data.data.length == 0);
   page = 1;
 
   do {
-    data = await getAllManager("../../..", page);
+    data = await getAllManager("../..", page);
     currentData.push(...data.data);
     page++;
-  } while (data.data.length != 0);
+  } while (data.data.length == 0);
   allData = [...currentData];
 }
 
@@ -225,7 +265,7 @@ async function loadCustomer() {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllCustomer("../../..", page);
+  data = await getAllCustomer("../..", page);
   for (let i = 0; i < data.data.length; i++) {
     currentData.push(data.data[i]);
   }
@@ -237,7 +277,7 @@ async function loadManager() {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllManager("../../..", page);
+  data = await getAllManager("../..", page);
   currentData.push(...data.data);
   console.log(currentData);
   return currentData

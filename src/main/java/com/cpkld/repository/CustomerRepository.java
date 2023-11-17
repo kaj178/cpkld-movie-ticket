@@ -2,6 +2,7 @@ package com.cpkld.repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
         @Param("userId") Integer userId
     );
 
+    @EntityGraph(attributePaths = "user")
     Optional<Customer> findByEmail(String email);
 }
