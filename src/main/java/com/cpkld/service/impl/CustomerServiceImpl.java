@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDTO convertEntityToDto(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setId(customer.getId());
+        customerDTO.setCustomerId(customer.getId());
         customerDTO.setFullname(customer.getFullName());
         customerDTO.setEmail(customer.getEmail());
         customerDTO.setPhone(customer.getPhoneNumber());
@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
     // Add new customer, if existed - throws exception
     @Override
     public ResponseEntity<?> add(CustomerDTO customerDTO) {
-        Optional<Customer> optional = repo.findById(customerDTO.getId());
+        Optional<Customer> optional = repo.findById(customerDTO.getCustomerId());
         if (optional.isPresent()) {
             throw new CustomerExistedException("Customer existed");}
         // } else {

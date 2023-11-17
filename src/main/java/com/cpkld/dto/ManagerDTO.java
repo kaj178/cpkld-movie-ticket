@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ManagerDTO {
-    private Integer id;
+    private Integer managerId;
     
     @NotEmpty
     private String fullname;

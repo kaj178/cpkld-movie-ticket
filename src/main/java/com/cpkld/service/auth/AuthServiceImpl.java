@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import com.cpkld.dto.UserDTO;
 import com.cpkld.model.CustomUserDetails;
 import com.cpkld.model.entity.Customer;
+import com.cpkld.model.entity.Manager;
 import com.cpkld.model.entity.User;
 import com.cpkld.repository.CustomerRepository;
+import com.cpkld.repository.ManagerRepository;
 import com.cpkld.repository.RoleRepository;
 import com.cpkld.repository.UserRepository;
 
@@ -27,10 +29,12 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
+    private ManagerRepository managerRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public void saveAccount(UserDTO userDTO) {
+    public void saveCustomerAccount(UserDTO userDTO) {
         User user = new User();
         Customer customer = new Customer();
         //user.setId(null);
@@ -96,6 +100,28 @@ public class AuthServiceImpl implements AuthService {
         userDTO.setPhone(customer.getPhoneNumber());
         userDTO.setPassword(user.getPassword());
         return userDTO;
+    }
+
+    @Override
+    public void saveManagerAccount(UserDTO userDTO) {
+        User user = new User();
+        Manager manager = new Manager();
+        //user.setId(null);
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setStatus(1);
+        user.setRole(roleRepository.findById(3).orElseThrow());
+        userRepository.saveUser(user.getEmail(), user.getPassword(), user.getStatus(), user.getRole().getRoleId());
+
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            //manager.setId(null);
+            manager.setFullName(userDTO.getFullname());
+            manager.setEmail(userDTO.getEmail());
+            manager.setAddress(userDTO.getAddress());
+            manager.setPhoneNumber(userDTO.getPhone());
+            manager.setUser(userRepository.findByEmail(userDTO.getEmail()));
+            managerRepository.saveManager(userDTO.getFullname(), userDTO.getAddress(), manager.getEmail(), manager.getPhoneNumber(), manager.getUser().getId());
+        }
     }
     
     // private Role saveRoleIfNotExisted(String roleName) {

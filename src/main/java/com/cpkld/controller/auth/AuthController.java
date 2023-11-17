@@ -53,7 +53,7 @@ public class AuthController {
             model.addAttribute("user", userDTO);
             return "register";
         }
-        service.saveAccount(userDTO);
+        service.saveCustomerAccount(userDTO);
         return "redirect:/login";
     }
     

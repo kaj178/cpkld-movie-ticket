@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDTO {
-    private Integer id;
+    private Integer customerId;
     
     @NotEmpty
     private String fullname;
@@ -27,6 +27,4 @@ public class CustomerDTO {
 
     @NotEmpty
     private String phone;
-
-    
 }

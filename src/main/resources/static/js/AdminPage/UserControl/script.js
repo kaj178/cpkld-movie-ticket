@@ -66,8 +66,8 @@ $(document).ready(() => {
   });
 
   $(".all-user").click(() => loadAllUser().then(() => showData(currentData)));
-  $(".customer").click(() => loadCustomer().then(() => showCustomerData(currentData)));
-  $(".manager").click(() => loadManager().then(() => showManagerData(currentData)));
+  $(".customer").click(() => loadCustomer().then(() => showData(currentData)));
+  $(".manager").click(() => loadManager().then(() => showData(currentData)));
 
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
@@ -97,6 +97,7 @@ $(document).ready(() => {
     let password = $("#ModalAddUser .password").val().trim();
     let phone = $("#ModalAddUser .phone").val();
     let type = $("#ModalAddUser .type").val();
+    // type = 1: Customer
     if (type === "1") {
       let address = $("#ModalAddUser .address").val();
       RegisterAPI("../../..", email, password, fullname, address, phone).then(
@@ -113,7 +114,9 @@ $(document).ready(() => {
           }
         }
       );
-    } else {
+    }
+    // type = 2: Manager 
+    else {
       addManager("../../..", email, password, fullname, phone).then((res) => {
         if (res.success == false)
           $("#ModalAddUser .message")
@@ -189,57 +192,58 @@ function showData(currentData) {
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
-        data[i].ManagerID ? data[i].ManagerID : data[i].id,
+        data[i].managerId ? data[i].managerId : data[i].customerId,
+        // i + 1,
         data[i].fullname,
         data[i].email,
         data[i].phone,
         data[i].password,
         data[i].address ? data[i].address : "",
-        data[i].ManagerID ? "Quản lý" : "Khách hàng",
+        data[i].managerId ? "Quản lý" : "Khách hàng",
       ])
       .draw();
   }
 }
 
-function showManagerData(currentData) {
-  table.clear().draw();
-  let data = currentData;
+// function showManagerData(currentData) {
+//   table.clear().draw();
+//   let data = currentData;
 
-  let numRow = data.length;
-  for (let i = 0; i < numRow; i++) {
-    table.row
-      .add([
-        data[i].id,
-        data[i].fullname,
-        data[i].email,
-        data[i].phone,
-        data[i].password,
-        data[i].address ? data[i].address : "",
-        "Quản lý"
-      ])
-      .draw();
-  }
-}
+//   let numRow = data.length;
+//   for (let i = 0; i < numRow; i++) {
+//     table.row
+//       .add([
+//         data[i].managerId,
+//         data[i].fullname,
+//         data[i].email,
+//         data[i].phone,
+//         data[i].password,
+//         data[i].address ? data[i].address : "",
+//         "Quản lý"
+//       ])
+//       .draw();
+//   }
+// }
 
-function showCustomerData(currentData) {
-  table.clear().draw();
-  let data = currentData;
+// function showCustomerData(currentData) {
+//   table.clear().draw();
+//   let data = currentData;
 
-  let numRow = data.length;
-  for (let i = 0; i < numRow; i++) {
-    table.row
-      .add([
-        data[i].id,
-        data[i].fullname,
-        data[i].email,
-        data[i].phone,
-        data[i].password,
-        data[i].address ? data[i].address : "",
-        "Khách hàng"
-      ])
-      .draw();
-  }
-}
+//   let numRow = data.length;
+//   for (let i = 0; i < numRow; i++) {
+//     table.row
+//       .add([
+//         data[i].customerId,
+//         data[i].fullname,
+//         data[i].email,
+//         data[i].phone,
+//         data[i].password,
+//         data[i].address ? data[i].address : "",
+//         "Khách hàng"
+//       ])
+//       .draw();
+//   }
+// }
 
 async function loadAllUser() {
   currentData = [];
@@ -285,17 +289,17 @@ async function loadManager() {
 
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
-  let data = currentData.find((e) => e.ManagerID === id || e.CustomerID === id);
+  let data = currentData.find((e) => e.managerId === id || e.customerId === id);
   editModal.find(".id").val(id);
-  editModal.find(".type").val(data.ManagerID ? "2" : "1");
+  editModal.find(".type").val(data.managerId ? "2" : "1");
   editModal.find(".id").val(id);
-  editModal.find(".fullName").val(data.FullName);
-  editModal.find(".email").val(data.Email);
-  editModal.find(".phone").val(data.Phone);
+  editModal.find(".fullName").val(data.fullname);
+  editModal.find(".email").val(data.email);
+  editModal.find(".phone").val(data.phone);
   editModal.find(".password").val(data.password);
   editModal
     .find(".address")
-    .val(data.Address)
-    .attr("disabled", data.ManagerID ? true : false);
+    .val(data.address)
+    .attr("disabled", data.managerId ? true : false);
   editModal.modal("show");
 }

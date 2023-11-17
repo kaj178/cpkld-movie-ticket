@@ -27,7 +27,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     private ManagerDTO convertEntityToDto(Manager manager) {
         ManagerDTO managerDTO = new ManagerDTO();
-        managerDTO.setId(manager.getId());
+        managerDTO.setManagerId(manager.getId());
         managerDTO.setFullname(manager.getFullName());
         managerDTO.setEmail(manager.getEmail());
         managerDTO.setPhone(manager.getPhoneNumber());

@@ -8,7 +8,9 @@ import com.cpkld.dto.UserDTO;
 import com.cpkld.model.entity.User;
 
 public interface AuthService extends UserDetailsService {
-    public void saveAccount(UserDTO accountDTO);
+    public void saveCustomerAccount(UserDTO accountDTO);
+
+    public void saveManagerAccount(UserDTO accountDTO);
 
     public User findUserByEmail(String email);
 
