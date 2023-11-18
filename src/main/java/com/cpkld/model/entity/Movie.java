@@ -1,5 +1,6 @@
 package com.cpkld.model.entity;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -28,7 +29,7 @@ public class Movie {
     private Date premier;
 
     @Column(name = "time")
-    private Integer time;
+    private LocalTime time;
 
     @Column(name = "description")
     private String description;

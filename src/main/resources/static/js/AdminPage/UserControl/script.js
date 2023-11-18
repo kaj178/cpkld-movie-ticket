@@ -95,30 +95,32 @@ $(document).ready(() => {
     let fullname = $("#ModalAddUser .fullName").val().trim();
     let email = $("#ModalAddUser .email").val().trim();
     let password = $("#ModalAddUser .password").val().trim();
+    let address = $("#ModalAddUser .address").val();
     let phone = $("#ModalAddUser .phone").val();
     let type = $("#ModalAddUser .type").val();
-    // type = 1: Customer
-    if (type === "1") {
-      let address = $("#ModalAddUser .address").val();
-      RegisterAPI("../../..", email, password, fullname, address, phone).then(
-        (res) => {
-          if (res.success == false) {
-            $("#ModalAddUser .message")
-              .text("Thêm thất bại")
-              .removeClass("success");
-          } else {
-            $("#ModalAddUser .message")
-              .text("Thêm thành công")
-              .addClass("success");
-            $(".all-user").trigger("click");
-          }
-        }
-      );
-    }
-    // type = 2: Manager 
-    else {
-      addManager("../../..", email, password, fullname, phone).then((res) => {
-        if (res.success == false)
+    // // type = 1: Customer
+    // if (type === "1") {
+    //   let address = $("#ModalAddUser .address").val();
+    //   RegisterAPI("../../..", email, password, fullname, address, phone).then(
+    //     (res) => {
+    //       if (res.success == false) {
+    //         $("#ModalAddUser .message")
+    //           .text("Thêm thất bại")
+    //           .removeClass("success");
+    //       } else {
+    //         $("#ModalAddUser .message")
+    //           .text("Thêm thành công")
+    //           .addClass("success");
+    //         $(".all-user").trigger("click");
+    //       }
+    //     }
+    //   );
+    // }
+    // // type = 2: Manager
+    // else {
+    addManager("../../..", email, password, fullname, phone, address).then(
+      (res) => {
+        if (res.status !== 200)
           $("#ModalAddUser .message")
             .text("Thêm thất bại")
             .removeClass("success");
@@ -128,8 +130,8 @@ $(document).ready(() => {
             .addClass("success");
           $(".all-user").trigger("click");
         }
-      });
-    }
+      }
+    );
   });
 
   // Edit form
@@ -274,7 +276,7 @@ async function loadCustomer() {
     currentData.push(data.data[i]);
   }
   console.log(currentData);
-  return currentData
+  return currentData;
 }
 
 async function loadManager() {
@@ -284,7 +286,7 @@ async function loadManager() {
   data = await getAllManager("../..", page);
   currentData.push(...data.data);
   console.log(currentData);
-  return currentData
+  return currentData;
 }
 
 function fillEditData(id) {

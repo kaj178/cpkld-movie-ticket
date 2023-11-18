@@ -8,7 +8,7 @@ const getAllCustomer = async (url = "../..", page) => {
 };
 
 const getAllManager = async (url = "../..", page) => {
-  const urls = `${url}/api/v1/manager?page=${page}`;
+  const urls = `${url}/api/v1/manager`;
   const data = await fetch(urls, {
     method: "GET",
   });
@@ -108,17 +108,20 @@ const updateManager = async (
   return datatorender;
 };
 
-const addManager = async (url = "../..", email, password, fullname, phone) => {
-  const urls = `${url}/Controller/User/ajax.php`;
+const addManager = async (url = "../..", email, password, fullname, phone, address) => {
+  const urls = `${url}/api/v1/manager`;
   const data = await fetch(urls, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
     method: "POST",
     body: JSON.stringify({
       action: "addManger",
+      fullname: fullname,
       email: email,
       password: password,
-      fullname: fullname,
+      address: address,
       phone: phone,
-      role: 2,
     }),
   });
   const datatorender = await data.json();
