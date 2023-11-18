@@ -42,5 +42,5 @@ public class AdminController {
     public String getUserControl() {
         return "View/AdminPage/UserControl/index";
     }
-    
+
 }
