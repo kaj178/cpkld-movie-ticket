@@ -12,19 +12,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import com.cpkld.model.entity.Role;
 // import com.cpkld.service.RoleService;
 
-// @EnableSwagger2
 @SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class })
 public class MovieTicketApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MovieTicketApplication.class, args);
-        
-        // ApplicationContext context = SpringApplication.run(MovieTicketApplication.class, args);
-        
+
+        // ApplicationContext context =
+        // SpringApplication.run(MovieTicketApplication.class, args);
+
         // RoleService roleBean = context.getBean(RoleService.class);
         // List<Role> list = roleBean.getAllRole();
         // list.stream()
-        //     .forEach(System.out::println);
+        // .forEach(System.out::println);
     }
 
 }
