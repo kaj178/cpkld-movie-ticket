@@ -11,8 +11,8 @@ CREATE DATABASE "movie-ticket"
 SET search_path TO 'movie-ticket'
 
 -- Delete Schema 'public'
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+-- DROP SCHEMA public CASCADE;
+-- CREATE SCHEMA public;
 
 CREATE TABLE public.role (
 	role_id SERIAL NOT NULL,
