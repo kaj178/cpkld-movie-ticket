@@ -19,11 +19,16 @@ public class CustomUserDetails implements UserDetails {
     private Role role;
 
     public CustomUserDetails(User user) {
-        this.fullname = user.getCustomer().getFullName();
+        if (user.getCustomer() == null) {
+            this.fullname = null;
+            this.phone = null;
+        } else {
+            this.fullname = user.getCustomer().getFullName();
+            this.phone = user.getCustomer().getPhoneNumber();
+        }
         this.username = user.getEmail();
         this.password = user.getPassword();
         this.status = user.getStatus();
-        this.phone = user.getCustomer().getPhoneNumber();
         this.role = user.getRole();
     }
 

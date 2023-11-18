@@ -19,7 +19,7 @@ import com.cpkld.repository.ManagerRepository;
 import com.cpkld.repository.RoleRepository;
 import com.cpkld.repository.UserRepository;
 
-@Service
+@Service("authService")
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
