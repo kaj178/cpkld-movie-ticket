@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "movie-genre", schema = "public")
+@Table(name = "movie_genre", schema = "public")
 public class MovieGenre {
 
     @Id

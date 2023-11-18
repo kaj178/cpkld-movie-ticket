@@ -6,9 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "studio", schema = "public")
 public class Studio {
@@ -17,7 +21,7 @@ public class Studio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "studio_name")
     private String name;
 
     @Column(name = "address")
@@ -35,4 +39,12 @@ public class Studio {
     @Column(name = "image_url")
     private String imageUrl;
 
+    public Studio(String name, String address, String phoneNumber, String email, String website, String imgUrl) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.website = website;
+        this.imageUrl = imgUrl;
+    }
 }
