@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import com.cpkld.model.exception.existed.CustomerExistedException;
+import com.cpkld.model.exception.existed.ManagerExistedException;
 import com.cpkld.model.exception.notfound.CustomerNotFoundException;
 import com.cpkld.model.exception.notfound.ManagerNotFoundException;
 import com.cpkld.model.exception.notfound.RoleNotFoundException;
@@ -37,6 +38,12 @@ public class ExceptionController {
     public ResponseEntity<?> handleManagerNotFoundException(ManagerNotFoundException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ManagerExistedException.class)
+    public ResponseEntity<?> handleManagerExistedException(ManagerExistedException ex, WebRequest req) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
 }

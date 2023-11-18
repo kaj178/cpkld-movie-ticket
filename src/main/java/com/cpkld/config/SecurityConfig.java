@@ -61,6 +61,9 @@ public class SecurityConfig {
                             res.sendRedirect("/");
                         }
                     })
+                    .failureHandler((req, res, e) -> {
+                        
+                    })
                     .permitAll()
             )
             .logout(logout -> 

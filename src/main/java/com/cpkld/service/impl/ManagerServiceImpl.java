@@ -10,20 +10,26 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cpkld.dto.ManagerDTO;
+import com.cpkld.dto.UserDTO;
 import com.cpkld.model.entity.Manager;
+import com.cpkld.model.exception.existed.ManagerExistedException;
 import com.cpkld.model.exception.notfound.ManagerNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.ManagerRepository;
 import com.cpkld.service.ManagerService;
+import com.cpkld.service.auth.AuthService;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
     @Autowired
     private ManagerRepository repo;
+    @Autowired
+    private AuthService userService;
 
     private ManagerDTO convertEntityToDto(Manager manager) {
         ManagerDTO managerDTO = new ManagerDTO();
@@ -82,8 +88,20 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public ResponseEntity<?> add(ManagerDTO managerDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public ResponseEntity<?> add(UserDTO userDTO) {
+        Optional<Manager> optional = repo.findByEmail(userDTO.getEmail());
+        if (optional.isPresent()) {
+            throw new ManagerExistedException("Manager existed!");
+        }
+        userService.saveManagerAccount(userDTO);
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Create manager successfully", 
+                null
+            ),
+            HttpStatus.OK
+        );
     }
 
     @Override

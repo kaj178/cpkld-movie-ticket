@@ -3,6 +3,7 @@ package com.cpkld.service;
 import org.springframework.http.ResponseEntity;
 
 import com.cpkld.dto.ManagerDTO;
+import com.cpkld.dto.UserDTO;
 
 public interface ManagerService {
     ResponseEntity<?> getAll();
@@ -11,7 +12,7 @@ public interface ManagerService {
 
     ResponseEntity<?> getPaginated(int page);
 
-    ResponseEntity<?> add(ManagerDTO managerDTO);
+    ResponseEntity<?> add(UserDTO userDTO);
 
     ResponseEntity<?> update(Integer id, ManagerDTO newManagerDTO);
 
