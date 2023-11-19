@@ -13,22 +13,24 @@ let allData = [];
 let currentData = [];
 
 let table = $("#table-content").DataTable({
-  select: {
-    style: "single",
-    info: false,
+  "pagelength": 5,
+  "lengthMenu": [5, 10],
+  "select": {
+    "style": "single",
+    "info": false,
   },
-  searching: false,
-  language: {
-    lengthMenu: "Số kết quả / Trang _MENU_",
-    zeroRecords: "Không tìm thấy dữ liệu",
-    info: "Hiển thị trang _PAGE_ trên _PAGES_",
-    infoEmpty: "Đang tìm kiếm dữ liệu",
-    infoFiltered: "(filtered from _MAX_ total records)",
-    paginate: {
-      first: "Trang đầu",
-      last: "Trang cuối",
-      next: "Trang sau",
-      previous: "Trang trước",
+  "searching": true,
+  "language": {
+    "lengthMenu": "Số kết quả / Trang _MENU_",
+    "zeroRecords": "Không tìm thấy dữ liệu",
+    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
+    "infoEmpty": "Đang tìm kiếm dữ liệu",
+    "infoFiltered": "(filtered from _MAX_ total records)",
+    "paginate": {
+      "first": "Trang đầu",
+      "last": "Trang cuối",
+      "next": "Trang sau",
+      "previous": "Trang trước",
     },
   },
 });
@@ -72,9 +74,9 @@ $(document).ready(() => {
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
     currentData = allData.filter((element) =>
-      element.ManagerID
-        ? element.ManagerID.search(query) != -1
-        : element.CustomerID.search(query) != -1
+      element.managerId
+        ? element.managerId.search(query) != -1
+        : element.customerId.search(query) != -1
     );
     $(".item-choosing-block .divider-mini").remove();
     $(".search-result").parent().append("<div class=divider-mini></div>");
