@@ -67,6 +67,11 @@
             style="margin-bottom: 36px; margin-top: 36px"
           >
             <form th:action="@{/login/auth}" method="POST">
+              <div th:if="${loginError}">
+                <div class="alert alert-danger" style="margin-bottom: 30px;">
+                  <span th:text="${loginError}"></span>
+              </div>
+              </div>
               <div class="form-group" style="margin-bottom: 36px">
                 <input
                   style="
@@ -127,7 +132,7 @@
             <span style="color: #9a9fae"
               >Chưa có tài khoản?
               <a href="../signup" style="color: #ff3cac"
-                >Đăng ký.</a
+                >Đăng ký</a
               ></span
             >
           </div>
@@ -142,57 +147,5 @@
         </div>
       </div>
     </div>
-    <!-- <script type="module">
-      import { LoginAPI } from "../API/LoginAPI.js";
-      import { XOREncrypt } from "../Util/EncryptXOR.js";
-      $(document).ready(() => {
-        $("#btn-login").click(() => {
-          let email = $("#email").val().trim();
-          let password = $("#password").val().trim();
-          if (email === "" || password === "") {
-            $(".message")
-              .text("Vui lòng nhập đầy đủ thông tin")
-              .show(3000)
-              .delay(3000)
-              .hide(1);
-          } else {
-            LoginAPI("../..", email, password)
-              .then((res) => {
-                console.log(res);
-                if (res.success == true) {
-                  if (res.role === "1") {
-                    let data = JSON.parse(res.user);
-                    // Lưu session Storage accountID và name
-                    let email = res;
-                    console.log(data);
-                    window.sessionStorage.setItem(
-                      "Email",
-                      XOREncrypt(data.customer.Email)
-                    );
-                    window.location.href = "../../index.html";
-                  } else {
-                    let data = JSON.parse(res.user);
-                    // Lưu session Storage accountID
-
-                    window.sessionStorage.setItem(
-                      "Email",
-                      XOREncrypt(data.manager.Email)
-                    );
-                    window.location.href = "../AdminPage/UserControl";
-                  }
-                } else
-                  $(".message")
-                    .text("Tên đăng nhập hoặc mật khẩu không đúng")
-                    .show(3000)
-                    .delay(3000)
-                    .hide(1);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          }
-        });
-      });
-    </script> -->
   </body>
 </html>

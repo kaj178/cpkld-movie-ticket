@@ -46,7 +46,7 @@ public class SecurityConfig {
                     .requestMatchers("/signup/**", "/api/**").permitAll()
                     // .requestMatchers("/signup/**", "/login/**").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/").hasRole("CUSTOMER")
+                    .requestMatchers("/").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER", "ROLE_CUSTOMER") // .hasRole("CUSTOMER")
                     .anyRequest().authenticated()
             )
             .formLogin(form -> 
@@ -61,9 +61,11 @@ public class SecurityConfig {
                             res.sendRedirect("/");
                         }
                     })
-                    .failureHandler((req, res, e) -> {
-                        
-                    })
+                    .failureUrl("/login-error")
+                    // .failureHandler((req, res, e) -> {
+                    //     req.getSession().setAttribute("loginError", "Tên đăng nhập hoặc mật khẩu không đúng");
+                    //     res.sendRedirect("/login");
+                    // })
                     .permitAll()
             )
             .logout(logout -> 

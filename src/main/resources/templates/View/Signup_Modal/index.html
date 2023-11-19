@@ -62,12 +62,16 @@
               Hãy điền thông tin để tạo tài khoản
             </h6>
           </div>
-          <div class="info_container" style="margin-bottom: 32px">
+          <div class="info_container" style="margin-bottom: 20px;">
             <form method="POST" 
                   role="form"
                   th:action="@{/signup/auth}"
                   th:object="${user}"
             >
+              <!-- <div th:if="${#fields.hasErrors('*')}">
+                <div class="alert alert-danger" style="margin-bottom: 30px;">
+                  <span th:each="error : ${errors}" th:text="${error.defaultMessage}"></span>
+              </div> -->
               <div class="form-group">
                 <input
                   type="text"

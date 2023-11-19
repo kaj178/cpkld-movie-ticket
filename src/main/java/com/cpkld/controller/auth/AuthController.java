@@ -13,6 +13,9 @@ import com.cpkld.dto.UserDTO;
 import com.cpkld.model.entity.User;
 import com.cpkld.service.auth.AuthService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -29,6 +32,13 @@ public class AuthController {
         return "View/Login_Modal/LoginModal";
     }
 
+    @GetMapping("/login-error")
+    public String getLoginErrorPage(HttpServletRequest req, HttpServletResponse res, Model model) {
+        model.addAttribute("loginError", "Tên đăng nhập hoặc mật khẩu không đúng");
+        // res.sendRedirect("/login");
+        return "View/Login_Modal/LoginModal";
+    }
+
     @GetMapping("/signup")
     public String getSignupPage(Model model) {
         UserDTO userDTO = new UserDTO();
@@ -42,6 +52,16 @@ public class AuthController {
         BindingResult result,
         Model model
     ) {
+        if (userDTO.getEmail().equals("") || 
+            userDTO.getFullname().equals("") || 
+            userDTO.getAddress().equals("") || 
+            userDTO.getPhone().equals("") || 
+            userDTO.getPassword().equals("") ||
+            userDTO.getRepeatPassword().equals("")) {
+            // model.addAttribute("registerError", "Vui lòng nhập đầy đủ thông tin");
+            // return "View/Signup_Modal/index";
+            result.rejectValue("registerError", "Vui lòng nhập đầy đủ thông tin");
+        }
         System.out.println(userDTO.toString());
         User existedUser = service.findUserByEmail(userDTO.getEmail());
         // System.out.println(existedUser.toString());
@@ -52,8 +72,8 @@ public class AuthController {
             result.rejectValue("repeatPassword", null, "Mật khẩu không khớp");
         }
         if (result.hasErrors()) {
-            model.addAttribute("user", userDTO);
-            return "register";
+            model.addAttribute("registerError", result.getAllErrors());
+            return "View/Signup_Modal/index";
         }
         service.saveCustomerAccount(userDTO);
         return "redirect:/login";
