@@ -1,23 +1,25 @@
-// package com.cpkld.api.controller;
+package com.cpkld.api.controller;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-// import com.cpkld.service.auth.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// @RestController
-// @RequestMapping("/api/v1/user")
-// public class UserController {
+import com.cpkld.dto.UserDTO;
+import com.cpkld.service.auth.AuthService;
 
-//     @Autowired
-//     private AuthService userService;
+@RestController
+@RequestMapping("/api/v1/user")
+public class UserController {
 
-//     @GetMapping
-//     public List<UserDTO> readUsers() {
-//         return userService.getAllAccounts();
-//     }
+    @Autowired
+    private AuthService userService;
 
-//     @PostMapping
-//     public void createManagerUser
-// }
+    @GetMapping
+    public List<UserDTO> readUsers() {
+        return userService.getAllAccounts();
+    }
+
+}

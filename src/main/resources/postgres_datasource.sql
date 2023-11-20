@@ -241,27 +241,22 @@ INSERT INTO public.role (role_name) VALUES
 INSERT INTO public.user (email, "password", status, role_id) VALUES
 ('admin1@example.com', '123', 1, 1),
 ('manager1@gmail.com', '123', 1, 2),
-('manager2@gmail.com', '456', 1, 2),
-('customer1@gmail.com', '001', 1, 3),
-('customer2@gmail.com', '002', 1, 3),
-('customer3@gmail.com', '003', 1, 3);
+('manager2@gmail.com', '456', 1, 2);
 update public.user
 -- hashing 123 password
 set "password" = '$2a$12$xkbSzvuOLK0Yil9HQFqe3OAj/34CSLK7vK2iz2jzM7XNC/H04Zs5.'
-where user_id = 1
+where user_id = 1;
 
 -- Thêm dữ liệu vào bảng "manager"
 INSERT INTO public.admin (full_name, email, phone_number, user_id) VALUES
-    ('Admin 1', 'admin1@example.com', '1234567890', 1);
+('Admin 1', 'admin1@example.com', '1234567890', 1);
 
 INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VALUES
 ('Phan Anh Khoa', 'Heaven', 'khoa@example.com', '0978263486', 2),
 ('Ngo Chi Cuong', 'Unspecified', 'cuong@example.com', '0862935985', 3);
 
 -- Thêm dữ liệu vào bảng "customer"
-INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
-('Alice Johnson', '123 Main St', 'alice@example.com', '5551234567', 1),
-('Bob Wilson', '456 Elm St', 'bob@example.com', '5559876543', 2);
+-- INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
 -- INSERT INTO public."movie-genre" VALUES
@@ -339,9 +334,6 @@ SELECT * FROM public.user
 SELECT * FROM public.admin
 SELECT * FROM public.manager
 SELECT * FROM public.customer
-
-
-
 
 
 

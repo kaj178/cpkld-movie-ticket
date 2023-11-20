@@ -147,5 +147,5 @@ export {
   deleteManager,
   getCustomerByEmail,
   getUserById,
-  getUserByEmail
+  getUserByEmail,
 };

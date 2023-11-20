@@ -1,6 +1,7 @@
 package com.cpkld.service.auth;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,10 @@ public class AuthServiceImpl implements AuthService {
     public List<UserDTO> getAllAccounts() {
         return userRepository.findAll()
             .stream()
+            .filter(user -> 
+                // Lọc ra các user là CUSTOMER
+                user.getRole() != null && user.getRole().getRoleName().equals("CUSTOMER")
+            )
             .map(t -> {
                 try {
                     return convertCustomerEntityToDTO(t);
@@ -83,22 +88,25 @@ public class AuthServiceImpl implements AuthService {
                 }
                 return null;
             })
+            // Lọc ra các user null
+            .filter(Objects::nonNull)
             .collect(Collectors.toList());
     }
 
     private UserDTO convertCustomerEntityToDTO(User user) throws Exception {
         UserDTO userDTO = new UserDTO();
-        Customer customer = customerRepository.findByEmail(user.getCustomer().getEmail()).orElseThrow();
-        // Role role = user.getRole();
-        if (user.getId() != customer.getUser().getId()) {
-            throw new Exception();
+        if (user.getRole().getRoleName().equals("CUSTOMER")) {
+            Customer customer = customerRepository.findByEmail(user.getEmail()).orElseThrow();
+            if (user.getCustomer() != null && user.getId() != customer.getUser().getId()) {
+                throw new Exception();
+            }
+            userDTO.setId(user.getId());
+            userDTO.setFullname(customer.getFullName());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setAddress(customer.getAddress());
+            userDTO.setPhone(customer.getPhoneNumber());
+            userDTO.setPassword(user.getPassword());
         }
-        userDTO.setId(user.getId());
-        userDTO.setFullname(customer.getFullName());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setAddress(customer.getAddress());
-        userDTO.setPhone(customer.getPhoneNumber());
-        userDTO.setPassword(user.getPassword());
         return userDTO;
     }
 
