@@ -321,7 +321,7 @@ INSERT INTO public."language" VALUES
 ('language009', 'Tiếng Ý');
 
 -- -- Thêm dữ liệu vào bảng "movie"
-INSERT INTO public."movie" ("movie_name", "director", "year", "premiere", "url_trailer", "time", "age"," story", "studio_id", "language_id") VALUES
+INSERT INTO public."movie" ("movie_name", "director", "year", "premiere", "url_trailer", "time", "age","story", "studio_id", "language_id") VALUES
 ('Khắc tinh của quỷ', 'Julius Avery', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=SXfnUAW9gwA', '01:43:00', 18, 'Theo chân Amorth trong cuộc điều tra về vụ quỷ ám kinh hoàng của một cậu bé và dần khám phá ra những bí mật hàng thế kỷ mà Vatican đã cố gắng giấu kín', 1, 'language001'),
 ('Chuyện tôi và ma quỷ thành người một nhà', 'Trình Vĩ Hào', 2022, '4/7/2023', 'https://www.youtube.com/watch?v=zxk_YEa2Ky0', '02:10:00', 18, 'Một cuộc hành trình giả tưởng đầy tiếng cười và nước mắt giữa một người đàn ông thẳng thắn và một con ma đồng tính', 2, 'language003'),
 ('Khóa chặt cửa nào Suzume', 'Makoto Shinkai', 2022, '3/10/2023', 'https://www.youtube.com/watch?v=xQ4_c8JfuzI', '02:02:00', 0, 'Để bảo vệ Nhật Bản khỏi thảm họa, những cánh cửa rải rác khắp nơi phải được đóng lại, và bất ngờ thay Suzume cũng có khả năng đóng cửa đặc biệt này', 3, 'language004'),
@@ -346,7 +346,7 @@ INSERT INTO public."movie" ("movie_name", "director", "year", "premiere", "url_t
 ('Blue Beetle', 'Angel Manuel Soto', 2023, '8/18/2023', 'https://www.youtube.com/watch?v=j5rpK0Ba7q8', '02:08:00', 13, 'Cậu sinh viên mới tốt nghiệp Jaime Reyes trở về nhà với tràn trề niềm tin và hy vọng về tương lai, để rồi nhận ra quê nhà của anh đã thay đổi rất nhiều so với trước đây', 7, 'language001'),
 ('Quỷ lùn tinh nghịch: Đồng tâm hiệp nhạc', 'Walt Dohrn, Tim Heitz', 2023, '11/17/2023', 'https://www.youtube.com/watch?v=izi44lM_HSo', '01:32:00', 0, 'Sự xuất hiện đột ngột của John Dory, anh trai thất lạc đã lâu của Branch mở ra quá khứ bí mật được che giấu bấy lâu nay của Branch. Đó là quá khứ về một ban nhạc có tên BroZone từng rất nổi tiếng nhưng đã tan rã', 22, 'language001'),
 ('Transformers: Quái thú trỗi dậy', 'Steven Caple Jr.', 2023, '6/9/2023', 'https://www.youtube.com/watch?v=lRBA1AKyUaI', '02:07:00', 13, 'Bộ phim dựa trên sự kiện Beast Wars trong loạt phim hoạt hình "Transformers", nơi mà các robot có khả năng biến thành động vật khổng lồ cùng chiến đấu chống lại một mối đe dọa tiềm tàng', 23, 'language001'),
-('Flash', 'Andy Muschietti', 2023, '6/16/2023', 'https://www.youtube.com/watch?v=cvn0h6cuUPQ', '02:24:00', 16, 'Mùa hè này, đa thế giới sẽ va chạm khốc liệt với những bước chạy của FLASH', 'studio007', 'language001'),
+('Flash', 'Andy Muschietti', 2023, '6/16/2023', 'https://www.youtube.com/watch?v=cvn0h6cuUPQ', '02:24:00', 16, 'Mùa hè này, đa thế giới sẽ va chạm khốc liệt với những bước chạy của FLASH', 22, 'language001'),
 ('Xứ sở các nguyên tố', 'Peter Sohn', 2023, '6/23/2023', 'https://www.youtube.com/watch?v=1Vg1hL435OI', '01:49:00', 13, 'Xứ Sở Các Nguyên Tố từ Disney và Pixar lấy bối cảnh tại thành phố các nguyên tố, nơi lửa, nước, đất và không khí cùng chung sống với nhau. Câu chuyện xoay quanh nhân vật Ember, một cô nàng cá tính, thông minh, mạnh mẽ và đầy sức hút. Tuy nhiên, mối quan hệ của cô với Wade - một anh chàng hài hước, luôn thuận thế đẩy dòng - khiến Ember cảm thấy ngờ vực với thế giới này', 24, 'language001'),
 ('Vú em dạy yêu', 'Gene Stupnitsky', 2023, '6/23/2023', 'https://www.youtube.com/watch?v=q_XWWWlA39k', '01:43:00', 18, 'Không dành cho bé dưới 18!.. Red Band Trailer với Jennifer Lawrence trở lại, nóng bỏng cả mắt trong tựa phim hài-bựa-lầy nhất hè năm nay', 25, 'language001'),
 ('Lật mặt 6: Tấm vé định mệnh', 'Lý Hải', 2023, '4/28/2023', 'https://www.youtube.com/watch?v=2EnP2tVC00Q', '02:12:00', 16, 'Lật mặt 6 sẽ thuộc thể loại giật gân, tâm lý pha hành động, hài hước', 26, 'language006'),
@@ -441,13 +441,13 @@ INSERT INTO public."format" VALUES
 ('format002', '3D');
 
 INSERT INTO public."theater" VALUES
-  ('theater001', 'Nam Sài Gòn', 'Lotte Mart, Tầng 3 Lotte Mart NSG, 469 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, TP.HCM', '2837752521', 6),
-  ('theater002', 'Gò Vấp', 'Tầng 3, Lotte Mart Gò Vấp, 242 Nguyễn Văn Lượng, Q.Gò Vấp, TP.HCM', '2836202151', 7),
-  ('theater003', 'Cộng Hòa', 'Tầng 4, Pico Plaza, 20 Cộng Hòa, P.12, Q.Tân Bình, TP.HCM', '2837752526', 6),
-  ('theater004', 'Thủ Đức', 'Tầng 2 Joy Citipoint, KCX Linh Trung, KP4, P Linh Trung, Q.Thủ Đức, TP.HCM', '2837245751', 5),
-  ('theater005', 'Moonlight', 'Tầng 2 Moonlight Residences, Số 102 Đặng Văn Bi, P. Bình Thọ, Q. Thủ Đức, TP.HCM', '2836206474', 6),
-  ('theater006', 'Cantavil', 'Tầng 7, Cantavil Premier, Số 1 đường Song Hành, Xa lộ Hà Nội, P.An Phú, Q.2, TP.HCM', '2837402323', 8),
-  ('theater007', 'Nowzone', 'Tầng 5, TTTM Nowzone, 235 Nguyễn Văn Cừ, P.Nguyễn Cư Trinh, Q.1, TP.HCM', '2839262255', 4);
+('theater001', 'Nam Sài Gòn', 'Lotte Mart, Tầng 3 Lotte Mart NSG, 469 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, TP.HCM', '2837752521', 6),
+('theater002', 'Gò Vấp', 'Tầng 3, Lotte Mart Gò Vấp, 242 Nguyễn Văn Lượng, Q.Gò Vấp, TP.HCM', '2836202151', 7),
+('theater003', 'Cộng Hòa', 'Tầng 4, Pico Plaza, 20 Cộng Hòa, P.12, Q.Tân Bình, TP.HCM', '2837752526', 6),
+('theater004', 'Thủ Đức', 'Tầng 2 Joy Citipoint, KCX Linh Trung, KP4, P Linh Trung, Q.Thủ Đức, TP.HCM', '2837245751', 5),
+('theater005', 'Moonlight', 'Tầng 2 Moonlight Residences, Số 102 Đặng Văn Bi, P. Bình Thọ, Q. Thủ Đức, TP.HCM', '2836206474', 6),
+('theater006', 'Cantavil', 'Tầng 7, Cantavil Premier, Số 1 đường Song Hành, Xa lộ Hà Nội, P.An Phú, Q.2, TP.HCM', '2837402323', 8),
+('theater007', 'Nowzone', 'Tầng 5, TTTM Nowzone, 235 Nguyễn Văn Cừ, P.Nguyễn Cư Trinh, Q.1, TP.HCM', '2839262255', 4);
 
 -- -- Thêm dữ liệu vào bảng "room"
 -- INSERT INTO public."room" VALUES
@@ -485,6 +485,11 @@ SELECT * FROM public.user
 SELECT * FROM public.admin
 SELECT * FROM public.manager
 SELECT * FROM public.customer
+
+SELECT * FROM public."movie-genre"
+SELECT * FROM public.studio
+SELECT * FROM public.language
+SELECT * FROM public.movie
 
 
 
