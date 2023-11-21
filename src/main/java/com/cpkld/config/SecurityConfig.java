@@ -28,7 +28,7 @@ public class SecurityConfig {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(service)
             .passwordEncoder(passwordEncoder());
-    }
+    }                                                  
 
     @Bean 
     public static PasswordEncoder passwordEncoder() {

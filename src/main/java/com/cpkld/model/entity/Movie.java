@@ -2,24 +2,23 @@ package com.cpkld.model.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Movie", schema = "public")
+@Table(name = "movie", schema = "public")
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "movie_id", insertable = false, updatable = false)
     private Integer movie_id;
 
     @Column(name = "movie_name")
@@ -53,10 +52,16 @@ public class Movie {
     @JoinColumn(name = "studio_id", insertable = false, updatable = false)
     private Studio studio;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @ManyToMany(mappedBy = "movies")
+    private List<Language> languages;
 
-    private Collection<MovieGenre> movieGenres;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "detail_movie_genre", 
+        joinColumns = @JoinColumn(name = "movie_id"), 
+        inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<MovieGenre> movieGenres;
 
     public Movie(String name, LocalDate premier, LocalTime time, String description,
                  String imageUrl, String trailerUrl, String story, Studio studio) {

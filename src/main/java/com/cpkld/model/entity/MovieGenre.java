@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +15,7 @@ import java.util.Collection;
 public class MovieGenre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "genre_id")
     private Integer genre_id;
 
     @Column(name = "genre_name")
@@ -24,5 +25,5 @@ public class MovieGenre {
     private String description;
 
     @ManyToMany(mappedBy = "movieGenres")
-    private Collection<Movie> movies;
+    private List<Movie> movies;
 }

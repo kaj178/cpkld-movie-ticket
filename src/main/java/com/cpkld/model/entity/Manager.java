@@ -11,6 +11,7 @@ import lombok.Data;
 public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "manager_id")
     private Integer id;
 
     @Column(name = "full_name")

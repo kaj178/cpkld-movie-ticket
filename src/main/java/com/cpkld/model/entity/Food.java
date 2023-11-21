@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Menu", schema = "public")
+@Table(name = "menu", schema = "public")
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

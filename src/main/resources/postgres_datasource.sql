@@ -65,7 +65,7 @@ CREATE TABLE public.customer (
 --Edit database ---
 
 -- Thể loại phim (hành động, tình cảm,...)
-CREATE TABLE public."movie-genre" (
+CREATE TABLE public."movie_genre" (
 	"genre_id" Serial NOT NULL,
 	"genre_name" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE public."rating" (
 	FOREIGN KEY (customer_id) REFERENCES public."customer"(customer_id)
 );
 
-CREATE TABLE public."detail-movie-genre" (
+CREATE TABLE public."detail_movie_genre" (
 	"movie_id" SERIAL NOT NULL,
 	"genre_id" SERIAL NOT NULL,
 	PRIMARY KEY (movie_id, genre_id),
@@ -490,7 +490,7 @@ SELECT * FROM public."movie-genre"
 SELECT * FROM public.studio
 SELECT * FROM public.language
 SELECT * FROM public.movie
-SELECT * FROM public."detail-movie-genre"
+SELECT * FROM public."detail_movie_genre"
 SELECT * FROM public.format
 SELECT * FROM public.theater
 

@@ -1,10 +1,17 @@
 package com.cpkld.model.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +26,7 @@ public class Studio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "studio_id")
     private Integer id;
 
     @Column(name = "studio_name")
@@ -47,4 +55,9 @@ public class Studio {
         this.website = website;
         this.imageUrl = imgUrl;
     }
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Movie.class)
+    @JoinColumn(name = "movie_id", nullable = false)
+    @JsonBackReference
+    private List<Movie> movies;
 }
