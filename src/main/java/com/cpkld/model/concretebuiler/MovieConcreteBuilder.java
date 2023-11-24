@@ -6,7 +6,6 @@ import com.cpkld.model.entity.Studio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public class MovieConcreteBuilder implements MovieBuilder {
     private String name;
@@ -14,7 +13,7 @@ public class MovieConcreteBuilder implements MovieBuilder {
     private LocalTime time;
     private String description;
     private String imgUrl;
-    private String trailerUrl;
+    private String urlTrailer;
     private Float rating;
     private String story;
     private Studio studio;
@@ -51,8 +50,8 @@ public class MovieConcreteBuilder implements MovieBuilder {
     }
 
     @Override
-    public MovieBuilder setTrailerUrl(String trailerUrl) {
-        this.trailerUrl = trailerUrl;
+    public MovieBuilder setUrlTrailer(String urlTrailer) {
+        this.urlTrailer = urlTrailer;
         return this;
     }
 
@@ -76,6 +75,11 @@ public class MovieConcreteBuilder implements MovieBuilder {
 
     @Override
     public Movie build() {
-        return new Movie(name, premier, time, description, imgUrl, trailerUrl, story, studio);
+        return new Movie(null, name, story, null, premier, urlTrailer, time, null, story, studio, null, null);
     }
+
+    // @Override
+    // public Movie build() {
+    //     return new Movie(name, premier, time, description, imgUrl, trailerUrl, story, studio);
+    // }
 }

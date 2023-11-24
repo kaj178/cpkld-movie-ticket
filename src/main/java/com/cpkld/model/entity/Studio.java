@@ -35,29 +35,21 @@ public class Studio {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
     @Column(name = "email")
     private String email;
 
-    @Column(name = "website")
-    private String website;
-
-    @Column(name = "image_url")
-    private String imageUrl;
-
-    public Studio(String name, String address, String phoneNumber, String email, String website, String imgUrl) {
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.website = website;
-        this.imageUrl = imgUrl;
-    }
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Movie.class)
     @JoinColumn(name = "movie_id", nullable = false)
     @JsonBackReference
     private List<Movie> movies;
+
+    public Studio(String name, String address, String phoneNumber, String email) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }

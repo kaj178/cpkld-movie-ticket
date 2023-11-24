@@ -5,7 +5,6 @@ import com.cpkld.model.entity.Studio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public interface MovieBuilder {
     MovieBuilder setName(String name);
@@ -13,7 +12,7 @@ public interface MovieBuilder {
     MovieBuilder setTime(LocalTime time);
     MovieBuilder setDescription(String description);
     MovieBuilder setImgUrl(String urlImg);
-    MovieBuilder setTrailerUrl(String trailerUrl);
+    MovieBuilder setUrlTrailer(String urlTrailer);
     MovieBuilder setRating(Float rating);
     MovieBuilder setStory(String story);
 

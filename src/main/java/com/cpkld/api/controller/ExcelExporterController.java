@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cpkld.service.ExcelExpoter;
+import com.cpkld.service.UserExcelExpoter;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping("/api/v1/export")
 public class ExcelExporterController {
     @Autowired
-    private ExcelExpoter exporter;
+    private UserExcelExpoter exporter;
     
     @GetMapping
     public void excelExporter(HttpServletResponse res) throws IOException {

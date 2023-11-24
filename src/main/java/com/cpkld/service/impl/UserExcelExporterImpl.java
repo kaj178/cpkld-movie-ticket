@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cpkld.dto.UserDTO;
-import com.cpkld.service.ExcelExpoter;
+import com.cpkld.service.UserExcelExpoter;
 import com.cpkld.service.auth.AuthService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 @Service
-public class ExcelExporterImpl implements ExcelExpoter {
+public class UserExcelExporterImpl implements UserExcelExpoter {
     @Autowired
     private AuthService service;
 

@@ -24,6 +24,11 @@ public class MovieGenre {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "movieGenres")
+    @ManyToMany
+    @JoinTable(
+        name = "detail_movie-genre",
+        joinColumns = @JoinColumn(name = "genre_id"),
+        inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
     private List<Movie> movies;
 }

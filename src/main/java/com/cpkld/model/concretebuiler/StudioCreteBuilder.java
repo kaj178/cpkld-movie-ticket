@@ -48,7 +48,13 @@ public class StudioCreteBuilder implements StudioBuilder {
 
     @Override
     public Studio build() {
-        return new Studio(name, address, phoneNumber, email, website, imgUrl);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'build'");
     }
+
+    // @Override
+    // public Studio build() {
+    //     return new Studio(name, address, phoneNumber, email, website, imgUrl);
+    // }
 
 }

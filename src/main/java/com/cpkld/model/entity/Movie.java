@@ -4,56 +4,58 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "movie", schema = "public")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id", insertable = false, updatable = false)
-    private Integer movie_id;
+    private Integer movieId;
 
     @Column(name = "movie_name")
     private String name;
 
-    @Column(name = "premier")
-    private LocalDate premier;
+    @Column(name = "director")
+    private String director;
+
+    @Column(name = "year")
+    private Integer year;
+
+    @Column(name = "premiere")
+    private LocalDate premiere;
+
+    @Column(name = "url_trailer")
+    private String urlTrailer;
 
     @Column(name = "time")
     private LocalTime time;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "image_url")
-    private String imageUrl;
-
-    @Column(name = "trailer_url")
-    private String trailerUrl;
-
-    @Column(name = "rating")
-    private Float rating;
-
-    @Column(name = "studio_id")
-    private Integer studioId;
+    @Column(name = "age")
+    private Integer age;
 
     @Column(name = "story")
     private String story;
 
-    @ManyToOne
-    @JoinColumn(name = "studio_id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Studio.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "studio_id")
+    @JsonBackReference
     private Studio studio;
 
-    @ManyToMany(mappedBy = "movies")
-    private List<Language> languages;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Language.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "language_id")
+    @JsonBackReference
+    private Language language;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
@@ -63,16 +65,16 @@ public class Movie {
     )
     private List<MovieGenre> movieGenres;
 
-    public Movie(String name, LocalDate premier, LocalTime time, String description,
-                 String imageUrl, String trailerUrl, String story, Studio studio) {
-        this.name = name;
-        this.premier = premier;
-        this.time = time;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.trailerUrl = trailerUrl;
-        this.story = story;
-        this.studio = studio;
-    }
+    // public Movie(String name, LocalDate premier, LocalTime time, String description,
+    //              String imageUrl, String trailerUrl, String story, Studio studio) {
+    //     this.name = name;
+    //     this.premier = premier;
+    //     this.time = time;
+    //     this.description = description;
+    //     this.imageUrl = imageUrl;
+    //     this.trailerUrl = trailerUrl;
+    //     this.story = story;
+    //     this.studio = studio;
+    // }
 
 }

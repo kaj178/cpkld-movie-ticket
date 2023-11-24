@@ -14,9 +14,9 @@ import lombok.Data;
 public class Format {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "format_id")
     private Integer id;
 
     @Column(name = "format_name")
     private String name;
-
 }

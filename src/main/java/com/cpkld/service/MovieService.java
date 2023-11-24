@@ -1,15 +1,14 @@
 package com.cpkld.service;
 
-import com.cpkld.model.entity.Movie;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
-
 
 public interface MovieService {
 
     //Tra ve tat danh sach phim
     ResponseEntity<?> getAll();
+
+    // Phan trang
+    ResponseEntity<?> getAll(int page);
 
     //Tra ve danh sach Movie dang chieu
     ResponseEntity<?> getListPlayingMovies();
@@ -18,8 +17,8 @@ public interface MovieService {
     ResponseEntity<?> getListUpcomingMovies();
 
     //Tra ve danh sach Movie dang chieu theo the loai
-    ResponseEntity<?> getListPlayingMoviesById(Integer GenreMovie);
+    ResponseEntity<?> getListPlayingMoviesById(Integer genreMovie);
 
     //Tra ve danh sach Movie sap chieu
-    ResponseEntity<?> getListUpcomingMoviesById(Integer GenreMovie);
+    ResponseEntity<?> getListUpcomingMoviesById(Integer genreMovie);
 }
