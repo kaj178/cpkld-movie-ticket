@@ -1,3 +1,14 @@
+const getAllMovies = async (url) => {
+  const data = await fetch(
+    `${url}/api/v1/movie`,
+    {
+      method: "GET"
+    }
+  )
+  const datatorender = await data.json()
+  return datatorender
+}
+
 const getHotMovieAPI = async (url) => {
   const data = await fetch(
     `${url}/Controller/Movie/ajax.php?action=getMoiveHot`,
@@ -135,6 +146,7 @@ const deleteMovie = async (url, id) => {
 };
 
 export {
+  getAllMovies,
   getHotMovieAPI,
   getPremierMovie,
   getUpcomingMovie,

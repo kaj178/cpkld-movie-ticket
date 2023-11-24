@@ -490,6 +490,7 @@ SELECT * FROM public."movie_genre"
 SELECT * FROM public.studio
 SELECT * FROM public.language
 SELECT * FROM public.movie
+SELECT * FROM public."movie_genre"
 SELECT * FROM public."detail_movie_genre"
 SELECT * FROM public.format
 SELECT * FROM public.theater

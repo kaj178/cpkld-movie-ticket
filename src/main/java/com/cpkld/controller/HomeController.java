@@ -35,5 +35,10 @@ public class HomeController {
         model.addAttribute("user", user);
         return "View/Account/ThongTinCaNhan/index";
     }
+
+    @GetMapping("/history")
+    public String getHistoryPage() {
+        return "View/Account/LichSuDatVe/index";
+    }
     
 }

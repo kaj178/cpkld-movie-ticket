@@ -267,6 +267,7 @@ async function loadAllUser() {
     page++;
   } while (data.data.length == 0);
   allData = [...currentData];
+  console.log()
 }
 
 async function loadCustomer() {

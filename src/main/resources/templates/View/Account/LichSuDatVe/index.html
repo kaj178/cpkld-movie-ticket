@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -64,7 +64,7 @@
     <!-- Nav -->
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../../index.html">
+        <a class="navbar-brand" href="/">
           <div class="logo">5CT</div>
         </a>
         <button
@@ -83,37 +83,23 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto d-flex w-100">
             <li class="nav-item">
-              <a class="nav-link nav-current" href="../../MovieList/index.html"
+              <a class="nav-link nav-current" href="/movie-list"
                 >PHIM</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../Order/index.html">LỊCH CHIẾU</a>
+              <a class="nav-link" href="/order">LỊCH CHIẾU</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="../../Account/LichSuDatVe/index.html"
+              <a class="nav-link" href="/personal-profile"
                 >THÔNG TIN</a
               >
             </li>
             <li class="nav-item" id="login-accout">
-              <a class="nav-link" href="../../Login_Modal/LoginModal.html"
-                >Đăng nhập</a
-              >
-            </li>
-            <li class="nav-item" id="create-accout">
-              <a class="nav-link" href="../../Signup_Modal/index.html"
-                >Đăng ký</a
-              >
-            </li>
-            <li
-              class="nav-item d-flex align-items-center ms-auto visually-hidden"
-              id="user-account"
-            >
-              <a class="nav-link" href="../ThongTinCaNhan/"></a>
-            </li>
-            <li class="nav-item visually-hidden" id="signout">
-              <a class="nav-link" href="#">Đăng xuất</a>
+              <div class="info">
+                <a th:href="@{/logout}">Logout</a>
+              </div>
             </li>
           </ul>
         </div>

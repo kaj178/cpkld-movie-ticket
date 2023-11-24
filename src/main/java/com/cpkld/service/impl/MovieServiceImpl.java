@@ -76,14 +76,14 @@ public class MovieServiceImpl implements MovieService {
 
     private MovieDTO convertEntityToDTO(Movie movie) {
         MovieDTO movieDTO = new MovieDTO();
-        List<String> movieGenreName = new ArrayList<>();
+        List<String> movieGenreNames = new ArrayList<>();
         for (MovieGenre genre : movie.getMovieGenres()) {
-            movieGenreName.add(genre.getName());
+            movieGenreNames.add(genre.getName());
         }
         movieDTO.setMovieId(movie.getMovieId());
         movieDTO.setName(movie.getName());
         movieDTO.setStudio(movie.getStudio());
-        movieDTO.setMovieGenres(movieGenreName);
+        movieDTO.setMovieGenres(movieGenreNames);
         movieDTO.setYear(movie.getYear());
         movieDTO.setTime(movie.getTime());
         movieDTO.setLanguage(movie.getLanguage().getName());

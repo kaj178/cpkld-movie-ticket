@@ -1,4 +1,5 @@
 import {
+  getAllMovies,
   getHotMovieAPI,
   getPremierMovie,
   getUpcomingMovie,
@@ -14,46 +15,30 @@ import { XORDecrypt } from "../../Util/EncryptXOR.js";
 let allData = [];
 let currentData = [];
 let table = $("#table-content").DataTable({
-  select: {
-    style: "single",
-    info: false,
+  "pagelength": 5,
+  "lengthMenu": [5, 10],
+  "select": {
+    "style": "single",
+    "info": false,
   },
-  searching: false,
-  language: {
-    lengthMenu: "Số kết quả / Trang _MENU_",
-    zeroRecords: "Không tìm thấy dữ liệu",
-    info: "Hiển thị trang _PAGE_ trên _PAGES_",
-    infoEmpty: "Đang tìm kiếm dữ liệu",
-    infoFiltered: "(filtered from _MAX_ total records)",
-    paginate: {
-      first: "Trang đầu",
-      last: "Trang cuối",
-      next: "Trang sau",
-      previous: "Trang trước",
+  "searching": true,
+  "language": {
+    "lengthMenu": "Số kết quả / Trang _MENU_",
+    "zeroRecords": "Không tìm thấy dữ liệu",
+    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
+    "infoEmpty": "Đang tìm kiếm dữ liệu",
+    "infoFiltered": "(filtered from _MAX_ total records)",
+    "paginate": {
+      "first": "Trang đầu",
+      "last": "Trang cuối",
+      "next": "Trang sau",
+      "previous": "Trang trước",
     },
   },
 });
 $("#table-content_filter").hide();
 
 $(document).ready(() => {
-  // let authFlag = true;
-  // if (sessionStorage.getItem('Email')) {
-  //   let email = XORDecrypt(sessionStorage.getItem('Email'));
-  //   getUserByEmail("../../..", email).then(res => {
-  //     if (res.role !== '2') authFlag = false;
-  //   })
-  // }
-  // else authFlag = false;
-
-  // if (!authFlag) {
-  //   window.location.href = "../../Login_Modal/LoginModal.html";
-  // }
-
-  // $('.logout-container').click(() => {
-  //   sessionStorage.removeItem('Email');
-  //   window.location.href = "../../../";
-  // })
-  
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
       var data = table.rows(indexes).data();
@@ -68,7 +53,7 @@ $(document).ready(() => {
   $(".hot-film").click(() => loadHotMovie().then(() => showData()));
   $(".premiere-film").click(() => loadPremierMovie().then(() => showData()));
   $(".upcoming-film").click(() => loadUpcomingMovie().then(() => showData()));
-  $(".all-film").click(() => loadAllMovie().then(() => showData()));
+  $(".all-film").click(() => loadAllMovies().then(() => showData(currentData)));
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
     let languageID = $("#select-language").val();
@@ -189,31 +174,31 @@ $(document).ready(() => {
     });
   });
 
-  loadAllMovie().then(() => showData()); // page load
+  loadAllMovies().then(() => showData(currentData)); // page load
   loadAllGenre();
   loadAllStudio();
   loadAllLanguage();
 });
 
-function showData() {
+function showData(currentData) {
   table.clear().draw();
   let data = currentData;
   let numRow = data.length;
   for (let i = 0; i < numRow; i++) {
     let genreList = [];
-    data[i].ListGenre.forEach((genre) => {
-      genreList.push(genre.GenreName);
+    data[i].movieGenres.forEach((genre) => {
+      genreList.push(genre);
     });
     table.row
       .add([
-        data[i].MovieID,
-        data[i].MovieName,
-        data[i].StudioID,
+        data[i].movieId,
+        data[i].name,
+        data[i].studio.name,
         genreList.join(", "),
-        data[i].Premiere,
-        data[i].Time,
-        data[i].LanguageID,
-        data[i].Director,
+        data[i].premiere,
+        data[i].time,
+        data[i].language,
+        data[i].director,
         data[i].rating,
         data[i].story,
       ])
@@ -270,6 +255,18 @@ async function loadAllMovie() {
   allData = [...currentData];
 }
 
+async function loadAllMovies() {
+  currentData = []
+  let data;
+  data = await getAllMovies("../..")
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i])
+  }
+  // allData = [...currentData]
+  console.log(currentData)
+  return currentData
+}
+
 async function loadAllGenre() {
   let page = 1;
   let genreData = [];
@@ -320,17 +317,17 @@ async function loadAllLanguage() {
 
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
-  let data = currentData.find((e) => e.MovieID === id);
-  editModal.find("#id").val(data.MovieID);
-  editModal.find("#name").val(data.MovieName);
-  editModal.find("#time").val(data.Time);
-  editModal.find("#language").val(data.LanguageID).change();
-  editModal.find("#studio").val(data.StudioID).change();
-  editModal.find("#director").val(data.Director);
+  let data = currentData.find((e) => e.movieId === id);
+  editModal.find("#id").val(data.movieId);
+  editModal.find("#name").val(data.name);
+  editModal.find("#time").val(data.time);
+  editModal.find("#language").val(data.language).change();
+  editModal.find("#studio").val(data.story).change();
+  editModal.find("#director").val(data.director);
   editModal.find("#age").val(data.age);
-  editModal.find("#trailer").val(data.URLTrailer);
-  editModal.find("#year").val(data.Year);
-  editModal.find("#premiere").val(data.Premiere);
+  editModal.find("#trailer").val(data.urlTrailer);
+  editModal.find("#year").val(data.year);
+  editModal.find("#premiere").val(data.premiere);
   editModal.find("#story").val(data.story);
   editModal.modal("show");
 }
