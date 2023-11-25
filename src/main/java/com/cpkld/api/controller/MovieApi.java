@@ -1,6 +1,9 @@
 package com.cpkld.api.controller;
 
 import com.cpkld.service.MovieService;
+
+import io.micrometer.core.ipc.http.HttpSender.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +25,10 @@ public class MovieApi {
     @GetMapping(params = "page")
     public ResponseEntity<?> getAllMovies(@RequestParam("page") int page) {
         return movieService.getAll(page - 1);
+    }
+
+    @GetMapping("/hot")
+    public ResponseEntity<?> getAllHotMovies() {
+        return movieService.getHotMovies();
     }
 }

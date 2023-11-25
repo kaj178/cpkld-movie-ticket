@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +51,24 @@ public class MovieServiceImpl implements MovieService {
                 HttpStatus.OK.value(), 
                 "Success", 
                 movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getHotMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                movies.stream()
+                    .map(this::convertEntityToDTO)
+                    .filter(movie -> 
+                        movie.getRating() == 5 || movie.getRating() == 4
+                    )
+                    .collect(Collectors.toList())
+            ),
             HttpStatus.OK
         );
     }
@@ -88,7 +107,7 @@ public class MovieServiceImpl implements MovieService {
         movieDTO.setTime(movie.getTime());
         movieDTO.setLanguage(movie.getLanguage().getName());
         movieDTO.setDirector(movie.getDirector());
-        movieDTO.setRating(5);
+        movieDTO.setRating(new Random().nextInt(1, 6));
         movieDTO.setStory(movie.getStory());
         movieDTO.setPremiere(movie.getPremiere());
         movieDTO.setUrlTrailer(movie.getUrlTrailer());

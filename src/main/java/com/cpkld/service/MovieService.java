@@ -10,6 +10,8 @@ public interface MovieService {
     // Phan trang
     ResponseEntity<?> getAll(int page);
 
+    ResponseEntity<?> getHotMovies();
+
     //Tra ve danh sach Movie dang chieu
     ResponseEntity<?> getListPlayingMovies();
 
