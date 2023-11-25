@@ -50,7 +50,7 @@ $(document).ready(() => {
     $(this).append("<div class=divider-mini></div>");
   });
 
-  $(".hot-film").click(() => loadHotMovie().then(() => showData()));
+  $(".hot-film").click(() => loadHotMovie().then(() => showData(currentData)));
   $(".premiere-film").click(() => loadPremierMovie().then(() => showData()));
   $(".upcoming-film").click(() => loadUpcomingMovie().then(() => showData()));
   $(".all-film").click(() => loadAllMovies().then(() => showData(currentData)));
@@ -219,9 +219,11 @@ async function loadPremierMovie() {
 
 async function loadHotMovie() {
   currentData = [];
-
-  let data = await getHotMovieAPI("../../..");
-  currentData.push(...data);
+  let data = await getHotMovieAPI("../..");
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i])
+  }
+  return currentData
 }
 
 async function loadUpcomingMovie() {

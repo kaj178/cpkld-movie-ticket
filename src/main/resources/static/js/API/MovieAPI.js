@@ -11,15 +11,15 @@ const getAllMovies = async (url) => {
 
 const getHotMovieAPI = async (url) => {
   const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?action=getMoiveHot`,
+    `${url}/api/v1/movie/hot`,
     {
       method: "GET",
     }
   );
   const datatorender = await data.json();
-
   return datatorender;
 };
+
 const getPremierMovie = async (url, page = 1) => {
   const data = await fetch(
     `${url}/Controller/Movie/ajax.php?action=getPremieredMovies&page=${page}`,
