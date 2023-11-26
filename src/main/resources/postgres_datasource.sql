@@ -261,7 +261,7 @@ INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VA
 -- INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
-INSERT INTO public.movie_genre (genre_name,	description) VALUES
+INSERT INTO public.movie_genre (genre_name, description) VALUES
 ('Kinh dị', 'Phim mang đến trải nghiệm kinh dị, đáng sợ với các yếu tố ma quái và huyền bí.'),
 ('Hài', 'Phim mang đến tiếng cười và giải trí, tập trung vào yếu tố hài hước và sự vui nhộn.'),
 ('Tình cảm', 'Các câu chuyện xoay quanh các mối quan hệ tình cảm, nổi bật với tình yêu và cảm xúc.'),
