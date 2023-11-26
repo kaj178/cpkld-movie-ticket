@@ -579,9 +579,18 @@ INSERT INTO public."room" VALUES
 --     ('status003', 'Sold Out');
 
 -- -- Thêm dữ liệu vào bảng "seat"
--- INSERT INTO public."seat" VALUES
---     ('seat001', 'Seat 1', 'Standard', 'room001'),
---     ('seat002', 'Seat 2', 'VIP', 'room001');
+INSERT INTO public."seat" VALUES
+('seat01001001', 'NSG S01001', 'Standard', 'room01001'),
+('seat01001002', 'NSG S01002', 'Standard', 'room01001'),
+('seat01001003', 'NSG S01003', 'Standard', 'room01001'),
+('seat01001004', 'NSG S01004', 'Standard', 'room01001'),
+('seat01001005', 'NSG S01005', 'Standard', 'room01001'),
+('seat01001006', 'NSG S01006', 'Standard', 'room01001'),
+('seat01001007', 'NSG S01007', 'VIP', 'room01001'),
+('seat01001008', 'NSG S01008', 'VIP', 'room01001'),
+('seat01001009', 'NSG S01009', 'VIP', 'room01001'),
+('seat01001010', 'NSG S01010', 'VIP', 'room01001');
+
 
 -- -- Thêm dữ liệu vào bảng "ticket"
 -- INSERT INTO public."ticket" VALUES
