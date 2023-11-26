@@ -256,7 +256,37 @@ INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VA
 ('Ngo Chi Cuong', 'Unspecified', 'cuong@example.com', '0862935985', 3);
 
 -- Thêm dữ liệu vào bảng "customer"
--- INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
+INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
+('John Doe', '123 Main Street, Cityville, USA', 'john.doe@example.com', '5551239867', 1),
+('Jane Smith', '456 Oak Avenue, Townsville, USA', 'jane.smith@example.com', '5559856543', 2),
+('Bob Johnson', '789 Pine Lane, Villagetown, USA', 'bob.johnson@example.com', '5552323678', 3),
+('Alice Williams', '101 Maple Road, Countryville, USA', 'alice.williams@example.com', '5558115432', 1),
+('Charlie Brown', '876 Cedar Street, Hilltop, USA', 'charlie.brown@example.com', '5553433789', 2),
+('Grace Lee', '555 Cherry Lane, Orchard City, USA', 'grace.lee@example.com', '5558722432', 3),
+('Samuel Turner', '888 Elm Street, Parkville, USA', 'samuel.turner@example.com', '5553452789', 1),
+('Olivia Baker', '333 Pine Tree Road, Greenfield, USA', 'olivia.baker@example.com', '5552345648', 2),
+('Daniel Nguyen', '777 Lotus Lane, Riverside, USA', 'daniel.nguyen@example.com', '5558766632', 3),
+('Sophia Kim', '444 Orchid Avenue, Bloomington, USA', 'sophia.kim@example.com', '5553456449', 1),
+('Elijah Rodriguez', '222 Oak Lane, Riverside, USA', 'elijah.rodriguez@example.com', '5559874443', 2),
+('Ava Turner', '999 Maple Street, Hillside, USA', 'ava.turner@example.com', '5552342278', 3),
+('Liam Parker', '777 Pine Avenue, Lakeside, USA', 'liam.parker@example.com', '5558711432', 1),
+('Mia Sullivan', '333 Cedar Road, Brookside, USA', 'mia.sullivan@example.com', '5553466789', 2),
+('Noah Scott', '888 Birch Lane, Mountainview, USA', 'noah.scott@example.com', '5558755532', 3),
+('Emma Phillips', '555 Elm Street, Sunnyside, USA', 'emma.phillips@example.com', '5553444789', 1),
+('Oliver King', '111 Spruce Avenue, Valleyville, USA', 'oliver.king@example.com', '5552775678', 2),
+('Sophia Johnson', '444 Maple Lane, Lakeshore, USA', 'sophia.johnson@example.com', '5559965432', 3),
+('Jackson White', '666 Oak Street, Hilltop, USA', 'jackson.white@example.com', '5553400789', 1),
+('Isabella Davis', '123 Pine Road, Riverside, USA', 'isabella.davis@example.com', '5558761132', 2),
+('Lucas Martinez', '777 Cedar Avenue, Valleyview, USA', 'lucas.martinez@example.com', '5553452289', 3),
+('Ava Taylor', '555 Birch Lane, Hillcrest, USA', 'ava.taylor@example.com', '5552322678', 1),
+('Liam Clark', '999 Elm Street, Lakeside, USA', 'liam.clark@example.com', '5558222432', 2),
+('Mia Brown', '333 Maple Road, Brookview, USA', 'mia.brown@example.com', '5553426789', 3),
+('Noah Hall', '888 Oak Avenue, Mountainville, USA', 'noah.hall@example.com', '5559225432', 1),
+('Emma Miller', '111 Pine Lane, Sunnyside, USA', 'emma.miller@example.com', '5550452289', 2),
+('Oliver Harris', '444 Elm Street, Valleyville, USA', 'oliver.harris@example.com', '5552343378', 3),
+('Sophia Wilson', '666 Birch Avenue, Lakeshore, USA', 'sophia.wilson@example.com', '5558722432', 1),
+('Jackson Moore', '123 Cedar Road, Hilltop, USA', 'jackson.moore@example.com', '5553496789', 2),
+('Isabella Lee', '777 Maple Lane, Riverside, USA', 'isabella.lee@example.com', '5558765432', 3);	
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
 INSERT INTO public.movie_genre (genre_name, description) VALUES
@@ -359,9 +389,47 @@ INSERT INTO public.movie (movie_name, director, "year", premiere, url_trailer, t
 
 
 -- -- Thêm dữ liệu vào bảng "rating"
--- INSERT INTO public."rating" VALUES
---     ('rating001', 4.5, 'Great movie!', '2023-09-30', 'movie001', 'customer001'),
---     ('rating002', 3.0, 'Not bad', '2023-09-30', 'movie001', 'customer002');
+INSERT INTO public."rating" VALUES
+('rating001', 4.5, 'Great movie!', '2023-09-30', 1, 1),
+('rating002', 3.0, 'Not bad', '2023-09-30', 1, 2),
+('rating003', 4.0, 'Enjoyed it!', '2023-09-29', 2, 3),
+('rating004', 3.5, 'Decent film', '2023-09-29', 2, 4),
+('rating005', 5.0, 'Fantastic!', '2023-09-28', 3, 5),
+('rating006', 2.5, 'Could be better', '2023-09-28', 3, 6),
+('rating007', 4.0, 'Impressive', '2023-09-27', 4, 7),
+('rating008', 3.0, 'Not my favorite', '2023-09-27', 4, 8),
+('rating009', 4.5, 'Must watch!', '2023-09-26', 5, 9),
+('rating010', 2.0, 'Disappointing', '2023-09-26', 5, 10),
+('rating021', 3.5, 'Good effort', '2023-09-15', 11, 21),
+('rating022', 4.0, 'Solid performance', '2023-09-15', 12, 22),
+('rating023', 3.0, 'Could be better', '2023-09-14', 12, 23),
+('rating024', 4.5, 'Exceptional!', '2023-09-14', 14, 24),
+('rating025', 3.5, 'Enjoyable', '2023-09-13', 15, 25),
+('rating026', 4.0, 'Well-directed', '2023-09-13', 16, 26),
+('rating027', 2.5, 'Disappointing', '2023-09-12', 17, 27),
+('rating028', 4.0, 'Impressive visuals', '2023-09-12', 18, 28),
+('rating029', 3.0, 'Average film', '2023-09-11', 19, 29),
+('rating030', 4.5, 'Outstanding!', '2023-09-11', 20, 30),
+('rating031', 3.5, 'Solid performance', '2023-09-10', 21, 11),
+('rating032', 4.0, 'Impressive storyline', '2023-09-10', 22, 12),
+('rating033', 3.0, 'Average film', '2023-09-09', 23, 13),
+('rating034', 4.5, 'Exceptional!', '2023-09-09', 24, 14),
+('rating035', 3.5, 'Entertaining', '2023-09-08', 25, 15),
+('rating036', 4.0, 'Well-made', '2023-09-08', 26, 16),
+('rating037', 2.5, 'Not my taste', '2023-09-07', 27, 17),
+('rating038', 4.0, 'Captivating', '2023-09-07', 28, 18),
+('rating039', 3.0, 'Interesting plot', '2023-09-06', 29, 19),
+('rating040', 4.5, 'Highly recommended', '2023-09-06', 30, 20),
+('rating041', 3.5, 'Solid performance', '2023-09-20', 17, 11),
+('rating042', 4.0, 'Impressive storyline', '2023-09-20', 18, 12),
+('rating043', 3.0, 'Average film', '2023-09-19', 19, 13),
+('rating044', 4.5, 'Exceptional!', '2023-09-19', 20, 14),
+('rating045', 3.5, 'Entertaining', '2023-09-18', 31, 15),
+('rating046', 4.0, 'Well-made', '2023-09-18', 32, 16),
+('rating047', 2.5, 'Not my taste', '2023-09-17', 33, 17),
+('rating048', 4.0, 'Captivating', '2023-09-17', 34, 18),
+('rating049', 3.0, 'Interesting plot', '2023-09-16', 1, 29),
+('rating050', 4.5, 'Highly recommended', '2023-09-16', 2, 30);	
 
 -- -- Thêm dữ liệu vào bảng "detail-movie-genre"
 INSERT INTO public."detail_movie_genre" VALUES
