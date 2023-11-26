@@ -256,40 +256,10 @@ INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VA
 ('Ngo Chi Cuong', 'Unspecified', 'cuong@example.com', '0862935985', 3);
 
 -- Thêm dữ liệu vào bảng "customer"
-INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
-('John Doe', '123 Main Street, Cityville, USA', 'john.doe@example.com', '5551239867', 1),
-('Jane Smith', '456 Oak Avenue, Townsville, USA', 'jane.smith@example.com', '5559856543', 2),
-('Bob Johnson', '789 Pine Lane, Villagetown, USA', 'bob.johnson@example.com', '5552323678', 3),
-('Alice Williams', '101 Maple Road, Countryville, USA', 'alice.williams@example.com', '5558115432', 1),
-('Charlie Brown', '876 Cedar Street, Hilltop, USA', 'charlie.brown@example.com', '5553433789', 2),
-('Grace Lee', '555 Cherry Lane, Orchard City, USA', 'grace.lee@example.com', '5558722432', 3),
-('Samuel Turner', '888 Elm Street, Parkville, USA', 'samuel.turner@example.com', '5553452789', 1),
-('Olivia Baker', '333 Pine Tree Road, Greenfield, USA', 'olivia.baker@example.com', '5552345648', 2),
-('Daniel Nguyen', '777 Lotus Lane, Riverside, USA', 'daniel.nguyen@example.com', '5558766632', 3),
-('Sophia Kim', '444 Orchid Avenue, Bloomington, USA', 'sophia.kim@example.com', '5553456449', 1),
-('Elijah Rodriguez', '222 Oak Lane, Riverside, USA', 'elijah.rodriguez@example.com', '5559874443', 2),
-('Ava Turner', '999 Maple Street, Hillside, USA', 'ava.turner@example.com', '5552342278', 3),
-('Liam Parker', '777 Pine Avenue, Lakeside, USA', 'liam.parker@example.com', '5558711432', 1),
-('Mia Sullivan', '333 Cedar Road, Brookside, USA', 'mia.sullivan@example.com', '5553466789', 2),
-('Noah Scott', '888 Birch Lane, Mountainview, USA', 'noah.scott@example.com', '5558755532', 3),
-('Emma Phillips', '555 Elm Street, Sunnyside, USA', 'emma.phillips@example.com', '5553444789', 1),
-('Oliver King', '111 Spruce Avenue, Valleyville, USA', 'oliver.king@example.com', '5552775678', 2),
-('Sophia Johnson', '444 Maple Lane, Lakeshore, USA', 'sophia.johnson@example.com', '5559965432', 3),
-('Jackson White', '666 Oak Street, Hilltop, USA', 'jackson.white@example.com', '5553400789', 1),
-('Isabella Davis', '123 Pine Road, Riverside, USA', 'isabella.davis@example.com', '5558761132', 2),
-('Lucas Martinez', '777 Cedar Avenue, Valleyview, USA', 'lucas.martinez@example.com', '5553452289', 3),
-('Ava Taylor', '555 Birch Lane, Hillcrest, USA', 'ava.taylor@example.com', '5552322678', 1),
-('Liam Clark', '999 Elm Street, Lakeside, USA', 'liam.clark@example.com', '5558222432', 2),
-('Mia Brown', '333 Maple Road, Brookview, USA', 'mia.brown@example.com', '5553426789', 3),
-('Noah Hall', '888 Oak Avenue, Mountainville, USA', 'noah.hall@example.com', '5559225432', 1),
-('Emma Miller', '111 Pine Lane, Sunnyside, USA', 'emma.miller@example.com', '5550452289', 2),
-('Oliver Harris', '444 Elm Street, Valleyville, USA', 'oliver.harris@example.com', '5552343378', 3),
-('Sophia Wilson', '666 Birch Avenue, Lakeshore, USA', 'sophia.wilson@example.com', '5558722432', 1),
-('Jackson Moore', '123 Cedar Road, Hilltop, USA', 'jackson.moore@example.com', '5553496789', 2),
-('Isabella Lee', '777 Maple Lane, Riverside, USA', 'isabella.lee@example.com', '5558765432', 3);	
+-- INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
-INSERT INTO public.movie_genre (genre_name, description) VALUES
+INSERT INTO public.movie_genre (genre_name,	description) VALUES
 ('Kinh dị', 'Phim mang đến trải nghiệm kinh dị, đáng sợ với các yếu tố ma quái và huyền bí.'),
 ('Hài', 'Phim mang đến tiếng cười và giải trí, tập trung vào yếu tố hài hước và sự vui nhộn.'),
 ('Tình cảm', 'Các câu chuyện xoay quanh các mối quan hệ tình cảm, nổi bật với tình yêu và cảm xúc.'),
@@ -353,83 +323,45 @@ INSERT INTO public.language (language_name) VALUES
 -- -- Thêm dữ liệu vào bảng "movie"
 INSERT INTO public.movie (movie_name, director, "year", premiere, url_trailer, time, age, story, studio_id, language_id) VALUES
 ('Khắc tinh của quỷ', 'Julius Avery', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=SXfnUAW9gwA', '01:43:00', 18, 'Theo chân Amorth trong cuộc điều tra về vụ quỷ ám kinh hoàng của một cậu bé và dần khám phá ra những bí mật hàng thế kỷ mà Vatican đã cố gắng giấu kín', 1, 1),
-('Chuyện tôi và ma quỷ thành người một nhà', 'Trình Vĩ Hào', 2022, '4/7/2023', 'https://www.youtube.com/watch?v=zxk_YEa2Ky0', '02:10:00', 18, 'Một cuộc hành trình giả tưởng đầy tiếng cười và nước mắt giữa một người đàn ông thẳng thắn và một con ma đồng tính', 2, 3),
-('Khóa chặt cửa nào Suzume', 'Makoto Shinkai', 2022, '3/10/2023', 'https://www.youtube.com/watch?v=xQ4_c8JfuzI', '02:02:00', 0, 'Để bảo vệ Nhật Bản khỏi thảm họa, những cánh cửa rải rác khắp nơi phải được đóng lại, và bất ngờ thay Suzume cũng có khả năng đóng cửa đặc biệt này', 3, 4),
-('Đảo tội ác', 'euho', 2023, '3/31/2023', 'https://www.youtube.com/watch?v=jSZUpx_3yL4', '01:54:00', 18, 'Nhóm du khách trẻ vô tình phá bỏ phong ấn của con quái vật khát máu khi đến tham quan một hòn đảo cấm không dân địa phương nào dám đặt chân đến', 4, 8),
+('Chuyện tôi và ma quỷ thành người một nhà', 'Trình Vĩ Hào', 2024, '4/7/2024', 'https://www.youtube.com/watch?v=zxk_YEa2Ky0', '02:10:00', 18, 'Một cuộc hành trình giả tưởng đầy tiếng cười và nước mắt giữa một người đàn ông thẳng thắn và một con ma đồng tính', 2, 3),
+('Khóa chặt cửa nào Suzume', 'Makoto Shinkai', 2023, '3/10/2023', 'https://www.youtube.com/watch?v=xQ4_c8JfuzI', '02:02:00', 0, 'Để bảo vệ Nhật Bản khỏi thảm họa, những cánh cửa rải rác khắp nơi phải được đóng lại, và bất ngờ thay Suzume cũng có khả năng đóng cửa đặc biệt này', 3, 4),
+('Đảo tội ác', 'euho', 2024, '3/31/2024', 'https://www.youtube.com/watch?v=jSZUpx_3yL4', '01:54:00', 18, 'Nhóm du khách trẻ vô tình phá bỏ phong ấn của con quái vật khát máu khi đến tham quan một hòn đảo cấm không dân địa phương nào dám đặt chân đến', 4, 8),
 ('Biệt đội rất ổn', 'Tạ Nguyên Hiệp', 2023, '3/31/2023', 'https://www.youtube.com/watch?v=XHvNz4g88pE', '01:44:00', 13, 'Màn kết hợp bất đắc dĩ của Biệt Đội Rất Ổn và Gia Đình Cục Súc tại khu resort sang chảnh hứa hẹn cực kỳ gay cấn, hồi hộp nhưng không kém phần hài hước, xúc động', 5, 6),
 ('Tri kỷ', 'Young-Keun Min', 2023, '3/24/2023', 'https://www.youtube.com/watch?v=K46K_1yTwUg', '02:04:00', 16, 'Khi Ham Jin Woo bước vào giữa cả hai, đó cũng là lúc những vết nứt trong mối quan hệ của Mi So và Ha Eun xuất hiện', 6, 5),
 ('Cơn thịnh nộ của các vị thần', 'David F. Sandberg', 2023, '3/17/2023', 'https://www.youtube.com/watch?v=l37LjoV9W7M', '02:10:00', 13, 'Một tác phẩm từ New Line Cinema mang tên “Shazam! Fury of the Gods,” tiếp tục câu chuyện về chàng trai Billy Batson, và bản ngã Siêu anh hùng trưởng thành của mình sau khi hô cụm từ “SHAZAM !”', 7, 1),
-('Air-Theo đuổi một huyền thoại', 'Ben Affleck', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=0h9vZ52Vals', '01:52:00', 16, 'Từ đạo diễn đã từng đoạt giải thưởng Ben Affleck, AIR hé lộ mối quan hệ đột phá giữa huyền thoại Michael Jordan khi mới bắt đầu sự nghiệp và bộ phận bóng rổ còn non trẻ của Nike, đã làm thay đổi thế giới thể thao và văn hóa đương đại với thương hiệu Air Jordan', 8, 1),
-('Renfield tay sai của quỷ', 'Chris McKay', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=vXkN2H3Ijyw', '01:32:00', 18, 'Renfield bị buộc phải bắt con mồi về cho chủ nhân và thực hiện mọi mệnh lệnh, kể cả việc đó nhục nhã như thế nào. Nhưng giờ đây, sau nhiều thế kỷ làm nô lệ, Renfield đã sẵn sàng để khám phá cuộc sống bên ngoài cái bóng của Hoàng Tử Bóng Đêm', 9, 1),
+('Air-Theo đuổi một huyền thoại', 'Ben Affleck', 2024, '4/14/2024', 'https://www.youtube.com/watch?v=0h9vZ52Vals', '01:52:00', 16, 'Từ đạo diễn đã từng đoạt giải thưởng Ben Affleck, AIR hé lộ mối quan hệ đột phá giữa huyền thoại Michael Jordan khi mới bắt đầu sự nghiệp và bộ phận bóng rổ còn non trẻ của Nike, đã làm thay đổi thế giới thể thao và văn hóa đương đại với thương hiệu Air Jordan', 8, 1),
+('Renfield tay sai của quỷ', 'Chris McKay', 2024, '4/14/2024', 'https://www.youtube.com/watch?v=vXkN2H3Ijyw', '01:32:00', 18, 'Renfield bị buộc phải bắt con mồi về cho chủ nhân và thực hiện mọi mệnh lệnh, kể cả việc đó nhục nhã như thế nào. Nhưng giờ đây, sau nhiều thế kỷ làm nô lệ, Renfield đã sẵn sàng để khám phá cuộc sống bên ngoài cái bóng của Hoàng Tử Bóng Đêm', 9, 1),
 ('Tình chị duyên em', 'Weawwan Hongvivatana', 2023, '4/7/2023', 'https://www.youtube.com/watch?v=DGKsSNmVPKA', '02:01:00', 13, 'Hai chị em sinh đôi giống hệt nhau là “You” và “Me” cũng đang lo lắng cho tương lai của họ về việc “làm sao sống mà có thể thiếu vắng nhau”. Cặp song sinh thân thiết với nhau đến mức có thể chia sẻ mọi khía cạnh cuộc sống cho nhau, kể cả nụ hôn đầu', 10, 7),
 ('Câu lạc bộ sát thủ', 'Camille Delamarre', 2023, '4/7/2023', 'https://www.youtube.com/watch?v=neDUFSt8N0Q', '01:51:00', 18, 'Morgan Gaines - một sát thủ chuyên nghiệp có nhiệm vụ phải giết bảy người, Morgan phát hiện ra bảy "mục tiêu" cũng là bảy sát thủ nặng ký. Lối thoát duy nhất cho Morgan là tìm ra kẻ chủ mưu đứng sau tất cả mọi chuyện', 11, 1),
 ('Siêu lừa gặp siêu lầy', 'Võ Thanh Hòa', 2023, '3/3/2023', 'https://www.youtube.com/watch?v=NIVa1CCdFv4', '01:52:00', 16, 'Theo chân của Khoa – tên lừa đảo tầm cỡ “quốc nội” đến đảo ngọc Phú Quốc với mong muốn đổi đời. Tại đây, Khoa gặp Tú – tay lừa đảo “hàng real” và cùng Tú thực hiện các phi vụ từ nhỏ đến lớn', 12, 6),
-('Chàng trai xinh đẹp của tôi', 'Sakai Mai', 2023, '5/26/2023', 'https://www.youtube.com/watch?v=Wy0f83FHbYY', '01:43:00', 18, 'Phim kể về mối tình tuyệt đẹp thời học sinh của hai chàng trai Hira và Kiyoi So. Hira vốn là một chàng trai hướng nội lại có tật nói lắp nên đã bị bạn bè bắt nạt', 13, 4),
+('Chàng trai xinh đẹp của tôi', 'Sakai Mai', 2024, '5/26/2024', 'https://www.youtube.com/watch?v=Wy0f83FHbYY', '01:43:00', 18, 'Phim kể về mối tình tuyệt đẹp thời học sinh của hai chàng trai Hira và Kiyoi So. Hira vốn là một chàng trai hướng nội lại có tật nói lắp nên đã bị bạn bè bắt nạt', 13, 4),
 ('Mặt nạ quỷ', 'Lawrence Fowler', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=3MKRzG9k76Q', '01:42:00', 18, 'Bí ẩn về cái chết của em gái Evie 20 năm trước còn bỏ ngỏ, vào lúc 09:09 hằng đêm, hàng loạt cuộc chạm trán kinh hoàng xảy ra. Liệu Margot có biết được sự thật ai là kẻ giết em gái mình?', 14, 1),
 ('The first slam dunk', 'Takehiko Inoue, Yasuyuki Ebara', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=NEa0J_Q-NIY', '02:04:00', 13, 'Phim theo chân Ryota Miyagi, hậu vệ của đội bóng rổ trường trung học Shohoku. Anh có một người anh trai, Sota, hơn anh ba tuổi và là người đã truyền cảm hứng cho tình yêu bóng rổ của anh', 15, 4),
-('Phim anh em Super Mario', 'Aaron Horvath, Michael Jelenic', 2023, '4/7/2023', 'https://www.youtube.com/watch?v=QcinmCfoh8E', '01:33:00', 0, 'Câu chuyện về cuộc phiêu lưu của anh em Super Mario đến vương quốc Nấm', 16, 1),
+('Phim anh em Super Mario', 'Aaron Horvath, Michael Jelenic', 2024, '4/7/2024', 'https://www.youtube.com/watch?v=QcinmCfoh8E', '01:33:00', 0, 'Câu chuyện về cuộc phiêu lưu của anh em Super Mario đến vương quốc Nấm', 16, 1),
 ('Người giữ thời gian', 'Mỹ Tâm, Tạ Nguyên Hiệp', 2023, '4/8/2023', 'https://www.youtube.com/watch?v=yiI_McOCaw4', '01:46:00', 0, 'Khi cánh cổng thời gian mở ra, Tú và các người bạn của mình bắt đầu hành trình vượt qua các thời kỳ khác nhau để tìm kiếm và giữ gìn bản sắc văn hóa Việt Nam', 17, 6),
-('Ngục tối & rồng: Danh dự của kẻ trộm', 'John Francis Daley, Jonathan Goldstein', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=P4IA6pIVb-w', '02:14:00', 13, 'Theo chân một tên trộm quyến rũ và một nhóm những kẻ bịp bợm nghiệp dư thực hiện vụ trộm sử thi nhằm lấy lại một di vật đã mất, nhưng mọi thứ trở nên nguy hiểm khó lường hơn bao giờ hết khi họ đã chạm trán nhầm người', 18, 1),
+('Ngục tối & rồng: Danh dự của kẻ trộm', 'John Francis Daley, Jonathan Goldstein', 2024, '4/21/2024', 'https://www.youtube.com/watch?v=P4IA6pIVb-w', '02:14:00', 13, 'Theo chân một tên trộm quyến rũ và một nhóm những kẻ bịp bợm nghiệp dư thực hiện vụ trộm sử thi nhằm lấy lại một di vật đã mất, nhưng mọi thứ trở nên nguy hiểm khó lường hơn bao giờ hết khi họ đã chạm trán nhầm người', 18, 1),
 ('Nhà vịt di cư', 'Benjamin Renner', 2023, '12/22/2023', 'https://www.youtube.com/watch?v=865RCGVYcSc', '00:00:00', 0, 'Nhà Vịt Di Cư theo chân một gia đình vịt trời gồm vịt bố, vịt mẹ, cậu con trai tuổi teen Dax và vịt út Gwen, trong lần đầu tiên trải nghiệm chuyến di cư tiến về phía nam để trú đông. Thế nhưng, niềm vui vẻ sự háo hức kéo dài không bao lâu, gia đình vịt nhận ra, họ đang bay ngược chiều với tất cả các đàn vịt khác', 19, 1),
 ('Indiana Jones và vòng quay định mệnh', 'James Mangold', 2023, '6/29/2023', 'https://www.youtube.com/watch?v=6u93f9fQ8yY', '02:34:00', 16, 'Indiana Jones 5 sẽ pha trộn giữa thực tế, hư cấu khi lấy bối cảnh năm 1969, lần này Indiana Jones sẽ đối mặt với Đức quốc xã trong thời gian diễn ra cuộc chạy đua vào không gian', 20, 1),
-('Barbie: Công chúa phiêu lưu', 'Conrad Helten', 2020, '9/1/2020', 'https://www.youtube.com/watch?v=7joR5V_T3wQ', '01:12:00', 0, 'Barbie thực hiện một chuyến đi đến Vương quốc Floravia theo lời mời của công chúa Amelia của Floravia', 21, 1),
+('Barbie: Công chúa phiêu lưu', 'Conrad Helten', 2024, '9/1/2024', 'https://www.youtube.com/watch?v=7joR5V_T3wQ', '01:12:00', 0, 'Barbie thực hiện một chuyến đi đến Vương quốc Floravia theo lời mời của công chúa Amelia của Floravia', 21, 1),
 ('Blue Beetle', 'Angel Manuel Soto', 2023, '8/18/2023', 'https://www.youtube.com/watch?v=j5rpK0Ba7q8', '02:08:00', 13, 'Cậu sinh viên mới tốt nghiệp Jaime Reyes trở về nhà với tràn trề niềm tin và hy vọng về tương lai, để rồi nhận ra quê nhà của anh đã thay đổi rất nhiều so với trước đây', 7, 1),
-('Quỷ lùn tinh nghịch: Đồng tâm hiệp nhạc', 'Walt Dohrn, Tim Heitz', 2023, '11/17/2023', 'https://www.youtube.com/watch?v=izi44lM_HSo', '01:32:00', 0, 'Sự xuất hiện đột ngột của John Dory, anh trai thất lạc đã lâu của Branch mở ra quá khứ bí mật được che giấu bấy lâu nay của Branch. Đó là quá khứ về một ban nhạc có tên BroZone từng rất nổi tiếng nhưng đã tan rã', 22, 1),
+('Quỷ lùn tinh nghịch: Đồng tâm hiệp nhạc', 'Walt Dohrn, Tim Heitz', 2024, '11/17/2024', 'https://www.youtube.com/watch?v=izi44lM_HSo', '01:32:00', 0, 'Sự xuất hiện đột ngột của John Dory, anh trai thất lạc đã lâu của Branch mở ra quá khứ bí mật được che giấu bấy lâu nay của Branch. Đó là quá khứ về một ban nhạc có tên BroZone từng rất nổi tiếng nhưng đã tan rã', 22, 1),
 ('Transformers: Quái thú trỗi dậy', 'Steven Caple Jr.', 2023, '6/9/2023', 'https://www.youtube.com/watch?v=lRBA1AKyUaI', '02:07:00', 13, 'Bộ phim dựa trên sự kiện Beast Wars trong loạt phim hoạt hình "Transformers", nơi mà các robot có khả năng biến thành động vật khổng lồ cùng chiến đấu chống lại một mối đe dọa tiềm tàng', 23, 1),
 ('Flash', 'Andy Muschietti', 2023, '6/16/2023', 'https://www.youtube.com/watch?v=cvn0h6cuUPQ', '02:24:00', 16, 'Mùa hè này, đa thế giới sẽ va chạm khốc liệt với những bước chạy của FLASH', 22, 1),
-('Xứ sở các nguyên tố', 'Peter Sohn', 2023, '6/23/2023', 'https://www.youtube.com/watch?v=1Vg1hL435OI', '01:49:00', 13, 'Xứ Sở Các Nguyên Tố từ Disney và Pixar lấy bối cảnh tại thành phố các nguyên tố, nơi lửa, nước, đất và không khí cùng chung sống với nhau. Câu chuyện xoay quanh nhân vật Ember, một cô nàng cá tính, thông minh, mạnh mẽ và đầy sức hút. Tuy nhiên, mối quan hệ của cô với Wade - một anh chàng hài hước, luôn thuận thế đẩy dòng - khiến Ember cảm thấy ngờ vực với thế giới này', 24, 1),
-('Vú em dạy yêu', 'Gene Stupnitsky', 2023, '6/23/2023', 'https://www.youtube.com/watch?v=q_XWWWlA39k', '01:43:00', 18, 'Không dành cho bé dưới 18!.. Red Band Trailer với Jennifer Lawrence trở lại, nóng bỏng cả mắt trong tựa phim hài-bựa-lầy nhất hè năm nay', 25, 1),
+('Xứ sở các nguyên tố', 'Peter Sohn', 2024, '6/23/2024', 'https://www.youtube.com/watch?v=1Vg1hL435OI', '01:49:00', 13, 'Xứ Sở Các Nguyên Tố từ Disney và Pixar lấy bối cảnh tại thành phố các nguyên tố, nơi lửa, nước, đất và không khí cùng chung sống với nhau. Câu chuyện xoay quanh nhân vật Ember, một cô nàng cá tính, thông minh, mạnh mẽ và đầy sức hút. Tuy nhiên, mối quan hệ của cô với Wade - một anh chàng hài hước, luôn thuận thế đẩy dòng - khiến Ember cảm thấy ngờ vực với thế giới này', 24, 1),
+('Vú em dạy yêu', 'Gene Stupnitsky', 2024, '6/23/2024', 'https://www.youtube.com/watch?v=q_XWWWlA39k', '01:43:00', 18, 'Không dành cho bé dưới 18!.. Red Band Trailer với Jennifer Lawrence trở lại, nóng bỏng cả mắt trong tựa phim hài-bựa-lầy nhất hè năm nay', 25, 1),
 ('Lật mặt 6: Tấm vé định mệnh', 'Lý Hải', 2023, '4/28/2023', 'https://www.youtube.com/watch?v=2EnP2tVC00Q', '02:12:00', 16, 'Lật mặt 6 sẽ thuộc thể loại giật gân, tâm lý pha hành động, hài hước', 26, 6),
 ('Con Nhót mót chồng', 'Vũ Ngọc Đãng', 2023, '4/28/2023', 'https://www.youtube.com/watch?v=e7KHOQ-alqY', '01:52:00', 16, 'Bộ phim là câu chuyện của Nhót - người phụ nữ “chưa kịp già” đã sắp bị mãn kinh, vội vàng đi tìm chồng. Nhưng sâu thẳm trong cô, là khao khát muốn có một đứa con và luôn muốn hàn gắn với người cha suốt ngày say xỉn của mình', 27, 6),
-('Mèo Siêu Quậy ở Viện Bảo Tàng', 'Vasiliy Rovenskiy', 2023, '4/28/2023', 'https://www.youtube.com/watch?v=xj4cfU9SHIM', '01:20:00', 0, 'Câu chuyện xoay quanh tình bạn của chú mèo Vincent và chú chuột Maurice. Vincent vừa nhận được công việc bảo vệ kiệt tác tranh Mona Lisa trong một viện bảo tàng, còn Maurice lại có niềm đam mê gặm nhấm bức tranh này. Mọi chuyện phức tạp hơn khi có người cũng đang nung nấu ý định cướp lấy tuyệt tác Mona Lisa', 28, 1),
-('Vệ binh dải Ngân Hà 3', 'James Gunn', 2023, '5/3/2023', 'https://www.youtube.com/watch?v=89aYxQcGGA4', '02:29:00', 13, 'Cho dù vũ trụ này có bao la đến đâu, các Vệ Binh của chúng ta cũng không thể trốn chạy mãi mãi', 13, 1),
+('Mèo Siêu Quậy ở Viện Bảo Tàng', 'Vasiliy Rovenskiy', 2024, '4/28/2024', 'https://www.youtube.com/watch?v=xj4cfU9SHIM', '01:20:00', 0, 'Câu chuyện xoay quanh tình bạn của chú mèo Vincent và chú chuột Maurice. Vincent vừa nhận được công việc bảo vệ kiệt tác tranh Mona Lisa trong một viện bảo tàng, còn Maurice lại có niềm đam mê gặm nhấm bức tranh này. Mọi chuyện phức tạp hơn khi có người cũng đang nung nấu ý định cướp lấy tuyệt tác Mona Lisa', 28, 1),
+('Vệ binh dải Ngân Hà 3', 'James Gunn', 2024, '5/3/2024', 'https://www.youtube.com/watch?v=89aYxQcGGA4', '02:29:00', 13, 'Cho dù vũ trụ này có bao la đến đâu, các Vệ Binh của chúng ta cũng không thể trốn chạy mãi mãi', 13, 1),
 ('Khế ước', 'Guy Ritchie', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=npHvcDj45rg', '02:03:00', 18, 'Trong nhiệm vụ cuối cùng ở Afghanistan, Trung sĩ John Kinley cùng đội với phiên dịch viên bản địa Ahmed. Khi đơn vị của họ bị phục kích, Kinley và Ahmed là 2 người sống sót duy nhất. Bị kẻ địch truy đuổi, Ahmed liều mạng đưa Kinley đang bị thương băng qua nhiều dặm đường địa hình khắc nghiệt đến nơi an toàn. Trở về Mỹ, Kinley biết rằng Ahmed và gia đình không dc cấp giấy thông hành tới Mỹ như đã hứa', 29, 1),
-('Đầu gấu đụng đầu đất', 'Park Sung Kwang', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=MagrY1rpOT4', '01:38:00', 16, 'Phim Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày', 10, 5),
+('Đầu gấu đụng đầu đất', 'Park Sung Kwang', 2024, '4/21/2024', 'https://www.youtube.com/watch?v=MagrY1rpOT4', '01:38:00', 16, 'Phim Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày', 10, 5),
 ('Âm vực chết', 'Alessandro Antonaci, Stefano Mandalà, Daniel Lascar', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=CmBuZXqkyLM', '01:33:00', 18, 'Sau cái chết của cha, Emma (Penelope Sangiorgi) vội vã bay từ New York về quê nhà ở Ý để lo hậu sự. Trong thời gian diễn ra tang lễ, Emma ở một mình trong căn nhà mà cha mẹ để lại. Lúc này, cô bị buộc phải đối mặt với một thực thể tà ác có khả năng kết nối thông qua một chiếc radio bị nguyền rủa', 30, 9);
 
 
 -- -- Thêm dữ liệu vào bảng "rating"
-INSERT INTO public."rating" VALUES
-('rating001', 4.5, 'Great movie!', '2023-09-30', 1, 1),
-('rating002', 3.0, 'Not bad', '2023-09-30', 1, 2),
-('rating003', 4.0, 'Enjoyed it!', '2023-09-29', 2, 3),
-('rating004', 3.5, 'Decent film', '2023-09-29', 2, 4),
-('rating005', 5.0, 'Fantastic!', '2023-09-28', 3, 5),
-('rating006', 2.5, 'Could be better', '2023-09-28', 3, 6),
-('rating007', 4.0, 'Impressive', '2023-09-27', 4, 7),
-('rating008', 3.0, 'Not my favorite', '2023-09-27', 4, 8),
-('rating009', 4.5, 'Must watch!', '2023-09-26', 5, 9),
-('rating010', 2.0, 'Disappointing', '2023-09-26', 5, 10),
-('rating021', 3.5, 'Good effort', '2023-09-15', 11, 21),
-('rating022', 4.0, 'Solid performance', '2023-09-15', 12, 22),
-('rating023', 3.0, 'Could be better', '2023-09-14', 12, 23),
-('rating024', 4.5, 'Exceptional!', '2023-09-14', 14, 24),
-('rating025', 3.5, 'Enjoyable', '2023-09-13', 15, 25),
-('rating026', 4.0, 'Well-directed', '2023-09-13', 16, 26),
-('rating027', 2.5, 'Disappointing', '2023-09-12', 17, 27),
-('rating028', 4.0, 'Impressive visuals', '2023-09-12', 18, 28),
-('rating029', 3.0, 'Average film', '2023-09-11', 19, 29),
-('rating030', 4.5, 'Outstanding!', '2023-09-11', 20, 30),
-('rating031', 3.5, 'Solid performance', '2023-09-10', 21, 11),
-('rating032', 4.0, 'Impressive storyline', '2023-09-10', 22, 12),
-('rating033', 3.0, 'Average film', '2023-09-09', 23, 13),
-('rating034', 4.5, 'Exceptional!', '2023-09-09', 24, 14),
-('rating035', 3.5, 'Entertaining', '2023-09-08', 25, 15),
-('rating036', 4.0, 'Well-made', '2023-09-08', 26, 16),
-('rating037', 2.5, 'Not my taste', '2023-09-07', 27, 17),
-('rating038', 4.0, 'Captivating', '2023-09-07', 28, 18),
-('rating039', 3.0, 'Interesting plot', '2023-09-06', 29, 19),
-('rating040', 4.5, 'Highly recommended', '2023-09-06', 30, 20),
-('rating041', 3.5, 'Solid performance', '2023-09-20', 17, 11),
-('rating042', 4.0, 'Impressive storyline', '2023-09-20', 18, 12),
-('rating043', 3.0, 'Average film', '2023-09-19', 19, 13),
-('rating044', 4.5, 'Exceptional!', '2023-09-19', 20, 14),
-('rating045', 3.5, 'Entertaining', '2023-09-18', 31, 15),
-('rating046', 4.0, 'Well-made', '2023-09-18', 32, 16),
-('rating047', 2.5, 'Not my taste', '2023-09-17', 33, 17),
-('rating048', 4.0, 'Captivating', '2023-09-17', 34, 18),
-('rating049', 3.0, 'Interesting plot', '2023-09-16', 1, 29),
-('rating050', 4.5, 'Highly recommended', '2023-09-16', 2, 30);	
+-- INSERT INTO public."rating" VALUES
+--     ('rating001', 4.5, 'Great movie!', '2023-09-30', 'movie001', 'customer001'),
+--     ('rating002', 3.0, 'Not bad', '2023-09-30', 'movie001', 'customer002');
 
 -- -- Thêm dữ liệu vào bảng "detail-movie-genre"
 INSERT INTO public."detail_movie_genre" VALUES
@@ -518,55 +450,10 @@ INSERT INTO public.theater VALUES
 ('theater007', 'Nowzone', 'Tầng 5, TTTM Nowzone, 235 Nguyễn Văn Cừ, P.Nguyễn Cư Trinh, Q.1, TP.HCM', '2839262255', 4);
 
 -- -- Thêm dữ liệu vào bảng "room"
-INSERT INTO public."room" VALUES
-('room01001', 'NSG R01', 100, 'theater001'),
-('room01002', 'NSG R02', 90, 'theater001'),
-('room01003', 'NSG R03', 90, 'theater001'),
-('room01004', 'NSG R04', 80, 'theater001'),
-('room01005', 'NSG R05', 80, 'theater001'),
-('room01006', 'NSG R06', 80, 'theater001'),
+-- INSERT INTO public."room" VALUES
+--     ('room001', 'Room 1', 100, 'theater001'),
+--     ('room002', 'Room 2', 80, 'theater002');
 
-('room02001', 'GV R01', 100, 'theater002'),
-('room02002', 'GV R02', 90, 'theater002'),
-('room02003', 'GV R03', 90, 'theater002'),
-('room02004', 'GV R04', 80, 'theater002'),
-('room02005', 'GV R05', 80, 'theater002'),
-('room02006', 'GV R06', 80, 'theater002'),	
-('room02007', 'GV R06', 80, 'theater002'),	
-
-('room03001', 'CH R01', 100, 'theater003'),
-('room03002', 'CH R02', 90, 'theater003'),
-('room03003', 'CH R03', 90, 'theater003'),
-('room03004', 'CH R04', 80, 'theater003'),
-('room03005', 'CH R05', 80, 'theater003'),
-('room03006', 'CH R06', 80, 'theater003'),	
-
-('room04001', 'TD R01', 100, 'theater004'),
-('room04002', 'TD R02', 90, 'theater004'),
-('room04003', 'TD R03', 90, 'theater004'),
-('room04004', 'TD R04', 80, 'theater004'),
-('room04005', 'TD R05', 80, 'theater004'),	
-
-('room05001', 'Moon R01', 100, 'theater005'),
-('room05002', 'Moon R02', 90, 'theater005'),
-('room05003', 'Moon R03', 90, 'theater005'),
-('room05004', 'Moon R04', 80, 'theater005'),
-('room05005', 'Moon R05', 80, 'theater005'),
-('room05006', 'Moon R06', 80, 'theater005'),	
-
-('room06001', 'C R01', 100, 'theater006'),
-('room06002', 'C R02', 90, 'theater006'),
-('room06003', 'C R03', 90, 'theater006'),
-('room06004', 'C R04', 80, 'theater006'),
-('room06005', 'C R05', 80, 'theater006'),
-('room06006', 'C R06', 80, 'theater006'),	
-('room06007', 'C R05', 80, 'theater006'),
-('room06008', 'C R06', 80, 'theater006'),	
-
-('room07001', 'Now R01', 100, 'theater007'),
-('room07002', 'Now R02', 90, 'theater007'),
-('room07003', 'Now R03', 90, 'theater007'),
-('room07004', 'Now R04', 80, 'theater007');
 -- -- Thêm dữ liệu vào bảng "showtime"
 -- INSERT INTO public."showtime" VALUES
 --     ('showtime001', '14:00:00', '16:00:00', 100, 'movie001', 'room001', 'format001'),
@@ -579,18 +466,9 @@ INSERT INTO public."room" VALUES
 --     ('status003', 'Sold Out');
 
 -- -- Thêm dữ liệu vào bảng "seat"
-INSERT INTO public."seat" VALUES
-('seat01001001', 'NSG S01001', 'Standard', 'room01001'),
-('seat01001002', 'NSG S01002', 'Standard', 'room01001'),
-('seat01001003', 'NSG S01003', 'Standard', 'room01001'),
-('seat01001004', 'NSG S01004', 'Standard', 'room01001'),
-('seat01001005', 'NSG S01005', 'Standard', 'room01001'),
-('seat01001006', 'NSG S01006', 'Standard', 'room01001'),
-('seat01001007', 'NSG S01007', 'VIP', 'room01001'),
-('seat01001008', 'NSG S01008', 'VIP', 'room01001'),
-('seat01001009', 'NSG S01009', 'VIP', 'room01001'),
-('seat01001010', 'NSG S01010', 'VIP', 'room01001');
-
+-- INSERT INTO public."seat" VALUES
+--     ('seat001', 'Seat 1', 'Standard', 'room001'),
+--     ('seat002', 'Seat 2', 'VIP', 'room001');
 
 -- -- Thêm dữ liệu vào bảng "ticket"
 -- INSERT INTO public."ticket" VALUES
