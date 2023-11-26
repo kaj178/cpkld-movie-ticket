@@ -75,12 +75,38 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public ResponseEntity<?> getListPlayingMovies() {
-        return null;
+        List<Movie> movies = movieRepository.findAll();
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                movies.stream()
+                    .map(this::convertEntityToDTO)
+                    .filter(movie -> 
+                        movie.getPremiere().getYear() == 2023
+                    )   
+                    .collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
     }
 
     @Override
     public ResponseEntity<?> getListUpcomingMovies() {
-        return null;
+        List<Movie> movies = movieRepository.findAll();
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                movies.stream()
+                    .map(this::convertEntityToDTO)
+                    .filter(movie -> 
+                        movie.getPremiere().getYear() == 2024
+                    )   
+                    .collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
     }
 
     @Override

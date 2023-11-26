@@ -1,7 +1,5 @@
 package com.cpkld.dto;
 
-import com.cpkld.model.entity.Language;
-import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.entity.Studio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
