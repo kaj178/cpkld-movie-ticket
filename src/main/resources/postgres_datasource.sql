@@ -82,7 +82,7 @@ CREATE TABLE public.studio (
 );
 
 CREATE TABLE public.language (
-	language_id VARCHAR(50) NOT NULL,
+	language_id SERIAL NOT NULL,
 	language_name TEXT NOT NULL,
 	PRIMARY KEY (language_id)
 );
@@ -99,6 +99,7 @@ CREATE TABLE public.movie (
 	time Time NOT NULL,
 	age INT NOT NULL,
 	story TEXT NOT NULL,
+	rating INT NOT NULL,
     --Chinh lai khoa ngoai--
 	studio_id SERIAL NOT NULL,
 	language_id SERIAL NOT NULL,
@@ -109,7 +110,7 @@ CREATE TABLE public.movie (
 
 -- Edit ---
 
-
+'''
 CREATE TABLE public."rating" (
 	"rating_id" VARCHAR(50) NOT NULL,
 	"score" FLOAT NOT NULL,
@@ -121,13 +122,14 @@ CREATE TABLE public."rating" (
 	FOREIGN KEY (movie_id) REFERENCES public."movie"(movie_id),
 	FOREIGN KEY (customer_id) REFERENCES public."customer"(customer_id)
 );
-
+'''
+	
 CREATE TABLE public."detail_movie_genre" (
 	"movie_id" SERIAL NOT NULL,
 	"genre_id" SERIAL NOT NULL,
 	PRIMARY KEY (movie_id, genre_id),
 	FOREIGN KEY (movie_id) REFERENCES public."movie"(movie_id),
-	FOREIGN KEY (genre_id) REFERENCES public."movie-genre"(genre_id)
+	FOREIGN KEY (genre_id) REFERENCES public."movie_genre"(genre_id)
 );
 
 -- Loại rạp (2D, 3D, ...)
