@@ -165,7 +165,7 @@ CREATE TABLE public."showtime" (
 	status INT NOT NULL,
 	"movie_id" SERIAL NOT NULL,
 	"room_id" VARCHAR(50) NOT NULL,
-	"format_id" VARCHAR(50) NOT NULL,
+	"format_id" SERIAL NOT NULL,
 	PRIMARY KEY (showtime_id),
 	FOREIGN KEY (movie_id) REFERENCES public."movie"(movie_id),
 	FOREIGN KEY (room_id) REFERENCES public."room"(room_id),
