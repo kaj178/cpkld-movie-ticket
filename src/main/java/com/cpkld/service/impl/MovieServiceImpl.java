@@ -83,7 +83,7 @@ public class MovieServiceImpl implements MovieService {
                 movies.stream()
                     .map(this::convertEntityToDTO)
                     .filter(movie -> 
-                        movie.getPremiere().getYear() == 2023
+                        movie.getYear() == 2023
                     )   
                     .collect(Collectors.toList())
             ),
@@ -101,7 +101,7 @@ public class MovieServiceImpl implements MovieService {
                 movies.stream()
                     .map(this::convertEntityToDTO)
                     .filter(movie -> 
-                        movie.getPremiere().getYear() == 2024
+                        movie.getYear() == 2024
                     )   
                     .collect(Collectors.toList())
             ),

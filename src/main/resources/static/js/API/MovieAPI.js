@@ -20,9 +20,9 @@ const getHotMovieAPI = async (url) => {
   return datatorender;
 };
 
-const getPremierMovie = async (url, page = 1) => {
+const getPremiereMovies = async (url) => {
   const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?action=getPremieredMovies&page=${page}`,
+    `${url}/api/v1/movie/playing`,
     {
       method: "GET",
     }
@@ -30,9 +30,10 @@ const getPremierMovie = async (url, page = 1) => {
   const datatorender = await data.json();
   return datatorender;
 };
-const getUpcomingMovie = async (url, page = 1) => {
+
+const getUpcomingMovies = async (url, page = 1) => {
   const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?action=getUpcomingMovies&page=${page}`,
+    `${url}/api/v1/movie/up-coming`,
     {
       method: "GET",
     }
@@ -40,6 +41,7 @@ const getUpcomingMovie = async (url, page = 1) => {
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getByGenreID = async (url, genreid = 1, page = 1) => {
   const data = await fetch(
     `${url}/Controller/Movie/ajax.php?action=getMoiveByGenres&page=${page}&genreid=${genreid}`,
@@ -50,6 +52,7 @@ const getByGenreID = async (url, genreid = 1, page = 1) => {
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getMovieByID = async (url, IDMovie = 1) => {
   const data = await fetch(
     `${url}/Controller/Movie/ajax.php?action=getMovieByID&movieid=${IDMovie}`,
@@ -148,8 +151,8 @@ const deleteMovie = async (url, id) => {
 export {
   getAllMovies,
   getHotMovieAPI,
-  getPremierMovie,
-  getUpcomingMovie,
+  getPremiereMovies,
+  getUpcomingMovies,
   getByGenreID,
   getMovieByID,
   addMovie,

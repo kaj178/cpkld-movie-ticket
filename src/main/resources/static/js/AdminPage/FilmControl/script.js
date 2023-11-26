@@ -1,8 +1,8 @@
 import {
   getAllMovies,
   getHotMovieAPI,
-  getPremierMovie,
-  getUpcomingMovie,
+  getPremiereMovies,
+  getUpcomingMovies,
   addMovie,
   updateMovie,
 } from "../../API/MovieAPI.js";
@@ -51,8 +51,8 @@ $(document).ready(() => {
   });
 
   $(".hot-film").click(() => loadHotMovie().then(() => showData(currentData)));
-  $(".premiere-film").click(() => loadPremierMovie().then(() => showData()));
-  $(".upcoming-film").click(() => loadUpcomingMovie().then(() => showData()));
+  $(".premiere-film").click(() => loadPremiereMovies().then(() => showData(currentData)));
+  $(".upcoming-film").click(() => loadUpcomingMovie().then(() => showData(currentData)));
   $(".all-film").click(() => loadAllMovies().then(() => showData(currentData)));
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
@@ -206,15 +206,16 @@ function showData(currentData) {
   }
 }
 
-async function loadPremierMovie() {
-  currentData = [];
-  let page = 1;
+async function loadPremiereMovies() {
+  currentData = []
   let data;
-  do {
-    data = await getPremierMovie("../../..", page);
-    currentData.push(...data);
-    page++;
-  } while (data.length != 0);
+  data = await getPremiereMovies("../..")
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i])
+  }
+  // allData = [...currentData]
+  console.log(currentData)
+  return currentData
 }
 
 async function loadHotMovie() {
@@ -228,33 +229,11 @@ async function loadHotMovie() {
 
 async function loadUpcomingMovie() {
   currentData = [];
-
-  let page = 1;
-  let data;
-  do {
-    data = await getUpcomingMovie("../../..", page);
-    currentData.push(...data);
-    page++;
-  } while (data.length != 0);
-}
-
-async function loadAllMovie() {
-  currentData = [];
-
-  let page = 1;
-  let data;
-  do {
-    data = await getUpcomingMovie("../../..", page);
-    currentData.push(...data);
-    page++;
-  } while (data.length != 0);
-  page = 1;
-  do {
-    data = await getPremierMovie("../../..", page);
-    currentData.push(...data);
-    page++;
-  } while (data.length != 0);
-  allData = [...currentData];
+  let data = await getUpcomingMovies("../..");
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i])
+  }
+  return currentData
 }
 
 async function loadAllMovies() {
