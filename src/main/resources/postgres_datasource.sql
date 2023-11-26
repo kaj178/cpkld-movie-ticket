@@ -518,10 +518,55 @@ INSERT INTO public.theater VALUES
 ('theater007', 'Nowzone', 'Tầng 5, TTTM Nowzone, 235 Nguyễn Văn Cừ, P.Nguyễn Cư Trinh, Q.1, TP.HCM', '2839262255', 4);
 
 -- -- Thêm dữ liệu vào bảng "room"
--- INSERT INTO public."room" VALUES
---     ('room001', 'Room 1', 100, 'theater001'),
---     ('room002', 'Room 2', 80, 'theater002');
+INSERT INTO public."room" VALUES
+('room01001', 'NSG R01', 100, 'theater001'),
+('room01002', 'NSG R02', 90, 'theater001'),
+('room01003', 'NSG R03', 90, 'theater001'),
+('room01004', 'NSG R04', 80, 'theater001'),
+('room01005', 'NSG R05', 80, 'theater001'),
+('room01006', 'NSG R06', 80, 'theater001'),
 
+('room02001', 'GV R01', 100, 'theater002'),
+('room02002', 'GV R02', 90, 'theater002'),
+('room02003', 'GV R03', 90, 'theater002'),
+('room02004', 'GV R04', 80, 'theater002'),
+('room02005', 'GV R05', 80, 'theater002'),
+('room02006', 'GV R06', 80, 'theater002'),	
+('room02007', 'GV R06', 80, 'theater002'),	
+
+('room03001', 'CH R01', 100, 'theater003'),
+('room03002', 'CH R02', 90, 'theater003'),
+('room03003', 'CH R03', 90, 'theater003'),
+('room03004', 'CH R04', 80, 'theater003'),
+('room03005', 'CH R05', 80, 'theater003'),
+('room03006', 'CH R06', 80, 'theater003'),	
+
+('room04001', 'TD R01', 100, 'theater004'),
+('room04002', 'TD R02', 90, 'theater004'),
+('room04003', 'TD R03', 90, 'theater004'),
+('room04004', 'TD R04', 80, 'theater004'),
+('room04005', 'TD R05', 80, 'theater004'),	
+
+('room05001', 'Moon R01', 100, 'theater005'),
+('room05002', 'Moon R02', 90, 'theater005'),
+('room05003', 'Moon R03', 90, 'theater005'),
+('room05004', 'Moon R04', 80, 'theater005'),
+('room05005', 'Moon R05', 80, 'theater005'),
+('room05006', 'Moon R06', 80, 'theater005'),	
+
+('room06001', 'C R01', 100, 'theater006'),
+('room06002', 'C R02', 90, 'theater006'),
+('room06003', 'C R03', 90, 'theater006'),
+('room06004', 'C R04', 80, 'theater006'),
+('room06005', 'C R05', 80, 'theater006'),
+('room06006', 'C R06', 80, 'theater006'),	
+('room06007', 'C R05', 80, 'theater006'),
+('room06008', 'C R06', 80, 'theater006'),	
+
+('room07001', 'Now R01', 100, 'theater007'),
+('room07002', 'Now R02', 90, 'theater007'),
+('room07003', 'Now R03', 90, 'theater007'),
+('room07004', 'Now R04', 80, 'theater007');
 -- -- Thêm dữ liệu vào bảng "showtime"
 -- INSERT INTO public."showtime" VALUES
 --     ('showtime001', '14:00:00', '16:00:00', 100, 'movie001', 'room001', 'format001'),
