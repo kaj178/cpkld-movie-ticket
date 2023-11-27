@@ -6,7 +6,7 @@ import {
   addMovie,
   updateMovie,
 } from "../../API/MovieAPI.js";
-import { getAllGenre } from "../../API/GenreAPI.js";
+import { getAllGenres } from "../../API/GenreAPI.js";
 import { getAllStudios } from "../../API/StudioAPI.js";
 import { getAllLanguages } from "../../API/LanguageAPI.js";
 import { getUserByEmail } from "../../API/UserAPI.js";
@@ -254,7 +254,7 @@ async function loadAllGenre() {
   let data;
   let options = [];
   do {
-    data = await getAllGenre("../../..", page);
+    data = await getAllGenres("../../..", page);
     genreData.push(...data.genres);
     page++;
   } while (data.genres.length != 0);

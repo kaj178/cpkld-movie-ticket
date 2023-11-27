@@ -1,6 +1,6 @@
 package com.cpkld;
 
-import org.springframework.boot.CommandLineRunner;
+// import org.springframework.boot.CommandLineRunner;
 
 // import java.util.List;
 
@@ -71,7 +71,7 @@ public class MovieTicketApplication {
 
     // @Override
     // public void run(String... args) throws Exception {
-    //     // TODO Auto-generated method stub
+    //     
     //     throw new UnsupportedOperationException("Unimplemented method 'run'");
     // }
 

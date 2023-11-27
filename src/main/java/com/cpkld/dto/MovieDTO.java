@@ -18,6 +18,8 @@ public class MovieDTO {
     private String director;
     private LocalDate premiere;
     private String urlTrailer;
+    private String verticalPoster;
+    private String horizontalPoster;
     private LocalTime time;
     private int year;
     private int age;

@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,7 +49,8 @@ public class MovieServiceImpl implements MovieService {
             new ApiResponse<>(
                 HttpStatus.OK.value(), 
                 "Success", 
-                movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
             HttpStatus.OK
         );
     }
@@ -133,10 +133,13 @@ public class MovieServiceImpl implements MovieService {
         movieDTO.setTime(movie.getTime());
         movieDTO.setLanguage(movie.getLanguage().getName());
         movieDTO.setDirector(movie.getDirector());
-        movieDTO.setRating(new Random().nextInt(1, 6));
+        //movieDTO.setRating(new Random().nextInt(1, 6));
+        movieDTO.setRating(movie.getRating());
         movieDTO.setStory(movie.getStory());
         movieDTO.setPremiere(movie.getPremiere());
         movieDTO.setUrlTrailer(movie.getUrlTrailer());
+        movieDTO.setVerticalPoster(movie.getVerticalPoster());
+        movieDTO.setHorizontalPoster(movie.getHorizontalPoster());
         movieDTO.setAge(movie.getAge());
         return movieDTO;
     }

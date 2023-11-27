@@ -40,5 +40,10 @@ public class HomeController {
     public String getHistoryPage() {
         return "View/Account/LichSuDatVe/index";
     }
+
+    @GetMapping("/detail")
+    public String getDetailpPage() {
+        return "View/Detail/index";
+    }
     
 }

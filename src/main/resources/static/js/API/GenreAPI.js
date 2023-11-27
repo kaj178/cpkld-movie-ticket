@@ -1,9 +1,9 @@
-const getAllGenre = async (url = "../..", page = 1) => {
-  const urls = `${url}/Controller/Genre/ajax.php?action=getAll&page=${page}`;
+const getAllGenres = async (url) => {
+  const urls = `${url}/api/v1/genre`;
   const data = await fetch(urls, {
     method: "GET",
   });
   const datatorender = await data.json();
   return datatorender;
 };
-export { getAllGenre };
+export { getAllGenres };

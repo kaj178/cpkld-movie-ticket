@@ -38,6 +38,12 @@ public class Movie {
     @Column(name = "url_trailer")
     private String urlTrailer;
 
+    @Column(name = "url_poster_vertical")
+    private String verticalPoster;
+
+    @Column(name = "url_poster_horizontal")
+    private String horizontalPoster;
+
     @Column(name = "time")
     private LocalTime time;
 
@@ -46,6 +52,9 @@ public class Movie {
 
     @Column(name = "story")
     private String story;
+
+    @Column(name = "rating")
+    private int rating;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Studio.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "studio_id")
