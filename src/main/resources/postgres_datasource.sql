@@ -326,7 +326,7 @@ INSERT INTO public.language (language_name) VALUES
 
 -- -- Thêm dữ liệu vào bảng "movie"
 INSERT INTO public.movie (movie_name, director, "year", premiere, url_trailer, url_poster_vertical, url_poster_horizontal, time, age, story, rating, studio_id, language_id) VALUES
-('Khắc tinh của quỷ', 'Julius Avery', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=SXfnUAW9gwA', 'movie1.jpg', 'movie1.jpg', '01:43:00', 18, 'Theo chân Amorth trong cuộc điều tra về vụ quỷ ám kinh hoàng của một cậu bé và dần khám phá ra những bí mật hàng thế kỷ mà Vatican đã cố gắng giấu kín', 3, 1, 1),
+('Khắc tinh của quỷ', 'Julius Avery', 2023, '4/14/2023', 'https://www.youtube.com/watch?v=SXfnUAW9gwA', 'movie1.jpg', 'movie1.jpg', '01:43:00', 18, 'Theo chân Amorth trong cuộc điều tra về vụ quỷ ám kinh hoàng của một cậu bé và dần khám phá ra những bí mật hàng thế kỷ mà Vatican đã cố gắng giấu kín', 4, 1, 1),
 ('Blue Beetle', 'Angel Manuel Soto', 2023, '8/18/2023', 'https://www.youtube.com/watch?v=j5rpK0Ba7q8', 'movie2.jpg', 'movie2.jpg', '02:08:00', 13, 'Cậu sinh viên mới tốt nghiệp Jaime Reyes trở về nhà với tràn trề niềm tin và hy vọng về tương lai, để rồi nhận ra quê nhà của anh đã thay đổi rất nhiều so với trước đây', 4, 7, 1),
 ('Khóa chặt cửa nào Suzume', 'Makoto Shinkai', 2023, '3/10/2023', 'https://www.youtube.com/watch?v=xQ4_c8JfuzI', 'movie3.jpg', 'movie3.jpg', '02:02:00', 0, 'Để bảo vệ Nhật Bản khỏi thảm họa, những cánh cửa rải rác khắp nơi phải được đóng lại, và bất ngờ thay Suzume cũng có khả năng đóng cửa đặc biệt này', 5, 3, 4),
 ('Đảo tội ác', 'euho', 2024, '3/31/2024', 'https://www.youtube.com/watch?v=jSZUpx_3yL4', 'movie4.jpg', 'movie4.jpg', '01:54:00', 18, 'Nhóm du khách trẻ vô tình phá bỏ phong ấn của con quái vật khát máu khi đến tham quan một hòn đảo cấm không dân địa phương nào dám đặt chân đến', 3, 4, 8),
@@ -502,6 +502,7 @@ SELECT mv.*, lg.language_name
 FROM public.movie as mv
 JOIN public.language as lg
 ON mv.language_id = lg.language_id
+
 
 
 

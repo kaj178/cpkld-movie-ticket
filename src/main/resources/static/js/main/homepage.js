@@ -34,10 +34,19 @@ $(document).ready(function () {
     }
   });
 
-  function toHHMM(minutes) {
-    var hours = Math.floor(minutes / 60);
-    var mins = minutes % 60;
-    return hours + "h" + " " + mins + "m";
+  function toHHMM(time) {
+    // var hours = Math.floor(time / 60);
+    // var mins = time % 60;
+    // return hours + "h" + " " + mins + "m";
+    // Chuyển chuỗi thời gian thành đối tượng Date để có thể lấy giờ và phút
+    var timeParts = time.split(":");
+    var hours = parseInt(timeParts[0], 10);
+    var mins = parseInt(timeParts[1], 10);
+    if (!isNaN(hours) && !isNaN(mins)) {
+        return hours + "h" + " " + mins + "m";
+    } else {
+        return "Invalid time format";
+    }
   }
 
   // Gọi phim Hot
@@ -53,8 +62,10 @@ $(document).ready(function () {
 
     console.log(datas)
     
+    
     let count = 0;
     for (const data of datas.data) {
+      console.log(typeof data.time)
       if (count < 3) {
         count++;
       } else {
@@ -62,7 +73,7 @@ $(document).ready(function () {
       }
       let genrehtml = await cuttingGenre(data);
       let htmls = "";
-      let imageurl = "";
+      let time = toHHMM(data.time)
       // if (data.listImage[0]) {
       //   imageurl = data.listImage[0].ImagePath;
       // }
@@ -88,7 +99,7 @@ $(document).ready(function () {
             ${data.name}
           </div>
           <div class="movie-info">
-            <span class="duration">${data.time}</span>
+            <span class="duration">${time}</span>
             <span class="dot">●</span>
             <span class="premier-date">${data.premiere}</span>
             <span class="dot">●</span>
