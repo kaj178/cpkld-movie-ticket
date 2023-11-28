@@ -151,22 +151,22 @@ CREATE TABLE public."theater" (
 );
 
 CREATE TABLE public."room" (
-	"room_id" VARCHAR(50) NOT NULL,
+	"room_id" SERIAL NOT NULL,
 	"room_name" VARCHAR(50) NOT NULL,
 	"number_of_seats" INT NOT NULL,
-	"theater_id" VARCHAR(50) NOT NULL,
+	"theater_id" SERIAL NOT NULL,
 	PRIMARY KEY (room_id),
 	FOREIGN KEY (theater_id) REFERENCES public."theater"(theater_id)
 );
 
 CREATE TABLE public."showtime" (
-	"showtime_id" VARCHAR(50) NOT NULL,
+	"showtime_id" SERIAL NOT NULL,
 	"start_time" TIME NOT NULL,
 	"end_time" TIME NOT NULL,
 	"price" INT NOT NULL,
 	status INT NOT NULL,
 	"movie_id" SERIAL NOT NULL,
-	"room_id" VARCHAR(50) NOT NULL,
+	"room_id" SERIAL NOT NULL,
 	"format_id" SERIAL NOT NULL,
 	PRIMARY KEY (showtime_id),
 	FOREIGN KEY (movie_id) REFERENCES public."movie"(movie_id),
@@ -176,25 +176,25 @@ CREATE TABLE public."showtime" (
 
 -- Trống hoặc đã được đặt
 CREATE TABLE public."ticket-status" (
-	"status_id" VARCHAR(50) NOT NULL,
+	"status_id" SERIAL NOT NULL,
 	"status_name" TEXT NOT NULL,
 	PRIMARY KEY (status_id)
 );
 
 CREATE TABLE public."seat" (
-	"seat_id" VARCHAR(50) NOT NULL,
+	"seat_id" SERIAL NOT NULL,
 	"seat_name" TEXT NOT NULL,
 	"type" TEXT DEFAULT N'Thường' NOT NULL, -- Ghế VIP hoặc thường
-	"room_id" VARCHAR(50) NOT NULL,
+	"room_id" SERIAL NOT NULL,
 	PRIMARY KEY (seat_id),
 	FOREIGN KEY (room_id) REFERENCES public."room"(room_id)
 );
 
 CREATE TABLE public."ticket" (
-	"ticket_id" VARCHAR(50) NOT NULL,
-	"showtime_id" VARCHAR(50) NOT NULL,
-	"seat_id" VARCHAR(50) NOT NULL,
-	"status_id" VARCHAR(50) NOT NULL,
+	"ticket_id" SERIAL NOT NULL,
+	"showtime_id" SERIAL NOT NULL,
+	"seat_id" SERIAL NOT NULL,
+	"status_id" SERIAL NOT NULL,
 	PRIMARY KEY (ticket_id),
 	FOREIGN KEY (showtime_id) REFERENCES public."showtime"(showtime_id),
 	FOREIGN KEY (seat_id) REFERENCES public."seat"(seat_id),
@@ -202,7 +202,7 @@ CREATE TABLE public."ticket" (
 );
 
 CREATE TABLE public."menu" (
-	"item_id" VARCHAR(50) NOT NULL,
+	"item_id" SERIAL NOT NULL,
 	"name" TEXT NOT NULL,
 	"price" INT NOT NULL,
 	"image_url" TEXT NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE public."menu" (
 );
 
 CREATE TABLE public."promotion" (
-	"promotion_id" VARCHAR(50) NOT NULL,
+	"promotion_id" SERIAL NOT NULL,
 	"promotion_name" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"start_time" TIMESTAMP NOT NULL,
@@ -223,16 +223,17 @@ CREATE TABLE public."promotion" (
 );
 
 CREATE TABLE public."booking" (
-	"booking_id" VARCHAR(50) NOT NULL,
+	"booking_id" SERIAL NOT NULL,
 	"number_of_tickets" INT NOT NULL,
 	"total_price" INT NOT NULL,
 	"booking_time" TIMESTAMP NOT NULL,
 	"show_time" TIMESTAMP NOT NULL,
 	"status" BOOLEAN NOT NULL,
-	"promotion_id" VARCHAR(50) NOT NULL,
+	"promotion_id" SERIAL NOT NULL,
 	PRIMARY KEY (booking_id),
 	FOREIGN KEY (promotion_id) REFERENCES public."promotion"(promotion_id)
 );
+
 
 
 -- Thêm dữ liệu vào bảng "role"
