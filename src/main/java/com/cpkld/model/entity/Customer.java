@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "customer", schema = "public")
@@ -31,4 +33,8 @@ public class Customer {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    @JsonBackReference
+    private List<Ticket> tickets;
 }

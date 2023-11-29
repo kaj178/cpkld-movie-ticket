@@ -66,12 +66,18 @@ public class Movie {
     @JsonBackReference
     private Language language;
 
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
+    @JsonBackReference
+    private List<ShowTime> showTimes;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
         name = "detail_movie_genre", 
         joinColumns = @JoinColumn(name = "movie_id"), 
         inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
+
+
     private List<MovieGenre> movieGenres;
 
     // public Movie(String name, LocalDate premier, LocalTime time, String description,

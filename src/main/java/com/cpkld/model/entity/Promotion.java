@@ -1,22 +1,25 @@
 package com.cpkld.model.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Promotion", schema = "public")
+@Table(name = "promotion", schema = "public")
 public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "promotion_id")
     private Integer id;
 
     @Column(name = "promotion_name")
@@ -26,12 +29,18 @@ public class Promotion {
     private String description;
 
     @Column(name = "start_time")
-    private Date startTime;
+    private LocalDate startTime;
 
     @Column(name = "end_time")
-    private Date endTime;
+    private LocalDate endTime;
 
     @Column(name = "discount")
     private Float discount;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @OneToMany(mappedBy = "promotion",fetch = FetchType.LAZY, targetEntity = Booking.class)
+    @JsonBackReference
+    private List<Booking> bookings;
 }

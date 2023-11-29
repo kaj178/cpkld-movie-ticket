@@ -1,12 +1,10 @@
 package com.cpkld.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +17,7 @@ public class Format {
 
     @Column(name = "format_name")
     private String name;
+
+    @OneToMany(mappedBy = "format", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
+    private List<ShowTime> showTimes;
 }
