@@ -265,7 +265,7 @@
             </button>
             <!-- 16:9 aspect ratio -->
             <div class="ratio ratio-16x9">
-              <iframe src="" frameborder="0"></iframe>
+              <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
             </div>
           </div>
         </div>
@@ -274,10 +274,15 @@
     <script>
       function showTrailer(btn) {
         let url = $(btn)
-          .data("trailerurl")
-          .replace("https://youtu.be", "https://youtube.com/embed");
+          .attr('data-urlTrailer')
+          // .data("urlTrailer")
+          // .replace("https://www.youtube", "https://www.youtube.com/embed");
+        let splitUrl = url.split('watch?v=')
+        let newUrl = splitUrl[0] + 'embed/' + splitUrl[1]
+        console.log(url)
+        console.log(newUrl)
         let modal = $("#modal-trailer");
-        modal.find("iframe").attr("src", url);
+        modal.find("iframe").attr("src", newUrl);
         $("#modal-trailer").modal("show");
       }
     </script>

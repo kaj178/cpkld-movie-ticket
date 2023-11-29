@@ -14,6 +14,8 @@ import { getAllGenres } from "../API/GenreAPI.js";
 
 $(document).ready(function () {
 
+  
+
   async function loadAllMovies() {
     let currentData = []
     let data;
@@ -107,12 +109,11 @@ $(document).ready(function () {
            ${data.story}
           </div>
           <div class="button-container">
-          <a href="${data.urlTrailer}" style="text-decoration: none;" target="_blank">
-            <button class="btn-main btn-trailer">
+          
+            <button class="btn-main btn-trailer" data-urlTrailer="${data.urlTrailer}" onclick="showTrailer(this)" >
               TRAILER
-              <img src="../public/play.svg" alt="" />
+              <img src="/public/play.svg" alt="" />
             </button>
-          </a>
             <a href="/detail" style="text-decoration:None">
             <button class="btn-main btn-book">
               Chi tiết
@@ -495,3 +496,10 @@ $(document).ready(function () {
     iframe.attr("src", "");
   });
 });
+
+{/* <a href="${data.urlTrailer}" style="text-decoration: none;" target="_blank">
+            <button class="btn-main btn-trailer">
+              TRAILER
+              <img src="../public/play.svg" alt="" />
+            </button>
+          </a> */}
