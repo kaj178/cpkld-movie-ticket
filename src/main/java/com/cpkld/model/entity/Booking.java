@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -36,13 +37,10 @@ public class Booking {
     @JsonBackReference
     private Promotion promotion;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Menu.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id")
-    @JsonBackReference
-    private Menu menu;
+    @OneToMany(mappedBy = "booking")
+    private List<MenuBooking> menuBookings;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Ticket.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id")
-    @JsonBackReference
-    private Ticket ticket;
+
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    private List<Ticket> tickets;
 }

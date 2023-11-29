@@ -31,7 +31,9 @@ public class Menu {
     @Column(name = "status")
     public String status;
 
-    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY, targetEntity = Booking.class)
-    @JsonBackReference
-    private List<Booking> bookings;
+    @Column(name = "description")
+    public String description;
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuBooking> menuBookings;
 }
