@@ -74,6 +74,25 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public ResponseEntity<?> getHotMoviesPaginated(int page) {
+        Pageable pageable = PageRequest.of(page, 5, Sort.by("movie_id").ascending());
+        Page<Movie> movies = movieRepository.findAllMovies(pageable);
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                movies.stream()
+                    .map(this::convertEntityToDTO)
+                    .filter(movie -> 
+                        movie.getRating() == 5 || movie.getRating() == 4
+                    )
+                    .collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
     public ResponseEntity<?> getListPlayingMovies() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(

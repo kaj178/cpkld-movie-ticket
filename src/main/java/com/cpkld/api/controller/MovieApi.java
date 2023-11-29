@@ -26,8 +26,13 @@ public class MovieApi {
     }
 
     @GetMapping("/hot")
-    public ResponseEntity<?> getAllHotMovies() {
+    public ResponseEntity<?> getHotMovies() {
         return movieService.getHotMovies();
+    }
+
+    @GetMapping(value = "/hot", params = "page")
+    public ResponseEntity<?> getHotMoviesPaginated(@RequestParam("page") int page) {
+        return movieService.getHotMoviesPaginated(page - 1);
     }
 
     @GetMapping("/playing")

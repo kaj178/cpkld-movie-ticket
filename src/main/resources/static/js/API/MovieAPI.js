@@ -20,6 +20,17 @@ const getHotMovieAPI = async (url) => {
   return datatorender;
 };
 
+const getHotMovieAPIPaginated = async (url) => {
+  const data = await fetch(
+    `${url}/api/v1/movie/hot?page=1`,
+    {
+      method: "GET",
+    }
+  );
+  const datatorender = await data.json();
+  return datatorender;
+};
+
 const getPremiereMovies = async (url) => {
   const data = await fetch(
     `${url}/api/v1/movie/playing`,
@@ -150,6 +161,7 @@ const deleteMovie = async (url, id) => {
 export {
   getAllMovies,
   getHotMovieAPI,
+  getHotMovieAPIPaginated,
   getPremiereMovies,
   getUpcomingMovies,
   getByGenreID,

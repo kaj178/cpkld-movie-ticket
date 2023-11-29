@@ -12,6 +12,8 @@ public interface MovieService {
 
     ResponseEntity<?> getHotMovies();
 
+    ResponseEntity<?> getHotMoviesPaginated(int page);
+
     //Tra ve danh sach Movie dang chieu
     ResponseEntity<?> getListPlayingMovies();
 

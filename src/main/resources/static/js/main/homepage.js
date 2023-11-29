@@ -1,6 +1,7 @@
 import {
   getAllMovies,
   getHotMovieAPI,
+  getHotMovieAPIPaginated,
   getPremiereMovies,
   getUpcomingMovies,
   getByGenreID,
@@ -51,7 +52,7 @@ $(document).ready(function () {
 
   // Gọi phim Hot
   // getHotMovieAPI(".").then(async (datas) => {
-  getHotMovieAPI("../..").then(async (datas) => {
+  getHotMovieAPIPaginated("../..").then(async (datas) => {
     const cuttingGenre = (data) => {
       let storehtml = "";
       data["movieGenres"].flat().forEach((element) => {
@@ -59,13 +60,10 @@ $(document).ready(function () {
       });
       return storehtml;
     };
-
-    console.log(datas)
-    
-    
+    // console.log(datas)
     let count = 0;
     for (const data of datas.data) {
-      console.log(typeof data.time)
+      // console.log(typeof data.time)
       if (count < 3) {
         count++;
       } else {
@@ -143,7 +141,6 @@ $(document).ready(function () {
   getPremiereMovies("../..").then((datas) => {
     const cuttingGenre = (data) => {
       let storehtml = "";
-
       data["movieGenres"].flat().forEach((element, index) => {
         if (index == 0) {
           storehtml += `${element}`;
@@ -154,11 +151,13 @@ $(document).ready(function () {
       });
       return storehtml;
     };
-    datas.forEach(async (data, index) => {
+
+    datas.data.forEach(async (data, index) => {
+      console.log(data)
       // let imagebannerObj = data.listImage;
-      let filteredMovies = imagebannerObj.filter(function (movie) {
-        return movie.type == "1" // && movie.ImagePath;
-      });
+      // let filteredMovies = imagebannerObj.filter(function (movie) {
+      //   return movie.type == "1" // && movie.ImagePath;
+      // });
       const timetoadd = await toHHMM(data.time);
       let genrehtml = await cuttingGenre(data);
       let htmls = "";
@@ -192,7 +191,7 @@ $(document).ready(function () {
               </a>
 
               </div>
-              <img class="poster" src="${filteredMovies[0].ImagePath}" alt="" />
+              <img class="poster" src="../public/imagesfilms/poster-vertical/${data.verticalPoster}" alt="" />
             </div>
 
             <div class="movie-genre">
@@ -241,17 +240,17 @@ $(document).ready(function () {
       return storehtml;
     };
 
-    datas.forEach(async (data, index) => {
+    datas.data.forEach(async (data, index) => {
       let genrehtml = await cuttingGenre(data);
       let htmls = "";
       const timetoadd = await toHHMM(data.time);
       /// let imagebannerObj = data.listImage;
-      let filteredMovies = imagebannerObj.filter(function (movie) {
-        return movie.type == "1" // && movie.ImagePath;
-      });
-      if (filteredMovies.length == 0) {
-        return;
-      }
+      // let filteredMovies = imagebannerObj.filter(function (movie) {
+      //   return movie.type == "1" // && movie.ImagePath;
+      // });
+      // if (filteredMovies.length == 0) {
+      //   return;
+      // }
 
       htmls +=
         `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
@@ -282,7 +281,7 @@ $(document).ready(function () {
                 </button>
                 </a>
               </div>
-              <img class="poster" src="${filteredMovies[0].ImagePath}" alt="" />
+              <img class="poster" src="../public/imagesfilms/poster-vertical/${data.verticalPoster}" alt="" />
             </div>
 
             <div class="movie-genre">
