@@ -5,6 +5,7 @@ import com.cpkld.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,32 +17,42 @@ public class MovieApi {
     private MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<?> getAllmovies() {
+    public ResponseEntity<?> readAllmovies() {
         return movieService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> readMovieById(@PathVariable Integer id) {
+        return movieService.getMovieById(id);
+    }
+
     @GetMapping(params = "page")
-    public ResponseEntity<?> getAllMovies(@RequestParam("page") int page) {
+    public ResponseEntity<?> readAllMovies(@RequestParam("page") int page) {
         return movieService.getAll(page - 1);
     }
 
     @GetMapping("/hot")
-    public ResponseEntity<?> getHotMovies() {
+    public ResponseEntity<?> readHotMovies() {
         return movieService.getHotMovies();
     }
 
     @GetMapping(value = "/hot", params = "page")
-    public ResponseEntity<?> getHotMoviesPaginated(@RequestParam("page") int page) {
+    public ResponseEntity<?> readHotMoviesPaginated(@RequestParam("page") int page) {
         return movieService.getHotMoviesPaginated(page - 1);
     }
 
     @GetMapping("/playing")
-    public ResponseEntity<?> getAllPLayingMovies() {
+    public ResponseEntity<?> readAllPLayingMovies() {
         return movieService.getListPlayingMovies();
     }
 
+    @GetMapping(value = "/playing", params = "genre-id")
+    public ResponseEntity<?> readPlayingMoviesByGenreId(@RequestParam("genre-id") Integer id) {
+        return movieService.getPlayingMoviesByGenreId(id);
+    }
+
     @GetMapping("up-coming")
-    public ResponseEntity<?> getAllUpcomingMovies() {
+    public ResponseEntity<?> readAllUpcomingMovies() {
         return movieService.getListUpcomingMovies();
     }
 }

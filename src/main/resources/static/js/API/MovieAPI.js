@@ -31,6 +31,17 @@ const getHotMovieAPIPaginated = async (url) => {
   return datatorender;
 };
 
+const getPremiereMoviesByGenreID = async (url, id) => {
+  const data = await fetch(
+    `${url}/api/v1/movie/playing?genre-id=${id}`,
+    {
+      method: "GET",
+    }
+  );
+  const datatorender = await data.json();
+  return datatorender;
+};
+
 const getPremiereMovies = async (url) => {
   const data = await fetch(
     `${url}/api/v1/movie/playing`,
@@ -53,20 +64,9 @@ const getUpcomingMovies = async (url, page = 1) => {
   return datatorender;
 };
 
-const getByGenreID = async (url, genreid = 1, page = 1) => {
+const getMovieByID = async (url, id) => {
   const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?action=getMoiveByGenres&page=${page}&genreid=${genreid}`,
-    {
-      method: "GET",
-    }
-  );
-  const datatorender = await data.json();
-  return datatorender;
-};
-
-const getMovieByID = async (url, IDMovie = 1) => {
-  const data = await fetch(
-    `${url}/Controller/Movie/ajax.php?action=getMovieByID&movieid=${IDMovie}`,
+    `${url}/api/v1/movie/${id}`,
     {
       method: "GET",
     }
@@ -161,10 +161,10 @@ const deleteMovie = async (url, id) => {
 export {
   getAllMovies,
   getHotMovieAPI,
+  getPremiereMoviesByGenreID,
   getHotMovieAPIPaginated,
   getPremiereMovies,
   getUpcomingMovies,
-  getByGenreID,
   getMovieByID,
   addMovie,
   updateMovie,

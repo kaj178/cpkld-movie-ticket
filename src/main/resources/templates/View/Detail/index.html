@@ -240,15 +240,16 @@
     <script>
       function showTrailer(btn) {
         let url = $(btn)
-          .data("trailerurl")
-          .replace("https://youtu.be", "https://youtube.com/embed");
+          .attr("trailerurl")
+        let splitUrl = url.split('watch?v=')
+        let newUrl = splitUrl[0] + 'embed/' + splitUrl[1]
+        console.log(url)
+        console.log(newUrl)
         let modal = $("#modal-trailer");
-        modal.find("iframe").attr("src", url);
+        modal.find("iframe").attr("src", newUrl);
         $("#modal-trailer").modal("show");
       }
     </script>
-    <script type="module">
-      
-    </script>
+    <script type="module" src="/js/main/detail.js"></script>
   </body>
 </html>

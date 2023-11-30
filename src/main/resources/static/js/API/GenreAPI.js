@@ -6,4 +6,6 @@ const getAllGenres = async (url) => {
   const datatorender = await data.json();
   return datatorender;
 };
+
+
 export { getAllGenres };

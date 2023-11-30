@@ -1,6 +1,7 @@
 package com.cpkld.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.cpkld.dto.GenreDTO;
 import com.cpkld.model.entity.MovieGenre;
+import com.cpkld.model.exception.notfound.GenreNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.GenreRepository;
 import com.cpkld.service.GenreService;
@@ -21,25 +23,38 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public ResponseEntity<?> getAllGenres() {
+        List<MovieGenre> genres = genreRepository.findAll();
         return new ResponseEntity<>(
             new ApiResponse<>(
                 HttpStatus.OK.value(), "Success", 
-                genreRepository.findAll()
-                    .stream()
+                genres.stream()
                     .map(this::convertEntityToDTO)
                     .collect(Collectors.toList())
             ), HttpStatus.OK
         );
     }
 
+    @Override
+    public ResponseEntity<?> getGenreById(Integer id) {
+        Optional<MovieGenre> optional = genreRepository.findById(id);
+        if (!optional.isPresent()) {
+            throw new GenreNotFoundException("Genre not found");
+        }
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
+
     private GenreDTO convertEntityToDTO(MovieGenre genre) {
         GenreDTO genreDTO = new GenreDTO();
-        List<MovieGenre> genres = genreRepository.findAll();
-        for (MovieGenre temp : genres) {
-            genreDTO.setId(temp.getGenreId());
-            genreDTO.setName(temp.getName());
-            genreDTO.setDescription(temp.getDescription());
-        }
+        genreDTO.setId(genre.getGenreId());
+        genreDTO.setName(genre.getName());
+        genreDTO.setDescription(genre.getDescription());
         return genreDTO;
     }
 }

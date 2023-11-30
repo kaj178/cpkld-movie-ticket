@@ -2,6 +2,8 @@ package com.cpkld.repository;
 
 import com.cpkld.model.entity.Movie;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +21,13 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
         nativeQuery = true
     )
     Page<Movie> findAllMovies(Pageable pageable);
+
+    @Query(
+        value = "SELECT mv.* FROM public.movie mv " +
+                "JOIN public.\"detail_movie_genre\" dmg ON mv.movie_id = dmg.movie_id " +
+                "JOIN public.\"movie_genre\" mg ON mg.genre_id = dmg.genre_id " +
+                "WHERE mg.genre_id = ?1 AND mv.year = 2023",
+        nativeQuery = true
+    )
+    List<Movie> findPremiereMoviesByGenreId(Integer id);
 }

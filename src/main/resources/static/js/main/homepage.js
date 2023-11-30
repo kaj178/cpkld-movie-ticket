@@ -1,10 +1,10 @@
 import {
   getAllMovies,
   getHotMovieAPI,
+  getPremiereMoviesByGenreID,
   getHotMovieAPIPaginated,
   getPremiereMovies,
   getUpcomingMovies,
-  getByGenreID,
 } from "../API/MovieAPI.js";
 import { getAllGenres } from "../API/GenreAPI.js";
 // import { getPromotionsEvent } from "../PromotionAPI.js";
@@ -13,8 +13,6 @@ import { getAllGenres } from "../API/GenreAPI.js";
 // import { getCustomerByEmail } from "../UserAPI.js";
 
 $(document).ready(function () {
-
-  
 
   async function loadAllMovies() {
     let currentData = []
@@ -38,10 +36,6 @@ $(document).ready(function () {
   });
 
   function toHHMM(time) {
-    // var hours = Math.floor(time / 60);
-    // var mins = time % 60;
-    // return hours + "h" + " " + mins + "m";
-    // Chuyển chuỗi thời gian thành đối tượng Date để có thể lấy giờ và phút
     var timeParts = time.split(":");
     var hours = parseInt(timeParts[0], 10);
     var mins = parseInt(timeParts[1], 10);
@@ -154,11 +148,6 @@ $(document).ready(function () {
     };
 
     datas.data.forEach(async (data, index) => {
-      console.log(data)
-      // let imagebannerObj = data.listImage;
-      // let filteredMovies = imagebannerObj.filter(function (movie) {
-      //   return movie.type == "1" // && movie.ImagePath;
-      // });
       const timetoadd = await toHHMM(data.time);
       let genrehtml = await cuttingGenre(data);
       let htmls = "";
@@ -305,28 +294,28 @@ $(document).ready(function () {
     const AddingBtnColor = GenreContainer.find(`#${GenreID}`);
     AddingBtnColor.addClass("btn-main");
 
-    getPremierMovie("../..").then((datas) => {
+    getPremiereMovies("../..").then((datas) => {
       const cuttingGenre = (data) => {
         let storehtml = "";
 
-        data["ListGenre"].flat().forEach((element, index) => {
+        data["movieGenres"].flat().forEach((element, index) => {
           if (index == 0) {
-            storehtml += `${element.GenreName}`;
+            storehtml += `${element}`;
           } else {
             storehtml +=
-              '<span class="vertical-line">|</span>' + `${element.GenreName}`;
+              '<span class="vertical-line">|</span>' + `${element}`;
           }
         });
         return storehtml;
       };
-      datas.forEach(async (data, index) => {
-        const timetoadd = await toHHMM(data.Time);
+      datas.data.forEach(async (data, index) => {
+        const timetoadd = await toHHMM(data.time);
         let genrehtml = await cuttingGenre(data);
         let htmls = "";
-        let imagebannerObj = data.listImage;
-        let filteredMovies = imagebannerObj.filter(function (movie) {
-          return movie.type == "1" && movie.ImagePath;
-        });
+        // let imagebannerObj = data.listImage;
+        // let filteredMovies = imagebannerObj.filter(function (movie) {
+        //   return movie.type == "1" && movie.ImagePath;
+        // });
         htmls +=
           `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div class="card-img">
@@ -341,28 +330,28 @@ $(document).ready(function () {
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
-                  ${data.Premiere}
+                  ${data.premiere}
                 </div>
                 <div class="duration">
                   <img src="/public/timer.svg" alt="" />
                   ${timetoadd}
                 </div>
                 <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
-                <button class="btn-outline" id=${data.MovieID}>Chi tiết</button>
+                <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <a href="./View/Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
                   <button class="btn-main btn-book m-auto" style="display:block">
                   ĐẶT VÉ
                 </button>
               </div>
-              <img class="poster" src="${filteredMovies[0].ImagePath}" alt="" />
+              <img class="poster" src="../public/imagesfilms/poster-vertical/${data.verticalPoster}" alt="" />
             </div>
 
             <div class="movie-genre">
              ` +
           genrehtml +
           `</div>
-            <div class="movie-title">${data.MovieName}</div>
+            <div class="movie-title">${data.name}</div>
           </div>`;
         $(".row.g-3.movie-premier-container").append(htmls);
         $(".btn-outline").bind("click", (e) => {
@@ -379,28 +368,28 @@ $(document).ready(function () {
     removeBtnColor.removeClass("btn-main");
     const AddingBtnColor = GenreContainer.find(`#${GenreID}`);
     AddingBtnColor.addClass("btn-main");
-    getByGenreID(".", GenreID).then((datas) => {
+    getPremiereMoviesByGenreID("../..", GenreID).then((datas) => {
       const cuttingGenre = (data) => {
         let storehtml = "";
 
-        data["ListGenre"].flat().forEach((element, index) => {
+        data["movieGenres"].flat().forEach((element, index) => {
           if (index == 0) {
-            storehtml += `${element.GenreName}`;
+            storehtml += `${element}`;
           } else {
             storehtml +=
-              '<span class="vertical-line">|</span>' + `${element.GenreName}`;
+              '<span class="vertical-line">|</span>' + `${element}`;
           }
         });
         return storehtml;
       };
-      datas.forEach(async (data, index) => {
-        const timetoadd = await toHHMM(data.Time);
+      datas.data.forEach(async (data, index) => {
+        const timetoadd = await toHHMM(data.time);
         let genrehtml = await cuttingGenre(data);
         let htmls = "";
-        let imagebannerObj = data.listImage;
-        let filteredMovies = imagebannerObj.filter(function (movie) {
-          return movie.type == "1" && movie.ImagePath;
-        });
+        // let imagebannerObj = data.listImage;
+        // let filteredMovies = imagebannerObj.filter(function (movie) {
+        //   return movie.type == "1" && movie.ImagePath;
+        // });
         htmls +=
           `<div class="movie-card col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6">
             <div class="card-img">
@@ -415,28 +404,28 @@ $(document).ready(function () {
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
-                  ${data.Premiere}
+                  ${data.premiere}
                 </div>
                 <div class="duration">
                   <img src="/public/timer.svg" alt="" />
                   ${timetoadd}
                 </div>
                 <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
-                <button class="btn-outline" id=${data.MovieID}>Chi tiết</button>
+                <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <a href="./View/Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
                   <button class="btn-main btn-book m-auto" style="display:block">
                   ĐẶT VÉ
                 </button>
               </div>
-              <img class="poster" src="${filteredMovies[0].ImagePath}" alt="" />
+              <img class="poster" src="../public/imagesfilms/poster-vertical/${data.verticalPoster}" alt="" />
             </div>
 
             <div class="movie-genre">
              ` +
           genrehtml +
           `</div>
-            <div class="movie-title">${data.MovieName}</div>
+            <div class="movie-title">${data.name}</div>
           </div>`;
         $(".row.g-3.movie-premier-container").append(htmls);
         $(".btn-outline").bind("click", (e) => {
@@ -445,6 +434,7 @@ $(document).ready(function () {
       });
     });
   }
+
   const takeAllGenre = async () => {
     const genreContainer = $(".row.g-2.genre-container");
     const button = $("<button>")
@@ -453,9 +443,10 @@ $(document).ready(function () {
       .text("Tất cả Phim");
     button.on("click", () => changingBtnOnClickGetAll("MBTN00001"));
     genreContainer.append(button);
+
     const setPageNum = async () => {
       const datas = await getAllGenres("../..");
-      return datas["pagination"]["num_pages"];
+      return datas.data.length;
     };
 
     const updatePageNum = async () => {
@@ -464,20 +455,20 @@ $(document).ready(function () {
       return pagenum;
     };
 
-    var pagenum = await updatePageNum();
-    for (let page = 1; page <= pagenum; page++) {
-      getAllGenres(".", page).then((datas) => {
-        const datastorender = datas["genres"];
-        datastorender.forEach((data) => {
-          const button = $("<button>")
-            .addClass("genre-btn-click")
-            .attr("id", data.GenreID)
-            .text(data.GenreName);
-          button.on("click", () => changingBtnOnClick(data.GenreID));
-          genreContainer.append(button);
-        });
+    //var pagenum = await updatePageNum();
+    //for (let page = 1; page <= pagenum; page++) {
+    getAllGenres("../..").then((datas) => {
+      const datastorender = datas;
+      datastorender.data.forEach((data) => {
+        const button = $("<button>")
+          .addClass("genre-btn-click")
+          .attr("id", data.id)
+          .text(data.name);
+        button.on("click", () => changingBtnOnClick(data.id));
+        genreContainer.append(button);
       });
-    }
+    });
+    //}
   };
   takeAllGenre();
   let modalTrailer = $("#modal-trailer");

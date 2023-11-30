@@ -3,6 +3,7 @@ package com.cpkld.service.impl;
 import com.cpkld.dto.MovieDTO;
 import com.cpkld.model.entity.Movie;
 import com.cpkld.model.entity.MovieGenre;
+import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.MovieRepository;
 import com.cpkld.service.MovieService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +52,22 @@ public class MovieServiceImpl implements MovieService {
                 HttpStatus.OK.value(), 
                 "Success", 
                 movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getMovieById(Integer id) {
+        Optional<Movie> optional = movieRepository.findById(id);
+        if (!optional.isPresent()) {
+            throw new MovieNotFoundException("Movie not found!");
+        }
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
             ),
             HttpStatus.OK
         );
@@ -111,6 +129,20 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public ResponseEntity<?> getPlayingMoviesByGenreId(Integer id) {
+        List<Movie> movies = movieRepository.findPremiereMoviesByGenreId(id);
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), "Success", 
+                movies.stream()
+                    .map(this::convertEntityToDTO)
+                    .collect(Collectors.toList())    
+            ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
     public ResponseEntity<?> getListUpcomingMovies() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(
@@ -126,16 +158,6 @@ public class MovieServiceImpl implements MovieService {
             ),
             HttpStatus.OK
         );
-    }
-
-    @Override
-    public ResponseEntity<?> getListPlayingMoviesById(Integer genreMovie) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<?> getListUpcomingMoviesById(Integer genreMovie) {
-        return null;
     }
 
     private MovieDTO convertEntityToDTO(Movie movie) {

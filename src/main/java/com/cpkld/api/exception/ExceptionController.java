@@ -9,7 +9,9 @@ import org.springframework.web.context.request.WebRequest;
 import com.cpkld.model.exception.existed.CustomerExistedException;
 import com.cpkld.model.exception.existed.ManagerExistedException;
 import com.cpkld.model.exception.notfound.CustomerNotFoundException;
+import com.cpkld.model.exception.notfound.GenreNotFoundException;
 import com.cpkld.model.exception.notfound.ManagerNotFoundException;
+import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.exception.notfound.RoleNotFoundException;
 import com.cpkld.model.response.ErrorResponse;
 
@@ -44,6 +46,17 @@ public class ExceptionController {
     public ResponseEntity<?> handleManagerExistedException(ManagerExistedException ex, WebRequest req) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(MovieNotFoundException.class)
+    public ResponseEntity<?> handleMovieNotFoundException(MovieNotFoundException ex, WebRequest req) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(GenreNotFoundException.class)
+    public ResponseEntity<?> handleGenreNotFoundException(GenreNotFoundException ex, WebRequest req) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
 }
