@@ -504,8 +504,11 @@ FROM public.movie as mv
 JOIN public.language as lg
 ON mv.language_id = lg.language_id
 
-
-
+SELECT mv.* 
+FROM public.movie mv
+JOIN public."detail_movie_genre" dmg ON mv.movie_id = dmg.movie_id 
+JOIN public."movie_genre" mg ON mg.genre_id = dmg.genre_id
+WHERE mg.genre_id = 1 AND mv.year = 2023
 
 
 

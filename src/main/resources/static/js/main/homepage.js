@@ -161,7 +161,7 @@ $(document).ready(function () {
                   width="22px"
                   height="22px"
                 />
-                <div class="rating">${data.rating} / 10</div>
+                <div class="rating">${data.rating} / 5</div>
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
@@ -252,7 +252,7 @@ $(document).ready(function () {
                   width="22px"
                   height="22px"
                 />
-                <div class="rating">${data.rating} / 10</div>
+                <div class="rating">${data.rating} / 5</div>
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
@@ -326,7 +326,7 @@ $(document).ready(function () {
                   width="22px"
                   height="22px"
                 />
-                <div class="rating">${data.rating} / 10</div>
+                <div class="rating">${data.rating} / 5</div>
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
@@ -400,7 +400,7 @@ $(document).ready(function () {
                   width="22px"
                   height="22px"
                 />
-                <div class="rating">${data.rating} / 10</div>
+                <div class="rating">${data.rating} / 5</div>
                 <div class="age">${data.age}</div>
                 <div class="date">
                   <img src="/public/date.svg" alt="" />
