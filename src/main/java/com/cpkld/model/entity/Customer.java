@@ -34,7 +34,7 @@ public class Customer {
     @JsonBackReference
     private User user;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, targetEntity = Booking.class)
     @JsonBackReference
-    private List<Ticket> tickets;
+    private List<Booking> bookings;
 }

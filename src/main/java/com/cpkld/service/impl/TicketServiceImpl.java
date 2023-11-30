@@ -21,41 +21,17 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public ResponseEntity<?> getAll() {
-        List<Ticket> tickets = ticketRepository.findAll();
-        return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
-        );
+        return null;
+//        List<Ticket> tickets = ticketRepository.findAll();
+//        return new ResponseEntity<>(
+//                new ApiResponse<>(
+//                        HttpStatus.OK.value(),
+//                        "Success",
+//                        tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+//                ),
+//                HttpStatus.OK
+//        );
     }
 
-    private TicketDTO convertEntityToDTO(Ticket ticket) {
-        List<Seat> seats = ticket.getSeats();
-        List<MenuBooking> menuBookings = ticket.getBooking().getMenuBookings();
-        StringBuilder combos = new StringBuilder();
-        StringBuilder strSeats = new StringBuilder();
 
-
-        for (Seat item : seats) {
-            strSeats.append(item.getSeatName()).append(", ");
-        }
-
-        for (MenuBooking item : menuBookings) {
-            combos.append(item.getMenu().getName()).append(", ");
-        }
-
-        TicketDTO ticketDTO = new TicketDTO();
-        ticketDTO.setTicketId(ticket.getTicketId());
-        ticketDTO.setStartTime(ticket.getShowTime().getStartTime());
-        ticketDTO.setMovieName(ticket.getShowTime().getMovie().getName());
-        ticketDTO.setType("nội dung");
-        ticketDTO.setPerson("trên 18 tuổi");
-        ticketDTO.setCombo(combos.toString());
-        ticketDTO.setSeats(strSeats.toString());
-        ticketDTO.setTotalPrice(ticket.getBooking().getTotalPrice());
-        return ticketDTO;
-    }
 }

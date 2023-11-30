@@ -37,7 +37,12 @@ public class Booking {
     @JsonBackReference
     private Promotion promotion;
 
-    @OneToMany(mappedBy = "booking")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, targetEntity = MenuBooking.class)
     private List<MenuBooking> menuBookings;
 
 

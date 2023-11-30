@@ -27,9 +27,7 @@ public class Seat {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    private List<Ticket> tickets;
 
-
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Ticket.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
 }

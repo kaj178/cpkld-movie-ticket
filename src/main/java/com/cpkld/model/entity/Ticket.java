@@ -23,19 +23,16 @@ public class Ticket {
     @JoinColumn(name = "showtime_id")
     private ShowTime showTime;
 
-    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, targetEntity = Seat.class)
-    private List<Seat> seats;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Seat.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TicketStatus.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id")
     private TicketStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Booking.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "booking_id")
-    @JsonBackReference
     private Booking booking;
 }

@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class TicketDTO {
+@AllArgsConstructor
+public class BookingDTO {
     private Integer ticketId;
+    private String email;
     private LocalDateTime startTime;
     private String movieName;
-    private String type;
+    private String format;
 
     //Doi tuong = movie.age
     private int age;
@@ -24,5 +25,4 @@ public class TicketDTO {
     private String seats;
 
     private double totalPrice;
-
 }
