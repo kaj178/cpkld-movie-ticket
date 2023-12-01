@@ -477,10 +477,11 @@ INSERT INTO public."room"("room_name", "number_of_seats", "theater_id") VALUES
 --     ('showtime002', '17:00:00', '19:00:00', 120, 'movie002', 'room002', 'format002');
 
 -- -- Thêm dữ liệu vào bảng "ticket-status"
--- INSERT INTO public."ticket-status" VALUES
---     ('status001', 'Available'),
---     ('status002', 'Booked'),
---     ('status003', 'Sold Out');
+INSERT INTO public."ticket-status"("status_name") VALUES
+('Available'),
+('Booked'),
+('Sold Out');
+
 
 -- -- Thêm dữ liệu vào bảng "seat"
 -- INSERT INTO public."seat" VALUES
