@@ -198,10 +198,10 @@ import {
                   ${data.premiere}
                 </div>
                 <div class="duration">
-                  <img src="./images/timer.svg" alt="" />
+                  <img src="../public/timer.svg" alt="" />
                   ${time}
                 </div>
-                <a href="../Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/detail" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <button class="btn-main">Đặt vé</button>
@@ -270,7 +270,7 @@ import {
                   <img src="../public/timer.svg" alt="" />
                   ${timerender}
                 </div>
-                <a href="../Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/detail" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <button class="btn-main">Đặt vé</button>
