@@ -455,9 +455,21 @@ INSERT INTO public.theater(theater_name, address, phone, number_of_room) VALUES
 
 
 -- -- Thêm dữ liệu vào bảng "room"
--- INSERT INTO public."room" VALUES
---     ('room001', 'Room 1', 100, 'theater001'),
---     ('room002', 'Room 2', 80, 'theater002');
+INSERT INTO public."room"("room_name", "number_of_seats", "theater_id") VALUES
+('Room 1', 100, 1),
+('Room 2', 80, 1),
+('Room 3', 100, 2),
+('Room 4', 80, 2),
+('Room 5', 100, 3),
+('Room 6', 80, 3),
+('Room 7', 100, 4),
+('Room 8', 80, 4),
+('Room 9', 100, 5),
+('Room 10', 80, 5),
+('Room 11', 100, 6),
+('Room 12', 80, 6),
+('Room 13', 100, 7),
+('Room 14', 80, 7);
 
 -- -- Thêm dữ liệu vào bảng "showtime"
 -- INSERT INTO public."showtime" VALUES
