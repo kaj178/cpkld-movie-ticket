@@ -65,7 +65,7 @@ getPremiereMovies("../..").then((datas) => {
                   <img src="../public/timer.svg" alt="" />
                   ${timerender}
                 </div>
-                <a href="/" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/detail" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <a href="/order" style="text-decoration:None;display:block;width:100%;text-align:center">
@@ -332,7 +332,6 @@ async function addMovieContent(data) {
             <div class="about-line">
               <p>Đạo diễn</p>
               <p>${datatoadd.director}</p>
-              </p>
             </div>
             <div class="about-line">
               <p>Giới hạn độ tuổi</p>
