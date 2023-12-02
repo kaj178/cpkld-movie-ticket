@@ -30,8 +30,7 @@ public class Theater {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Room.class)
-    @JoinColumn(name = "room_id", nullable = false)
+    @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY, targetEntity = Room.class)
     @JsonBackReference
     private List<Room> rooms;
 }

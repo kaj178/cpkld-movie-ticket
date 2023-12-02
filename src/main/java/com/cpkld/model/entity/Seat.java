@@ -1,5 +1,6 @@
 package com.cpkld.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Seat {
     private Room room;
 
     @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    @JsonBackReference
     private List<Ticket> tickets;
 
 }

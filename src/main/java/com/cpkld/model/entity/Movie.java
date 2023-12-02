@@ -77,19 +77,6 @@ public class Movie {
         inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
 
-
     private List<MovieGenre> movieGenres;
-
-    // public Movie(String name, LocalDate premier, LocalTime time, String description,
-    //              String imageUrl, String trailerUrl, String story, Studio studio) {
-    //     this.name = name;
-    //     this.premier = premier;
-    //     this.time = time;
-    //     this.description = description;
-    //     this.imageUrl = imageUrl;
-    //     this.trailerUrl = trailerUrl;
-    //     this.story = story;
-    //     this.studio = studio;
-    // }
 
 }

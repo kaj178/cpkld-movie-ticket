@@ -69,7 +69,7 @@ public class BookingServiceImpl implements BookingService {
             firstTicket = tickets.get(0);
             formatName = firstTicket.getShowTime().getFormat().getName();
             age = firstTicket.getShowTime().getMovie().getAge();
-            startTime = firstTicket.getShowTime().getStartTime();
+//            startTime = firstTicket.getShowTime().getStartTime();
             for (Ticket item : tickets) {
                 seatName.append(item.getSeat().getSeatName()).append(", ");
                 movieName.append(item.getShowTime().getMovie().getName()).append(", ");
@@ -82,7 +82,7 @@ public class BookingServiceImpl implements BookingService {
 
             bookingDTO.setAge(age);
             bookingDTO.setFormat(formatName);
-            bookingDTO.setStartTime(startTime);
+//            bookingDTO.setStartTime(startTime);
             bookingDTO.setTheaterName(firstTicket.getSeat().getRoom().getTheater().getName());
 
             bookingDTO.setTotalPrice(booking.getTotalPrice());

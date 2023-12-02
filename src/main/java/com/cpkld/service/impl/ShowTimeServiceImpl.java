@@ -38,8 +38,8 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 
 
         showTimeDTO.setShowTimeId(showTime.getId());
-        showTimeDTO.setStartTime(showTime.getStartTime());
-        showTimeDTO.setEndTime(showTime.getEndTime());
+//        showTimeDTO.setStartTime(showTime.getStartTime());
+//        showTimeDTO.setEndTime(showTime.getEndTime());
         showTimeDTO.setStatus(showTime.getStatus());
 
         Movie movie = showTime.getMovie();
