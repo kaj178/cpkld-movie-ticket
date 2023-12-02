@@ -3,7 +3,6 @@ package com.cpkld.service.impl;
 import com.cpkld.dto.BookingDTO;
 import com.cpkld.model.entity.Booking;
 import com.cpkld.model.entity.MenuBooking;
-import com.cpkld.model.entity.Seat;
 import com.cpkld.model.entity.Ticket;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;

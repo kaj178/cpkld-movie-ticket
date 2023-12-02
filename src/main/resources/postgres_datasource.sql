@@ -671,6 +671,13 @@ SELECT * FROM public."movie_genre"
 SELECT * FROM public."detail_movie_genre"
 SELECT * FROM public.format
 SELECT * FROM public.theater
+SELECT * FROM public.room
+SELECT * FROM public.seat
+SELECT * FROM public.showtime
+SELECT * FROM public.ticket"
+SELECT * FROM public."ticket-status"
+SELECT * FROM public.booking
+SELECT * FROM public."menu_booking"
 
 SELECT mv.*, lg.language_name
 FROM public.movie as mv

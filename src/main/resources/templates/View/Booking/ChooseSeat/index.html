@@ -37,7 +37,7 @@
     <!-- Nav -->
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../../index.html">
+        <a class="navbar-brand" href="/">
           <div class="logo">5CT</div>
         </a>
         <button
@@ -56,34 +56,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto d-flex w-100">
             <li class="nav-item">
-              <a class="nav-link" href="../../MovieList/index.html">PHIM</a>
+              <a class="nav-link" href="/movie-list">PHIM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../Detail/index.html">LỊCH CHIẾU</a>
+              <a class="nav-link" href="/detail">LỊCH CHIẾU</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../Account/ThongTinCaNhan/index.html"
+              <a class="nav-link" href="/personal-profile"
                 >THÔNG TIN</a
               >
             </li>
             <li class="nav-item" id="login-accout">
-              <a class="nav-link" href="../../Login_Modal/LoginModal.html"
-                >Đăng nhập</a
-              >
-            </li>
-            <li class="nav-item" id="create-accout">
-              <a class="nav-link" href="../../Signup_Modal/index.html"
-                >Đăng ký</a
-              >
-            </li>
-            <li
-              class="nav-item d-flex align-items-center ms-auto visually-hidden"
-              id="user-account"
-            >
-              <a class="nav-link" href="../../Account/ThongTinCaNhan/"></a>
-            </li>
-            <li class="nav-item visually-hidden" id="signout">
-              <a class="nav-link" href="#">Đăng xuất</a>
+              <div class="info">
+                <a th:href="@{/logout}">Logout</a>
+              </div>
             </li>
           </ul>
         </div>
@@ -97,7 +83,7 @@
       
     >
       <div class="screen-container position-relative">
-        <img src="../../../images/screen.png" alt="" />
+        <img src="../public/screen.png" alt="" />
         <span>SCREEN</span>
       </div>
       <div class="seats-container"></div>
@@ -217,7 +203,7 @@
         <div class="title">COMBO</div>
         <div class="content combo-content">0 ₫</div>
       </div>
-      <a href="../ComboFoodDrink/index.html" style="text-decoration: none">
+      <a href="/combo" style="text-decoration: none">
         <button class="btn-main">CHỌN COMBO</button>
         <div class="total total-content">0 ₫</div>
       </a>
@@ -268,19 +254,19 @@
             <div style="margin-top: 20px">
               <div>
                 <a href="#" class="btn-footer">
-                  <img src="../../../images/email-multiple-outline.png" />
+                  <img src="../public/email-multiple-outline.png" />
                   hoidap@5ct.vn
                 </a>
               </div>
               <div>
                 <a href="#" class="btn-footer">
-                  <img src="../../../images/phone.png" /> 1900 1008
+                  <img src="../public/phone.png" /> 1900 1008
                 </a>
               </div>
               <div class="footer-icon">
-                <a href="#"> <img src="../../../images/facebook.png" /> </a>
-                <a href="#"> <img src="../../../images/twitter.png" /> </a>
-                <a href="#"> <img src="../../../images/google-plus.png" /> </a>
+                <a href="#"> <img src="../public/facebook.png" /></a>
+                <a href="#"> <img src="../public/twitter.png" /></a>
+                <a href="#"> <img src="../public/google-plus.png" /></a>
               </div>
             </div>
           </div>

@@ -45,5 +45,10 @@ public class HomeController {
     public String getDetailpPage() {
         return "View/Detail/index";
     }
+
+    @GetMapping("/contact")
+    public String getContact() {
+        return "View/Contact/index";
+    }
     
 }

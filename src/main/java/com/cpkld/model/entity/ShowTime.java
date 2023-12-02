@@ -33,7 +33,7 @@ public class ShowTime {
     private String status;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Movie.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id", insertable = false)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Format.class, cascade = CascadeType.ALL)
