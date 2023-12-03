@@ -702,6 +702,13 @@ select * from public.showtime
 select * from public.room
 select * from public.theater
 
+ALTER TABLE public.theater DROP COLUMN name;
+
+select th.* from public.theater th
+join room r on th.theater_id = r.theater_id
+join showtime st on st.room_id = r.room_id
+join ticket t on t.showtime_id = st.showtime_id
+where t.ticket_id = 1
 
 select t.* from public.ticket t
 join public.booking b on t.booking_id = b.booking_id

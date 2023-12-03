@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,13 +35,9 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 
     public ShowTimeDTO convertEntityToDTO(ShowTime showTime) {
         ShowTimeDTO showTimeDTO = new ShowTimeDTO();
-//        List<Ticket> tickets = new ArrayList<>();
-
 
         showTimeDTO.setShowTimeId(showTime.getId());
-//        showTimeDTO.setStartTime(showTime.getStartTime());
-//        showTimeDTO.setEndTime(showTime.getEndTime());
-        showTimeDTO.setStatus(showTime.getStatus());
+        showTimeDTO.setStartTime(showTime.getStartTime());
 
         Movie movie = showTime.getMovie();
         showTimeDTO.setMovieId(movie.getMovieId());

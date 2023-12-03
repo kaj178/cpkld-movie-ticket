@@ -12,10 +12,7 @@ import java.time.LocalDateTime;
 public class ShowTimeDTO {
     private Integer showTimeId;
     private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String status;
     private Integer movieId;
     private String formatName;
     private String theaterName;
-//    private List<Ticket> tickets;
 }
