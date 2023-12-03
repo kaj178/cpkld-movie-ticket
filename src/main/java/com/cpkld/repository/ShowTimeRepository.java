@@ -20,7 +20,7 @@ public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
     @Query(value = "select s.* from showtime s " +
             "join movie m on s.movie_id = m.movie_id " +
             "join detail_movie_genre dmg on m.movie_id = dmg.movie_id " +
-            "where dmg.genre_id = :genreId and start_time <= :startTime and start_time >= :endTime ",
+            "where dmg.genre_id = :genreId and start_time >= :startTime and start_time < :endTime ",
             nativeQuery = true)
     Optional<List<ShowTime>> getShowTimeByDateAndGenre(
             @Param("startTime") LocalDateTime start,
