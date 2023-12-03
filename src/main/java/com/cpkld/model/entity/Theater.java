@@ -15,7 +15,7 @@ public class Theater {
     @Column(name = "theater_id")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "theater_name")
     private String name;
 
     @Column(name = "address")

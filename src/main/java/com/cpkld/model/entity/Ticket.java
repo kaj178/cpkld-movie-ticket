@@ -19,10 +19,12 @@ public class Ticket {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = ShowTime.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "showtime_id")
+    @JsonBackReference
     private ShowTime showTime;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Seat.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "seat_id")
+    @JsonBackReference
     private Seat seat;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = TicketStatus.class, cascade = CascadeType.ALL)
@@ -33,5 +35,6 @@ public class Ticket {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Booking.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "booking_id")
+    @JsonBackReference
     private Booking booking;
 }

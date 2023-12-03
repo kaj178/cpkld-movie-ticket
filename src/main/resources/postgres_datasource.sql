@@ -691,4 +691,42 @@ JOIN public."movie_genre" mg ON mg.genre_id = dmg.genre_id
 WHERE mg.genre_id = 1 AND mv.year = 2023
 
 
+-- Test by TLD
+select * from public.user
+select * from public.customer
 
+select * from public.booking
+select * from public.ticket
+select * from public.seat
+select * from public.showtime
+select * from public.room
+select * from public.theater
+
+
+select t.* from public.ticket t
+join public.booking b on t.booking_id = b.booking_id
+where b.booking_id = 1
+
+select * from public.seat s
+join public.ticket t on s.seat_id = t.seat_id
+where t.ticket_id = 1
+
+select * from public.ticket t
+join public.customer c on t.customer_id = c.customer_id
+where t.ticket_id = 1
+
+select c.email from public.ticket t
+join public.booking b on b.booking_id = t.booking_id
+join public.customer c on c.customer_id = b.booking_id
+where t.ticket_id = 1
+
+select m.* from public.movie m
+join public.showtime s on s.movie_id = m.movie_id
+join public.ticket t on t.showtime_id = s.showtime_id
+where t.ticket_id = 1
+
+select * from public.detail_movie_genre
+select g.* from public.movie_genre g
+join public.detail_movie_genre dmg on g.genre_id = dmg.genre_id
+join public.movie m on m.movie_id = dmg.movie_id
+where m.movie_id = 1

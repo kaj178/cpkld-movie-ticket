@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
-    private Integer ticketId;
+    private Integer bookingId;
+    private List<Integer> ticketsId;
     private String email;
     private LocalDateTime startTime;
     private String movieName;

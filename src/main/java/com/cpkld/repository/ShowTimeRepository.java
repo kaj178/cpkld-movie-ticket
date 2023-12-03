@@ -19,22 +19,34 @@ public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
 
     @Query(value = "select s.* from showtime s " +
             "join movie m on s.movie_id = m.movie_id " +
-            "join detail_movie_genre dmg on m.movie_id = dmg.movie_id" +
-            "where dmg.genre_id = :genreId and start_time <= :startTime and start_time >= :endTime",
+            "join detail_movie_genre dmg on m.movie_id = dmg.movie_id " +
+            "where dmg.genre_id = :genreId and start_time <= :startTime and start_time >= :endTime ",
             nativeQuery = true)
-    Optional<List<ShowTime>> getShowTimeByDateAndGenre(@Param("startTime") LocalDateTime start, @Param("endTime") LocalDateTime end, @Param("genreId") Integer genreId);
+    Optional<List<ShowTime>> getShowTimeByDateAndGenre(
+            @Param("startTime") LocalDateTime start,
+            @Param("endTime") LocalDateTime end,
+            @Param("genreId") Integer genreId
+    );
 
-    @Query(value = "select s.* from showtime s" +
-            "join movie m on m.movie_id = s.movie_id" +
-            "join room r on r.room_id = s.room_id" +
-            "where r.theater_id = :theaterId and s.movie_id = :movieId"
+    @Query(value = "select s.* from showtime s " +
+            "join movie m on m.movie_id = s.movie_id " +
+            "join room r on r.room_id = s.room_id " +
+            "where r.theater_id = :theaterId and s.movie_id = :movieId "
     , nativeQuery = true)
-    Optional<List<ShowTime>> getShowTimeByMovieAndTheater(@Param("theaterId") Integer theaterId, @Param("movieId") Integer movieId);
+    Optional<List<ShowTime>> getShowTimeByMovieAndTheater(
+            @Param("theaterId") Integer theaterId,
+            @Param("movieId") Integer movieId
+    );
 
-    @Query(value = "select s.* from showtime s" +
-            "join room r on r.room_id = s.room_id" +
-            "where r.theater_id = :theaterId and s.start_time >= :endTime and s.start_time <= :startTime"
+    @Query(value = "select s.* from showtime s " +
+            "join room r on r.room_id = s.room_id " +
+            "where r.theater_id = :theaterId and s.start_time >= :endTime and s.start_time <= :startTime "
     , nativeQuery = true)
-    Optional<List<ShowTime>> getShowTimeByDateAndTheater(@Param("startTime") LocalDateTime start, @Param("endTime") LocalDateTime end, @Param("theaterId") Integer theaterId);
+    Optional<List<ShowTime>> getShowTimeByDateAndTheater(
+            @Param("startTime") LocalDateTime start,
+            @Param("endTime") LocalDateTime end,
+            @Param("theaterId") Integer theaterId)
+            ;
+
 
 }
