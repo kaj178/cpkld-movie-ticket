@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,11 +59,14 @@ public class ShowTimeServiceImpl implements ShowTimeService {
         int day = YYYYMMDD % 100;
 
         LocalDate localDate = LocalDate.of(year, month, day);
-        LocalDate localDateEnd = LocalDate.of(year, month, day+1);
-        LocalDateTime localDateTimeStart = localDate.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
-        LocalDateTime localDateTimeEnd = localDateEnd.atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
 
-        Optional<List<ShowTime>> optional = showTimeRepository.findByStartTimeBetween(localDateTimeStart, localDateTimeEnd);
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
+
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        Optional<List<ShowTime>> optional = showTimeRepository.getAllShowTimeByDate(localDateTimeStart, localDateTimeEnd);
         if (optional.isEmpty()) {
             throw new ShowTimeNotFoundException("Showtime not found!");
         }
@@ -77,6 +81,80 @@ public class ShowTimeServiceImpl implements ShowTimeService {
         );
     }
 
+    @Override
+    public ResponseEntity<?> getShowTimeByDateAndGenre(int YYYYMMDD, Integer genreId) {
+        int year = YYYYMMDD/10000;
+        int month = (YYYYMMDD % 10000) / 100;
+        int day = YYYYMMDD % 100;
+
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
+
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndGenre(localDateTimeStart, localDateTimeEnd, genreId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
+        }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getShowTimeByMovieAndTheater(Integer movieId, Integer theaterId) {
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByMovieAndTheater(movieId, theaterId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
+        }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getShowTimeByDateAndTheater(int YYYYMMDD, Integer theaterId) {
+        int year = YYYYMMDD/10000;
+        int month = (YYYYMMDD % 10000) / 100;
+        int day = YYYYMMDD % 100;
+
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
+
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndTheater(localDateTimeStart, localDateTimeEnd, theaterId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
+        }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()
+                ),
+                HttpStatus.OK
+        );
+    }
 
 
     public ShowTimeDTO convertEntityToDTO(ShowTime showTime) {

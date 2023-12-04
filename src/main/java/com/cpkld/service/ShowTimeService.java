@@ -8,4 +8,12 @@ public interface ShowTimeService {
     ResponseEntity<?> getShowTimeById(Integer showTimeId);
 
     ResponseEntity<?> getAllShowTimeByDate(int YYYYMMDD);
+
+    ResponseEntity<?> getShowTimeByDateAndGenre(int YYYYMMDD, Integer genreId);
+
+    ResponseEntity<?> getShowTimeByMovieAndTheater(Integer movieId, Integer theaterId);
+
+    ResponseEntity<?> getShowTimeByDateAndTheater(int YYYYMMDD, Integer theaterId);
+
+
 }
