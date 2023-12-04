@@ -397,64 +397,6 @@
         </div>
       </div>
     </div>
-    <script type="module">
-      import { XORDecrypt } from "../../Util/EncryptXOR.js";
-      import { getCustomerByEmail } from "../../API/UserAPI.js";
-      $(document).ready(function(){
-                // Navbar for logged in
-                if (sessionStorage.getItem("Email")) {
-          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
-          getCustomerByEmail("../../..", email).then((res) => {
-            let data = JSON.parse(res.user);
-            let name = data.customer.FullName;
-            $("#create-accout").addClass("visually-hidden");
-            $("#login-accout").addClass("visually-hidden");
-            $("#user-account")
-              .removeClass("visually-hidden")
-              .find("a")
-              .text(name);
-            $("#signout").removeClass("visually-hidden");
-          });
-        } else {
-          window.location.href = "../../Login_Modal/LoginModal.html";
-        }
-        
-        function checkEnterInfo(){
-          if ($(".atm-info").css("display") == "block" && $("#atm-number").val()!="" && $("#user-name").val()!="" && $("#year").val()!="" && $("#flexCheckDefault").is(":checked")){
-            return true;
-          }
-          return false;
-        }
-        $(".method").click(function(){
-          let all_method =  $(document).find(".method");
-          for (let i = 0; i < all_method.length; i++) {
-            if ($(this).find("p").text() != $(all_method[i]).find("p").text()){
-              $(all_method[i]).css("border","1px solid white");
-              $(all_method[i]).find("p").css("color","white");
-            }
-          }
-          if ($(this).css("border")=="0.8px solid rgb(255, 60, 172)" && $(".atm-info").css("display") == "block"){
-            $(this).css("border","1px solid white")
-            $(this).find("p").css("color","white")
-            $(".atm-info").css("display","none");
-          }
-          else{
-            $(this).css("border","1px solid #ff3cac")
-            $(this).find("p").css("color","#ff3cac")
-            $(".atm-info").css("display","block");
-          }
-        })
-        $("#bill-btn").click(function(){
-          if (checkEnterInfo()){
-            $('#ModalPayment').modal('show'); 
-            $("#check-bill").text("");
-          }
-          else{
-            $("#check-bill").text("Vui lòng nhập đầy đủ phương thức thanh toán");
-            $("#check-bill").css("color","red");
-          }
-        })
-      })
-    </script>
+    <script type="module" src="/js/main/booking/atm_payment.js"></script>
   </body>
 </html>

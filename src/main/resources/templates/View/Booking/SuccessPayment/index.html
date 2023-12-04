@@ -191,32 +191,6 @@
         </div>
       </div>
     </div>
-    <script type="module">
-      import { XORDecrypt } from "../../Util/EncryptXOR.js";
-      import { getCustomerByEmail } from "../../API/UserAPI.js";
-      $(document).ready(() => {
-        let billid = sessionStorage.getItem("BillID");
-        $(".money-info")
-          .text(`Thông tin chuyển tiền Momo:0764884258 (Cú pháp chuyển
-                tiền:5CT_${billid})`);
-        // Navbar for logged in
-        if (sessionStorage.getItem("Email")) {
-          let email = XORDecrypt(window.sessionStorage.getItem("Email"));
-          getCustomerByEmail("../../..", email).then((res) => {
-            let data = JSON.parse(res.user);
-            let name = data.customer.FullName;
-            $("#create-accout").addClass("visually-hidden");
-            $("#login-accout").addClass("visually-hidden");
-            $("#user-account")
-              .removeClass("visually-hidden")
-              .find("a")
-              .text(name);
-            $("#signout").removeClass("visually-hidden");
-          });
-        } else {
-          window.location.href = "../../Login_Modal/LoginModal.html";
-        }
-      });
-    </script>
+    <script type="module" src="/js/main/booking/success_payment.js"></script>
   </body>
 </html>

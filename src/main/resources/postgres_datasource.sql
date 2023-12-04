@@ -733,6 +733,7 @@ join public.ticket t on t.showtime_id = s.showtime_id
 where t.ticket_id = 1
 
 select * from public.detail_movie_genre
+
 select g.* from public.movie_genre g
 join public.detail_movie_genre dmg on g.genre_id = dmg.genre_id
 join public.movie m on m.movie_id = dmg.movie_id
