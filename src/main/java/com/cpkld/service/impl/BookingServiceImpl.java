@@ -4,13 +4,11 @@ import com.cpkld.dto.AnnualRevenueDTO;
 import com.cpkld.dto.BookingDTO;
 import com.cpkld.dto.MonthlyRevenueDTO;
 import com.cpkld.dto.QuarterlyRevenueDTO;
-import com.cpkld.model.entity.Booking;
-import com.cpkld.model.entity.MenuBooking;
-import com.cpkld.model.entity.Seat;
-import com.cpkld.model.entity.Ticket;
+import com.cpkld.model.entity.*;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;
 import com.cpkld.repository.SeatRepository;
+import com.cpkld.repository.TheaterRepository;
 import com.cpkld.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +27,8 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepository bookingRepository;
     @Autowired
-    private SeatRepository seatRepository;
+    private TheaterRepository theaterRepository;
+
     @Override
     public ResponseEntity<?> getAll() {
         List<Booking> bookings = bookingRepository.findAll();
@@ -124,6 +123,43 @@ public class BookingServiceImpl implements BookingService {
         BookingDTO bookingDTO = new BookingDTO();
         bookingDTO.setTotalPrice(booking.getTotalPrice());
         bookingDTO.setStartTime(booking.getBookingTime());
+
+        bookingDTO.setBookingId(booking.bookingId);
+        Ticket ticket = new Ticket();
+
+        List<Ticket> tickets = booking.getTickets();
+        List<Integer> listTicketId = new ArrayList<>();
+
+
+        String formatName = "";
+        for (Ticket item : tickets) {
+            listTicketId.add(item.getTicketId());
+            ticket = item;
+
+        }
+
+        formatName = ticket.getShowTime().getFormat().getName();
+
+        bookingDTO.setTicketsId(listTicketId);
+        bookingDTO.setEmail(booking.getCustomer().getEmail());
+        bookingDTO.setFormat(formatName);
+
+        Theater theater = theaterRepository.getTheaterByTicketId(ticket.getTicketId());
+        bookingDTO.setTheaterName(theater.getName());
+
+        List<Menu> menus = new ArrayList<>();
+        List<MenuBooking> menuBooking = booking.getMenuBookings();
+        for (MenuBooking item : menuBooking) {
+            menus.add(item.getMenu());
+        }
+
+        StringBuilder comboName = new StringBuilder();
+        for (Menu item : menus) {
+            comboName.append(item.getName()).append(", ");
+        }
+        bookingDTO.setCombo(String.valueOf(comboName));
+
+
         return bookingDTO;
     }
 

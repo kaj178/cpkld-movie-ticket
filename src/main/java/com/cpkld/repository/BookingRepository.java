@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-
     Optional<Booking> findBookingByBookingId(Integer bookingId);
     Optional<List<Booking>> getAllByBookingTime(LocalDateTime bookingTime);
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -12,14 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingDTO {
     private Integer bookingId;
-    private List<Integer> ticketsId;
+    private List<Integer> ticketsId = new ArrayList<>();
     private String email;
     private LocalDateTime startTime;
     private String movieName;
     private String format;
-
-    //Doi tuong = movie.age
-    private int age;
 
     private String theaterName;
 

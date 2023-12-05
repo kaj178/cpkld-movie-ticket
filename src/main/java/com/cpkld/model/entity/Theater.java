@@ -21,14 +21,12 @@ public class Theater {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone")
     private String phoneNumber;
 
-    @Column(name = "num_of_rooms")
+    @Column(name = "number_of_room")
     private Integer numberOfRooms;
 
-    @Column(name = "image_url")
-    private String imageUrl;
 
     @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY, targetEntity = Room.class)
     @JsonBackReference

@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface FormatRepository extends JpaRepository<Format, Integer> {
-    Format getById(Integer id);
+    Optional<Format> getFormatById(Integer formatId);
 }
