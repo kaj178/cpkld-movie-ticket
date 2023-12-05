@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +13,9 @@ import java.time.LocalDateTime;
 public class ShowTimeDTO {
     private Integer showTimeId;
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Set<String> price;
     private Integer movieId;
+    private Integer roomId;
     private String formatName;
-    private String theaterName;
 }

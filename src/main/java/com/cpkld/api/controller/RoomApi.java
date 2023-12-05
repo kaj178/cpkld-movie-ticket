@@ -14,8 +14,13 @@ public class RoomApi {
     @Autowired
     RoomService roomService;
 
+    @GetMapping
+    public ResponseEntity<?> readAllRooms() {
+        return roomService.getAllRooms();
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> getRoomById(@PathVariable("id") Integer roomId) {
+    public ResponseEntity<?> readRoomById(@PathVariable("id") Integer roomId) {
         return roomService.getRoomById(roomId);
     }
 }

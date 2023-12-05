@@ -14,6 +14,11 @@ public class TheaterApi {
     @Autowired
     private TheaterService theaterService;
 
+    @GetMapping
+    public ResponseEntity<?> readAllTheaters() {
+        return theaterService.getAllTheaters();
+    }
+
     @GetMapping(value = "theaters", params = {"num_page"})
     public ResponseEntity<?> getAllTheaters(@RequestParam("num_page") int numPage) {
         return  theaterService.getAllTheaters(numPage-1);

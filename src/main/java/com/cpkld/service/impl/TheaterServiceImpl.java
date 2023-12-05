@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,17 +22,28 @@ public class TheaterServiceImpl implements TheaterService {
     private TheaterRepository theaterRepository;
 
     @Override
+    public ResponseEntity<?> getAllTheaters() {
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                theaterRepository.findAll().stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
     public ResponseEntity<?> getAllTheaters(int page) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("theater_id").ascending());
         Page<Theater> theaterPage = theaterRepository.getAllTheater(pageable);
-
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        theaterPage.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                theaterPage.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
         );
     }
 
@@ -43,9 +53,7 @@ public class TheaterServiceImpl implements TheaterService {
         theaterDTO.setTheaterName(theater.getName());
         theaterDTO.setAddress(theater.getAddress());
         theaterDTO.setPhoneNumber(theater.getPhoneNumber());
-
         theaterDTO.setAmountRoom(theater.getNumberOfRooms());
-
         return theaterDTO;
     }
 }

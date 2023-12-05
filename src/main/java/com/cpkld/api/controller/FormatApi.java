@@ -11,6 +11,11 @@ public class FormatApi {
     @Autowired
     private FormatService formatService;
 
+    @GetMapping
+    public ResponseEntity<?> getAllFormat() {
+        return formatService.getAllFormat();
+    }
+
     @GetMapping("/{formatId}")
     public ResponseEntity<?> getFormatById(@PathVariable("formatId") Integer formatId) {
         return formatService.getFormatById(formatId);

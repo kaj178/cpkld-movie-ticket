@@ -20,7 +20,14 @@ public class FormatServiceImpl implements FormatService {
     private FormatRepository formatRepository;
     @Override
     public ResponseEntity<?> getAllFormat() {
-        return null;
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                formatRepository.findAll().stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
     }
 
     @Override
@@ -29,14 +36,13 @@ public class FormatServiceImpl implements FormatService {
         if (optional.isEmpty()) {
             throw new FormatNotFoundException("Format not founded!");
         }
-
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
         );
     }
 

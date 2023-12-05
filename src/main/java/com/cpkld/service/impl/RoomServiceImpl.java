@@ -19,6 +19,19 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     RoomRepository roomRepository;
 
+    @Override
+    public ResponseEntity<?> getAllRooms() {
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                roomRepository.findAll().stream()
+                    .map(this::convertEntityToDTO)
+                    .collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
 
     @Override
     public ResponseEntity<?> getRoomById(Integer roomId) {

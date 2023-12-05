@@ -15,8 +15,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -157,19 +160,23 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 
     public ShowTimeDTO convertEntityToDTO(ShowTime showTime) {
         ShowTimeDTO showTimeDTO = new ShowTimeDTO();
-
+        Set<String> seatList = new HashSet<>();
+        for (Seat seat : showTime.getRoom().getSeats()) {
+            seatList.add(seat.getType());
+        }
         showTimeDTO.setShowTimeId(showTime.getId());
         showTimeDTO.setStartTime(showTime.getStartTime());
+        showTimeDTO.setEndTime(showTime.getEndTime());
+        showTimeDTO.setPrice(seatList);
 
         Movie movie = showTime.getMovie();
         showTimeDTO.setMovieId(movie.getMovieId());
 
+        Room room = showTime.getRoom();
+        showTimeDTO.setRoomId(room.getRoomId());
+
         Format format = showTime.getFormat();
         showTimeDTO.setFormatName(format.getName());
-
-        Room room = showTime.getRoom();
-        Theater theater = room.getTheater();
-        showTimeDTO.setTheaterName(theater.getName());
 
         return showTimeDTO;
     }
