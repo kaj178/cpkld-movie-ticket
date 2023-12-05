@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -17,16 +16,10 @@ public class TicketDTO {
     private LocalDate dateTime;
     private String movieName;
     private String type;
-
     private String customerEmail;
-    //Doi tuong = movie.age
     private int age;
-
     private String theaterName;
-
     private String combo;
     private String seats;
-
     private double totalPrice;
-
 }

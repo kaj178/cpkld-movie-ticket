@@ -1,23 +1,19 @@
-const getShowTimeByID = async (url, id=1) => {
-  const data = await fetch(
-    `${url}/Controller/Showtime/ajax.php?action=getShowTimeById&id=${id}`,
-    {
-      method: "GET",
-    }
-  );
+const getShowTimeByID = async (url, id) => {
+  const data = await fetch(`${url}/api/v1/showtime?id=${id}`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
-const getAllShowTime = async (url, page=1) => {
-  const data = await fetch(
-    `${url}/Controller/Showtime/ajax.php?action=getAllShowTime&page=${page}`,
-    {
-      method: "GET",
-    }
-  );
+
+const getAllShowTime = async (url) => {
+  const data = await fetch(`${url}/api/v1/showtime`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getAllShowTimesByDate = async (url, date = "2022-10-10") => {
   const data = await fetch(
     `${url}/Controller/Showtime/ajax.php?action=getShowTimeByDate&date=${date}`,
@@ -28,6 +24,7 @@ const getAllShowTimesByDate = async (url, date = "2022-10-10") => {
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getShowTimeByDateAndGenre = async (
   url,
   date = "2022-10-10",
@@ -42,6 +39,7 @@ const getShowTimeByDateAndGenre = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getShowTimeByMovieandTheater = async (
   url,
   movieid = 1,
@@ -57,6 +55,7 @@ const getShowTimeByMovieandTheater = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getAllShowtimeByMovieID = async (
   url,
   movieid = 1,
@@ -71,6 +70,7 @@ const getAllShowtimeByMovieID = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 const updateShowTime = async (
   url = "../..",
   Price,
@@ -131,6 +131,7 @@ const addShowTime = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getShowTimeByDateAndTheater = async (
   url,
   date = "2022-10-10",
@@ -145,6 +146,7 @@ const getShowTimeByDateAndTheater = async (
   const datatorender = await data.json();
   return datatorender;
 };
+
 export {
   getShowTimeByID,
   getAllShowTimesByDate,
