@@ -41,6 +41,11 @@ public class CustomerApi {
         return service.getPaginated(page - 1);
     }
 
+    @GetMapping(params = "email")
+    public ResponseEntity<?> readCustomerByEmail(@RequestParam("email") String email) {
+        return service.getByEmail(email);
+    }
+
     /* /api/v1/customer */
     @PostMapping
     public ResponseEntity<?> createCustomer(@RequestBody CustomerDTO customerDTO) {

@@ -65,6 +65,22 @@ public class CustomerServiceImpl implements CustomerService {
         );
     }
 
+    @Override
+    public ResponseEntity<?> getByEmail(String email) {
+        Optional<Customer> optional = repo.findByEmail(email);
+        if (!optional.isPresent()) {
+            throw new CustomerNotFoundException("Customer not found");
+        }
+        return new ResponseEntity<>(
+            new ApiResponse<>(
+                HttpStatus.OK.value(), 
+                "Success", 
+                optional.stream().map(this::convertEntityToDto).toList()
+            ),
+            HttpStatus.OK
+        );
+    }
+
     // Get list of data paginated
     @Override
     public ResponseEntity<?> getPaginated(int page) {

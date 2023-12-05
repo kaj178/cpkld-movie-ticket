@@ -10,6 +10,8 @@ public interface CustomerService {
 
     ResponseEntity<?> getById(Integer id);
 
+    ResponseEntity<?> getByEmail(String email);
+
     ResponseEntity<?> getPaginated(int page);
 
     ResponseEntity<?> add(CustomerDTO customerDTO);

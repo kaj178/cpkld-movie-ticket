@@ -654,9 +654,15 @@ INSERT INTO public."ticket"("showtime_id", "seat_id", "status_id") VALUES
 
 
 -- -- Thêm dữ liệu vào bảng "menu"
--- INSERT INTO public."menu" VALUES
---     ('item001', 'Item 1', 10, 'https://item1.jpg', TRUE),
---     ('item002', 'Item 2', 15, 'https://item2.jpg', FALSE);
+INSERT INTO public.menu ("name", price, "image_url", status) VALUES
+('Bắp thường', 50000, 'item1.jpg', 1),
+('Coca Cola', 15000, 'item2.jpg', 1),
+('Pepsi', 12000, 'item3.jpg', 1),
+('Nước cam', 20000, 'item4.jpg', 1),
+('Snack', 15000, 'item5.jpg', 1),
+('Bắp phô mai', 70000, 'item6.jpg', 1),
+('Combo 1 bắp thường 1 nước tự chọn', 80000, 'item7.jpg', 1),
+('Combo 1 bắp phô mai 2 nước tự chọn', 120000, 'item8.jpg', 1);
 
 SELECT * FROM public.role
 SELECT * FROM public.user
@@ -677,6 +683,7 @@ SELECT * FROM public.showtime
 SELECT * FROM public.ticket"
 SELECT * FROM public."ticket-status"
 SELECT * FROM public.booking
+SELECT * FROM public.menu
 SELECT * FROM public."menu_booking"
 
 SELECT mv.*, lg.language_name
@@ -690,6 +697,9 @@ JOIN public."detail_movie_genre" dmg ON mv.movie_id = dmg.movie_id
 JOIN public."movie_genre" mg ON mg.genre_id = dmg.genre_id
 WHERE mg.genre_id = 1 AND mv.year = 2023
 
+SELECT c.*
+FROM public.customer c
+WHERE c.email = 'anhkhoa5525@gmail.com'
 
 -- Test by TLD
 select * from public.user
