@@ -2,6 +2,7 @@ package com.cpkld.service.impl;
 
 import com.cpkld.dto.TicketDTO;
 import com.cpkld.model.entity.*;
+import com.cpkld.model.exception.notfound.TicketNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.*;
 import com.cpkld.service.TicketService;
@@ -33,6 +34,23 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> tickets = ticketRepository.findAll();
         return new ResponseEntity<>(
                 new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getAllTicketsByShowTimeId(Integer showtimeId) {
+        Optional<List<Ticket>> optional = ticketRepository.getTicketsByShowTimeId(showtimeId);
+        if (optional.isEmpty()) {
+            throw new TicketNotFoundException("Ticket not founded!");
+        }
+        List<Ticket> tickets = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<> (
                         HttpStatus.OK.value(),
                         "Success",
                         tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
