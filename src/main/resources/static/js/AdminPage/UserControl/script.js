@@ -38,22 +38,6 @@ let table = $("#table-content").DataTable({
 $("#table-content_filter").hide();
 
 $(document).ready(() => {
-  // let authFlag = true;
-  // if (sessionStorage.getItem("Email")) {
-  //   let email = XORDecrypt(sessionStorage.getItem("Email"));
-  //   getUserByEmail("../../..", email).then((res) => {
-  //     if (res.role !== "2") authFlag = false;
-  //   });
-  // } else authFlag = false;
-
-  // if (!authFlag) {
-  //   window.location.href = "/login";
-  // }
-
-  // $(".logout-container").click(() => {
-  //   sessionStorage.removeItem("Email");
-  //   window.location.href = "/";
-  // });
 
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
@@ -100,26 +84,6 @@ $(document).ready(() => {
     let address = $("#ModalAddUser .address").val();
     let phone = $("#ModalAddUser .phone").val();
     let type = $("#ModalAddUser .type").val();
-    // // type = 1: Customer
-    // if (type === "1") {
-    //   let address = $("#ModalAddUser .address").val();
-    //   RegisterAPI("../../..", email, password, fullname, address, phone).then(
-    //     (res) => {
-    //       if (res.success == false) {
-    //         $("#ModalAddUser .message")
-    //           .text("Thêm thất bại")
-    //           .removeClass("success");
-    //       } else {
-    //         $("#ModalAddUser .message")
-    //           .text("Thêm thành công")
-    //           .addClass("success");
-    //         $(".all-user").trigger("click");
-    //       }
-    //     }
-    //   );
-    // }
-    // // type = 2: Manager
-    // else {
     addManager("../../..", email, password, fullname, phone, address).then(
       (res) => {
         if (res.status !== 200)
@@ -191,7 +155,6 @@ $(document).ready(() => {
 function showData(currentData) {
   table.clear().draw();
   let data = currentData;
-
   let numRow = data.length;
   for (let i = 0; i < numRow; i++) {
     table.row
@@ -208,46 +171,6 @@ function showData(currentData) {
       .draw();
   }
 }
-
-// function showManagerData(currentData) {
-//   table.clear().draw();
-//   let data = currentData;
-
-//   let numRow = data.length;
-//   for (let i = 0; i < numRow; i++) {
-//     table.row
-//       .add([
-//         data[i].managerId,
-//         data[i].fullname,
-//         data[i].email,
-//         data[i].phone,
-//         data[i].password,
-//         data[i].address ? data[i].address : "",
-//         "Quản lý"
-//       ])
-//       .draw();
-//   }
-// }
-
-// function showCustomerData(currentData) {
-//   table.clear().draw();
-//   let data = currentData;
-
-//   let numRow = data.length;
-//   for (let i = 0; i < numRow; i++) {
-//     table.row
-//       .add([
-//         data[i].customerId,
-//         data[i].fullname,
-//         data[i].email,
-//         data[i].phone,
-//         data[i].password,
-//         data[i].address ? data[i].address : "",
-//         "Khách hàng"
-//       ])
-//       .draw();
-//   }
-// }
 
 async function loadAllUser() {
   currentData = [];

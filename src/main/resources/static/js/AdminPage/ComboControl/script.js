@@ -1,58 +1,49 @@
 import { getAllMenu, addMenu, updateMenu } from "../../API/MenuAPI.js";
 import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
+
 let allData = [];
 let currentData = [];
+
 let table = $("#table-content").DataTable({
-  select: {
-    style: "single",
-    info: false,
+  "pagelength": 5,
+  "lengthMenu": [5, 10],
+  "select": {
+    "style": "single",
+    "info": false,
   },
-  searching: false,
-  language: {
-    lengthMenu: "Số kết quả / Trang _MENU_",
-    zeroRecords: "Không tìm thấy dữ liệu",
-    info: "Hiển thị trang _PAGE_ trên _PAGES_",
-    infoEmpty: "Đang tìm kiếm dữ liệu",
-    infoFiltered: "(filtered from _MAX_ total records)",
-    paginate: {
-      first: "Trang đầu",
-      last: "Trang cuối",
-      next: "Trang sau",
-      previous: "Trang trước",
+  "searching": true,
+  "language": {
+    "lengthMenu": "Số kết quả / Trang _MENU_",
+    "zeroRecords": "Không tìm thấy dữ liệu",
+    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
+    "infoEmpty": "Đang tìm kiếm dữ liệu",
+    "infoFiltered": "(filtered from _MAX_ total records)",
+    "paginate": {
+      "first": "Trang đầu",
+      "last": "Trang cuối",
+      "next": "Trang sau",
+      "previous": "Trang trước",
     },
   },
 });
+
 $("#table-content_filter").hide();
 $(document).ready(() => {
-  // let authFlag = true;
-  // if (sessionStorage.getItem("Email")) {
-  //   let email = XORDecrypt(sessionStorage.getItem("Email"));
-  //   getUserByEmail("../../..", email).then((res) => {
-  //     if (res.role !== "2") authFlag = false;
-  //   });
-  // } else authFlag = false;
-
-  // if (!authFlag) {
-  //   window.location.href = "../../Login_Modal/LoginModal.html";
-  // }
-
-  // $(".logout-container").click(() => {
-  //   sessionStorage.removeItem("Email");
-  //   window.location.href = "../../../";
-  // });
-
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
       var data = table.rows(indexes).data();
       fillEditData(data[0][0]);
     }
   });
+
   $(".item-choosing-block").click(function () {
     $(".item-choosing-block .divider-mini").remove();
     $(this).append("<div class=divider-mini></div>");
   });
-  $(".all-combo").click(() => loadAllMenu().then(() => showData()));
+
+  $(".all-combo").click(() => loadAllMenu().then(() => showData(currentData)));
+
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
     currentData = allData.filter(
@@ -62,6 +53,7 @@ $(document).ready(() => {
     $(".search-result").parent().append("<div class=divider-mini></div>");
     showData();
   });
+
   $("#btn-add").click(() => {
     let Name = $("#ModalAddUser #Name").val().trim();
     let Price = $("#ModalAddUser #Price").val().trim();
@@ -84,6 +76,7 @@ $(document).ready(() => {
         });
       });
   });
+
   $("#btn-edit").click(() => {
     let ItemID = $("#ModalEditUser #ItemID").val().trim();
     let Name = $("#ModalEditUser #Name").val().trim();
@@ -104,21 +97,20 @@ $(document).ready(() => {
       }
     );
   });
-  loadAllMenu().then(() => showData());
+  loadAllMenu().then(() => showData(currentData));
 });
+
 async function loadAllMenu() {
-  currentData = [];
-  let page = 1;
+  currentData = []
   let data;
-  do {
-    data = await getAllMenu("../../..", page);
-    currentData.push(...data.menus);
-    console.log(currentData);
-    page++;
-  } while (data.menus.length != 0);
-  page = 1;
-  allData = [...currentData];
+  data = await getAllMenu("../..")
+  for (let i = 0; i < data.data.length; i++) {
+    currentData.push(data.data[i])
+  }
+  console.log(currentData)
+  return currentData
 }
+
 function toVndCurrencyFormat(number) {
   const currencyFormat = new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -128,33 +120,36 @@ function toVndCurrencyFormat(number) {
 
   return currencyFormat.format(number);
 }
-function showData() {
+
+function showData(currentData) {
   table.clear().draw();
   let data = currentData;
   let numRow = data.length;
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
-        data[i].ItemID,
-        data[i].Name,
-        toVndCurrencyFormat(data[i].Price),
-        data[i].ImageURL,
+        data[i].itemId,
+        data[i].name,
+        data[i].price,
+        'http://localhost:8080/public/img/menu/' + data[i].imgUrl,
         data[i].status,
       ])
       .draw();
   }
 }
+
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
-  let data = currentData.find((e) => e.ItemID === id);
+  let data = currentData.find((e) => e.itemId === id);
   console.log(data);
-  editModal.find("#ItemID").val(data.ItemID);
-  editModal.find("#Name").val(data.Name);
-  editModal.find("#Price").val(data.Price);
-  editModal.find("#image").val(data.ImageURL);
+  editModal.find("#ItemID").val(data.itemId);
+  editModal.find("#Name").val(data.name);
+  editModal.find("#Price").val(data.price);
+  editModal.find("#image").val('http://localhost:8080/public/img/menu/' + data.imgUrl);
   editModal.find("#status").val(data.status);
   editModal.modal("show");
 }
+
 File.prototype.convertToBase64 = function () {
   return new Promise(
     function (resolve, reject) {

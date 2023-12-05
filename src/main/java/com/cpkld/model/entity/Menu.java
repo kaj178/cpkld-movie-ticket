@@ -15,7 +15,7 @@ import java.util.List;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menu_id")
+    @Column(name = "item_id")
     public Integer menuId;
 
     @Column(name = "name")
@@ -24,14 +24,11 @@ public class Menu {
     @Column(name = "price")
     public double price;
 
-    @Column(name = "img_url")
+    @Column(name = "image_url")
     public String imgUrl;
 
     @Column(name = "status")
-    public String status;
-
-    @Column(name = "description")
-    public String description;
+    public Integer status;
 
     @OneToMany(mappedBy = "menu")
     private List<MenuBooking> menuBookings;

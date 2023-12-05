@@ -20,23 +20,23 @@ public class MenuServiceImpl implements MenuService {
     public ResponseEntity<?> getAll() {
         List<Menu> menus = menuRepository.findAll();
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        menus.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
-                );
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                menus.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
     }
 
     private MenuDTO convertEntityToDTO(Menu menu) {
         MenuDTO menuDTO = new MenuDTO();
-        menuDTO.setMenuId(menu.getMenuId());
-        menuDTO.setName(menu.name);
+        menuDTO.setItemId(menu.getMenuId());
+        menuDTO.setName(menu.getName());
         menuDTO.setPrice(menu.getPrice());
         menuDTO.setImgUrl(menu.getImgUrl());
-        menuDTO.setDescription(menu.getDescription());
-
+        menuDTO.setStatus(menu.getStatus() == 1 ? "Còn" : "Hết");
+        // menuDTO.setDescription(menu.getDescription());
         return menuDTO;
     }
 }
