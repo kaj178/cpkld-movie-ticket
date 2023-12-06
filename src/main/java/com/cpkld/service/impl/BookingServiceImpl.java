@@ -49,7 +49,7 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = bookingRepository.findAll();
 
         List<AnnualRevenueDTO> annualRevenueDTOS = new ArrayList<>();
-        for (int year = 2015; year<=2023; year++) {
+        for (int year = 2022; year<=2024; year++) {
             AnnualRevenueDTO annualRevenueDTO = new AnnualRevenueDTO();
             annualRevenueDTO.setYear(year);
 
@@ -125,27 +125,32 @@ public class BookingServiceImpl implements BookingService {
         bookingDTO.setStartTime(booking.getBookingTime());
 
         bookingDTO.setBookingId(booking.bookingId);
-        Ticket ticket = new Ticket();
-
-        List<Ticket> tickets = booking.getTickets();
+//        Ticket ticket = new Ticket();
+//
+//        List<Ticket> tickets = booking.getTickets();
         List<Integer> listTicketId = new ArrayList<>();
 
 
         String formatName = "";
-        for (Ticket item : tickets) {
-            listTicketId.add(item.getTicketId());
-            ticket = item;
 
-        }
+//        for (Ticket item : tickets) {
+//            listTicketId.add(item.getTicketId());
+//            ticket = item;
+//
+//        }
 
-        formatName = ticket.getShowTime().getFormat().getName();
+        //formatName = ticket.getShowTime().getFormat().getName();
 
-        bookingDTO.setTicketsId(listTicketId);
+//        bookingDTO.setTicketsId(listTicketId);
         bookingDTO.setEmail(booking.getCustomer().getEmail());
+        bookingDTO.setCustomerId(booking.getCustomer().getId());
         bookingDTO.setFormat(formatName);
 
-        Theater theater = theaterRepository.getTheaterByTicketId(ticket.getTicketId());
-        bookingDTO.setTheaterName(theater.getName());
+
+        bookingDTO.setAmountItem(booking.amount);
+
+//        Theater theater = theaterRepository.getTheaterByTicketId(ticket.getTicketId());
+//        bookingDTO.setTheaterName(theater.getName());
 
         List<Menu> menus = new ArrayList<>();
         List<MenuBooking> menuBooking = booking.getMenuBookings();
@@ -158,7 +163,16 @@ public class BookingServiceImpl implements BookingService {
             comboName.append(item.getName()).append(", ");
         }
         bookingDTO.setCombo(String.valueOf(comboName));
+        bookingDTO.setStatus(bookingDTO.getStatus());
 
+        String promotionName = "Khong co";
+        Promotion promotion = booking.getPromotion();
+        if (promotion != null) {
+            promotionName = promotion.getName();
+        }
+
+
+        bookingDTO.setPromotionName(promotionName);
 
         return bookingDTO;
     }
