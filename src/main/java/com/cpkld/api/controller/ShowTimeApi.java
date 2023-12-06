@@ -41,4 +41,6 @@ public class ShowTimeApi {
     public ResponseEntity<?> getShowTimeByMovieAndTheater(@RequestParam("movie") Integer movieId, @RequestParam("theater") Integer theaterId) {
         return service.getShowTimeByMovieAndTheater(theaterId, movieId);
     }
+
+
 }

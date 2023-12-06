@@ -6,6 +6,7 @@ import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.exception.existed.MovieExistedException;
 import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.response.ApiResponse;
+import com.cpkld.repository.DetailMovieGenre;
 import com.cpkld.repository.MovieRepository;
 import com.cpkld.service.MovieService;
 
@@ -17,6 +18,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,8 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Autowired
+    private DetailMovieGenre detailMovieGenre;
     @Override
     public ResponseEntity<?> getAll() {
         List<Movie> movies = movieRepository.findAll();
@@ -162,25 +168,47 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public ResponseEntity<?> add(Movie movie) {
-        Optional<Movie> optional = movieRepository.findById(movie.getMovieId());
-        if (optional.isPresent()) {
-            throw new MovieExistedException("Movie is existed!");
-        }
+    public ResponseEntity<?> add(@RequestBody MovieDTO movieDTO) {
+        Movie movie = new Movie();
+
+        movie.setName(movieDTO.getName());
+        movie.setDirector(movieDTO.getDirector());
+        movie.setYear(movieDTO.getYear());
+        movie.setPremiere(movieDTO.getPremiere());
+
+        //Chinh sua url
+        movie.setUrlTrailer(movieDTO.getUrlTrailer());
+        movie.setVerticalPoster(movieDTO.getVerticalPoster());
+        movie.setHorizontalPoster(movieDTO.getHorizontalPoster());
+
+        movie.setTime(movieDTO.getTime());
+        movie.setAge(movieDTO.getAge());
+        movie.setStory(movieDTO.getStory());
+        movie.setRating(movieDTO.getRating());
+
+        List<Movie> movies = movieRepository.findAll();
+        Movie tmpMovie = movies.get(movies.size() - 1);
+
+        List<String> lstMovieGenre = movieDTO.getMovieGenres();
+
+
 
         movieRepository.save(movie);
+
+
         return new ResponseEntity<>(
                 new ApiResponse<>(
                     HttpStatus.OK.value(),
                         "Success",
-                        optional.stream().toList()
+                        movies.stream().toList()
                 ),
                 HttpStatus.OK
         );
     }
 
     @Override
-    public ResponseEntity<?> update(Integer movieId, Movie movie) {
+    public ResponseEntity<?> update(Integer movieId, MovieDTO movieDTO) {
+
         return null;
     }
 
