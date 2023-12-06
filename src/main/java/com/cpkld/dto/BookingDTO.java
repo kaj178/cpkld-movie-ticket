@@ -5,16 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
     private Integer bookingId;
 //    private List<Integer> ticketsId = new ArrayList<>();
-    private String email;
+    // private String email;
     private LocalDateTime startTime;
 //    private String movieName;
     private String format;

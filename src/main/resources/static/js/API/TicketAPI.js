@@ -1,6 +1,6 @@
 const getAllTicketsByShowTimeId = async (url, showtimeID) => {
   console.log(showtimeID);
-  const urls = `${url}/Controller/Ticket/ajax.php?action=getAllTicketsByShowTimeId&ShowTimeId=${showtimeID}`;
+  const urls = `${url}/api/v1/ticket/showtime?showtime_id=${showtimeID}`;
   const data = await fetch(urls, {
     method: "GET",
   });

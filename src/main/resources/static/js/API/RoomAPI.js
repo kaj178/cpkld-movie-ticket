@@ -1,13 +1,11 @@
 const getRoomById = async (url, id = "1") => {
-  const data = await fetch(
-    `${url}/Controller/Room/ajax.php?action=getRoomById&id=${id}`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/room/${id}`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
+
 const getAllRooms = async (url) => {
   const data = await fetch(`${url}/api/v1/room`, {
     method: "GET",
@@ -15,6 +13,7 @@ const getAllRooms = async (url) => {
   const datatorender = await data.json();
   return datatorender;
 };
+
 const updateRoom = async (
   url = "../..",
   RoomName,

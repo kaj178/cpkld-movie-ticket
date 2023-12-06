@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.cpkld.model.entity.Movie;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,8 @@ public class TicketDTO {
     private Integer ticketId;
     private LocalTime startTime;
     private LocalDate dateTime;
-    private String movieName;
+    // private String movieName;
+    private Movie movie;
     private String type;
     private String customerEmail;
     private int age;

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.cpkld.model.entity.Movie;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +17,7 @@ public class ShowTimeDTO {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Set<String> price;
-    private Integer movieId;
+    private Movie movie;
     private Integer roomId;
-    private String formatName;
+    private Integer formatId;
 }

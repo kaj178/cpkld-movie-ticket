@@ -172,6 +172,7 @@ async function loadAllMovie() {
     );
   });
 }
+
 function toVndCurrencyFormat(number) {
   const currencyFormat = new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -181,6 +182,7 @@ function toVndCurrencyFormat(number) {
 
   return currencyFormat.format(number);
 }
+
 function showData() {
   table.clear().draw();
   let data = currentData;
@@ -199,6 +201,7 @@ function showData() {
       .draw();
   }
 }
+
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
   let data = currentData.find((e) => e.ShowtimeID === id);

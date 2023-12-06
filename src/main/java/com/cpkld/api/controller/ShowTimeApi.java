@@ -21,7 +21,6 @@ public class ShowTimeApi {
         return service.getShowTimeById(showTimeId);
     }
 
-
     @GetMapping(value = "/date", params = "date")
     public ResponseEntity<?> getAllShowTimeByDate(@RequestParam("date") Integer date) {
         return service.getAllShowTimeByDate(date);

@@ -32,7 +32,6 @@ public class Ticket {
     @JsonBackReference
     private TicketStatus status;
 
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Booking.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "booking_id")
     @JsonBackReference

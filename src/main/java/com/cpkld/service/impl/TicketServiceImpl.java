@@ -81,7 +81,7 @@ public class TicketServiceImpl implements TicketService {
         }
         ticketDTO.setTicketId(ticket.ticketId);
         ticketDTO.setCustomerEmail(ticketRepository.getEmailCustomerByTicket(ticket.ticketId));
-        ticketDTO.setMovieName(movie.getName());
+        ticketDTO.setMovie(movie);
         ticketDTO.setAge(movie.getAge());
 
         StringBuilder strNameGenre = new StringBuilder();

@@ -1,6 +1,6 @@
 const getFormatById = async (url, id = 1) => {
   const data = await fetch(
-    `${url}/Controller/Format/ajax.php?action=getFormatById&id=${id}`,
+    `${url}/api/v1/format/${id}`,
     {
       method: "GET",
     }

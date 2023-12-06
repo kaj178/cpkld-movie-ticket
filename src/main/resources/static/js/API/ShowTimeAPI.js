@@ -27,11 +27,11 @@ const getAllShowTimesByDate = async (url, date = "2022-10-10") => {
 
 const getShowTimeByDateAndGenre = async (
   url,
-  date = "2022-10-10",
+  date = "20230424",
   Genre = ""
 ) => {
   const data = await fetch(
-    `${url}/Controller/Showtime/ajax.php?action=getShowTimeByDateAndGenre&date=${date}&genre=${Genre}`,
+    `${url}/api/v1/showtime/date&date=${date}&genre=${Genre}`,
     {
       method: "GET",
     }
@@ -134,11 +134,11 @@ const addShowTime = async (
 
 const getShowTimeByDateAndTheater = async (
   url,
-  date = "2022-10-10",
-  theaterid = "T001"
+  date,
+  theaterid
 ) => {
   const data = await fetch(
-    `${url}/Controller/Showtime/ajax.php?action=getShowTimeByDateAndTheater&Theaterid=${theaterid}&date=${date}`,
+    `${url}/api/v1/showtime/theater?date=${date}&theater=${theaterid}`,
     {
       method: "GET",
     }
@@ -159,5 +159,3 @@ export {
   getShowTimeByDateAndTheater,
   getAllShowTime,
 };
-//   $movieid = $_GET['movieid'];
-//   $date = $_GET['date'];
