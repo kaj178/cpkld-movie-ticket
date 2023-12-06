@@ -40,7 +40,7 @@ const getAllBookingsByCustomerID = async (url = "../..", page = 1, id) => {
 };
 
 const getAllBooking = async (url = "../..", page = 1) => {
-  const urls = `${url}/Controller/Booking/ajax.php?action=getAllBooking&page=${page}`;
+  const urls = `http://localhost:8080/api/v1/ticket_admin`;
   const data = await fetch(urls, {
     method: "GET",
   });

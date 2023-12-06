@@ -99,11 +99,8 @@ async function loadAllBooking() {
   currentData = [];
   let page = 1;
   let data;
-  do {
-    data = await getAllBooking("../../..", page);
-    currentData.push(...data.bookings);
-    page++;
-  } while (data.bookings != 0);
+  data = await getAllBooking("http://localhost:8080/api/v1/ticket_admin");
+  currentData.push(...data.bookings);
   allData = [...currentData];
 }
 
