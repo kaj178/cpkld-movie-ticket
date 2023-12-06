@@ -7,7 +7,6 @@ import com.cpkld.dto.QuarterlyRevenueDTO;
 import com.cpkld.model.entity.*;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;
-import com.cpkld.repository.SeatRepository;
 import com.cpkld.repository.TheaterRepository;
 import com.cpkld.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,12 +30,12 @@ public class BookingServiceImpl implements BookingService {
     public ResponseEntity<?> getAll() {
         List<Booking> bookings = bookingRepository.findAll();
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
         );
     }
 
@@ -142,7 +139,7 @@ public class BookingServiceImpl implements BookingService {
         //formatName = ticket.getShowTime().getFormat().getName();
 
 //        bookingDTO.setTicketsId(listTicketId);
-        bookingDTO.setEmail(booking.getCustomer().getEmail());
+        // bookingDTO.setEmail(booking.getCustomer().getEmail());
         bookingDTO.setCustomerId(booking.getCustomer().getId());
         bookingDTO.setFormat(formatName);
 
@@ -170,7 +167,6 @@ public class BookingServiceImpl implements BookingService {
         if (promotion != null) {
             promotionName = promotion.getName();
         }
-
 
         bookingDTO.setPromotionName(promotionName);
 

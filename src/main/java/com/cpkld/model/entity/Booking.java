@@ -32,12 +32,12 @@ public class Booking {
     @Column(name = "status")
     public String status;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Promotion.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Promotion.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "promotion_id")
     @JsonBackReference
     private Promotion promotion;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

@@ -13,7 +13,7 @@ public class BookingApi {
     @Autowired
     private BookingService bookingService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<?> readAllBooking() {
         return bookingService.getAll();
     }
