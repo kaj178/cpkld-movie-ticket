@@ -166,7 +166,7 @@ public class ShowTimeServiceImpl implements ShowTimeService {
         showTimeDTO.setShowTimeId(showTime.getId());
         showTimeDTO.setStartTime(showTime.getStartTime());
         showTimeDTO.setEndTime(showTime.getEndTime());
-        showTimeDTO.setPrice(seatList);
+        showTimeDTO.setPrice(showTime.getPrice());
 
         Movie movie = showTime.getMovie();
         showTimeDTO.setMovieId(movie.getMovieId());
