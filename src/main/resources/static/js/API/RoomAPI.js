@@ -9,30 +9,27 @@ const getRoomById = async (url, id = "1") => {
   return datatorender;
 };
 const getAllRooms = async (url) => {
-  const data = await fetch(
-    `${url}/Controller/Room/ajax.php?action=getAllRoom`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/room`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 const updateRoom = async (
   url = "../..",
-  RoomName, 
-  NumberOfSeats, 
-  TheaterID, 
+  RoomName,
+  NumberOfSeats,
+  TheaterID,
   RoomID
 ) => {
   const urls = `${url}/Controller/Room/ajax.php`;
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
-      RoomID:RoomID,
+      RoomID: RoomID,
       NumberOfSeats: NumberOfSeats,
-      TheaterID:TheaterID,
-      RoomName:RoomName,
+      TheaterID: TheaterID,
+      RoomName: RoomName,
     }),
   });
   const datatorender = await data.json();
@@ -46,20 +43,17 @@ const deleteRoom = async (url = "../..", id) => {
   const datatorender = await data.json();
   return datatorender;
 };
-const addRoom = async (
-  url = "../..",
-  RoomName, NumberOfSeats, TheaterID
-) => {
+const addRoom = async (url = "../..", RoomName, NumberOfSeats, TheaterID) => {
   const urls = `${url}/Controller/Room/ajax.php`;
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({
-      RoomName:RoomName, 
+      RoomName: RoomName,
       NumberOfSeats: NumberOfSeats,
-      TheaterID: TheaterID
+      TheaterID: TheaterID,
     }),
   });
   const datatorender = await data.json();
   return datatorender;
 };
-export { getRoomById ,getAllRooms, updateRoom, addRoom, deleteRoom};
+export { getRoomById, getAllRooms, updateRoom, addRoom, deleteRoom };

@@ -4,7 +4,7 @@ import {
   getAllShowtimeByMovieID,
   getAllShowTime,
 } from "../../API/ShowTimeAPI.js";
-import { getPremierMovie, getUpcomingMovie } from "../../API/MovieAPI.js";
+import { getAllMovies } from "../../API/MovieAPI.js";
 import { getAllRooms } from "../../API/RoomAPI.js";
 import { getAllFormats } from "../../API/FormatAPI.js";
 import { getUserByEmail } from "../../API/UserAPI.js";
@@ -136,63 +136,41 @@ $(document).ready(() => {
       }
     });
   });
-  loadAllMovie();
-  loadAllRoom();
-  loadAllFormat();
+  Promise.all([loadAllRoom(), loadAllFormat(), loadAllMovie()]);
 });
 async function loadAllShowtime() {
   currentData = [];
-
   let page = 1;
   let data;
-  do {
-    data = await getAllShowTime("../../..", page);
-    currentData.push(...data.ShowtimeList);
-    page++;
-  } while (data.ShowtimeList.length != 0);
-  page = 1;
+  data = await getAllShowTime("http://localhost:8080", page);
+  currentData.push(...data.data);
   allData = [...currentData];
 }
 async function loadAllRoom() {
   let data;
-  data = await getAllRooms("../../..");
-  data.list.forEach((element) => {
+  data = await getAllRooms("http://localhost:8080");
+  data.data.forEach((element) => {
     $("#select-room").append(
-      `<option value=${element.RoomID}>${element.RoomID}</option>`
+      `<option value=${element.roomID}>${element.roomID}</option>`
     );
   });
 }
 async function loadAllFormat() {
   let data;
-  data = await getAllFormats("../../..");
-  data.formats.forEach((element) => {
+  data = await getAllFormats("http://localhost:8080");
+  data.data.forEach((element) => {
     $("#select-format").append(
-      `<option value=${element.FormatID}>${element.NameFormat}</option>`
+      `<option value=${element.formatId}>${element.formatName}</option>`
     );
   });
 }
 async function loadAllMovie() {
-  let page = 1;
-  let data1, data2;
-  do {
-    data1 = await getUpcomingMovie("../../..", page);
-    data1.forEach((element) => {
-      $("#select-movie").append(
-        `<option value=${element.MovieID}>${element.MovieID} - ${element.MovieName}</option>`
-      );
-    });
-    page++;
-  } while (data1.length != 0);
-  page = 1;
-  do {
-    data2 = await getPremierMovie("../../..", page);
-    data2.forEach((element) => {
-      $("#select-movie").append(
-        `<option value=${element.MovieID}>${element.MovieID} - ${element.MovieName}</option>`
-      );
-    });
-    page++;
-  } while (data2.length != 0);
+  const data = await getAllMovies("http://localhost:8080");
+  data.data.forEach((element) => {
+    $("#select-movie").append(
+      `<option value=${element.movieId}>${element.movieId} - ${element.name}</option>`
+    );
+  });
 }
 function toVndCurrencyFormat(number) {
   const currencyFormat = new Intl.NumberFormat("vi-VN", {
@@ -210,13 +188,13 @@ function showData() {
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
-        data[i].ShowtimeID,
-        data[i].StartTime,
-        data[i].EndTime,
-        toVndCurrencyFormat(data[i].Price),
-        data[i].MovieID,
-        data[i].RoomID,
-        data[i].FormatID,
+        data[i].showTimeId,
+        data[i].startTime,
+        data[i].endTime,
+        toVndCurrencyFormat(data[i].price),
+        data[i].movieId,
+        data[i].roomId,
+        data[i].formatName,
       ])
       .draw();
   }

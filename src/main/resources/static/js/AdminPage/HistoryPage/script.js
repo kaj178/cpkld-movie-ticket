@@ -83,12 +83,12 @@ function showData() {
   for (let i = 0; i < numRow && i < 1000; i++) {
     table.row
       .add([
-        data[i].BookingID,
-        data[i].NumberOfTickets,
-        toVndCurrencyFormat(data[i].TotalPrice),
-        data[i].BookingTime,
-        data[i].Voucher,
-        data[i].customer_id,
+        data[i].bookingId,
+        data[i].amountItem,
+        toVndCurrencyFormat(data[i].totalPrice),
+        data[i].startTime,
+        data[i].promotionName,
+        data[i].customerId,
         data[i].status == 1 ? "Đã thanh toán" : "Chưa thanh toán",
       ])
       .draw();
@@ -99,8 +99,8 @@ async function loadAllBooking() {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllBooking("http://localhost:8080/api/v1/ticket_admin");
-  currentData.push(...data.bookings);
+  data = await getAllBooking("http://localhost:8080");
+  currentData.push(...data.data);
   allData = [...currentData];
 }
 
@@ -108,11 +108,11 @@ function fillEditData(id) {
   let editModal = $("#ModalEditUser");
   let data = currentData.find((e) => e.BookingID === id);
   editModal.find("#id").val(id);
-  editModal.find("#number").val(data.NumberOfTickets);
-  editModal.find("#total").val(data.TotalPrice);
-  editModal.find("#time").val(data.BookingTime);
-  editModal.find("#voucher").val(data.Voucher);
-  editModal.find("#customerID").val(data.customer_id);
+  editModal.find("#number").val(data.amountItem);
+  editModal.find("#total").val(data.totalPrice);
+  editModal.find("#time").val(data.startTime);
+  editModal.find("#voucher").val(data.promotionName);
+  editModal.find("#customerID").val(data.customerId);
   editModal.find("#status").val(data.status);
   editModal.modal("show");
 }
