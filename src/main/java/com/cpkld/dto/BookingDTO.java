@@ -13,13 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingDTO {
     private Integer bookingId;
-//    private List<Integer> ticketsId = new ArrayList<>();
+    // private List<Integer> ticketsId = new ArrayList<>();
     private String email;
     private LocalDateTime startTime;
-//    private String movieName;
+    // private String movieName;
     private String format;
 
-//    private String theaterName;
+    // private String theaterName;
     private Integer customerId;
     private String combo;
     private Integer amountItem;

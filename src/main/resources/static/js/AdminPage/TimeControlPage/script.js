@@ -90,7 +90,7 @@ $(document).ready(() => {
     let RoomID = $("#ModalAddUser .RoomID").val();
     let FormatID = $("#ModalAddUser .FormatName").val();
     addShowTime(
-      "../../..",
+      "../..",
       Price,
       StartTime,
       MovieID,
@@ -117,7 +117,7 @@ $(document).ready(() => {
     let RoomID = $("#ModalEditUser .RoomID").val();
     let FormatID = $("#ModalEditUser .FormatName").val();
     updateShowTime(
-      "../../..",
+      "../..",
       Price,
       StartTime,
       MovieID,
@@ -142,13 +142,13 @@ async function loadAllShowtime() {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllShowTime("http://localhost:8080", page);
+  data = await getAllShowTime("../..", page);
   currentData.push(...data.data);
   allData = [...currentData];
 }
 async function loadAllRoom() {
   let data;
-  data = await getAllRooms("http://localhost:8080");
+  data = await getAllRooms("../..");
   data.data.forEach((element) => {
     $("#select-room").append(
       `<option value=${element.roomID}>${element.roomID}</option>`
@@ -157,7 +157,7 @@ async function loadAllRoom() {
 }
 async function loadAllFormat() {
   let data;
-  data = await getAllFormats("http://localhost:8080");
+  data = await getAllFormats("../..");
   data.data.forEach((element) => {
     $("#select-format").append(
       `<option value=${element.formatId}>${element.formatName}</option>`
@@ -165,7 +165,7 @@ async function loadAllFormat() {
   });
 }
 async function loadAllMovie() {
-  const data = await getAllMovies("http://localhost:8080");
+  const data = await getAllMovies("../..");
   data.data.forEach((element) => {
     $("#select-movie").append(
       `<option value=${element.movieId}>${element.movieId} - ${element.name}</option>`
@@ -201,13 +201,13 @@ function showData() {
 }
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
-  let data = currentData.find((e) => e.ShowtimeID === id);
-  editModal.find(".showtimeID").val(data.ShowtimeID);
-  editModal.find(".StartTime").val(data.StartTime);
-  editModal.find(".EndTime").val(data.EndTime);
-  editModal.find(".Price").val(data.Price);
-  editModal.find(".MovieID").val(data.MovieID);
-  editModal.find(".RoomID").val(data.RoomID);
-  editModal.find(".FormatName").val(data.FormatID);
+  let data = currentData.find((e) => e.showTimeId === id);
+  editModal.find(".showtimeID").val(data.showTimeId);
+  editModal.find(".StartTime").val(data.startTime);
+  editModal.find(".EndTime").val(data.endTime);
+  editModal.find(".Price").val(data.price);
+  editModal.find(".MovieID").val(data.movieId);
+  editModal.find(".RoomID").val(data.roomId);
+  editModal.find(".FormatName").val(data.formatName);
   editModal.modal("show");
 }
