@@ -63,7 +63,7 @@ public class TicketServiceImpl implements TicketService {
         TicketDTO ticketDTO = new TicketDTO();
         Optional<List<Seat>> optionalSeats = seatRepository.getSeatByTicket(ticket.ticketId);
         Movie movie = movieRepository.findMovieByTicketId(ticket.ticketId);
-        MovieGenre movieGenre = movieGenreRepository.findMovieGenreByMovieId(movie.getMovieId());
+        List<MovieGenre> movieGenres = movieGenreRepository.findMovieGenreByMovieId(movie.getMovieId());
         Theater theater = theaterRepository.getTheaterByTicketId(1);
         LocalDateTime time = ticket.getShowTime().getStartTime();
         List<MenuBooking> menuBookings = ticket.getBooking().getMenuBookings();
@@ -83,7 +83,13 @@ public class TicketServiceImpl implements TicketService {
         ticketDTO.setCustomerEmail(ticketRepository.getEmailCustomerByTicket(ticket.ticketId));
         ticketDTO.setMovieName(movie.getName());
         ticketDTO.setAge(movie.getAge());
-        ticketDTO.setType(movieGenre.getName());
+
+        StringBuilder strNameGenre = new StringBuilder();
+        for (MovieGenre item : movieGenres) {
+            strNameGenre.append(item.getName()).append(", ");
+        }
+
+        ticketDTO.setType(String.valueOf(strNameGenre));
         ticketDTO.setTheaterName(theater.getName());
         ticketDTO.setStartTime(time.toLocalTime());
         ticketDTO.setDateTime(time.toLocalDate());

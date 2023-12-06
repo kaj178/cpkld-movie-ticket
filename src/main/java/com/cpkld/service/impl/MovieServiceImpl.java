@@ -3,6 +3,7 @@ package com.cpkld.service.impl;
 import com.cpkld.dto.MovieDTO;
 import com.cpkld.model.entity.Movie;
 import com.cpkld.model.entity.MovieGenre;
+import com.cpkld.model.exception.existed.MovieExistedException;
 import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.MovieRepository;
@@ -158,6 +159,34 @@ public class MovieServiceImpl implements MovieService {
             ),
             HttpStatus.OK
         );
+    }
+
+    @Override
+    public ResponseEntity<?> add(Movie movie) {
+        Optional<Movie> optional = movieRepository.findById(movie.getMovieId());
+        if (optional.isPresent()) {
+            throw new MovieExistedException("Movie is existed!");
+        }
+
+        movieRepository.save(movie);
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                    HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().toList()
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> update(Integer movieId, Movie movie) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> delete(Integer movieId) {
+        return null;
     }
 
     private MovieDTO convertEntityToDTO(Movie movie) {

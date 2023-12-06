@@ -1,5 +1,6 @@
 package com.cpkld.service;
 
+import com.cpkld.model.entity.Movie;
 import org.springframework.http.ResponseEntity;
 
 public interface MovieService {
@@ -20,4 +21,9 @@ public interface MovieService {
 
     ResponseEntity<?> getListUpcomingMovies();
 
+    ResponseEntity<?> add(Movie movie);
+
+    ResponseEntity<?> update(Integer movieId, Movie movie);
+
+    ResponseEntity<?> delete(Integer movieId);
 }

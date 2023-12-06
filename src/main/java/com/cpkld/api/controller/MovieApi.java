@@ -1,14 +1,12 @@
 package com.cpkld.api.controller;
 
+import com.cpkld.dto.MovieDTO;
+import com.cpkld.model.entity.Movie;
 import com.cpkld.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/movie")
@@ -54,5 +52,10 @@ public class MovieApi {
     @GetMapping("up-coming")
     public ResponseEntity<?> readAllUpcomingMovies() {
         return movieService.getListUpcomingMovies();
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createMovie(@ModelAttribute Movie movie) {
+        return movieService.add(movie);
     }
 }
