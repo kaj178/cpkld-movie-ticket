@@ -52,7 +52,7 @@ $(document).ready(() => {
     let id = $("#ModalEditUser #id").val();
     let status = $("#ModalEditUser #status").val();
 
-    changeStatus("../../..", id, status).then((res) => {
+    changeStatus("../../", id, status).then((res) => {
       if (res.success == false) {
         $("#ModalEditUser .message")
           .text("Sửa thất bại")
@@ -99,14 +99,14 @@ async function loadAllBooking() {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllBooking("http://localhost:8080");
+  data = await getAllBooking("../..");
   currentData.push(...data.data);
   allData = [...currentData];
 }
 
 function fillEditData(id) {
   let editModal = $("#ModalEditUser");
-  let data = currentData.find((e) => e.BookingID === id);
+  let data = currentData.find((e) => e.bookingId === id);
   editModal.find("#id").val(id);
   editModal.find("#number").val(data.amountItem);
   editModal.find("#total").val(data.totalPrice);

@@ -1,26 +1,23 @@
-package com.cpkld.model.entity;
+package com.cpkld.dto;
 
 import java.util.List;
 
+import com.cpkld.model.entity.Movie;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-@Table(name = "language", schema = "public")
-public class Language {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "language_id")
+@AllArgsConstructor
+@NoArgsConstructor
+public class LanguageDTO {
     private Integer id;
-    @Column(name = "language_name")
     private String name;
 }

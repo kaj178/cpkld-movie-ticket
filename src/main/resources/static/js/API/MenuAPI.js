@@ -1,10 +1,7 @@
 const getAllMenu = async (url) => {
-  const data = await fetch(
-    `${url}/api/v1/menu`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/menu`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
@@ -20,18 +17,15 @@ const getDetailMenuByID = async (url, id = "1") => {
   return datatorender;
 };
 
-const addMenu = async (
-  url = "../..",
-  Name, file , Price ,status 
-) => {
-  const urls = `${url}/Controller/Menu/ajax.php`;
+const addMenu = async (url = "../..", Name, file, Price, status) => {
+  const urls = `${url}/api/v1/menu`;
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({
-      Name:Name,
-      file:file,
-      Price:Price,
-      status:status,
+      name: Name,
+      imgUrl: file,
+      price: Price,
+      status: status,
     }),
   });
   const datatorender = await data.json();
@@ -40,25 +34,25 @@ const addMenu = async (
 
 const updateMenu = async (
   url = "../..",
-  Name, 
-  ImageURL, 
-  Price, 
-  status, 
+  Name,
+  ImageURL,
+  Price,
+  status,
   ItemID
 ) => {
-  const urls = `${url}/Controller/Menu/ajax.php`;
+  const urls = `${url}/api/v1/menu`;
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
-      Name:Name,
-      ImageURL:ImageURL,
-      Price:Price,
-      status:status,
-      ItemID:ItemID
+      name: Name,
+      imgUrl: ImageURL,
+      price: Price,
+      status: status,
+      itemId: ItemID,
     }),
   });
   const datatorender = await data.json();
   return datatorender;
 };
 
-export { getAllMenu, getDetailMenuByID ,addMenu, updateMenu};
+export { getAllMenu, getDetailMenuByID, addMenu, updateMenu };

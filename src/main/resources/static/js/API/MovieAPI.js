@@ -1,76 +1,55 @@
 const getAllMovies = async (url) => {
-  const data = await fetch(
-    `${url}/api/v1/movie`,
-    {
-      method: "GET"
-    }
-  )
-  const datatorender = await data.json()
-  return datatorender
-}
+  const data = await fetch(`${url}/api/v1/movie`, {
+    method: "GET",
+  });
+  const datatorender = await data.json();
+  return datatorender;
+};
 
 const getHotMovieAPI = async (url) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/hot`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/hot`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 
 const getHotMovieAPIPaginated = async (url) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/hot?page=1`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/hot?page=1`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 
 const getPremiereMoviesByGenreID = async (url, id) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/playing?genre-id=${id}`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/playing?genre-id=${id}`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 
 const getPremiereMovies = async (url) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/playing`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/playing`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 
 const getUpcomingMovies = async (url, page = 1) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/up-coming`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/up-coming`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
 
 const getMovieByID = async (url, id) => {
-  const data = await fetch(
-    `${url}/api/v1/movie/${id}`,
-    {
-      method: "GET",
-    }
-  );
+  const data = await fetch(`${url}/api/v1/movie/${id}`, {
+    method: "GET",
+  });
   const datatorender = await data.json();
   return datatorender;
 };
@@ -99,15 +78,16 @@ const addMovie = async (
       name: MovieName,
       director: Director,
       year: Year,
-      packageremiere: Premiere,
+      premiere: Premiere,
       urlTrailer: URLTrailer,
       time: Time,
       studio: StudioID,
       language: LanguageID,
       story: story,
       age: age,
-      ListGenre: listGenre,
-      ListImage: listImage,
+      movieGenres: listGenre,
+      verticalPoster: listImage[0],
+      verticalPoster: listImage[1],
     }),
   });
   const datatorender = await data.json();

@@ -15,24 +15,24 @@ import { XORDecrypt } from "../../Util/EncryptXOR.js";
 let allData = [];
 let currentData = [];
 let table = $("#table-content").DataTable({
-  "pagelength": 5,
-  "lengthMenu": [5, 10],
-  "select": {
-    "style": "single",
-    "info": false,
+  pagelength: 5,
+  lengthMenu: [5, 10],
+  select: {
+    style: "single",
+    info: false,
   },
-  "searching": true,
-  "language": {
-    "lengthMenu": "Số kết quả / Trang _MENU_",
-    "zeroRecords": "Không tìm thấy dữ liệu",
-    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
-    "infoEmpty": "Đang tìm kiếm dữ liệu",
-    "infoFiltered": "(filtered from _MAX_ total records)",
-    "paginate": {
-      "first": "Trang đầu",
-      "last": "Trang cuối",
-      "next": "Trang sau",
-      "previous": "Trang trước",
+  searching: true,
+  language: {
+    lengthMenu: "Số kết quả / Trang _MENU_",
+    zeroRecords: "Không tìm thấy dữ liệu",
+    info: "Hiển thị trang _PAGE_ trên _PAGES_",
+    infoEmpty: "Đang tìm kiếm dữ liệu",
+    infoFiltered: "(filtered from _MAX_ total records)",
+    paginate: {
+      first: "Trang đầu",
+      last: "Trang cuối",
+      next: "Trang sau",
+      previous: "Trang trước",
     },
   },
 });
@@ -51,8 +51,12 @@ $(document).ready(() => {
   });
 
   $(".hot-film").click(() => loadHotMovie().then(() => showData(currentData)));
-  $(".premiere-film").click(() => loadPremiereMovies().then(() => showData(currentData)));
-  $(".upcoming-film").click(() => loadUpcomingMovie().then(() => showData(currentData)));
+  $(".premiere-film").click(() =>
+    loadPremiereMovies().then(() => showData(currentData))
+  );
+  $(".upcoming-film").click(() =>
+    loadUpcomingMovie().then(() => showData(currentData))
+  );
   $(".all-film").click(() => loadAllMovies().then(() => showData(currentData)));
   $("#btn-search").click(() => {
     let query = $(".input-place input").val().trim().toUpperCase();
@@ -109,7 +113,7 @@ $(document).ready(() => {
         );
         console.log(listImage);
         addMovie(
-          "../../..",
+          "../..",
           MovieName,
           Director,
           Year,
@@ -151,7 +155,7 @@ $(document).ready(() => {
     let URLTrailer = $("#ModalEditUser #trailer").val();
 
     updateMovie(
-      "../../..",
+      "../..",
       MovieID,
       MovieName,
       Director,
@@ -207,45 +211,45 @@ function showData(currentData) {
 }
 
 async function loadPremiereMovies() {
-  currentData = []
+  currentData = [];
   let data;
-  data = await getPremiereMovies("../..")
+  data = await getPremiereMovies("../..");
   for (let i = 0; i < data.data.length; i++) {
-    currentData.push(data.data[i])
+    currentData.push(data.data[i]);
   }
   // allData = [...currentData]
-  console.log(currentData)
-  return currentData
+  console.log(currentData);
+  return currentData;
 }
 
 async function loadHotMovie() {
   currentData = [];
   let data = await getHotMovieAPI("../..");
   for (let i = 0; i < data.data.length; i++) {
-    currentData.push(data.data[i])
+    currentData.push(data.data[i]);
   }
-  return currentData
+  return currentData;
 }
 
 async function loadUpcomingMovie() {
   currentData = [];
   let data = await getUpcomingMovies("../..");
   for (let i = 0; i < data.data.length; i++) {
-    currentData.push(data.data[i])
+    currentData.push(data.data[i]);
   }
-  return currentData
+  return currentData;
 }
 
 async function loadAllMovies() {
-  currentData = []
+  currentData = [];
   let data;
-  data = await getAllMovies("../..")
+  data = await getAllMovies("../..");
   for (let i = 0; i < data.data.length; i++) {
-    currentData.push(data.data[i])
+    currentData.push(data.data[i]);
   }
   // allData = [...currentData]
-  console.log(currentData)
-  return currentData
+  console.log(currentData);
+  return currentData;
 }
 
 async function loadAllGenre() {
@@ -253,11 +257,8 @@ async function loadAllGenre() {
   let genreData = [];
   let data;
   let options = [];
-  do {
-    data = await getAllGenres("../../..", page);
-    genreData.push(...data.genres);
-    page++;
-  } while (data.genres.length != 0);
+  data = await getAllGenres("../..", page);
+  genreData.push(...data.data);
   genreData.forEach((element) => {
     $("#select-genre").append(
       `<option value=${element.GenreID}>${element.GenreName}</option>`
@@ -273,25 +274,25 @@ async function loadAllGenre() {
 }
 
 async function loadAllStudio() {
-  let data = await getAllStudios("../../..");
-  data.studios.forEach((element) => {
+  let data = await getAllStudios("../..");
+  data.data.forEach((element) => {
     $("#select-studio").append(
-      `<option value=${element.StudioID}>${element.StudioName}</option>`
+      `<option value=${element.id}>${element.name}</option>`
     );
     $(".modal #studio").append(
-      `<option value=${element.StudioID}>${element.StudioName}</option>`
+      `<option value=${element.id}>${element.name}</option>`
     );
   });
 }
 
 async function loadAllLanguage() {
-  let data = await getAllLanguages("../../..");
+  let data = await getAllLanguages("../..");
   data.Language.forEach((element) => {
     $("#select-language").append(
-      `<option value=${element.LanguageID}>${element.LanguageName}</option>`
+      `<option value=${element.id}>${element.name}</option>`
     );
     $(".modal #language").append(
-      `<option value=${element.LanguageID}>${element.LanguageName}</option>`
+      `<option value=${element.id}>${element.name}</option>`
     );
   });
 }

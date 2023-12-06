@@ -55,7 +55,7 @@ public class MovieApi {
     }
 
     @PostMapping
-    public ResponseEntity<?> createMovie(@ModelAttribute Movie movie) {
-        return movieService.add(movie);
+    public ResponseEntity<?> createMovie(@RequestBody MovieDTO movieDTO) {
+        return movieService.add(movieDTO);
     }
 }
