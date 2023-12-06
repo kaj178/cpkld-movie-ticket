@@ -32,6 +32,9 @@ public class ShowTime {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "price")
+    private double price;
+
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Movie.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     @JsonBackReference
