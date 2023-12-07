@@ -23,7 +23,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
             nativeQuery = true)
     Optional<List<Ticket>> getTicketsByBookingId(@Param("bookingId") Integer bookingId);
 
-
     @Query(value = "select c.email from public.ticket t " +
             "join public.booking b on b.booking_id = t.booking_id " +
             "join public.customer c on c.customer_id = b.booking_id " +

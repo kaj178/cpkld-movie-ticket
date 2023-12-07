@@ -26,7 +26,7 @@ public class SeatServiceImpl implements SeatService {
         SeatDTO seatDTO = new SeatDTO();
         seatDTO.setSeatId(seat.getSeatId());
         seatDTO.setSeatName(seat.getSeatName());
-        seatDTO.setType(seatDTO.getType());
+        seatDTO.setTypeId(seat.getType());
         return seatDTO;
     }
 

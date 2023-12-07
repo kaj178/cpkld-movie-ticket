@@ -6,4 +6,6 @@ public interface TicketService {
     ResponseEntity<?> getAll();
 
     ResponseEntity<?> getAllTicketsByShowTimeId(Integer showtimeId);
+
+    ResponseEntity<?> getAllTicketsByBookingId(Integer bookingId);
 }

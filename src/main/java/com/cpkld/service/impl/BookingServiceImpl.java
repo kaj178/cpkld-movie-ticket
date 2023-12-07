@@ -9,6 +9,7 @@ import com.cpkld.model.entity.*;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;
 import com.cpkld.repository.TheaterRepository;
+import com.cpkld.repository.TicketRepository;
 import com.cpkld.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,55 +27,63 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepository bookingRepository;
     @Autowired
-    private TheaterRepository theaterRepository;
+    private TicketRepository ticketRepository;
+    // @Autowired
+    // private TheaterRepository theaterRepository;
 
-    class BookingTemp {
-        private int NumberOfTickets;
-        private String BookingTime;
-        private String Voucher;
-        private int customer;
-        private int ShowTimeID;
-        private double TotalPrice;
-        private List<Ticket> ListTicket;
-        private List<Menu> ListMenu;
-    }
+    // class BookingTemp {
+    //     private int NumberOfTickets;
+    //     private String BookingTime;
+    //     private String Voucher;
+    //     private int customer;
+    //     private int ShowTimeID;
+    //     private double TotalPrice;
+    //     private List<Ticket> ListTicket;
+    //     private List<Menu> ListMenu;
+    // }
 
     @Override
     public ResponseEntity<?> getAll() {
         List<Booking> bookings = bookingRepository.findAll();
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
-                HttpStatus.OK);
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+            HttpStatus.OK);
     }
 
+    // @Override
+    // public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
+    //     BookingDTO bookings = new BookingDTO();
+    //     LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
+    //     bookings.setAmountItem(bookingTemp.getNumberOfTickets());
+    //     bookings.setCustomerId(bookingTemp.getCustomer());
+    //     bookings.setPromotionName(bookingTemp.getVoucher());
+    //     bookings.setStartTime(localDateTime);
+    //     bookings.setStatus(0);
+    //     bookings.setTotalPrice(bookingTemp.getTotalPrice());
+    //     for (Ticket element : bookingTemp.getListTicket()) {
+    //         TicketDTO ticketDTO = new TicketDTO();
+    //         ticketDTO.setBooking_id(bookingRepository.getlastid());
+    //         ticketDTO.setSeats_id(element.getSeat().getSeatId());
+    //     }
+    //     bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
+    //     return new ResponseEntity<>(
+    //         new ApiResponse<>(
+    //             HttpStatus.OK.value(),
+    //             "Success",
+    //             bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+    //         HttpStatus.OK);
+    // }
+
     @Override
-    public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
-        BookingDTO bookings = new BookingDTO();
-        LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
-        bookings.setAmountItem(bookingTemp.getNumberOfTickets());
-        bookings.setCustomerId(bookingTemp.getCustomer());
-        bookings.setPromotionName(bookingTemp.getVoucher());
-        bookings.setStartTime(localDateTime);
-        bookings.setStatus(0);
-        bookings.setTotalPrice(bookingTemp.getTotalPrice());
-        for (Ticket element : bookingTemp.getListTicket()) {
-            TicketDTO ticketDTO = new TicketDTO();
-            ticketDTO.setBooking_id(bookingRepository.getlastid());
-            ticketDTO.setSeats_id(element.getSeat().getSeatId());
-        }
-        bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
-        return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
-                HttpStatus.OK);
+    public ResponseEntity<?> add(BookingDTO bookingDTO) {
+        return null;
     }
 
     // int time => 1/2/3 => thang/quy/nam
+    @Override
     public ResponseEntity<?> statisticBookings() {
         List<Booking> bookings = bookingRepository.findAll();
 
@@ -139,56 +149,33 @@ public class BookingServiceImpl implements BookingService {
             annualRevenueDTOS.add(annualRevenueDTO);
         }
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        annualRevenueDTOS),
-                HttpStatus.OK);
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                annualRevenueDTOS),
+            HttpStatus.OK);
     }
 
     private BookingDTO convertEntityToDTO(Booking booking) {
         BookingDTO bookingDTO = new BookingDTO();
         bookingDTO.setTotalPrice(booking.getTotalPrice());
         bookingDTO.setStartTime(booking.getBookingTime());
-
+        bookingDTO.setBookingTime(booking.getBookingTime());
         bookingDTO.setBookingId(booking.bookingId);
-        // Ticket ticket = new Ticket();
-        //
-        // List<Ticket> tickets = booking.getTickets();
-        List<Integer> listTicketId = new ArrayList<>();
-
-        String formatName = "";
-
-        // for (Ticket item : tickets) {
-        // listTicketId.add(item.getTicketId());
-        // ticket = item;
-        //
-        // }
-
-        // formatName = ticket.getShowTime().getFormat().getName();
-
-        // bookingDTO.setTicketsId(listTicketId);
-        // bookingDTO.setEmail(booking.getCustomer().getEmail());
         bookingDTO.setCustomerId(booking.getCustomer().getId());
-        bookingDTO.setFormat(formatName);
-
-        bookingDTO.setAmountItem(booking.amount);
-
-        // Theater theater =
-        // theaterRepository.getTheaterByTicketId(ticket.getTicketId());
-        // bookingDTO.setTheaterName(theater.getName());
+        bookingDTO.setAmountItem(booking.getAmount());
+        List<Ticket> tickets = ticketRepository.getTicketsByBookingId(booking.getBookingId()).get();
+        for (Ticket ticket : tickets){
+            bookingDTO.setShowTimeId(ticket.getShowTime().getId());
+            break;
+        }
+        // bookingDTO.setShowTimeId(bookingService);
 
         List<Menu> menus = new ArrayList<>();
         List<MenuBooking> menuBooking = booking.getMenuBookings();
         for (MenuBooking item : menuBooking) {
             menus.add(item.getMenu());
         }
-
-        StringBuilder comboName = new StringBuilder();
-        for (Menu item : menus) {
-            comboName.append(item.getName()).append(", ");
-        }
-        bookingDTO.setCombo(String.valueOf(comboName));
         bookingDTO.setStatus(bookingDTO.getStatus());
 
         String promotionName = "Khong co";
@@ -196,7 +183,6 @@ public class BookingServiceImpl implements BookingService {
         if (promotion != null) {
             promotionName = promotion.getName();
         }
-
         bookingDTO.setPromotionName(promotionName);
 
         return bookingDTO;

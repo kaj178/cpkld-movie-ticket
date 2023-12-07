@@ -170,7 +170,7 @@ $(document).ready(function () {
       seconds;
     let getVoucher = $(".form-discount-content").val();
     let resulttoadd = await AddBooking(
-      "../../../.",
+      "../..",
       NumofTicket,
       timetoadd,
       getVoucher,
@@ -194,7 +194,7 @@ $(document).ready(function () {
       sessionStorage.removeItem("TotalPrice");
       sessionStorage.removeItem("PriceMenu");
       sessionStorage.setItem("BillID", resulttoadd.id);
-      window.location.href = "../SuccessPayment/index.html";
+      window.location.href = "/success-payment";
     }
   });
 });

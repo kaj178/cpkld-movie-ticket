@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class SeatDTO {
     private Integer seatId;
     private String seatName;
-    private String type;
+    private String typeId;
 }

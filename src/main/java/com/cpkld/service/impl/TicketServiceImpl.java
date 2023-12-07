@@ -33,12 +33,12 @@ public class TicketServiceImpl implements TicketService {
     public ResponseEntity<?> getAll() {
         List<Ticket> tickets = ticketRepository.findAll();
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        HttpStatus.OK.value(),
-                        "Success",
-                        tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
+            new ApiResponse<>(
+                HttpStatus.OK.value(),
+                "Success",
+                tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
         );
     }
 
@@ -50,23 +50,47 @@ public class TicketServiceImpl implements TicketService {
         }
         List<Ticket> tickets = optional.get();
         return new ResponseEntity<>(
-                new ApiResponse<> (
-                        HttpStatus.OK.value(),
-                        "Success",
-                        tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-                ),
-                HttpStatus.OK
+            new ApiResponse<> (
+                HttpStatus.OK.value(),
+                "Success",
+                tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<?> getAllTicketsByBookingId(Integer bookingId) {
+        Optional<List<Ticket>> optional = ticketRepository.getTicketsByBookingId(bookingId);
+        if (optional.isEmpty()) {
+            throw new TicketNotFoundException("Ticket not founded!");
+        }
+        List<Ticket> tickets = optional.get();
+        return new ResponseEntity<>(
+            new ApiResponse<> (
+                HttpStatus.OK.value(),
+                "Success",
+                tickets.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
+            ),
+            HttpStatus.OK
         );
     }
 
     private TicketDTO convertEntityToDTO(Ticket ticket) {
         TicketDTO ticketDTO = new TicketDTO();
+
         Optional<List<Seat>> optionalSeats = seatRepository.getSeatByTicket(ticket.ticketId);
+
         Movie movie = movieRepository.findMovieByTicketId(ticket.ticketId);
+
         List<MovieGenre> movieGenres = movieGenreRepository.findMovieGenreByMovieId(movie.getMovieId());
+
         Theater theater = theaterRepository.getTheaterByTicketId(1);
+
         LocalDateTime time = ticket.getShowTime().getStartTime();
+
         List<MenuBooking> menuBookings = ticket.getBooking().getMenuBookings();
+
         StringBuilder strSeats = new StringBuilder();
         StringBuilder strCombos = new StringBuilder();
         if (optionalSeats.isPresent()) {
@@ -75,11 +99,13 @@ public class TicketServiceImpl implements TicketService {
                 strSeats.append(seat.getSeatName()).append(", ");
             }
         }
-
         for (MenuBooking menuBooking : menuBookings) {
             strCombos.append(menuBooking.getMenu().getName()).append(", ");
         }
         ticketDTO.setTicketId(ticket.ticketId);
+        ticketDTO.setShowTimeID(ticket.getShowTime().getId());
+        ticketDTO.setStatusId(1);
+        ticketDTO.setBookingId(ticket.getBooking().getBookingId());
         ticketDTO.setCustomerEmail(ticketRepository.getEmailCustomerByTicket(ticket.ticketId));
         ticketDTO.setMovie(movie);
         ticketDTO.setAge(movie.getAge());
@@ -93,12 +119,9 @@ public class TicketServiceImpl implements TicketService {
         ticketDTO.setTheaterName(theater.getName());
         ticketDTO.setStartTime(time.toLocalTime());
         ticketDTO.setDateTime(time.toLocalDate());
-        ticketDTO.setSeats(String.valueOf(strSeats));
+        ticketDTO.setSeatsId(ticket.getSeat().getSeatId());
         ticketDTO.setCombo(String.valueOf(strCombos));
         ticketDTO.setTotalPrice(ticket.getBooking().getTotalPrice());
         return ticketDTO;
     }
-
-
-
 }

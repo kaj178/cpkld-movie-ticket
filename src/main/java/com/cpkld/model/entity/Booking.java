@@ -20,18 +20,15 @@ public class Booking {
     @Column(name = "booking_id")
     public Integer bookingId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "booking_id")
-    public int getId() {
-        return bookingId;
-    }
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "booking_id")
+    // public int getId() {
+    //     return bookingId;
+    // }
 
     @Column(name = "amount")
     public int amount;
-
-    @Column(name = "total_price")
-    public double totalPrice;
 
     @Column(name = "booking_time")
     public LocalDateTime bookingTime;
@@ -39,6 +36,9 @@ public class Booking {
     @Column(name = "status")
     public String status;
 
+    @Column(name = "total_price")
+    public double totalPrice;
+    
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Promotion.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "promotion_id")
     @JsonBackReference

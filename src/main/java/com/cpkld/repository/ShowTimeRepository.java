@@ -45,5 +45,4 @@ public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
                         @Param("startTime") LocalDateTime start,
                         @Param("endTime") LocalDateTime end,
                         @Param("theaterId") Integer theaterId);
-
 }

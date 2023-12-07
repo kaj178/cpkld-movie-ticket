@@ -23,4 +23,9 @@ public class TicketApi {
     public ResponseEntity<?> getAllTicketsByShowTimeId(@RequestParam("showtime_id") Integer showtimeId) {
         return ticketService.getAllTicketsByShowTimeId(showtimeId);
     }
+
+    @GetMapping(value = "/booking", params = "booking_id")
+    public ResponseEntity<?> getAllTicketsByBookingId(@RequestParam("booking_id") Integer bookingId) {
+        return ticketService.getAllTicketsByBookingId(bookingId);
+    }
 }
