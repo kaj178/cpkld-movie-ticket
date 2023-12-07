@@ -1,5 +1,5 @@
 const getShowTimeByID = async (url, id) => {
-  const data = await fetch(`${url}/api/v1/showtime?id=${id}`, {
+  const data = await fetch(`${url}/api/v1/showtime/${id}`, {
     method: "GET",
   });
   const datatorender = await data.json();
@@ -132,11 +132,7 @@ const addShowTime = async (
   return datatorender;
 };
 
-const getShowTimeByDateAndTheater = async (
-  url,
-  date,
-  theaterid
-) => {
+const getShowTimeByDateAndTheater = async (url, date, theaterid) => {
   const data = await fetch(
     `${url}/api/v1/showtime/theater?date=${date}&theater=${theaterid}`,
     {

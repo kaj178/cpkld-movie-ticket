@@ -6,7 +6,7 @@ import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.exception.existed.MovieExistedException;
 import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.response.ApiResponse;
-import com.cpkld.repository.DetailMovieGenre;
+// import com.cpkld.repository.DetailMovieGenre;
 import com.cpkld.repository.MovieRepository;
 import com.cpkld.service.MovieService;
 
@@ -20,8 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,19 +30,18 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
-    @Autowired
-    private DetailMovieGenre detailMovieGenre;
+    // @Autowired
+    // private DetailMovieGenre detailMovieGenre;
+
     @Override
     public ResponseEntity<?> getAll() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -52,16 +49,14 @@ public class MovieServiceImpl implements MovieService {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("movie_id").ascending());
         Page<Movie> movies = movieRepository.findAllMovies(pageable);
         // for (Movie movie : movies) {
-        //     System.out.println(movie.toString());
+        // System.out.println(movie.toString());
         // }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -71,31 +66,25 @@ public class MovieServiceImpl implements MovieService {
             throw new MovieNotFoundException("Movie not found!");
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> getHotMovies() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream()
-                    .map(this::convertEntityToDTO)
-                    .filter(movie -> 
-                        movie.getRating() == 5 || movie.getRating() == 4
-                    )
-                    .collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream()
+                                .map(this::convertEntityToDTO)
+                                .filter(movie -> movie.getRating() == 5 || movie.getRating() == 4)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -103,68 +92,54 @@ public class MovieServiceImpl implements MovieService {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("movie_id").ascending());
         Page<Movie> movies = movieRepository.findAllMovies(pageable);
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream()
-                    .map(this::convertEntityToDTO)
-                    .filter(movie -> 
-                        movie.getRating() == 5 || movie.getRating() == 4
-                    )
-                    .collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream()
+                                .map(this::convertEntityToDTO)
+                                .filter(movie -> movie.getRating() == 5 || movie.getRating() == 4)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> getListPlayingMovies() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream()
-                    .map(this::convertEntityToDTO)
-                    .filter(movie -> 
-                        movie.getYear() == 2023
-                    )   
-                    .collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream()
+                                .map(this::convertEntityToDTO)
+                                .filter(movie -> movie.getYear() == 2023)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> getPlayingMoviesByGenreId(Integer id) {
         List<Movie> movies = movieRepository.findPremiereMoviesByGenreId(id);
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), "Success", 
-                movies.stream()
-                    .map(this::convertEntityToDTO)
-                    .collect(Collectors.toList())    
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(), "Success",
+                        movies.stream()
+                                .map(this::convertEntityToDTO)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> getListUpcomingMovies() {
         List<Movie> movies = movieRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                movies.stream()
-                    .map(this::convertEntityToDTO)
-                    .filter(movie -> 
-                        movie.getYear() == 2024
-                    )   
-                    .collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        movies.stream()
+                                .map(this::convertEntityToDTO)
+                                .filter(movie -> movie.getYear() == 2024)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -176,7 +151,7 @@ public class MovieServiceImpl implements MovieService {
         movie.setYear(movieDTO.getYear());
         movie.setPremiere(movieDTO.getPremiere());
 
-        //Chinh sua url
+        // Chinh sua url
         movie.setUrlTrailer(movieDTO.getUrlTrailer());
         movie.setVerticalPoster(movieDTO.getVerticalPoster());
         movie.setHorizontalPoster(movieDTO.getHorizontalPoster());
@@ -191,19 +166,14 @@ public class MovieServiceImpl implements MovieService {
 
         List<String> lstMovieGenre = movieDTO.getMovieGenres();
 
-
-
         movieRepository.save(movie);
-
 
         return new ResponseEntity<>(
                 new ApiResponse<>(
-                    HttpStatus.OK.value(),
+                        HttpStatus.OK.value(),
                         "Success",
-                        movies.stream().toList()
-                ),
-                HttpStatus.OK
-        );
+                        movies.stream().toList()),
+                HttpStatus.OK);
     }
 
     @Override
@@ -231,7 +201,7 @@ public class MovieServiceImpl implements MovieService {
         movieDTO.setTime(movie.getTime());
         movieDTO.setLanguage(movie.getLanguage().getName());
         movieDTO.setDirector(movie.getDirector());
-        //movieDTO.setRating(new Random().nextInt(1, 6));
+        // movieDTO.setRating(new Random().nextInt(1, 6));
         movieDTO.setRating(movie.getRating());
         movieDTO.setStory(movie.getStory());
         movieDTO.setPremiere(movie.getPremiere());

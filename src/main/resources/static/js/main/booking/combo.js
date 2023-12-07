@@ -4,7 +4,7 @@ import { getCustomerByEmail } from "../../API/UserAPI.js";
 
 $(document).ready(function () {
   async function getDetailMenuByIDFunc(id) {
-    let data = await getDetailMenuByID("../../../.", id);
+    let data = await getDetailMenuByID("../..", id);
     return data;
   }
   function toVndCurrencyFormat(number) {
@@ -24,7 +24,7 @@ $(document).ready(function () {
     let seatdata = JSON.parse(sessionStorage.getItem("ChoosingSeat"));
     let textseatdata = "";
     for (var i = 0; i < seatdata.length; i++) {
-      textseatdata += seatdata[i].SeatName + " ";
+      textseatdata += seatdata[i].seatName + " ";
     }
     $(".seat-content").text(textseatdata);
     // Cập nhật thông tin giá
@@ -34,23 +34,22 @@ $(document).ready(function () {
   }
   renderInformation();
   async function getAllMenuFunc() {
-    let datas = await getAllMenu("../../../.", 1);
-    console.log(datas);
-    for (const data of datas["menus"]) {
-      let VNDPrice = await toVndCurrencyFormat(data.Price);
+    let datas = await getAllMenu("../..", 1);
+    for (const data of datas.data) {
+      let VNDPrice = await toVndCurrencyFormat(data.price);
       const htmls = `<div class="col-lg-6 col-md-12 col-xs-12">
           <div class="card mb-5">
             <div class="row g-0">
               <div class="col-md-4">
                 <img
-                  src="../../../${data.ImageURL}"
+                  src="../public/${data.imgUrl}"
                   class="img-fluid rounded-start"
                   alt="..."
                 />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">${data.Name}</h5>
+                  <h5 class="card-title">${data.name}</h5>
                   <p class="card-text">
                     <small class="text-muted"
                       >Giá bán: <span>${VNDPrice}</span></small
@@ -60,7 +59,7 @@ $(document).ready(function () {
                     class="card-text"
                     style="display: flex; align-items: center"
                   >
-                    <button itemid=${data.ItemID} type="button" class="btn-minus">-</button>
+                    <button itemid=${data.itemId} type="button" class="btn-minus">-</button>
                     <span
                       style="
                         margin-right: 10px;
@@ -71,7 +70,7 @@ $(document).ready(function () {
                     >
                       0
                     </span>
-                    <button itemid=${data.ItemID} type="button" class="btn-plus">+</button>
+                    <button itemid=${data.itemId} type="button" class="btn-plus">+</button>
                   </p>
                 </div>
               </div>
@@ -88,10 +87,10 @@ $(document).ready(function () {
         let numbertoadd = parseInt(comboNumber.text());
         let itemid = $(this).attr("itemid");
         let data = await getDetailMenuByIDFunc(itemid);
-        let datatoadd = data["menu"];
+        let datatoadd = data.data[0];
         let existingItem = objectstore.find(function (item) {
           return (
-            item.Name === datatoadd.Name && item.ImageURL === datatoadd.ImageURL
+            item.name === datatoadd.name && item.imgUrl === datatoadd.imgUrl
           );
         });
         if (existingItem) {
@@ -104,7 +103,7 @@ $(document).ready(function () {
       }
       sessionStorage.setItem("MenuInfo", JSON.stringify(objectstore));
       const itemTotalPrices = objectstore.map((item) => {
-        const totalPrice = Number(item.Price) * item.Number;
+        const totalPrice = Number(item.price) * item.Number;
         return { ...item, totalPrice };
       });
 
@@ -126,11 +125,9 @@ $(document).ready(function () {
       let numbertoadd = parseInt(comboNumber.text());
       let itemid = $(this).attr("itemid");
       let data = await getDetailMenuByIDFunc(itemid);
-      let datatoadd = data["menu"];
+      let datatoadd = data.data[0];
       let existingItem = objectstore.find(function (item) {
-        return (
-          item.Name === datatoadd.Name && item.ImageURL === datatoadd.ImageURL
-        );
+        return item.name === datatoadd.name && item.imgUrl === datatoadd.imgUrl;
       });
       if (existingItem) {
         if (!existingItem.hasOwnProperty("Number")) {
@@ -144,7 +141,7 @@ $(document).ready(function () {
       }
       sessionStorage.setItem("MenuInfo", JSON.stringify(objectstore));
       const itemTotalPrices = objectstore.map((item) => {
-        const totalPrice = Number(item.Price) * item.Number;
+        const totalPrice = Number(item.price) * item.Number;
         return { ...item, totalPrice };
       });
 

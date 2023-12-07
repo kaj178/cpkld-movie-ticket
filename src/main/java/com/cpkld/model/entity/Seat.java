@@ -23,7 +23,7 @@ public class Seat {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Room.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Room.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_id")
     private Room room;
 

@@ -2,7 +2,9 @@ package com.cpkld.service.impl;
 
 import com.cpkld.dto.MenuDTO;
 import com.cpkld.model.entity.Menu;
+import com.cpkld.model.entity.ShowTime;
 import com.cpkld.model.exception.existed.MenuExistedException;
+import com.cpkld.model.exception.notfound.ShowTimeNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.MenuRepository;
 import com.cpkld.service.MenuService;
@@ -15,21 +17,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class MenuServiceImpl implements MenuService {
     @Autowired
     MenuRepository menuRepository;
+
     @Override
     public ResponseEntity<?> getAll() {
         List<Menu> menus = menuRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(),
-                "Success",
-                menus.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        menus.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getMenuById(int menuid) {
+        Optional<Menu> optional = menuRepository.getMenuById(menuid);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Menu not found!");
+        }
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
     }
 
     @Override
@@ -48,10 +63,8 @@ public class MenuServiceImpl implements MenuService {
                 new ApiResponse<>(
                         HttpStatus.CREATED.value(),
                         "Success",
-                        menus
-                ),
-                HttpStatus.OK
-        );
+                        menus),
+                HttpStatus.OK);
     }
 
     @Override

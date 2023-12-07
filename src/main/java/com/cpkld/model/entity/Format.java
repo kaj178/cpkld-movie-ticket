@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @Entity
 @Table(name = "format", schema = "public")
@@ -18,5 +20,6 @@ public class Format {
     private String name;
 
     @OneToMany(mappedBy = "format", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
+    @JsonBackReference
     private List<ShowTime> showTimes;
 }

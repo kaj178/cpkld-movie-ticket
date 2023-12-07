@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Entity
 @Table(name = "user", schema = "public")
@@ -45,9 +44,11 @@ public class User {
     private Role role;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Manager.class, mappedBy = "user")
+    @JsonBackReference
     private Manager manager;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, mappedBy = "user")
+    @JsonBackReference
     private Customer customer;
 
 }

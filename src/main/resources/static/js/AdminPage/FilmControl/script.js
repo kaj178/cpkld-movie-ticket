@@ -287,7 +287,7 @@ async function loadAllStudio() {
 
 async function loadAllLanguage() {
   let data = await getAllLanguages("../..");
-  data.Language.forEach((element) => {
+  data.data.forEach((element) => {
     $("#select-language").append(
       `<option value=${element.id}>${element.name}</option>`
     );

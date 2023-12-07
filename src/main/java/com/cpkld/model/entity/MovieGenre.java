@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,10 +27,7 @@ public class MovieGenre {
     private String description;
 
     @ManyToMany
-    @JoinTable(
-        name = "detail_movie_genre",
-        joinColumns = @JoinColumn(name = "genre_id"),
-        inverseJoinColumns = @JoinColumn(name = "movie_id")
-    )
+    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "genre_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    @JsonBackReference
     private List<Movie> movies;
 }

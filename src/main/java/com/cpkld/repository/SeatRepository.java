@@ -12,12 +12,14 @@ import java.util.Optional;
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
-
     @Query(value = "select sea.* from public.seat as sea " +
             "join public.ticket as tic on sea.seat_id = tic.seat_id " +
-            "where tic.ticket_id = :ticketId ",
-    nativeQuery = true)
+            "where tic.ticket_id = :ticketId ", nativeQuery = true)
     Optional<List<Seat>> getSeatByTicket(@Param("ticketId") Integer ticketId);
 
+    @Query(value = "select sea.* from public.seat as sea where sea.room_id=:room_id", nativeQuery = true)
+    Optional<List<Seat>> getSeatByRoomID(@Param("room_id") Integer roomID);
 
+    @Query(value = "select sea.* from public.seat as sea where sea.seat_id=:seat_id", nativeQuery = true)
+    Optional<List<Seat>> getSeatByID(@Param("seat_id") Integer roomID);
 }

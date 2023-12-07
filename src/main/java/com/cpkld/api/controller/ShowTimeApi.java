@@ -26,20 +26,22 @@ public class ShowTimeApi {
         return service.getAllShowTimeByDate(date);
     }
 
-    @GetMapping(value = "/genre", params = {"date", "genre"})
-    public ResponseEntity<?> getShowTimeByDateAndGenre(@RequestParam("date") int date, @RequestParam("genre") Integer genreId) {
+    @GetMapping(value = "/genre", params = { "date", "genre" })
+    public ResponseEntity<?> getShowTimeByDateAndGenre(@RequestParam("date") int date,
+            @RequestParam("genre") Integer genreId) {
         return service.getShowTimeByDateAndGenre(date, genreId);
     }
 
-    @GetMapping(value = "/theater", params = {"date", "theater"})
-    public ResponseEntity<?> getShowTimeByDateAndTheater(@RequestParam("date") int date, @RequestParam("theater") Integer theaterId) {
+    @GetMapping(value = "/theater", params = { "date", "theater" })
+    public ResponseEntity<?> getShowTimeByDateAndTheater(@RequestParam("date") int date,
+            @RequestParam("theater") Integer theaterId) {
         return service.getShowTimeByDateAndGenre(date, theaterId);
     }
 
-    @GetMapping(value = "/movie_theater", params = {"movie", "theater"})
-    public ResponseEntity<?> getShowTimeByMovieAndTheater(@RequestParam("movie") Integer movieId, @RequestParam("theater") Integer theaterId) {
+    @GetMapping(value = "/movie_theater", params = { "movie", "theater" })
+    public ResponseEntity<?> getShowTimeByMovieAndTheater(@RequestParam("movie") Integer movieId,
+            @RequestParam("theater") Integer theaterId) {
         return service.getShowTimeByMovieAndTheater(theaterId, movieId);
     }
-
 
 }

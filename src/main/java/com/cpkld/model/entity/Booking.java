@@ -39,13 +39,14 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
+    @JsonBackReference
     private Customer customer;
 
-
     @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, targetEntity = MenuBooking.class)
+    @JsonBackReference
     private List<MenuBooking> menuBookings;
 
-
     @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    @JsonBackReference
     private List<Ticket> tickets;
 }

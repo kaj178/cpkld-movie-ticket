@@ -87,7 +87,7 @@ const addMovie = async (
       age: age,
       movieGenres: listGenre,
       verticalPoster: listImage[0],
-      verticalPoster: listImage[1],
+      horizontalPoster: listImage[1],
     }),
   });
   const datatorender = await data.json();

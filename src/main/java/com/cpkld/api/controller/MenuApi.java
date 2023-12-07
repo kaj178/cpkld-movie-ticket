@@ -12,6 +12,11 @@ public class MenuApi {
     @Autowired
     private MenuService menuService;
 
+    @GetMapping(params = "menu_id")
+    public ResponseEntity<?> getMenuByID(@RequestParam(name = "menu_id") Integer menuID) {
+        return menuService.getMenuById(menuID);
+    }
+
     @GetMapping
     public ResponseEntity<?> readMenus() {
         return menuService.getAll();
@@ -21,4 +26,5 @@ public class MenuApi {
     public ResponseEntity<?> createMenu(@RequestBody MenuDTO menuDTO) {
         return menuService.add(menuDTO);
     }
+
 }
