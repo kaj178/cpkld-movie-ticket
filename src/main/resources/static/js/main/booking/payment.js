@@ -10,7 +10,7 @@ import { XORDecrypt } from "../../Util/EncryptXOR.js";
 
 $(document).ready(function () {
   async function getPromotionData() {
-    let data = await getPromotionsEvent("../../../.");
+    let data = await getPromotionsEvent("../../");
     return data["list"];
   }
   async function getPromotionDiscount(promotionID) {
