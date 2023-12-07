@@ -1,7 +1,6 @@
 package com.cpkld.api.controller;
 
 import com.cpkld.dto.MovieDTO;
-import com.cpkld.model.entity.Movie;
 import com.cpkld.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;

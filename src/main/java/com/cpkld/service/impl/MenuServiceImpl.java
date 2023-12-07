@@ -2,7 +2,6 @@ package com.cpkld.service.impl;
 
 import com.cpkld.dto.MenuDTO;
 import com.cpkld.model.entity.Menu;
-import com.cpkld.model.entity.ShowTime;
 import com.cpkld.model.exception.existed.MenuExistedException;
 import com.cpkld.model.exception.notfound.ShowTimeNotFoundException;
 import com.cpkld.model.response.ApiResponse;
