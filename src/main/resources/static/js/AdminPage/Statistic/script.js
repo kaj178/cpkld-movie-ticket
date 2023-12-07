@@ -5,7 +5,6 @@ import {
   getRevenueForYear,
 } from "../../API/StatisticAPI.js";
 import { getAllBooking } from "../../API/BookingAPI.js";
-import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
 let allData = [];
 let currentData = [];

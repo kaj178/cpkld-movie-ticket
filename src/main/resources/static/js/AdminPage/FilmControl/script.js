@@ -9,7 +9,6 @@ import {
 import { getAllGenres } from "../../API/GenreAPI.js";
 import { getAllStudios } from "../../API/StudioAPI.js";
 import { getAllLanguages } from "../../API/LanguageAPI.js";
-import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
 
 let allData = [];

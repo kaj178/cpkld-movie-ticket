@@ -1,29 +1,28 @@
 import { getAllMenu, addMenu, updateMenu } from "../../API/MenuAPI.js";
-import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
 
 let allData = [];
 let currentData = [];
 
 let table = $("#table-content").DataTable({
-  "pagelength": 5,
-  "lengthMenu": [5, 10],
-  "select": {
-    "style": "single",
-    "info": false,
+  pagelength: 5,
+  lengthMenu: [5, 10],
+  select: {
+    style: "single",
+    info: false,
   },
-  "searching": true,
-  "language": {
-    "lengthMenu": "Số kết quả / Trang _MENU_",
-    "zeroRecords": "Không tìm thấy dữ liệu",
-    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
-    "infoEmpty": "Đang tìm kiếm dữ liệu",
-    "infoFiltered": "(filtered from _MAX_ total records)",
-    "paginate": {
-      "first": "Trang đầu",
-      "last": "Trang cuối",
-      "next": "Trang sau",
-      "previous": "Trang trước",
+  searching: true,
+  language: {
+    lengthMenu: "Số kết quả / Trang _MENU_",
+    zeroRecords: "Không tìm thấy dữ liệu",
+    info: "Hiển thị trang _PAGE_ trên _PAGES_",
+    infoEmpty: "Đang tìm kiếm dữ liệu",
+    infoFiltered: "(filtered from _MAX_ total records)",
+    paginate: {
+      first: "Trang đầu",
+      last: "Trang cuối",
+      next: "Trang sau",
+      previous: "Trang trước",
     },
   },
 });
@@ -101,14 +100,14 @@ $(document).ready(() => {
 });
 
 async function loadAllMenu() {
-  currentData = []
+  currentData = [];
   let data;
-  data = await getAllMenu("../..")
+  data = await getAllMenu("../..");
   for (let i = 0; i < data.data.length; i++) {
-    currentData.push(data.data[i])
+    currentData.push(data.data[i]);
   }
-  console.log(currentData)
-  return currentData
+  console.log(currentData);
+  return currentData;
 }
 
 function toVndCurrencyFormat(number) {
@@ -131,7 +130,7 @@ function showData(currentData) {
         data[i].itemId,
         data[i].name,
         data[i].price,
-        'http://localhost:8080/public/img/menu/' + data[i].imgUrl,
+        "http://localhost:8080/public/img/menu/" + data[i].imgUrl,
         data[i].status,
       ])
       .draw();
@@ -145,7 +144,9 @@ function fillEditData(id) {
   editModal.find("#ItemID").val(data.itemId);
   editModal.find("#Name").val(data.name);
   editModal.find("#Price").val(data.price);
-  editModal.find("#image").val('http://localhost:8080/public/img/menu/' + data.imgUrl);
+  editModal
+    .find("#image")
+    .val("http://localhost:8080/public/img/menu/" + data.imgUrl);
   editModal.find("#status").val(data.status);
   editModal.modal("show");
 }

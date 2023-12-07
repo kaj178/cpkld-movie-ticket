@@ -149,9 +149,9 @@ async function addCarouselInner(data) {
   let indicatorHTML;
   let i = 0;
   // for (const element of datatoadd) {
-    if (flag == 0) {
-      flag = 1;
-      htmls = `
+  if (flag == 0) {
+    flag = 1;
+    htmls = `
         <div class="carousel-item active">
         <div class="background">
         <div
@@ -170,7 +170,7 @@ async function addCarouselInner(data) {
           ></button>
         </div>
       </div></div>`;
-      indicatorHTML = `
+    indicatorHTML = `
       <button
       type="button"
       data-bs-target="#movie-slide"
@@ -181,12 +181,14 @@ async function addCarouselInner(data) {
     >
       <img
         class="thumbnail-img trailer-thumbnail"
-        src="../public/imagesfilms/poster-horizontal/${datatoadd.horizontalPoster}"
+        src="../public/imagesfilms/poster-horizontal/${
+          datatoadd.horizontalPoster
+        }"
         alt=""
       />
     </button>`;
-    } else {
-      htmls = `
+  } else {
+    htmls = `
       <div class="carousel-item">
         <div class="background">
           <div
@@ -195,7 +197,7 @@ async function addCarouselInner(data) {
           ></div>
         </div>
       </div>`;
-      indicatorHTML = `
+    indicatorHTML = `
       <button
       type="button"
       data-bs-target="#movie-slide"
@@ -206,12 +208,11 @@ async function addCarouselInner(data) {
         datatoadd.verticalPoster
       }" alt="" />
     </button>`;
-    }
+  }
 
-    $(".carousel-inner").append(htmls);
-    $(".carousel-indicators").append(indicatorHTML);
-    i++;
-  
+  $(".carousel-inner").append(htmls);
+  $(".carousel-indicators").append(indicatorHTML);
+  i++;
 }
 // Thêm dữ liệu vào Movie
 async function addIntoMovieInfo(data) {
@@ -258,9 +259,9 @@ async function addIntoCasourelIndicator(data) {
   let flag = 0;
   let htmls = ``;
   // for (const element of datatoadd) {
-    if (flag == 0) {
-      flag = 1;
-      htmls += `<button
+  if (flag == 0) {
+    flag = 1;
+    htmls += `<button
       type="button"
       data-bs-target="#movie-slide"
       data-bs-slide-to="0"
@@ -274,8 +275,8 @@ async function addIntoCasourelIndicator(data) {
         alt=""
       />
     </button>`;
-    } else {
-      htmls += `<button
+  } else {
+    htmls += `<button
       type="button"
       data-bs-target="#movie-slide"
       data-bs-slide-to="1"
@@ -283,7 +284,7 @@ async function addIntoCasourelIndicator(data) {
     >
       <img class="thumbnail-img" src="../public/imagesfilms/poster-vertical/${datatoadd.verticalPoster}" alt="" />
     </button>`;
-    }
+  }
   $(".Casourel-Indicator").append(htmls);
 }
 
@@ -356,8 +357,7 @@ function changingBtnOnClickGetAll(GenreID) {
         if (index == 0) {
           storehtml += `${element}`;
         } else {
-          storehtml +=
-            '<span class="vertical-line">|</span>' + `${element}`;
+          storehtml += '<span class="vertical-line">|</span>' + `${element}`;
         }
       });
       return storehtml;
@@ -439,8 +439,7 @@ function changingBtnOnClick(GenreID) {
         if (index == 0) {
           storehtml += `${element}`;
         } else {
-          storehtml +=
-            '<span class="vertical-line">|</span>' + `${element}`;
+          storehtml += '<span class="vertical-line">|</span>' + `${element}`;
         }
       });
       return storehtml;
@@ -479,7 +478,7 @@ function changingBtnOnClick(GenreID) {
                   <img src="../public/timer.svg" alt="" />
                   ${timerender}
                 </div>
-                <a href="/" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/details" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
                 <a href="/order" style="text-decoration:None;display:block;width:100%;text-align:center">

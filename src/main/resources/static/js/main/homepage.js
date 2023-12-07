@@ -13,17 +13,16 @@ import { getAllGenres } from "../API/GenreAPI.js";
 // import { getCustomerByEmail } from "../UserAPI.js";
 
 $(document).ready(function () {
-
   async function loadAllMovies() {
-    let currentData = []
+    let currentData = [];
     let data;
-    data = await getAllMovies("../..")
+    data = await getAllMovies("../..");
     for (let i = 0; i < data.data.length; i++) {
-      currentData.push(data.data[i])
+      currentData.push(data.data[i]);
     }
     // allData = [...currentData]
-    console.log(currentData)
-    return currentData
+    console.log(currentData);
+    return currentData;
   }
 
   $(".navbar-toggler").click(function () {
@@ -40,9 +39,9 @@ $(document).ready(function () {
     var hours = parseInt(timeParts[0], 10);
     var mins = parseInt(timeParts[1], 10);
     if (!isNaN(hours) && !isNaN(mins)) {
-        return hours + "h" + " " + mins + "m";
+      return hours + "h" + " " + mins + "m";
     } else {
-        return "Invalid time format";
+      return "Invalid time format";
     }
   }
 
@@ -67,7 +66,7 @@ $(document).ready(function () {
       }
       let genrehtml = await cuttingGenre(data);
       let htmls = "";
-      let time = toHHMM(data.time)
+      let time = toHHMM(data.time);
       // if (data.listImage[0]) {
       //   imageurl = data.listImage[0].ImagePath;
       // }
@@ -140,8 +139,7 @@ $(document).ready(function () {
         if (index == 0) {
           storehtml += `${element}`;
         } else {
-          storehtml +=
-            '<span class="vertical-line">|</span>' + `${element}`;
+          storehtml += '<span class="vertical-line">|</span>' + `${element}`;
         }
       });
       return storehtml;
@@ -223,8 +221,7 @@ $(document).ready(function () {
         if (index == 0) {
           storehtml += `${element}`;
         } else {
-          storehtml +=
-            '<span class="vertical-line">|</span>' + `${element}`;
+          storehtml += '<span class="vertical-line">|</span>' + `${element}`;
         }
       });
       return storehtml;
@@ -302,8 +299,7 @@ $(document).ready(function () {
           if (index == 0) {
             storehtml += `${element}`;
           } else {
-            storehtml +=
-              '<span class="vertical-line">|</span>' + `${element}`;
+            storehtml += '<span class="vertical-line">|</span>' + `${element}`;
           }
         });
         return storehtml;
@@ -336,10 +332,10 @@ $(document).ready(function () {
                   <img src="/public/timer.svg" alt="" />
                   ${timetoadd}
                 </div>
-                <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/detail" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
-                <a href="./View/Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/order" style="text-decoration:None;display:block;width:100%;text-align:center">
                   <button class="btn-main btn-book m-auto" style="display:block">
                   ĐẶT VÉ
                 </button>
@@ -376,8 +372,7 @@ $(document).ready(function () {
           if (index == 0) {
             storehtml += `${element}`;
           } else {
-            storehtml +=
-              '<span class="vertical-line">|</span>' + `${element}`;
+            storehtml += '<span class="vertical-line">|</span>' + `${element}`;
           }
         });
         return storehtml;
@@ -410,10 +405,10 @@ $(document).ready(function () {
                   <img src="/public/timer.svg" alt="" />
                   ${timetoadd}
                 </div>
-                <a href="./View/Detail/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/detail" style="text-decoration:None;display:block;width:100%;text-align:center">
                 <button class="btn-outline" id=${data.movieId}>Chi tiết</button>
                 </a>
-                <a href="./View/Order/index.html" style="text-decoration:None;display:block;width:100%;text-align:center">
+                <a href="/order" style="text-decoration:None;display:block;width:100%;text-align:center">
                   <button class="btn-main btn-book m-auto" style="display:block">
                   ĐẶT VÉ
                 </button>
@@ -488,9 +483,11 @@ $(document).ready(function () {
   });
 });
 
-{/* <a href="${data.urlTrailer}" style="text-decoration: none;" target="_blank">
+{
+  /* <a href="${data.urlTrailer}" style="text-decoration: none;" target="_blank">
             <button class="btn-main btn-trailer">
               TRAILER
               <img src="../public/play.svg" alt="" />
             </button>
-          </a> */}
+          </a> */
+}

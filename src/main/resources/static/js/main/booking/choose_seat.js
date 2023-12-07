@@ -67,18 +67,17 @@ $(document).ready(function () {
     let numRow = resultofchars[1];
     let ticketID = await getAllTicketsByShowTimeIdFunc();
     let flagtoloop = 0;
-
     // for (let j = 0; j <= numCol * i; j++) {
     //   console.log(seatdata[j]);
     // }
     const row_chars = seatChars.slice(0, numRow);
     const availableSeats = seatdata.filter((seat) => {
-      const isTaken = ticketID.some((t) => t.seats === seat.seatId);
+      const isTaken = ticketID.some((t) => t.seatsId === seat.seatId);
       return !isTaken;
     });
 
     const fullSeats = seatdata.filter((seat) => {
-      const isTaken = ticketID.some((t) => t.seats === seat.seatId);
+      const isTaken = ticketID.some((t) => t.seatsId === seat.seatId);
       return isTaken;
     });
     for (const char of row_chars) {
@@ -191,7 +190,7 @@ $(document).ready(function () {
         seatdata = seatList.join(" ");
         $(".seat-content").text(seatdata);
         // Cập nhật thông tin giá
-        if (seatIndentify.data.Type === "2") price -= 2;
+        if (seatIndentify.data[0].typeId === "2") price -= 2;
         else price -= 1;
 
         let pricetorender = toVndCurrencyFormat(pricetocal * price);
