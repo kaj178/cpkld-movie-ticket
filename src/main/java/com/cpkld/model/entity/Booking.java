@@ -28,7 +28,7 @@ public class Booking {
     // }
 
     @Column(name = "amount")
-    public int amount;
+    public Integer amount;
 
     @Column(name = "booking_time")
     public LocalDateTime bookingTime;
