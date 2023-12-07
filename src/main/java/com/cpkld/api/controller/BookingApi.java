@@ -102,7 +102,7 @@ public class BookingApi {
     private BookingService bookingService;
 
     @GetMapping(params = "customer_id")
-    public ResponseEntity<?> getBookingByID(@RequestParam("id") int id) {
+    public ResponseEntity<?> getBookingByID(@RequestParam("customer_id") Integer id) {
         return bookingService.getBookingByCustomerID(id);
     }
 

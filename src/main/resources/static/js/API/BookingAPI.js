@@ -29,8 +29,8 @@ const AddBooking = async (
   return datatorender;
 };
 
-const getAllBookingsByCustomerID = async (url = "../..", page = 1, id) => {
-  const urls = `${url}&customer_id=${id}`;
+const getAllBookingsByCustomerID = async (url = "../..", id) => {
+  const urls = `${url}/api/v1/booking?customer_id=${id}`;
   const data = await fetch(urls, {
     method: "GET",
   });

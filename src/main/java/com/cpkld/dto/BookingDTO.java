@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.cpkld.model.entity.Seat;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +18,8 @@ public class BookingDTO {
     private LocalDateTime bookingTime;
     private LocalDateTime startTime;
     private Integer showTimeId;
-    private Integer seatId;
+    // private Integer seatId;
+    private List<Seat> seats;
     private Integer status;
     private double totalPrice;
     private String promotionName;

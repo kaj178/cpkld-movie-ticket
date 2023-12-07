@@ -22,7 +22,7 @@ public class Ticket {
     @JsonBackReference
     private ShowTime showTime;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Seat.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Seat.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "seat_id")
     @JsonBackReference
     private Seat seat;

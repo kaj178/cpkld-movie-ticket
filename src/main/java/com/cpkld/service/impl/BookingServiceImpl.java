@@ -188,8 +188,10 @@ public class BookingServiceImpl implements BookingService {
 
         List<Ticket> tickets = ticketRepository.getTicketsByBookingId(booking.getBookingId()).get();
         for (Ticket ticket : tickets) {
+            List<Seat> seats = new ArrayList<>();
+            seats.add(ticket.getSeat());
             bookingDTO.setShowTimeId(ticket.getShowTime().getId());
-            bookingDTO.setSeatId(ticket.getSeat().getSeatId());
+            bookingDTO.setSeats(seats);
             break;
         }
         bookingDTO.setAmountItem(booking.amount);
@@ -224,13 +226,15 @@ public class BookingServiceImpl implements BookingService {
             booking.getPromotion().getId(), 
             booking.getCustomer().getId()
         );
-        if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
-            ticketRepository.saveTicket(
-            bookingRepository.getLastId(), 
-            bookingDTO.getSeatId(), 
-            bookingDTO.getShowTimeId(), 
-            bookingDTO.getStatus()
-        );
+        for (Seat seat : bookingDTO.getSeats()) {
+            if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
+                ticketRepository.saveTicket(
+                    bookingRepository.getLastId(), 
+                    seat.getSeatId(), 
+                    bookingDTO.getShowTimeId(), 
+                    bookingDTO.getStatus()
+                );
+            }
         }
         return new ResponseEntity<>(
             new ApiResponse<>(HttpStatus.OK.value(), "Success", null),
