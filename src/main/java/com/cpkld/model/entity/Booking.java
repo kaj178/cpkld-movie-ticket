@@ -20,6 +20,13 @@ public class Booking {
     @Column(name = "booking_id")
     public Integer bookingId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_id")
+    public int getId() {
+        return bookingId;
+    }
+
     @Column(name = "amount")
     public int amount;
 

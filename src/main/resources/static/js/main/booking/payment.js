@@ -39,7 +39,7 @@ $(document).ready(function () {
     let seatdata = JSON.parse(sessionStorage.getItem("ChoosingSeat"));
     let textseatdata = "";
     for (var i = 0; i < seatdata.length; i++) {
-      textseatdata += seatdata[i].SeatName + " ";
+      textseatdata += seatdata[i].seatName + " ";
     }
     $(".seat-content").text(textseatdata);
     // Cập nhật thông tin giá
@@ -47,9 +47,10 @@ $(document).ready(function () {
     let PriceTotal = sessionStorage.getItem("TotalPrice");
     let menuprice = sessionStorage.getItem("PriceMenu");
     let movieid = sessionStorage.getItem("movieid");
-    let dataMovie = await getMovieByID("../../../.", movieid);
-    dataMovie = dataMovie["movie"];
-    $(".movie-content").text(dataMovie.MovieName);
+    let dataMovie = await getMovieByID("../..", movieid);
+    dataMovie = dataMovie.data[0];
+    console.log(dataMovie);
+    $(".movie-content").text(dataMovie.name);
     $(".menu-content").text(toVndCurrencyFormat(menuprice));
     $(".price-ticket").text(toVndCurrencyFormat(pricetorender));
     $(".all-price-content").text(toVndCurrencyFormat(PriceTotal));
@@ -62,17 +63,22 @@ $(document).ready(function () {
     $(".after-price-content").text(toVndCurrencyFormat(newPrice));
   }
   $(".btn-grad").click(async () => {
-    let PromtionPrice = await calculateTotalPrice(
-      "../../../.",
-      $(".form-discount-content").val(),
-      JSON.parse(sessionStorage.getItem("TotalPrice"))
-    );
-    if (PromtionPrice.success) {
-      let newPrice = PromtionPrice.totalPrice;
-      let PromotionPrice =
-        JSON.parse(sessionStorage.getItem("TotalPrice")) - newPrice;
+    if ($(".form-discount-content").val() == "Welcome") {
+      let PromotionPrice = JSON.parse(sessionStorage.getItem("TotalPrice")) / 2;
+      let newPrice = JSON.parse(sessionStorage.getItem("TotalPrice")) / 2;
       ChangePrice(PromotionPrice, newPrice);
     }
+    // let PromtionPrice = await calculateTotalPrice(
+    //   "../../../.",
+    //   $(".form-discount-content").val(),
+    //   JSON.parse(sessionStorage.getItem("TotalPrice"))
+    // );
+    // if (PromtionPrice.success) {
+    //   let newPrice = PromtionPrice.totalPrice;
+    //   let PromotionPrice =
+    //     JSON.parse(sessionStorage.getItem("TotalPrice")) - newPrice;
+    //   ChangePrice(PromotionPrice, newPrice);
+    // }
   });
   $("#method-momo").click(function () {
     if ($("#method-atm p").css("color") == "rgb(255, 60, 172)") {
@@ -109,16 +115,16 @@ $(document).ready(function () {
     }
   });
   async function FindingUserByEmailFunc(email) {
-    let data = await getCustomerByEmail("../../../.", email);
+    let data = await getCustomerByEmail("../..", email);
     return data;
   }
   $(".confirm-btn").click(async () => {
-    const EmailUser = sessionStorage.getItem("Email");
-    let UserInfo = XORDecrypt(EmailUser);
-    let UserData = await FindingUserByEmailFunc(UserInfo);
-    let UserDataRender = JSON.parse(UserData["user"]).customer;
+    const EmailUser = sessionStorage.getItem("email");
+    let UserData = await FindingUserByEmailFunc(EmailUser);
+    console.log(UserData.data[0]);
+    let UserDataRender = UserData.data[0];
     console.log(UserDataRender);
-    let customer_id = UserDataRender.CustomerID;
+    let customer_id = UserDataRender.customerId;
     let ChoosingSeat = sessionStorage.getItem("ChoosingSeat");
     let RoomID = sessionStorage.getItem("RoomIDChoosing");
     let dayChoosing = sessionStorage.getItem("DayChoosing");

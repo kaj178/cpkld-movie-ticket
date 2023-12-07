@@ -1,7 +1,11 @@
 package com.cpkld.repository;
 
 import com.cpkld.model.entity.Booking;
+import com.cpkld.model.entity.Menu;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -10,6 +14,10 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
+
     Optional<Booking> findBookingByBookingId(Integer bookingId);
-    Optional<List<Booking>> getAllByBookingTime(LocalDateTime bookingTime);
+
+    @Query(value = "SELECT booking_id FROM public.booking ORDER BY booking_id DESC LIMIT 1", nativeQuery = true)
+    public int getlastid();
+
 }

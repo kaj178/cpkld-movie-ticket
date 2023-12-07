@@ -10,7 +10,6 @@ const AddBooking = async (
   listme
 ) => {
   const bodyinput = {
-    action: "addBooking",
     NumberOfTickets: numofticket,
     BookingTime: time,
     Voucher: voucher,
@@ -22,7 +21,7 @@ const AddBooking = async (
   };
   console.log(bodyinput);
   const bodytoadd = JSON.stringify(bodyinput);
-  const data = await fetch(`${url}/Controller/Booking/ajax.php`, {
+  const data = await fetch(`${url}/api/v1/booking`, {
     method: "POST",
     body: bodytoadd,
   });

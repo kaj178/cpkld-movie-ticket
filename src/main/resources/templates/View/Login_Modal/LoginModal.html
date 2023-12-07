@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  lang="en"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,9 +72,9 @@
           >
             <form th:action="@{/login/auth}" method="POST">
               <div th:if="${loginError}">
-                <div class="alert alert-danger" style="margin-bottom: 30px;">
+                <div class="alert alert-danger" style="margin-bottom: 30px">
                   <span th:text="${loginError}"></span>
-              </div>
+                </div>
               </div>
               <div class="form-group" style="margin-bottom: 36px">
                 <input
@@ -131,9 +135,7 @@
           <div class="Changing_Section text-center">
             <span style="color: #9a9fae"
               >Chưa có tài khoản?
-              <a href="../signup" style="color: #ff3cac"
-                >Đăng ký</a
-              ></span
+              <a href="../signup" style="color: #ff3cac">Đăng ký</a></span
             >
           </div>
           <br />
@@ -147,5 +149,11 @@
         </div>
       </div>
     </div>
+    <script type="module">
+      $("#btn-login").click((e) => {
+        const email = $("#email").val();
+        sessionStorage.setItem("email", email);
+      });
+    </script>
   </body>
 </html>

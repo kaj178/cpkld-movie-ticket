@@ -58,16 +58,7 @@ const updateCustomer = async (
 };
 
 const getCustomerByEmail = async (url, email) => {
-  const urls = `${url}/Controller/User/ajax.php?action=getUserByEmail&email=${email}`;
-  const data = await fetch(urls, {
-    method: "GET",
-  });
-  const datatorender = await data.json();
-  return datatorender;
-};
-
-const getUserByEmail = async (url, email) => {
-  const urls = `${url}/Controller/User/ajax.php?action=getUserByEmail&email=${email}`;
+  const urls = `${url}/api/v1/customer?email=${email}`;
   const data = await fetch(urls, {
     method: "GET",
   });
@@ -108,11 +99,18 @@ const updateManager = async (
   return datatorender;
 };
 
-const addManager = async (url = "../..", email, password, fullname, phone, address) => {
+const addManager = async (
+  url = "../..",
+  email,
+  password,
+  fullname,
+  phone,
+  address
+) => {
   const urls = `${url}/api/v1/manager`;
   const data = await fetch(urls, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     method: "POST",
     body: JSON.stringify({
@@ -147,5 +145,4 @@ export {
   deleteManager,
   getCustomerByEmail,
   getUserById,
-  getUserByEmail,
 };

@@ -4,6 +4,7 @@ import com.cpkld.dto.AnnualRevenueDTO;
 import com.cpkld.dto.BookingDTO;
 import com.cpkld.dto.MonthlyRevenueDTO;
 import com.cpkld.dto.QuarterlyRevenueDTO;
+import com.cpkld.dto.TicketDTO;
 import com.cpkld.model.entity.*;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;
@@ -26,34 +27,65 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private TheaterRepository theaterRepository;
 
+    class BookingTemp {
+        private int NumberOfTickets;
+        private String BookingTime;
+        private String Voucher;
+        private int customer;
+        private int ShowTimeID;
+        private double TotalPrice;
+        private List<Ticket> ListTicket;
+        private List<Menu> ListMenu;
+    }
+
     @Override
     public ResponseEntity<?> getAll() {
         List<Booking> bookings = bookingRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(),
-                "Success",
-                bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
+        BookingDTO bookings = new BookingDTO();
+        LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
+        bookings.setAmountItem(bookingTemp.getNumberOfTickets());
+        bookings.setCustomerId(bookingTemp.getCustomer());
+        bookings.setPromotionName(bookingTemp.getVoucher());
+        bookings.setStartTime(localDateTime);
+        bookings.setStatus(0);
+        bookings.setTotalPrice(bookingTemp.getTotalPrice());
+        for (Ticket element : bookingTemp.getListTicket()) {
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setBooking_id(bookingRepository.getlastid());
+            ticketDTO.setSeats_id(element.getSeat().getSeatId());
+        }
+        bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
+    }
 
-
-    //int time => 1/2/3 => thang/quy/nam
+    // int time => 1/2/3 => thang/quy/nam
     public ResponseEntity<?> statisticBookings() {
         List<Booking> bookings = bookingRepository.findAll();
 
         List<AnnualRevenueDTO> annualRevenueDTOS = new ArrayList<>();
-        for (int year = 2022; year<=2024; year++) {
+        for (int year = 2022; year <= 2024; year++) {
             AnnualRevenueDTO annualRevenueDTO = new AnnualRevenueDTO();
             annualRevenueDTO.setYear(year);
 
             double totalRevenueYear = 0.0;
 
             List<QuarterlyRevenueDTO> quarterlyRevenueDTOS = new ArrayList<>();
-            for (int quarter=1; quarter<=4; quarter++) {
+            for (int quarter = 1; quarter <= 4; quarter++) {
                 QuarterlyRevenueDTO quarterlyRevenueDTO = new QuarterlyRevenueDTO();
 
                 quarterlyRevenueDTO.setYear(year);
@@ -71,8 +103,8 @@ public class BookingServiceImpl implements BookingService {
                 } else {
                     countTime = 10;
                 }
-                for (int month = countTime; month<countTime+3; month++) {
-                    //set data
+                for (int month = countTime; month < countTime + 3; month++) {
+                    // set data
                     MonthlyRevenueDTO monthlyRevenueDTO = new MonthlyRevenueDTO();
                     monthlyRevenueDTO.setMonth(month);
                     monthlyRevenueDTO.setQuarterly(quarter);
@@ -86,7 +118,7 @@ public class BookingServiceImpl implements BookingService {
                         int periodMonth = period.getMonthValue();
                         int periodYear = period.getYear();
 
-                        if (periodYear == year && periodMonth == month)  {
+                        if (periodYear == year && periodMonth == month) {
                             amountInvoice += 1;
                             totalRevenue += item.getTotalPrice();
                         }
@@ -107,13 +139,11 @@ public class BookingServiceImpl implements BookingService {
             annualRevenueDTOS.add(annualRevenueDTO);
         }
         return new ResponseEntity<>(
-                new ApiResponse<> (
-                    HttpStatus.OK.value(),
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
                         "Success",
-                        annualRevenueDTOS
-                ),
-                HttpStatus.OK
-        );
+                        annualRevenueDTOS),
+                HttpStatus.OK);
     }
 
     private BookingDTO convertEntityToDTO(Booking booking) {
@@ -122,32 +152,31 @@ public class BookingServiceImpl implements BookingService {
         bookingDTO.setStartTime(booking.getBookingTime());
 
         bookingDTO.setBookingId(booking.bookingId);
-//        Ticket ticket = new Ticket();
-//
-//        List<Ticket> tickets = booking.getTickets();
+        // Ticket ticket = new Ticket();
+        //
+        // List<Ticket> tickets = booking.getTickets();
         List<Integer> listTicketId = new ArrayList<>();
-
 
         String formatName = "";
 
-//        for (Ticket item : tickets) {
-//            listTicketId.add(item.getTicketId());
-//            ticket = item;
-//
-//        }
+        // for (Ticket item : tickets) {
+        // listTicketId.add(item.getTicketId());
+        // ticket = item;
+        //
+        // }
 
-        //formatName = ticket.getShowTime().getFormat().getName();
+        // formatName = ticket.getShowTime().getFormat().getName();
 
-//        bookingDTO.setTicketsId(listTicketId);
+        // bookingDTO.setTicketsId(listTicketId);
         // bookingDTO.setEmail(booking.getCustomer().getEmail());
         bookingDTO.setCustomerId(booking.getCustomer().getId());
         bookingDTO.setFormat(formatName);
 
-
         bookingDTO.setAmountItem(booking.amount);
 
-//        Theater theater = theaterRepository.getTheaterByTicketId(ticket.getTicketId());
-//        bookingDTO.setTheaterName(theater.getName());
+        // Theater theater =
+        // theaterRepository.getTheaterByTicketId(ticket.getTicketId());
+        // bookingDTO.setTheaterName(theater.getName());
 
         List<Menu> menus = new ArrayList<>();
         List<MenuBooking> menuBooking = booking.getMenuBookings();

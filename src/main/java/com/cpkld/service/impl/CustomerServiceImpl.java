@@ -41,9 +41,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseEntity<?> getAll() {
         List<CustomerDTO> customerList = repo.findAll()
-            .stream()
-            .map(this::convertEntityToDto)
-            .collect(Collectors.toList());
+                .stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
         ApiResponse<CustomerDTO> apiResponse = new ApiResponse<>(HttpStatus.OK.value(), "Success", customerList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
@@ -56,13 +56,11 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerNotFoundException("Customer not found");
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                optional.stream().map(this::convertEntityToDto).toList()
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDto).toList()),
+                HttpStatus.OK);
     }
 
     @Override
@@ -72,29 +70,25 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerNotFoundException("Customer not found");
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                optional.stream().map(this::convertEntityToDto).toList()
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDto).toList()),
+                HttpStatus.OK);
     }
 
     // Get list of data paginated
     @Override
     public ResponseEntity<?> getPaginated(int page) {
-        // New instance for paginating, 5 elements in 1 page, sorted by id 
+        // New instance for paginating, 5 elements in 1 page, sorted by id
         Pageable paging = PageRequest.of(page, 5, Sort.by("id").ascending());
         Page<Customer> customerList = repo.findAll(paging);
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                customerList.stream().map(this::convertEntityToDto).toList()
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        customerList.stream().map(this::convertEntityToDto).toList()),
+                HttpStatus.OK);
     }
 
     // Add new customer, if existed - throws exception
@@ -102,16 +96,16 @@ public class CustomerServiceImpl implements CustomerService {
     public ResponseEntity<?> add(CustomerDTO customerDTO) {
         Optional<Customer> optional = repo.findById(customerDTO.getCustomerId());
         if (optional.isPresent()) {
-            throw new CustomerExistedException("Customer existed");}
+            throw new CustomerExistedException("Customer existed");
+        }
         // } else {
-        //     repo.save(new User(
+        // repo.save(new User(
 
-        //     ));
+        // ));
         // }
         return new ResponseEntity<>(
-            new ApiResponse<>(HttpStatus.CREATED.value(), "Success", optional.stream().toList()),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(HttpStatus.CREATED.value(), "Success", optional.stream().toList()),
+                HttpStatus.OK);
     }
 
     @Override
@@ -126,13 +120,12 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setAddress(newCustomer.getAddress());
             customer.setEmail(newCustomer.getEmail());
             customer.setPhoneNumber(newCustomer.getPhoneNumber());
-            //customer.setAccountId(newCustomer.getAccountId());
+            // customer.setAccountId(newCustomer.getAccountId());
             repo.save(customer);
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(HttpStatus.OK.value(), "Success", optional.stream().toList()),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(HttpStatus.OK.value(), "Success", optional.stream().toList()),
+                HttpStatus.OK);
     }
 
     @Override
@@ -144,9 +137,8 @@ public class CustomerServiceImpl implements CustomerService {
             repo.deleteById(id);
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(HttpStatus.OK.value(), "Delete user successfully!", optional.stream().toList()), 
-            HttpStatus.OK
-        );
+                new ApiResponse<>(HttpStatus.OK.value(), "Delete user successfully!", optional.stream().toList()),
+                HttpStatus.OK);
     }
 
 }
