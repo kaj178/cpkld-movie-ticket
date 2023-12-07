@@ -1,7 +1,5 @@
 package com.cpkld.api.controller;
 
-import com.cpkld.service.MovieService;
-import com.cpkld.service.ShowTimeService;
 import com.cpkld.service.StudioService;
 
 import org.springframework.beans.factory.annotation.Autowired;

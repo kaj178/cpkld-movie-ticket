@@ -1,7 +1,6 @@
 package com.cpkld.repository;
 
 import com.cpkld.model.entity.Menu;
-import com.cpkld.model.entity.ShowTime;
 
 import java.util.Optional;
 

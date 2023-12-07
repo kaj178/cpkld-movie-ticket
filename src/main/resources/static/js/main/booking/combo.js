@@ -42,7 +42,7 @@ $(document).ready(function () {
             <div class="row g-0">
               <div class="col-md-4">
                 <img
-                  src="../public/${data.imgUrl}"
+                  src="../public/img/menu/${data.imgUrl}"
                   class="img-fluid rounded-start"
                   alt="..."
                 />
