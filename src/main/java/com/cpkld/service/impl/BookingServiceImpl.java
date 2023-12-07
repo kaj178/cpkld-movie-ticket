@@ -43,8 +43,8 @@ public class BookingServiceImpl implements BookingService {
     // }
 
     @Override
-    public ResponseEntity<?> getAll() {
-        List<Booking> bookings = bookingRepository.findAll();
+    public ResponseEntity<?> getBookingByCustomerID(int id) {
+        Optional<Booking> bookings = bookingRepository.findById(id);
         return new ResponseEntity<>(
             new ApiResponse<>(
                 HttpStatus.OK.value(),
@@ -78,8 +78,27 @@ public class BookingServiceImpl implements BookingService {
     // }
 
     @Override
-    public ResponseEntity<?> add(BookingDTO bookingDTO) {
-        return null;
+    public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
+        BookingDTO bookings = new BookingDTO();
+        LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
+        bookings.setAmountItem(bookingTemp.getNumberOfTickets());
+        bookings.setCustomerId(bookingTemp.getCustomer());
+        bookings.setPromotionName(bookingTemp.getVoucher());
+        bookings.setStartTime(localDateTime);
+        bookings.setStatus(0);
+        bookings.setTotalPrice(bookingTemp.getTotalPrice());
+        for (Ticket element : bookingTemp.getListTicket()) {
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setBooking_id(bookingRepository.getlastid());
+            ticketDTO.setSeats_id(element.getSeat().getSeatId());
+        }
+        bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     // int time => 1/2/3 => thang/quy/nam
@@ -163,19 +182,25 @@ public class BookingServiceImpl implements BookingService {
         bookingDTO.setBookingTime(booking.getBookingTime());
         bookingDTO.setBookingId(booking.bookingId);
         bookingDTO.setCustomerId(booking.getCustomer().getId());
-        bookingDTO.setAmountItem(booking.getAmount());
-        List<Ticket> tickets = ticketRepository.getTicketsByBookingId(booking.getBookingId()).get();
-        for (Ticket ticket : tickets){
-            bookingDTO.setShowTimeId(ticket.getShowTime().getId());
-            break;
-        }
-        // bookingDTO.setShowTimeId(bookingService);
+        bookingDTO.setFormat(formatName);
+
+        bookingDTO.setAmountItem(booking.amount);
+
+        // Theater theater =
+        // theaterRepository.getTheaterByTicketId(ticket.getTicketId());
+        // bookingDTO.setTheaterName(theater.getName());
 
         List<Menu> menus = new ArrayList<>();
         List<MenuBooking> menuBooking = booking.getMenuBookings();
         for (MenuBooking item : menuBooking) {
             menus.add(item.getMenu());
         }
+
+        StringBuilder comboName = new StringBuilder();
+        for (Menu item : menus) {
+            comboName.append(item.getName()).append(", ");
+        }
+        bookingDTO.setCombo(String.valueOf(comboName));
         bookingDTO.setStatus(bookingDTO.getStatus());
 
         String promotionName = "Khong co";

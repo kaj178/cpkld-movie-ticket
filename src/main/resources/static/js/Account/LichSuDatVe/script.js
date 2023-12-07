@@ -63,12 +63,12 @@ function showData() {
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
-        data[i].data.BookingID,
-        data[i].data.NumberOfTickets,
-        toVndCurrencyFormat(data[i].data.TotalPrice),
-        data[i].data.BookingTime,
-        data[i].data.Voucher,
-        data[i].data.status == 1 ? "Đã thanh toán" : "Chưa thanh toán",
+        data[i].bookingId,
+        data[i].amountItem,
+        toVndCurrencyFormat(data[i].totalPrice),
+        data[i].startTime,
+        data[i].promotionName,
+        data[i].status == 1 ? "Đã thanh toán" : "Chưa thanh toán",
       ])
       .draw();
   }
@@ -77,7 +77,7 @@ async function loadAllBooking(id) {
   currentData = [];
   let page = 1;
   let data;
-  data = await getAllBookingsByCustomerID("http://localhost:8080/", page, id);
-  currentData.push(...data);
+  data = await getAllBookingsByCustomerID("../..", page, id);
+  currentData.push(...data.data);
   showData();
 }

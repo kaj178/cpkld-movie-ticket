@@ -13,7 +13,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     Optional<Booking> findBookingByBookingId(Integer bookingId);
 
-    @Query(value = "SELECT booking_id FROM public.booking ORDER BY booking_id DESC LIMIT 1", nativeQuery = true)
-    public int getlastid();
+    @Query(value = "SELECT * FROM public.booking where customer_id = :customer_id", nativeQuery = true)
+    public int getBookingByCustomerID(@Param("customer_id") Integer customer_id);
 
 }
