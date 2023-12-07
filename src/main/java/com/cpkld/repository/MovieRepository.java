@@ -4,6 +4,7 @@ import com.cpkld.model.entity.Movie;
 
 import java.util.List;
 
+import com.cpkld.model.entity.MovieGenre;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,6 +39,8 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
             "where t.ticket_id = :ticketId",
     nativeQuery = true)
     Movie findMovieByTicketId(@Param("ticketId") Integer ticketId);
+
+    List<Movie> findMoviesByMovieGenres(Integer movieGenreId);
 
 
 }

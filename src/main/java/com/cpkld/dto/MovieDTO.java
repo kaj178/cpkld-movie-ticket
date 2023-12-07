@@ -1,5 +1,6 @@
 package com.cpkld.dto;
 
+import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.entity.Studio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,6 @@ public class MovieDTO {
     private int rating;
     private Studio studio;
     private String language;
-    private List<String> movieGenres; 
+    private List<String> movieGenres;
+    private List<MovieGenre> movieGenreList;
 }
