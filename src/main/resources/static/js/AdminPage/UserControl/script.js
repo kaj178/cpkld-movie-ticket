@@ -5,7 +5,6 @@ import {
   updateCustomer,
   updateManager,
 } from "../../API/UserAPI.js";
-import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
 import { RegisterAPI } from "../../API/LoginAPI.js";
 
@@ -13,24 +12,24 @@ let allData = [];
 let currentData = [];
 
 let table = $("#table-content").DataTable({
-  "pagelength": 5,
-  "lengthMenu": [5, 10],
-  "select": {
-    "style": "single",
-    "info": false,
+  pagelength: 5,
+  lengthMenu: [5, 10],
+  select: {
+    style: "single",
+    info: false,
   },
-  "searching": true,
-  "language": {
-    "lengthMenu": "Số kết quả / Trang _MENU_",
-    "zeroRecords": "Không tìm thấy dữ liệu",
-    "info": "Hiển thị trang _PAGE_ trên _PAGES_",
-    "infoEmpty": "Đang tìm kiếm dữ liệu",
-    "infoFiltered": "(filtered from _MAX_ total records)",
-    "paginate": {
-      "first": "Trang đầu",
-      "last": "Trang cuối",
-      "next": "Trang sau",
-      "previous": "Trang trước",
+  searching: true,
+  language: {
+    lengthMenu: "Số kết quả / Trang _MENU_",
+    zeroRecords: "Không tìm thấy dữ liệu",
+    info: "Hiển thị trang _PAGE_ trên _PAGES_",
+    infoEmpty: "Đang tìm kiếm dữ liệu",
+    infoFiltered: "(filtered from _MAX_ total records)",
+    paginate: {
+      first: "Trang đầu",
+      last: "Trang cuối",
+      next: "Trang sau",
+      previous: "Trang trước",
     },
   },
 });
@@ -38,7 +37,6 @@ let table = $("#table-content").DataTable({
 $("#table-content_filter").hide();
 
 $(document).ready(() => {
-
   table.on("select", function (e, dt, type, indexes) {
     if (type === "row") {
       var data = table.rows(indexes).data();
@@ -190,7 +188,7 @@ async function loadAllUser() {
     page++;
   } while (data.data.length == 0);
   allData = [...currentData];
-  console.log()
+  console.log();
 }
 
 async function loadCustomer() {

@@ -139,32 +139,15 @@ public class MovieServiceImpl implements MovieService {
             HttpStatus.OK);
     }
 
+
+
+
     @Override
-    public ResponseEntity<?> add(@RequestBody MovieDTO movieDTO) {
-        Movie movie = new Movie();
+    public ResponseEntity<?> add(@RequestBody Movie movie) {
 
-        movie.setName(movieDTO.getName());
-        movie.setDirector(movieDTO.getDirector());
-        movie.setYear(movieDTO.getYear());
-        movie.setPremiere(movieDTO.getPremiere());
-
-        // Chinh sua url
-        movie.setUrlTrailer(movieDTO.getUrlTrailer());
-        movie.setVerticalPoster(movieDTO.getVerticalPoster());
-        movie.setHorizontalPoster(movieDTO.getHorizontalPoster());
-
-        movie.setTime(movieDTO.getTime());
-        movie.setAge(movieDTO.getAge());
-        movie.setStory(movieDTO.getStory());
-        movie.setRating(movieDTO.getRating());
-
-        List<Movie> movies = movieRepository.findAll();
-        Movie tmpMovie = movies.get(movies.size() - 1);
-
-        List<String> lstMovieGenre = movieDTO.getMovieGenres();
-
-        movieRepository.save(movie);
-
+        Movie _movie = movieRepository.save(movie);
+        List<Movie> movies = new ArrayList<>();
+        movies.add(_movie);
         return new ResponseEntity<>(
             new ApiResponse<>(
                 HttpStatus.OK.value(),
@@ -174,14 +157,51 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public ResponseEntity<?> update(Integer movieId, MovieDTO movieDTO) {
+    public ResponseEntity<?> update(Integer movieId, Movie movie) {
+        Optional<Movie> optional = movieRepository.findById(movieId);
+        if (optional.isEmpty()) {
+            throw new MovieNotFoundException("Movie not found!");
+        }
 
-        return null;
+        Movie _movie = optional.get();
+
+        _movie.setName(movie.getName());
+        _movie.setDirector(movie.getDirector());
+        _movie.setYear(movie.getYear());
+        _movie.setPremiere(movie.getPremiere());
+        _movie.setUrlTrailer(movie.getUrlTrailer());
+        _movie.setVerticalPoster(movie.getVerticalPoster());
+        _movie.setHorizontalPoster(movie.getHorizontalPoster());
+        _movie.setTime(movie.getTime());
+        _movie.setAge(movie.getAge());
+        _movie.setStory(movie.getStory());
+        _movie.setRating(movie.getRating());
+        _movie.setStudio(movie.getStudio());
+        _movie.setLanguage(movie.getLanguage());
+        _movie.setShowTimes(movie.getShowTimes());
+        _movie.setMovieGenres(movie.getMovieGenres());
+
+        movieRepository.save(_movie);
+        List<Movie> resp = new ArrayList<>();
+        resp.add(_movie);
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        resp.stream().toList()),
+                HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<?> delete(Integer movieId) {
-        return null;
+        movieRepository.deleteById(movieId);
+        List<Movie> resp = new ArrayList<>();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        resp.stream().toList()),
+                HttpStatus.OK);
     }
 
     private MovieDTO convertEntityToDTO(Movie movie) {

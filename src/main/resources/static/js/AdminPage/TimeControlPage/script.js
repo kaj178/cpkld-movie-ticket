@@ -7,7 +7,6 @@ import {
 import { getAllMovies } from "../../API/MovieAPI.js";
 import { getAllRooms } from "../../API/RoomAPI.js";
 import { getAllFormats } from "../../API/FormatAPI.js";
-import { getUserByEmail } from "../../API/UserAPI.js";
 import { XORDecrypt } from "../../Util/EncryptXOR.js";
 
 let allData = [];

@@ -47,35 +47,37 @@ public class BookingServiceImpl implements BookingService {
     public ResponseEntity<?> getBookingByCustomerID(int id) {
         Optional<Booking> bookings = bookingRepository.findById(id);
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(),
-                "Success",
-                bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
-            HttpStatus.OK);
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     // @Override
-    // public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
-    //     BookingDTO bookings = new BookingDTO();
-    //     LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
-    //     bookings.setAmountItem(bookingTemp.getNumberOfTickets());
-    //     bookings.setCustomerId(bookingTemp.getCustomer());
-    //     bookings.setPromotionName(bookingTemp.getVoucher());
-    //     bookings.setStartTime(localDateTime);
-    //     bookings.setStatus(0);
-    //     bookings.setTotalPrice(bookingTemp.getTotalPrice());
-    //     for (Ticket element : bookingTemp.getListTicket()) {
-    //         TicketDTO ticketDTO = new TicketDTO();
-    //         ticketDTO.setBooking_id(bookingRepository.getlastid());
-    //         ticketDTO.setSeats_id(element.getSeat().getSeatId());
-    //     }
-    //     bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
-    //     return new ResponseEntity<>(
-    //         new ApiResponse<>(
-    //             HttpStatus.OK.value(),
-    //             "Success",
-    //             bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
-    //         HttpStatus.OK);
+    // public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp
+    // bookingTemp) {
+    // BookingDTO bookings = new BookingDTO();
+    // LocalDateTime localDateTime =
+    // LocalDateTime.parse(bookingTemp.getBookingTime());
+    // bookings.setAmountItem(bookingTemp.getNumberOfTickets());
+    // bookings.setCustomerId(bookingTemp.getCustomer());
+    // bookings.setPromotionName(bookingTemp.getVoucher());
+    // bookings.setStartTime(localDateTime);
+    // bookings.setStatus(0);
+    // bookings.setTotalPrice(bookingTemp.getTotalPrice());
+    // for (Ticket element : bookingTemp.getListTicket()) {
+    // TicketDTO ticketDTO = new TicketDTO();
+    // ticketDTO.setBooking_id(bookingRepository.getlastid());
+    // ticketDTO.setSeats_id(element.getSeat().getSeatId());
+    // }
+    // bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
+    // return new ResponseEntity<>(
+    // new ApiResponse<>(
+    // HttpStatus.OK.value(),
+    // "Success",
+    // bookings.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+    // HttpStatus.OK);
     // }
 
     // @Override
@@ -169,11 +171,11 @@ public class BookingServiceImpl implements BookingService {
             annualRevenueDTOS.add(annualRevenueDTO);
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(),
-                "Success",
-                annualRevenueDTOS),
-            HttpStatus.OK);
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        annualRevenueDTOS),
+                HttpStatus.OK);
     }
 
     private BookingDTO convertEntityToDTO(Booking booking) {

@@ -1,6 +1,7 @@
 package com.cpkld.api.controller;
 
 import com.cpkld.dto.MovieDTO;
+import com.cpkld.model.entity.Movie;
 import com.cpkld.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,13 @@ public class MovieApi {
         return movieService.getListUpcomingMovies();
     }
 
-    @PostMapping
-    public ResponseEntity<?> createMovie(@RequestBody MovieDTO movieDTO) {
-        return movieService.add(movieDTO);
+    @PostMapping("/movies")
+    public ResponseEntity<?> createMovie(@RequestBody Movie movie) {
+        return movieService.add(movie);
+    }
+
+    @PutMapping("/movies/{movieId}")
+    public ResponseEntity<?> updateMovie(@PathVariable("movieId") Integer movieId, @RequestBody Movie movie) {
+        return movieService.update(movieId, movie);
     }
 }

@@ -1,6 +1,7 @@
 package com.cpkld.service;
 
 import com.cpkld.dto.MovieDTO;
+import com.cpkld.model.entity.Movie;
 import org.springframework.http.ResponseEntity;
 
 public interface MovieService {
@@ -21,9 +22,9 @@ public interface MovieService {
 
     ResponseEntity<?> getListUpcomingMovies();
 
-    ResponseEntity<?> add(MovieDTO movieDTO);
+    ResponseEntity<?> add(Movie movie);
 
-    ResponseEntity<?> update(Integer movieId, MovieDTO movieDTO);
+    ResponseEntity<?> update(Integer movieId, Movie movie);
 
     ResponseEntity<?> delete(Integer movieId);
 }
