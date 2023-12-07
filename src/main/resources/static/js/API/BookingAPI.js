@@ -30,7 +30,7 @@ const AddBooking = async (
 };
 
 const getAllBookingsByCustomerID = async (url = "../..", page = 1, id) => {
-  const urls = `${url}/Controller/Booking/ajax.php?action=getAllBookingsByCustomerID&page=${page}&CustomerID=${id}`;
+  const urls = `${url}&customer_id=${id}`;
   const data = await fetch(urls, {
     method: "GET",
   });

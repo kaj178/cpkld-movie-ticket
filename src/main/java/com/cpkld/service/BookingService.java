@@ -24,6 +24,5 @@ public interface BookingService {
 
     ResponseEntity<?> statisticBookings();
 
-    ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingDTO);
-
+    ResponseEntity<?> getBookingByCustomerId(int id);
 }

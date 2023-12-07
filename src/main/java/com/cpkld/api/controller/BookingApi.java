@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -106,6 +107,11 @@ public class BookingApi {
     @Autowired
     private BookingService bookingService;
 
+    @GetMapping(params = "customer_id")
+    public ResponseEntity<?> getBookingByID(@RequestParam("id") int id) {
+        return bookingService.getBookingByCustomerId(id);
+    }
+
     @GetMapping
     public ResponseEntity<?> readAllBooking() {
         return bookingService.getAll();
@@ -114,10 +120,5 @@ public class BookingApi {
     @GetMapping("/statistic")
     public ResponseEntity<?> getStatistic() {
         return bookingService.statisticBookings();
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> bookingDTO(@RequestBody BookingTemp bookingDTO) {
-        return bookingService.add(bookingDTO);
     }
 }

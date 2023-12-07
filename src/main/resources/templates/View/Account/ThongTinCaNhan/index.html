@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -76,18 +80,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto d-flex w-100">
             <li class="nav-item">
-              <a class="nav-link nav-current" href="/movie-list"
-                >PHIM</a
-              >
+              <a class="nav-link nav-current" href="/movie-list">PHIM</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/order">LỊCH CHIẾU</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/personal-profile"
-                >THÔNG TIN</a
-              >
+              <a class="nav-link" href="/personal-profile">THÔNG TIN</a>
             </li>
             <li class="nav-item" id="login-accout">
               <div class="info">
@@ -111,19 +111,31 @@
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">TÊN</div>
-                <div th:text="${user.fullname}" class="col-6 account-content name-display"></div>
+                <div
+                  th:text="${user.fullname}"
+                  class="col-6 account-content name-display"
+                ></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">EMAIL</div>
-                <div th:text="${user.username}" class="col-6 account-content email-display"></div>
+                <div
+                  th:text="${user.username}"
+                  class="col-6 account-content email-display"
+                ></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">TÊN ĐĂNG NHẬP</div>
-                <div th:text="${user.username}" class="col-6 account-content user-display"></div>
+                <div
+                  th:text="${user.username}"
+                  class="col-6 account-content user-display"
+                ></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6 account-title">SỐ ĐIỆN THOẠI</div>
-                <div th:text="${user.phone}" class="col-6 account-content phone-display"></div>
+                <div
+                  th:text="${user.phone}"
+                  class="col-6 account-content phone-display"
+                ></div>
               </div>
               <div class="row justify-content-center mb-3">
                 <div class="col-6">
@@ -289,74 +301,6 @@
         </div>
       </div>
     </div>
-    <script type="module">
-      import { getCustomerByEmail, changePassword } from "../../API/UserAPI.js";
-      import { XORDecrypt } from "../../Util/EncryptXOR.js";
-      let accountID;
-      $(document).ready(function () {
-        // if (sessionStorage.getItem("Email")) {
-        //   let email = XORDecrypt(window.sessionStorage.getItem("Email"));
-        //   getCustomerByEmail("../../..", email).then((res) => {
-        //     let data = JSON.parse(res.user);
-        //     let name = data.customer.FullName;
-        //     accountID = data.customer.account_id;
-        //     $("#create-accout").addClass("visually-hidden");
-        //     $("#login-accout").addClass("visually-hidden");
-        //     $("#user-account")
-        //       .removeClass("visually-hidden")
-        //       .find("a")
-        //       .text(name);
-        //     $("#signout").removeClass("visually-hidden");
-        //   });
-        // } else {
-        //   window.location.href = "../../Login_Modal/LoginModal.html";
-        // }
-
-        $("#signout a").click(() => {
-          sessionStorage.removeItem("Email");
-          window.location.href = ".";
-        });
-
-        $("#btn-change-password").click(() => {
-          let oldPass = $("#password-old").val();
-          let newPass = $("#password-new").val();
-          let newPassConfirm = $("#password-new-confirm").val();
-          if (newPass !== newPassConfirm) {
-            $(".message")
-              .text("Mật khẩu xác nhận không khớp")
-              .show(1)
-              .delay(3000)
-              .hide(1);
-            return;
-          }
-          changePassword("../../..", accountID, newPass, oldPass).then(
-            (res) => {
-              if (res.success)
-                $(".message")
-                  .text("Đổi mật khẩu thành công")
-                  .addClass("text-success")
-                  .removeClass("text-danger");
-              else
-                $(".message")
-                  .text("Mật khẩu cũ không đúng")
-                  .addClass("text-danger")
-                  .removeClass("text-success");
-            }
-          );
-        });
-      });
-
-      (async function TakeUserInformation() {
-        const EmailUser = sessionStorage.getItem("Email");
-        let UserInfo = XORDecrypt(EmailUser);
-        let UserData = await getCustomerByEmail("../../../.", UserInfo);
-        let UserDataRender = JSON.parse(UserData["user"]).customer;
-        console.log(UserDataRender);
-        $(".name-display").text(UserDataRender.FullName);
-        $(".email-display").text(UserInfo);
-        $(".user-display").text(UserInfo);
-        $(".phone-display").text(UserDataRender.Phone);
-      })();
-    </script>
+    <script type="module" src="/js/Account/ThongTinCaNhan/script.js"></script>
   </body>
 </html>

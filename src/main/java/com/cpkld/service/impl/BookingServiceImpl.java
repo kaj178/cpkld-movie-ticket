@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,8 +40,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public ResponseEntity<?> getAll() {
-        List<Booking> bookings = bookingRepository.findAll();
+    public ResponseEntity<?> getBookingByCustomerID(int id) {
+        Optional<Booking> bookings = bookingRepository.findById(id);
         return new ResponseEntity<>(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),
@@ -50,21 +51,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingTemp) {
-        BookingDTO bookings = new BookingDTO();
-        LocalDateTime localDateTime = LocalDateTime.parse(bookingTemp.getBookingTime());
-        bookings.setAmountItem(bookingTemp.getNumberOfTickets());
-        bookings.setCustomerId(bookingTemp.getCustomer());
-        bookings.setPromotionName(bookingTemp.getVoucher());
-        bookings.setStartTime(localDateTime);
-        bookings.setStatus(0);
-        bookings.setTotalPrice(bookingTemp.getTotalPrice());
-        for (Ticket element : bookingTemp.getListTicket()) {
-            TicketDTO ticketDTO = new TicketDTO();
-            ticketDTO.setBooking_id(bookingRepository.getlastid());
-            ticketDTO.setSeats_id(element.getSeat().getSeatId());
-        }
-        bookingTemp.getTotalPrice(), bookingTemp.getCustomer());
+    public ResponseEntity<?> getAll() {
+        List<Booking> bookings = bookingRepository.findAll();
         return new ResponseEntity<>(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),
@@ -170,7 +158,7 @@ public class BookingServiceImpl implements BookingService {
         // bookingDTO.setTicketsId(listTicketId);
         // bookingDTO.setEmail(booking.getCustomer().getEmail());
         bookingDTO.setCustomerId(booking.getCustomer().getId());
-        bookingDTO.setFormat(formatName);
+        // bookingDTO.setFormat(formatName);
 
         bookingDTO.setAmountItem(booking.amount);
 
@@ -188,7 +176,7 @@ public class BookingServiceImpl implements BookingService {
         for (Menu item : menus) {
             comboName.append(item.getName()).append(", ");
         }
-        bookingDTO.setCombo(String.valueOf(comboName));
+        // bookingDTO.setCombo(String.valueOf(comboName));
         bookingDTO.setStatus(bookingDTO.getStatus());
 
         String promotionName = "Khong co";
