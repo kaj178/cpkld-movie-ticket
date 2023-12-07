@@ -20,7 +20,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id")
+    @Column(name = "movie_id", insertable=false, updatable=false)
     private Integer movieId;
 
     @Column(name = "movie_name")
@@ -76,7 +76,6 @@ public class Movie {
         joinColumns = @JoinColumn(name = "movie_id"), 
         inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-
     private List<MovieGenre> movieGenres;
 
 }
