@@ -99,7 +99,7 @@ $(document).ready(function () {
         });
         if (fullSeats.length == 0) {
           if (seattoadd) {
-            if (seattoadd.Type == 2) {
+            if (seattoadd.typeId == 2) {
               $(row).append(
                 new Seat(charRow, i, 3, seattoadd.seatId).getHTML()
               );
@@ -113,7 +113,7 @@ $(document).ready(function () {
         } else {
           if (seattoadd) {
             if (fullSeats.seatId != seattoadd.seatId) {
-              if (seattoadd.Type == 2) {
+              if (seattoadd.typeId == 2) {
                 $(row).append(
                   new Seat(charRow, i, 3, seattoadd.seatId).getHTML()
                 );

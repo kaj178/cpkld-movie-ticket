@@ -22,86 +22,86 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/booking")
 public class BookingApi {
     // public class BookingTemp {
-    //     private int NumberOfTickets;
-    //     private String BookingTime;
-    //     private String Voucher;
-    //     private int customer;
-    //     private int ShowTimeID;
-    //     private double TotalPrice;
-    //     private List<Ticket> ListTicket;
-    //     private List<Menu> ListMenu;
+    // private int NumberOfTickets;
+    // private String BookingTime;
+    // private String Voucher;
+    // private int customer;
+    // private int ShowTimeID;
+    // private double TotalPrice;
+    // private List<Ticket> ListTicket;
+    // private List<Menu> ListMenu;
 
-    //     // Getter and Setter for NumberOfTickets
-    //     public int getNumberOfTickets() {
-    //         return NumberOfTickets;
-    //     }
+    // // Getter and Setter for NumberOfTickets
+    // public int getNumberOfTickets() {
+    // return NumberOfTickets;
+    // }
 
-    //     public void setNumberOfTickets(int numberOfTickets) {
-    //         NumberOfTickets = numberOfTickets;
-    //     }
+    // public void setNumberOfTickets(int numberOfTickets) {
+    // NumberOfTickets = numberOfTickets;
+    // }
 
-    //     // Getter and Setter for BookingTime
-    //     public String getBookingTime() {
-    //         return BookingTime;
-    //     }
+    // // Getter and Setter for BookingTime
+    // public String getBookingTime() {
+    // return BookingTime;
+    // }
 
-    //     public void setBookingTime(String bookingTime) {
-    //         BookingTime = bookingTime;
-    //     }
+    // public void setBookingTime(String bookingTime) {
+    // BookingTime = bookingTime;
+    // }
 
-    //     // Getter and Setter for Voucher
-    //     public String getVoucher() {
-    //         return Voucher;
-    //     }
+    // // Getter and Setter for Voucher
+    // public String getVoucher() {
+    // return Voucher;
+    // }
 
-    //     public void setVoucher(String voucher) {
-    //         Voucher = voucher;
-    //     }
+    // public void setVoucher(String voucher) {
+    // Voucher = voucher;
+    // }
 
-    //     // Getter and Setter for customer
-    //     public int getCustomer() {
-    //         return customer;
-    //     }
+    // // Getter and Setter for customer
+    // public int getCustomer() {
+    // return customer;
+    // }
 
-    //     public void setCustomer(int customer) {
-    //         this.customer = customer;
-    //     }
+    // public void setCustomer(int customer) {
+    // this.customer = customer;
+    // }
 
-    //     // Getter and Setter for ShowTimeID
-    //     public int getShowTimeID() {
-    //         return ShowTimeID;
-    //     }
+    // // Getter and Setter for ShowTimeID
+    // public int getShowTimeID() {
+    // return ShowTimeID;
+    // }
 
-    //     public void setShowTimeID(int showTimeID) {
-    //         ShowTimeID = showTimeID;
-    //     }
+    // public void setShowTimeID(int showTimeID) {
+    // ShowTimeID = showTimeID;
+    // }
 
-    //     // Getter and Setter for TotalPrice
-    //     public double getTotalPrice() {
-    //         return TotalPrice;
-    //     }
+    // // Getter and Setter for TotalPrice
+    // public double getTotalPrice() {
+    // return TotalPrice;
+    // }
 
-    //     public void setTotalPrice(double totalPrice) {
-    //         TotalPrice = totalPrice;
-    //     }
+    // public void setTotalPrice(double totalPrice) {
+    // TotalPrice = totalPrice;
+    // }
 
-    //     // Getter and Setter for ListTicket
-    //     public List<Ticket> getListTicket() {
-    //         return ListTicket;
-    //     }
+    // // Getter and Setter for ListTicket
+    // public List<Ticket> getListTicket() {
+    // return ListTicket;
+    // }
 
-    //     public void setListTicket(List<Ticket> listTicket) {
-    //         ListTicket = listTicket;
-    //     }
+    // public void setListTicket(List<Ticket> listTicket) {
+    // ListTicket = listTicket;
+    // }
 
-    //     // Getter and Setter for ListMenu
-    //     public List<Menu> getListMenu() {
-    //         return ListMenu;
-    //     }
+    // // Getter and Setter for ListMenu
+    // public List<Menu> getListMenu() {
+    // return ListMenu;
+    // }
 
-    //     public void setListMenu(List<Menu> listMenu) {
-    //         ListMenu = listMenu;
-    //     }
+    // public void setListMenu(List<Menu> listMenu) {
+    // ListMenu = listMenu;
+    // }
     // }
 
     @Autowired
@@ -121,12 +121,4 @@ public class BookingApi {
     public ResponseEntity<?> getStatistic() {
         return bookingService.statisticBookings();
     }
-<<<<<<< HEAD
-
-    @PostMapping //(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> bookingDTO(@RequestBody BookingDTO bookingDTO) {
-        return bookingService.add(bookingDTO);
-    }
-=======
->>>>>>> adc69a2e5f94ed9a3407169ad598a11c2bf25e5e
 }
