@@ -111,9 +111,12 @@ const updateMovie = async (
   story,
   age
 ) => {
-  const urls = `${url}/api/v1/movie/${id}`;
+  const urls = `${url}/api/v1/movie/movies/${MovieID}`;
   const data = await fetch(urls, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       action: "updateMovie",
       movieId: MovieID,

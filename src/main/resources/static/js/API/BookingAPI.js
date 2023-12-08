@@ -54,6 +54,9 @@ const changeStatus = async (url = "../..", id, status) => {
   const urls = `${url}/api/v1/booking`;
   const data = await fetch(urls, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       action: "changeStatus",
       booking_id: id,

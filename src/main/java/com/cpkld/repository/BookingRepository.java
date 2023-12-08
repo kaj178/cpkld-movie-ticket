@@ -17,28 +17,28 @@ import java.util.Optional;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-    Optional<Booking> findBookingByBookingId(Integer bookingId);
+        Optional<Booking> findBookingByBookingId(Integer bookingId);
 
-    @Query(value = "SELECT * FROM public.booking", nativeQuery = true)
-    public List<Booking> getAllBooking();
+        @Query(value = "SELECT * FROM public.booking", nativeQuery = true)
+        public List<Booking> getAllBooking();
 
-    @Query(value = "SELECT * FROM public.booking where customer_id = :customer_id", nativeQuery = true)
-    int getBookingByCustomerID(@Param("customer_id") Integer customer_id);
+        @Query(value = "SELECT * FROM public.booking where customer_id = :customer_id", nativeQuery = true)
+        public List<Booking> getBookingByCustomerID(@Param("customer_id") Integer customer_id);
 
-    @Query(value = "SELECT booking_id FROM public.booking ORDER BY booking_id DESC LIMIT 1", nativeQuery = true)
-    public int getLastId();
+        @Query(value = "SELECT booking_id FROM public.booking ORDER BY booking_id DESC LIMIT 1", nativeQuery = true)
+        public int getLastId();
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO public.booking (amount, booking_time, status, total_price, promotion_id, customer_id) "
-            +
-            "VALUES (:amount, :booking_time, :status, :total_price, :promotion_id, :customer_id)", nativeQuery = true)
-    void saveBooking(
-            @Param("amount") Integer amount,
-            @Param("booking_time") LocalDateTime bookingTime,
-            @Param("status") String status,
-            @Param("total_price") double totalPrice,
-            @Param("promotion_id") Integer promotionId,
-            @Param("customer_id") Integer customerId);
+        @Modifying
+        @Transactional
+        @Query(value = "INSERT INTO public.booking (amount, booking_time, status, total_price, promotion_id, customer_id) "
+                        +
+                        "VALUES (:amount, :booking_time, :status, :total_price, :promotion_id, :customer_id)", nativeQuery = true)
+        void saveBooking(
+                        @Param("amount") Integer amount,
+                        @Param("booking_time") LocalDateTime bookingTime,
+                        @Param("status") String status,
+                        @Param("total_price") double totalPrice,
+                        @Param("promotion_id") Integer promotionId,
+                        @Param("customer_id") Integer customerId);
 
 }

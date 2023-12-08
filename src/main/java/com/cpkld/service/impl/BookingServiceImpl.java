@@ -49,7 +49,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public ResponseEntity<?> getBookingByCustomerID(int id) {
-        Optional<Booking> bookings = bookingRepository.findById(id);
+        List<Booking> bookings = bookingRepository.getBookingByCustomerID(id);
         return new ResponseEntity<>(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),

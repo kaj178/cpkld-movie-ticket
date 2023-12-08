@@ -81,8 +81,11 @@ const updateShowTime = async (
   FormatID,
   ShowtimeID
 ) => {
-  const urls = `${url}/api/v1/showtime`;
+  const urls = `${url}/api/v1/showtime/${ShowtimeID}`;
   const data = await fetch(urls, {
+    headers: {
+      "Content-Type": "application/json",
+    },
     method: "PUT",
     body: JSON.stringify({
       price: Price,
@@ -126,6 +129,9 @@ const addShowTime = async (
     formatId: FormatID,
   });
   const data = await fetch(urls, {
+    headers: {
+      "Content-Type": "application/json",
+    },
     method: "POST",
     body: JSON.stringify({
       price: Price,

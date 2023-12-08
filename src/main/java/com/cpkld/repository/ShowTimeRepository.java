@@ -1,18 +1,24 @@
 package com.cpkld.repository;
 
 import com.cpkld.model.entity.ShowTime;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
-        
+
         Optional<ShowTime> getShowTimeById(Integer showtimeId);
 
         @Query(value = "select * from public.showtime " +
@@ -45,4 +51,17 @@ public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
                         @Param("startTime") LocalDateTime start,
                         @Param("endTime") LocalDateTime end,
                         @Param("theaterId") Integer theaterId);
+
+        @Modifying
+        @Transactional
+        @Query(value = "INSERT INTO public.showtime (end_time, start_time, format_id, movie_id, room_id, price) "
+                        +
+                        "VALUES (:end_time, :start_time, :format_id, :movie_id, :room_id, :price);", nativeQuery = true)
+        public void saveShowtime(
+                        @Param("movie_id") Integer movie_id,
+                        @Param("price") double price,
+                        @Param("end_time") LocalDateTime end_time,
+                        @Param("format_id") Integer format_id,
+                        @Param("start_time") LocalDateTime start_time,
+                        @Param("room_id") Integer room_id);
 }
