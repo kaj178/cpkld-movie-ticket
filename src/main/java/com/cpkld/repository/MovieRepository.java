@@ -2,15 +2,18 @@ package com.cpkld.repository;
 
 import com.cpkld.model.entity.Movie;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
-import com.cpkld.model.entity.MovieGenre;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
@@ -35,5 +38,27 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     // List<Movie> findMoviesByMovieGenres(Integer movieGenreId);
     @Query(value = "SELECT movie_id FROM public.movie ORDER BY movie_id DESC LIMIT 1", nativeQuery = true)
-    public int getLastId();
+    int getLastId();
+
+    @Modifying
+    @Transactional
+    @Query(
+        value = "INSERT INTO public.movie (movie_name, director, year, premiere, url_trailer, url_poster_vertical, url_poster_horizontal, time, age, story, rating, studio_id, language_id) " + 
+        "VALUES (:movie_name, :director, :year, :premiere, :url_trailer, :url_poster_vertical, :url_poster_horizontal, :time, :age, :story, :rating, :studio_id, :language_id)"
+    )
+    void saveMovie(
+        @Param("movie_name") String movieName,
+        @Param("director") String director,
+        @Param("year") Integer year,
+        @Param("premiere") LocalDateTime premiere,
+        @Param("url_trailer") String urlTrailer,
+        @Param("url_poster_vertical") String urlVerticalPoster,
+        @Param("url_poster_horizontal") String urlHorizontalPoster,
+        @Param("time") LocalTime time,
+        @Param("age") Integer age,
+        @Param("story") String story,
+        @Param("rating") int rating,
+        @Param("studio_id") Integer studioId,
+        @Param("language_id") Integer languageId
+    );
 }
