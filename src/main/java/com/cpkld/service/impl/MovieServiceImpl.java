@@ -159,39 +159,53 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public ResponseEntity<?> add(@RequestBody MovieDTO movie) {
-        Movie _movie = new Movie();
+    public ResponseEntity<?> add(@RequestBody MovieDTO movieDTO) {
+        Movie movie = new Movie();
 
-        Studio studio1 = studioRepository.findById(Integer.parseInt(movie.getStudioId())).get();
-        Language language1 = languageRepository.findById(Integer.parseInt(movie.getLanguage())).get();
-        List<String> Genre = movie.getMovieGenres();
+        Studio studio1 = studioRepository.findById(Integer.parseInt(movieDTO.getStudioId())).get();
+        Language language1 = languageRepository.findById(Integer.parseInt(movieDTO.getLanguage())).get();
+        List<String> Genre = movieDTO.getMovieGenres();
         List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
         for (String i : Genre) {
             MovieGenre genre1 = genreRepository.findById(Integer.parseInt(i)).get();
             Genretoadd.add(genre1);
         }
-        _movie.setHorizontalPoster(movie.getHorizontalPoster());
-        _movie.setVerticalPoster(movie.getVerticalPoster());
-        _movie.setName(movie.getName());
-        _movie.setDirector(movie.getDirector());
-        _movie.setYear(movie.getYear());
-        _movie.setPremiere(movie.getPremiere());
-        _movie.setUrlTrailer(movie.getUrlTrailer());
-        _movie.setTime(movie.getTime());
-        _movie.setAge(movie.getAge());
-        _movie.setStory(movie.getStory());
-        _movie.setRating(5);
-        _movie.setStudio(studio1);
-        _movie.setLanguage(language1);
-        _movie.setMovieGenres(Genretoadd);
-        Movie _movie2 = movieRepository.saveAndFlush(_movie);
-        List<Movie> movies = new ArrayList<Movie>();
-        movies.add(_movie2);
+        movie.setHorizontalPoster(movieDTO.getHorizontalPoster());
+        movie.setVerticalPoster(movieDTO.getVerticalPoster());
+        movie.setName(movieDTO.getName());
+        movie.setDirector(movieDTO.getDirector());
+        movie.setYear(movieDTO.getYear());
+        movie.setPremiere(movieDTO.getPremiere());
+        movie.setUrlTrailer(movie.getUrlTrailer());
+        movie.setTime(movieDTO.getTime());
+        movie.setAge(movieDTO.getAge());
+        movie.setStory(movieDTO.getStory());
+        movie.setRating(5);
+        movie.setStudio(studio1);
+        movie.setLanguage(language1);
+        movie.setMovieGenres(Genretoadd);
+        movieRepository.saveMovie(
+            movie.getName(),
+            movie.getDirector(), 
+            movie.getYear(), 
+            movie.getPremiere(), 
+            movie.getUrlTrailer(), 
+            movie.getVerticalPoster(), 
+            movie.getHorizontalPoster(), 
+            movie.getTime(), 
+            movie.getAge(), 
+            movie.getStory(), 
+            movie.getRating(), 
+            movie.getStudio().getId(), 
+            movie.getLanguage().getId());
+        // Movie _movie2 = movieRepository.saveAndFlush(_movie);
+        // List<Movie> movies = new ArrayList<Movie>();
+        // movies.add(_movie2);
         return new ResponseEntity<>(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),
                         "Success",
-                        movies.stream().toList()),
+                        null),
                 HttpStatus.OK);
     }
 

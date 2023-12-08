@@ -2,6 +2,7 @@ package com.cpkld.repository;
 
 import com.cpkld.model.entity.Movie;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -44,13 +45,14 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Transactional
     @Query(
         value = "INSERT INTO public.movie (movie_name, director, year, premiere, url_trailer, url_poster_vertical, url_poster_horizontal, time, age, story, rating, studio_id, language_id) " + 
-        "VALUES (:movie_name, :director, :year, :premiere, :url_trailer, :url_poster_vertical, :url_poster_horizontal, :time, :age, :story, :rating, :studio_id, :language_id)"
+        "VALUES (:movie_name, :director, :year, :premiere, :url_trailer, :url_poster_vertical, :url_poster_horizontal, :time, :age, :story, :rating, :studio_id, :language_id)",
+        nativeQuery = true
     )
     void saveMovie(
         @Param("movie_name") String movieName,
         @Param("director") String director,
         @Param("year") Integer year,
-        @Param("premiere") LocalDateTime premiere,
+        @Param("premiere") LocalDate premiere,
         @Param("url_trailer") String urlTrailer,
         @Param("url_poster_vertical") String urlVerticalPoster,
         @Param("url_poster_horizontal") String urlHorizontalPoster,
