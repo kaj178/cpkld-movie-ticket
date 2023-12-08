@@ -4,6 +4,7 @@ import com.cpkld.dto.MovieDTO;
 import com.cpkld.model.entity.Movie;
 import com.cpkld.service.MovieService;
 
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +55,8 @@ public class MovieApi {
         return movieService.getListUpcomingMovies();
     }
 
-    @PostMapping("/movies")
-    public ResponseEntity<?> createMovie(@RequestBody Movie movie) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createMovie(@RequestBody MovieDTO movie) {
         return movieService.add(movie);
     }
 

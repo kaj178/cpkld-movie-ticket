@@ -70,7 +70,23 @@ const addMovie = async (
   listGenre,
   listImage
 ) => {
-  const urls = `${url}/Controller/Movie/ajax.php`;
+  const urls = `${url}/api/v1/movie`;
+  console.log({
+    action: "addMovie",
+    name: MovieName,
+    director: Director,
+    year: Year,
+    premiere: Premiere,
+    urlTrailer: URLTrailer,
+    time: Time,
+    studio: StudioID,
+    language: LanguageID,
+    story: story,
+    age: age,
+    movieGenres: listGenre,
+    verticalPoster: listImage[0],
+    horizontalPoster: listImage[1],
+  });
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({

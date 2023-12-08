@@ -22,7 +22,7 @@ public interface MovieService {
 
     ResponseEntity<?> getListUpcomingMovies();
 
-    ResponseEntity<?> add(Movie movie);
+    ResponseEntity<?> add(MovieDTO movie);
 
     ResponseEntity<?> update(Integer movieId, Movie movie);
 

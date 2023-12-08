@@ -25,13 +25,12 @@ public class GenreServiceImpl implements GenreService {
     public ResponseEntity<?> getAllGenres() {
         List<MovieGenre> genres = genreRepository.findAll();
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), "Success", 
-                genres.stream()
-                    .map(this::convertEntityToDTO)
-                    .collect(Collectors.toList())
-            ), HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(), "Success",
+                        genres.stream()
+                                .map(this::convertEntityToDTO)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -41,13 +40,17 @@ public class GenreServiceImpl implements GenreService {
             throw new GenreNotFoundException("Genre not found");
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(), 
-                "Success", 
-                optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())
-            ),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
+                HttpStatus.OK);
+    }
+
+    @Override
+    public MovieGenre getGenreByIdByAdmin(Integer id) {
+        Optional<MovieGenre> optional = genreRepository.findById(id);
+        return optional.get();
     }
 
     private GenreDTO convertEntityToDTO(MovieGenre genre) {

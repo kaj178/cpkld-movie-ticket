@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.hibernate.annotations.GenerationTime;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -21,7 +23,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id", insertable = false, updatable = false)
+    @Column(name = "movie_id", updatable = false, columnDefinition = "serial")
     private Integer movieId;
 
     @Column(name = "movie_name")
@@ -59,12 +61,12 @@ public class Movie {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Studio.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "studio_id")
-    @JsonBackReference
+    @JsonManagedReference(value = "studio-movie")
     private Studio studio;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Language.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id")
-    @JsonBackReference
+    @JsonManagedReference(value = "language-movie")
     private Language language;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
@@ -72,7 +74,7 @@ public class Movie {
     private List<ShowTime> showTimes;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "movie_id", insertable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "genre_id", insertable = false, updatable = false))
     private List<MovieGenre> movieGenres;
 
 }

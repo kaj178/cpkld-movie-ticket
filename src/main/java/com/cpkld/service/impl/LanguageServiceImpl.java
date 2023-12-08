@@ -37,4 +37,8 @@ public class LanguageServiceImpl implements LanguageService {
                                 .collect(Collectors.toList())),
                 HttpStatus.OK);
     }
+
+    public Language getLanguageById(Integer id) {
+        return languageRepository.findById(id).get();
+    }
 }

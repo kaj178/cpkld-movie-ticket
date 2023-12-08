@@ -3,6 +3,7 @@ package com.cpkld.model.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,8 +43,8 @@ public class Studio {
     private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Movie.class)
-    @JoinColumn(name = "movie_id", nullable = false)
-    @JsonBackReference
+    @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
+    @JsonManagedReference(value = "movie_studio")
     private List<Movie> movies;
 
     public Studio(String name, String address, String phoneNumber, String email) {

@@ -2,6 +2,11 @@ package com.cpkld.dto;
 
 import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.entity.Studio;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,22 +18,40 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class MovieDTO {
+
     private Integer movieId;
+
     private String name;
+
     private String director;
+
     private LocalDate premiere;
+
     private String urlTrailer;
+
     private String verticalPoster;
+
     private String horizontalPoster;
+
     private LocalTime time;
-    private int year;
-    private int age;
+
+    private Integer year;
+
+    private Integer age;
+
     private String story;
-    private int rating;
+
+    private Integer rating;
+
     private String studioId;
+
+    @JsonIgnore
     private Studio studio;
+
     private String language;
     private List<String> movieGenres;
+    @JsonIgnore
     private List<MovieGenre> movieGenreList;
 }

@@ -27,7 +27,7 @@ public class MovieGenre {
     private String description;
 
     @ManyToMany
-    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "genre_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    @JsonBackReference
+    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "genre_id", insertable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "movie_id", insertable = false, updatable = false))
+    @JsonBackReference(value = "movie_genre")
     private List<Movie> movies;
 }

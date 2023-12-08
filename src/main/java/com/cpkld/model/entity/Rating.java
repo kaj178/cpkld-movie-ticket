@@ -22,9 +22,6 @@ public class Rating {
     @Column(name = "customer_id")
     private Integer customerId;
 
-    @Column(name = "movie_id")
-    private Integer movieId;
-
     @Column(name = "score")
     private Integer rating;
 

@@ -260,18 +260,18 @@ async function loadAllGenre() {
   let options = [];
   data = await getAllGenres("../..", page);
   genreData.push(...data.data);
+  console.log(genreData);
   genreData.forEach((element) => {
     $("#select-genre").append(
-      `<option value=${element.GenreID}>${element.GenreName}</option>`
+      `<option value=${element.id}>${element.name}</option>`
     );
-    options.push({ id: element.GenreID, name: element.GenreName });
+    options.push({ id: element.id, name: element.name });
   });
   $(".modal #genre").selectize({
     valueField: "id",
     labelField: "name",
     options: options,
   });
-  console.log(genreData);
 }
 
 async function loadAllStudio() {
