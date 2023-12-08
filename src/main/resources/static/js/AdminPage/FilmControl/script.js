@@ -186,26 +186,27 @@ $(document).ready(() => {
 function showData(currentData) {
   table.clear().draw();
   let data = currentData;
+  console.log(currentData);
   let numRow = data.length;
   for (let i = 0; i < numRow; i++) {
     let genreList = [];
     data[i].movieGenres.forEach((genre) => {
       genreList.push(genre);
     });
-    table.row
-      .add([
-        data[i].movieId,
-        data[i].name,
-        data[i].studio.name,
-        genreList.join(", "),
-        data[i].premiere,
-        data[i].time,
-        data[i].language,
-        data[i].director,
-        data[i].rating,
-        data[i].story,
-      ])
-      .draw();
+    // table.row
+    //   .add([
+    //     data[i].movieId,
+    //     data[i].name,
+    //     data[i].studio,
+    //     genreList.join(", "),
+    //     data[i].premiere,
+    //     data[i].time,
+    //     data[i].language,
+    //     data[i].director,
+    //     data[i].rating,
+    //     data[i].story,
+    //   ])
+    //   .draw();
   }
 }
 
@@ -243,13 +244,12 @@ async function loadAllMovies() {
   currentData = [];
   let data;
   data = await getAllMovies("../..");
-  console.log(data.data);
+  console.log(data);
 
   for (let i = 0; i < data.data.length; i++) {
     currentData.push(data.data[i]);
   }
   // allData = [...currentData]
-  console.log(currentData);
   return currentData;
 }
 
@@ -260,7 +260,6 @@ async function loadAllGenre() {
   let options = [];
   data = await getAllGenres("../..", page);
   genreData.push(...data.data);
-  console.log(genreData);
   genreData.forEach((element) => {
     $("#select-genre").append(
       `<option value=${element.id}>${element.name}</option>`

@@ -24,7 +24,7 @@ public interface MovieService {
 
     ResponseEntity<?> add(MovieDTO movie);
 
-    ResponseEntity<?> update(Integer movieId, Movie movie);
+    ResponseEntity<?> update(Integer movieId, MovieDTO movie);
 
     ResponseEntity<?> delete(Integer movieId);
 }

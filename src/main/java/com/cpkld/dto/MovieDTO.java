@@ -46,12 +46,9 @@ public class MovieDTO {
     private Integer rating;
 
     private String studioId;
-
-    @JsonIgnore
     private Studio studio;
 
     private String language;
     private List<String> movieGenres;
-    @JsonIgnore
     private List<MovieGenre> movieGenreList;
 }

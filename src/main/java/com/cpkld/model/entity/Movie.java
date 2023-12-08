@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.annotations.GenerationTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -60,12 +61,13 @@ public class Movie {
     @Column(name = "rating")
     private int rating;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Studio.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Studio.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "studio_id")
+    @JsonIgnore
     @JsonBackReference(value = "studio-movie")
     private Studio studio;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Language.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Language.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id")
     @JsonBackReference(value = "language-movie")
     private Language language;
@@ -76,6 +78,7 @@ public class Movie {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "movie_id", insertable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "genre_id", insertable = false, updatable = false))
+    @JsonIgnore
     @JsonIgnoreProperties(value = "movie-moviegnres")
     private List<MovieGenre> movieGenres;
 

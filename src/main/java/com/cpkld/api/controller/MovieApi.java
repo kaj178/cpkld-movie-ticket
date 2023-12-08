@@ -61,7 +61,7 @@ public class MovieApi {
     }
 
     @PutMapping("/movies/{movieId}")
-    public ResponseEntity<?> updateMovie(@PathVariable("movieId") Integer movieId, @RequestBody Movie movie) {
+    public ResponseEntity<?> updateMovie(@PathVariable("movieId") Integer movieId, @RequestBody MovieDTO movie) {
         return movieService.update(movieId, movie);
     }
 }

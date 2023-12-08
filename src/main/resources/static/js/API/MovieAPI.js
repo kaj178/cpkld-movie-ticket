@@ -97,13 +97,13 @@ const addMovie = async (
       premiere: Premiere,
       urlTrailer: URLTrailer,
       time: Time,
-      studio: StudioID,
+      studioId: StudioID,
       language: LanguageID,
       story: story,
       age: age,
       movieGenres: listGenre,
-      verticalPoster: listImage[0],
-      horizontalPoster: listImage[1],
+      verticalPoster: listImage[0].file,
+      horizontalPoster: listImage[1].file,
     }),
   });
   const datatorender = await data.json();

@@ -196,13 +196,19 @@ public class MovieServiceImpl implements MovieService {
         }
 
         @Override
-        public ResponseEntity<?> update(Integer movieId, @RequestBody Movie movie) {
-                Optional<Movie> optional = movieRepository.findById(movieId);
-                if (optional.isEmpty()) {
-                        throw new MovieNotFoundException("Movie not found!");
-                }
-                Movie _movie = optional.get();
+        public ResponseEntity<?> update(Integer movieId, @RequestBody MovieDTO movie) {
+                Movie _movie = new Movie();
 
+                Studio studio1 = studioRepository.findById(Integer.parseInt(movie.getStudioId())).get();
+                Language language1 = languageRepository.findById(Integer.parseInt(movie.getLanguage())).get();
+                List<String> Genre = movie.getMovieGenres();
+                List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
+                for (String i : Genre) {
+                        MovieGenre genre1 = genreRepository.findById(Integer.parseInt(i)).get();
+                        Genretoadd.add(genre1);
+                }
+                _movie.setHorizontalPoster(movie.getHorizontalPoster());
+                _movie.setVerticalPoster(movie.getVerticalPoster());
                 _movie.setName(movie.getName());
                 _movie.setDirector(movie.getDirector());
                 _movie.setYear(movie.getYear());
@@ -211,20 +217,19 @@ public class MovieServiceImpl implements MovieService {
                 _movie.setTime(movie.getTime());
                 _movie.setAge(movie.getAge());
                 _movie.setStory(movie.getStory());
-                _movie.setRating(movie.getRating());
-                _movie.setStudio(movie.getStudio());
-                _movie.setLanguage(movie.getLanguage());
-                _movie.setMovieGenres(movie.getMovieGenres());
-                // movieRepository.save(_movie);
-                // List<Movie> resp = new ArrayList<>();
-                // resp.add(_movie);
-                // return new ResponseEntity<>(
-                // new ApiResponse<>(
-                // HttpStatus.OK.value(),
-                // "Success",
-                // resp.stream().toList()),
-                // HttpStatus.OK);
-                return null;
+                _movie.setRating(5);
+                _movie.setStudio(studio1);
+                _movie.setLanguage(language1);
+                _movie.setMovieGenres(Genretoadd);
+                Movie _movie2 = movieRepository.saveAndFlush(_movie);
+                List<Movie> movies = new ArrayList<Movie>();
+                movies.add(_movie2);
+                return new ResponseEntity<>(
+                                new ApiResponse<>(
+                                                HttpStatus.OK.value(),
+                                                "Success",
+                                                movies.stream().toList()),
+                                HttpStatus.OK);
         }
 
         @Override
