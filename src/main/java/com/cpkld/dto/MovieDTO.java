@@ -50,4 +50,7 @@ public class MovieDTO {
     private String language;
 
     private List<String> movieGenres;
+
+    private Integer studioId;
+
 }

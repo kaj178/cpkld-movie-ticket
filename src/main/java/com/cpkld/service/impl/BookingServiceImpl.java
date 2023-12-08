@@ -39,11 +39,12 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(
-            new ApiResponse<>(
-                HttpStatus.OK.value(),
-                "Success",
-                bookingRepository.findAll().stream().map(this::convertEntityToDTO).collect(Collectors.toList())),
-            HttpStatus.OK);
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        bookingRepository.findAll().stream().map(this::convertEntityToDTO)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
     }
 
     @Override
@@ -143,21 +144,19 @@ public class BookingServiceImpl implements BookingService {
         booking.setPromotion(promotionRepository.findPromotionByName(bookingDTO.getPromotionName()).get());
         booking.setCustomer(customerRepository.findById(bookingDTO.getCustomerId()).get());
         bookingRepository.saveBooking(
-            booking.getAmount(), 
-            booking.getBookingTime(), 
-            booking.getStatus(), 
-            booking.getTotalPrice(), 
-            booking.getPromotion().getId(), 
-            booking.getCustomer().getId()
-        );
+                booking.getAmount(),
+                booking.getBookingTime(),
+                booking.getStatus(),
+                booking.getTotalPrice(),
+                booking.getPromotion().getId(),
+                booking.getCustomer().getId());
         for (Seat seat : bookingDTO.getSeats()) {
             if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
                 ticketRepository.saveTicket(
-                    bookingRepository.getLastId(), 
-                    seat.getSeatId(), 
-                    bookingDTO.getShowTimeId(), 
-                    bookingDTO.getStatus()
-                );
+                        bookingRepository.getLastId(),
+                        seat.getSeatId(),
+                        bookingDTO.getShowTimeId(),
+                        bookingDTO.getStatus());
             }
         }
         for (Menu menu : bookingDTO.getMenus()) {
@@ -166,9 +165,8 @@ public class BookingServiceImpl implements BookingService {
             }
         }
         return new ResponseEntity<>(
-            new ApiResponse<>(HttpStatus.OK.value(), "Success", null),
-            HttpStatus.OK
-        );
+                new ApiResponse<>(HttpStatus.OK.value(), "Success", null),
+                HttpStatus.OK);
     }
 
     private BookingDTO convertEntityToDTO(Booking booking) {

@@ -10,14 +10,14 @@ const AddBooking = async (
   listme
 ) => {
   const bodyinput = {
-    NumberOfTickets: numofticket,
-    BookingTime: time,
-    Voucher: voucher,
+    amountItem: numofticket,
+    bookingTime: time,
+    promotionName: voucher,
     customer_id: CID,
-    ShowTimeID: SID,
-    TotalPrice: total,
-    ListTicket: listtic,
-    ListMenu: listme,
+    showTimeId: SID,
+    totalPrice: total,
+    seats: listtic,
+    menus: listme,
   };
   console.log(bodyinput);
   const bodytoadd = JSON.stringify(bodyinput);
