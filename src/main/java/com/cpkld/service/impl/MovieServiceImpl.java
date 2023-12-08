@@ -281,5 +281,14 @@ public class MovieServiceImpl implements MovieService {
                 movieDTO.setHorizontalPoster(movie.getHorizontalPoster());
                 movieDTO.setAge(movie.getAge());
                 return movieDTO;
+
+                movieDTO.setRating(movie.getRating());
+                movieDTO.setStory(movie.getStory());
+                movieDTO.setPremiere(movie.getPremiere());
+                movieDTO.setUrlTrailer(movie.getUrlTrailer());
+                movieDTO.setVerticalPoster(movie.getVerticalPoster());
+                movieDTO.setHorizontalPoster(movie.getHorizontalPoster());
+                movieDTO.setAge(movie.getAge());
+                return movieDTO;
         }
 }
