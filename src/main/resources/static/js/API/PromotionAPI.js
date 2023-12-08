@@ -8,9 +8,9 @@ const getPromotionsVoucher = async (url, page = "1") => {
   const datatorender = await data.json();
   return datatorender;
 };
-const getPromotionsEvent = async (url, page = "1") => {
+const getPromotionsEvent = async (url, promotioname) => {
   const data = await fetch(
-    `${url}/Controller/Promotion/ajax.php?action=getPromotionsEvent&page=${page}`,
+    `${url}/api/v1/promotion?promotion_name=${promotioname}`,
     {
       method: "GET",
     }
