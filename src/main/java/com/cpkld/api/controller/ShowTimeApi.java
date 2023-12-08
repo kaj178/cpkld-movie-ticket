@@ -1,7 +1,10 @@
 package com.cpkld.api.controller;
 
+import com.cpkld.dto.MovieDTO;
+import com.cpkld.dto.ShowTimeDTO;
 import com.cpkld.service.ShowTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,4 +47,14 @@ public class ShowTimeApi {
         return service.getShowTimeByMovieAndTheater(theaterId, movieId);
     }
 
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createShowTime(@RequestBody ShowTimeDTO showtime) {
+        return service.add(showtime);
+    }
+
+    @PutMapping("/{showtimeID}")
+    public ResponseEntity<?> UpdateShowTime(@PathVariable("showtimeID") Integer showtimeId,
+            @RequestBody ShowTimeDTO showtime) {
+        return service.put(showtimeId, showtime);
+    }
 }

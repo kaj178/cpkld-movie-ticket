@@ -2,6 +2,9 @@ package com.cpkld.service;
 
 import org.springframework.http.ResponseEntity;
 
+import com.cpkld.dto.MovieDTO;
+import com.cpkld.dto.ShowTimeDTO;
+
 public interface ShowTimeService {
     ResponseEntity<?> getAll();
 
@@ -15,5 +18,7 @@ public interface ShowTimeService {
 
     ResponseEntity<?> getShowTimeByDateAndTheater(int YYYYMMDD, Integer theaterId);
 
+    ResponseEntity<?> add(ShowTimeDTO movie);
 
+    ResponseEntity<?> put(Integer showtimeID, ShowTimeDTO payload);
 }

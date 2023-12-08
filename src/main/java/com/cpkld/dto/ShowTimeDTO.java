@@ -17,6 +17,7 @@ public class ShowTimeDTO {
     private LocalDateTime endTime;
     private double price;
     private Movie movie;
+    private String movieID;
     private Integer roomId;
     private Integer formatId;
 }

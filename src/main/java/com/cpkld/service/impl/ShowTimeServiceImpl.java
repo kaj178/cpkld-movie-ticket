@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,12 @@ import java.util.stream.Collectors;
 public class ShowTimeServiceImpl implements ShowTimeService {
         @Autowired
         private ShowTimeRepository showTimeRepository;
+        @Autowired
+        private FormatRepository formatRepository;
+        @Autowired
+        private RoomRepository roomRepository;
+        @Autowired
+        private MovieRepository movieRepository;
 
         @Override
         public ResponseEntity<?> getAll() {
@@ -154,6 +161,50 @@ public class ShowTimeServiceImpl implements ShowTimeService {
                                                 HttpStatus.OK.value(),
                                                 "Success",
                                                 showTimes.stream().map(this::convertEntityToDTO).toList()),
+                                HttpStatus.OK);
+        }
+
+        public ResponseEntity<?> add(ShowTimeDTO payload) {
+                ShowTime showtime = new ShowTime();
+                showtime.setPrice(payload.getPrice());
+                Format format = formatRepository.findById(payload.getFormatId()).get();
+                showtime.setFormat(format);
+                Room room = roomRepository.findById(payload.getRoomId()).get();
+                showtime.setRoom(room);
+                showtime.setEndTime(payload.getEndTime());
+                showtime.setStartTime(payload.getStartTime());
+                Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
+                showtime.setMovie(movie);
+                showTimeRepository.save(showtime);
+                List<ShowTime> showtimeList = new ArrayList<ShowTime>();
+                showtimeList.add(showtime);
+                return new ResponseEntity<>(
+                                new ApiResponse<>(
+                                                HttpStatus.OK.value(),
+                                                "Success",
+                                                showtimeList.stream().map(this::convertEntityToDTO).toList()),
+                                HttpStatus.OK);
+        }
+
+        public ResponseEntity<?> put(Integer showtimeID, ShowTimeDTO payload) {
+                ShowTime showtime = showTimeRepository.findById(showtimeID).get();
+                showtime.setPrice(payload.getPrice());
+                Format format = formatRepository.findById(payload.getFormatId()).get();
+                showtime.setFormat(format);
+                Room room = roomRepository.findById(payload.getRoomId()).get();
+                showtime.setRoom(room);
+                showtime.setEndTime(payload.getEndTime());
+                showtime.setStartTime(payload.getStartTime());
+                Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
+                showtime.setMovie(movie);
+                showTimeRepository.save(showtime);
+                List<ShowTime> showtimeList = new ArrayList<ShowTime>();
+                showtimeList.add(showtime);
+                return new ResponseEntity<>(
+                                new ApiResponse<>(
+                                                HttpStatus.OK.value(),
+                                                "Success",
+                                                showtimeList.stream().map(this::convertEntityToDTO).toList()),
                                 HttpStatus.OK);
         }
 

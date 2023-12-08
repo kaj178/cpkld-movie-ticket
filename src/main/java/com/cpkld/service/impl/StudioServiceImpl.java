@@ -18,12 +18,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudioServiceImpl implements StudioService {
-    private final StudioRepository studioRepository;
-
     @Autowired
-    public StudioServiceImpl(StudioRepository studioRepository) {
-        this.studioRepository = studioRepository;
-    }
+    private StudioRepository studioRepository;
 
     public StudioDTO convertEntityToDTO(Studio studio) {
         StudioDTO studioDTO = new StudioDTO();

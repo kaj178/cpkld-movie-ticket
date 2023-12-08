@@ -81,13 +81,13 @@ const updateShowTime = async (
   FormatID,
   ShowtimeID
 ) => {
-  const urls = `${url}/Controller/Showtime/ajax.php`;
+  const urls = `${url}/api/v1/showtime`;
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
       price: Price,
       startTime: StartTime,
-      movie: MovieID,
+      movieID: MovieID,
       endTime: EndTime,
       roomId: RoomID,
       formatId: FormatID,
@@ -116,17 +116,16 @@ const addShowTime = async (
   RoomID,
   FormatID
 ) => {
-  const urls = `${url}/Controller/Showtime/ajax.php`;
+  const urls = `${url}/api/v1/showtime`;
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({
       price: Price,
       startTime: StartTime,
-      movie: MovieID,
+      movieID: MovieID,
       endTime: EndTime,
       roomId: RoomID,
       formatId: FormatID,
-      showTimeId: ShowtimeID,
     }),
   });
   const datatorender = await data.json();
