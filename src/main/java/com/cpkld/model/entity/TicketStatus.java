@@ -23,6 +23,6 @@ public class TicketStatus {
     private String statusName;
 
     @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, targetEntity = Ticket.class)
-    @JsonBackReference
+    @JsonBackReference(value = "ticket-ticketstatus")
     private List<Ticket> tickets;
 }

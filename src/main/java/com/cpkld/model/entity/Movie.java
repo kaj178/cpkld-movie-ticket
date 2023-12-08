@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -67,7 +68,7 @@ public class Movie {
     private Language language;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
-    @JsonBackReference
+    @JsonManagedReference(value = "showtime-movie")
     private List<ShowTime> showTimes;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

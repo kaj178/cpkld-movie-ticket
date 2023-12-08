@@ -8,6 +8,7 @@ import com.cpkld.model.entity.*;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.BookingRepository;
 import com.cpkld.repository.CustomerRepository;
+import com.cpkld.repository.MenuBookingRepository;
 import com.cpkld.repository.PromotionRepository;
 import com.cpkld.repository.TicketRepository;
 import com.cpkld.service.BookingService;
@@ -32,6 +33,8 @@ public class BookingServiceImpl implements BookingService {
     private PromotionRepository promotionRepository;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private MenuBookingRepository menuBookingRepository;
 
     @Override
     public ResponseEntity<?> getAll() {
@@ -204,6 +207,12 @@ public class BookingServiceImpl implements BookingService {
         }
         bookingDTO.setPromotionName(promotionName);
 
+        List<MenuBooking> menuBookingList = booking.getMenuBookings();
+        List<Menu> menuList = new ArrayList<>();
+        for (MenuBooking mennuBooking : menuBookingList) {
+            menuList.add(mennuBooking.getMenu());
+        }
+        bookingDTO.setMenus(menuList);
         return bookingDTO;
     }
 
@@ -234,6 +243,11 @@ public class BookingServiceImpl implements BookingService {
                     bookingDTO.getShowTimeId(), 
                     bookingDTO.getStatus()
                 );
+            }
+        }
+        for (Menu menu : bookingDTO.getMenus()) {
+            if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
+                menuBookingRepository.saveMenuBooking(bookingDTO.getBookingId(), menu.getMenuId());
             }
         }
         return new ResponseEntity<>(

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +42,6 @@ public class Promotion {
     private String imgUrl;
 
     @OneToMany(mappedBy = "promotion",fetch = FetchType.LAZY, targetEntity = Booking.class)
-    @JsonBackReference
+    @JsonManagedReference(value = "booking-promotion")
     private List<Booking> bookings;
 }

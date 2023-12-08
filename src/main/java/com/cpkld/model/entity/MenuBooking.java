@@ -1,5 +1,7 @@
 package com.cpkld.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,10 +20,12 @@ public class MenuBooking {
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
+    @JsonBackReference(value = "menu-menu")
     private Menu menu;
 
     @ManyToOne
     @JoinColumn(name = "booking_id")
+    @JsonBackReference(value = "menu-booking")
     private Booking booking;
 
 }

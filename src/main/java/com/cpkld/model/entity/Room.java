@@ -28,14 +28,15 @@ public class Room {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Theater.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "theater_id")
-    @JsonBackReference
+    @JsonBackReference(value = "room-theater")
     private Theater theater;
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, targetEntity = Seat.class)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, targetEntity = Seat.class)
+    // @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonBackReference(value = "seat-room")
     private List<Seat> seats;
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
-    @JsonManagedReference
+    @JsonManagedReference(value = "room-showtime")
     private List<ShowTime> showTimes;
 }

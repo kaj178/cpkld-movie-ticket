@@ -1,8 +1,7 @@
 package com.cpkld.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,20 +36,20 @@ public class ShowTime {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Movie.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
-    @JsonBackReference
+    @JsonBackReference(value = "showtime-movie")
     private Movie movie;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Format.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "format_id")
-    @JsonBackReference
+    @JsonBackReference(value = "showtime-format")
     private Format format;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Room.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_id")
-    @JsonBackReference
+    @JsonBackReference(value = "room-showtime")
     private Room room;
 
     @OneToMany(mappedBy = "showTime", fetch = FetchType.LAZY, targetEntity = Ticket.class)
-    @JsonBackReference
+    @JsonBackReference(value = "ticket-showtime")
     private List<Ticket> tickets;
 }

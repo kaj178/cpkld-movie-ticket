@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.cpkld.model.entity.Menu;
 import com.cpkld.model.entity.Seat;
 
 @Data
@@ -24,4 +25,5 @@ public class BookingDTO {
     private double totalPrice;
     private String promotionName;
     private Integer customerId;
+    private List<Menu> menus;
 }

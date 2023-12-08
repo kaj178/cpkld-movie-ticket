@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,5 +34,6 @@ public class Menu {
     public Integer status;
 
     @OneToMany(mappedBy = "menu")
+    @JsonManagedReference(value = "menu-menu")
     private List<MenuBooking> menuBookings;
 }

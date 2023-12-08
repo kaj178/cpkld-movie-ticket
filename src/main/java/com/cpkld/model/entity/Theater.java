@@ -27,8 +27,7 @@ public class Theater {
     @Column(name = "number_of_room")
     private Integer numberOfRooms;
 
-
     @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY, targetEntity = Room.class)
-    @JsonBackReference
+    @JsonBackReference(value = "room-theater")
     private List<Room> rooms;
 }

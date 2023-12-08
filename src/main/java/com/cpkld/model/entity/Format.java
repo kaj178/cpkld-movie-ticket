@@ -20,6 +20,6 @@ public class Format {
     private String name;
 
     @OneToMany(mappedBy = "format", fetch = FetchType.LAZY, targetEntity = ShowTime.class)
-    @JsonBackReference
+    @JsonBackReference(value = "showtime-format")
     private List<ShowTime> showTimes;
 }

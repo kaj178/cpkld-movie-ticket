@@ -1,6 +1,7 @@
 package com.cpkld.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -25,13 +26,13 @@ public class Seat {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Room.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Room.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_id")
-    @JsonBackReference
+    @JsonBackReference(value = "seat-room")
     private Room room;
 
-    @OneToMany(mappedBy = "seat", fetch = FetchType.EAGER, targetEntity = Ticket.class)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY, targetEntity = Ticket.class)
+    @JsonManagedReference(value = "ticket-seat")
     private List<Ticket> tickets;
 
 }
