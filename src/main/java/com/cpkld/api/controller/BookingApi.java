@@ -1,9 +1,18 @@
 package com.cpkld.api.controller;
 
 import com.cpkld.dto.BookingDTO;
+import com.cpkld.model.entity.Booking;
+import com.cpkld.model.entity.Promotion;
+import com.cpkld.model.response.ApiResponse;
+import com.cpkld.repository.BookingRepository;
 import com.cpkld.service.BookingService;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,14 +112,24 @@ public class BookingApi {
     @Autowired
     private BookingService bookingService;
 
+    @Autowired
+    private BookingRepository bookingRepository;
+
     @GetMapping(params = "customer_id")
     public ResponseEntity<?> getBookingByID(@RequestParam("customer_id") Integer id) {
         return bookingService.getBookingByCustomerID(id);
     }
 
-    @GetMapping
+    @GetMapping(value = "/all")
     public ResponseEntity<?> readAllBooking() {
         return bookingService.getAll();
+        // List<Booking> bookings = bookingRepository.getAllBooking();
+        // return new ResponseEntity<>(
+        // new ApiResponse<>(
+        // HttpStatus.OK.value(),
+        // "Success",
+        // bookings.stream().toList()),
+        // HttpStatus.OK);
     }
 
     @GetMapping("/statistic")

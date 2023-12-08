@@ -11,12 +11,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     Optional<Booking> findBookingByBookingId(Integer bookingId);
+
+    @Query(value = "SELECT * FROM public.booking", nativeQuery = true)
+    public List<Booking> getAllBooking();
 
     @Query(value = "SELECT * FROM public.booking where customer_id = :customer_id", nativeQuery = true)
     int getBookingByCustomerID(@Param("customer_id") Integer customer_id);
@@ -26,18 +30,15 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     @Modifying
     @Transactional
-    @Query(
-        value = "INSERT INTO public.booking (amount, booking_time, status, total_price, promotion_id, customer_id) " + 
-                "VALUES (:amount, :booking_time, :status, :total_price, :promotion_id, :customer_id)", 
-        nativeQuery = true
-    )
+    @Query(value = "INSERT INTO public.booking (amount, booking_time, status, total_price, promotion_id, customer_id) "
+            +
+            "VALUES (:amount, :booking_time, :status, :total_price, :promotion_id, :customer_id)", nativeQuery = true)
     void saveBooking(
-        @Param("amount") Integer amount, 
-        @Param("booking_time") LocalDateTime bookingTime, 
-        @Param("status") String status, 
-        @Param("total_price") double totalPrice,
-        @Param("promotion_id") Integer promotionId,
-        @Param("customer_id") Integer customerId
-    );
+            @Param("amount") Integer amount,
+            @Param("booking_time") LocalDateTime bookingTime,
+            @Param("status") String status,
+            @Param("total_price") double totalPrice,
+            @Param("promotion_id") Integer promotionId,
+            @Param("customer_id") Integer customerId);
 
 }

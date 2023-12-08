@@ -42,7 +42,7 @@ const getAllBookingsByCustomerID = async (url = "../..", id) => {
 };
 
 const getAllBooking = async (url = "../..", page = 1) => {
-  const urls = `${url}/api/v1/booking`;
+  const urls = `${url}/api/v1/booking/all`;
   const data = await fetch(urls, {
     method: "GET",
   });
