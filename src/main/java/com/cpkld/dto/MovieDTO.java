@@ -45,10 +45,9 @@ public class MovieDTO {
 
     private Integer rating;
 
-    private String studioId;
     private Studio studio;
 
     private String language;
+    
     private List<String> movieGenres;
-    private List<MovieGenre> movieGenreList;
 }
