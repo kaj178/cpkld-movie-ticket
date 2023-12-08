@@ -3,7 +3,6 @@ package com.cpkld.repository;
 import com.cpkld.model.entity.Movie;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 

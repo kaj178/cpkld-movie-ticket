@@ -1,10 +1,7 @@
 package com.cpkld.repository;
 
-import com.cpkld.model.entity.Promotion;
-import com.cpkld.model.entity.ShowTime;
 import com.cpkld.model.entity.Studio;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;

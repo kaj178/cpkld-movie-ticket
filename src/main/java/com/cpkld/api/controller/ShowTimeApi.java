@@ -1,6 +1,5 @@
 package com.cpkld.api.controller;
 
-import com.cpkld.dto.MovieDTO;
 import com.cpkld.dto.ShowTimeDTO;
 import com.cpkld.service.ShowTimeService;
 import org.springframework.beans.factory.annotation.Autowired;

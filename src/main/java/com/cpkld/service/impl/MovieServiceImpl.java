@@ -5,17 +5,13 @@ import com.cpkld.model.entity.Language;
 import com.cpkld.model.entity.Movie;
 import com.cpkld.model.entity.MovieGenre;
 import com.cpkld.model.entity.Studio;
-import com.cpkld.model.exception.existed.MovieExistedException;
 import com.cpkld.model.exception.notfound.MovieNotFoundException;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.LanguageRepository;
-// import com.cpkld.repository.DetailMovieGenre;
 import com.cpkld.repository.MovieRepository;
 import com.cpkld.repository.StudioRepository;
 import com.cpkld.repository.GenreRepository;
-
 import com.cpkld.service.MovieService;
-import com.cpkld.service.StudioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -162,7 +158,7 @@ public class MovieServiceImpl implements MovieService {
         public ResponseEntity<?> add(@RequestBody MovieDTO movieDTO) {
                 Movie movie = new Movie();
 
-                Studio studio1 = studioRepository.findById(movieDTO.getStudioId()).get();
+                Studio studio1 = studioRepository.findById(Integer.parseInt(movieDTO.getStudioId())).get();
                 Language language1 = languageRepository.findById(Integer.parseInt(movieDTO.getLanguage())).get();
                 List<String> Genre = movieDTO.getMovieGenres();
                 List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
@@ -213,7 +209,7 @@ public class MovieServiceImpl implements MovieService {
         public ResponseEntity<?> update(Integer movieId, @RequestBody MovieDTO movie) {
                 Movie _movie = new Movie();
 
-                Studio studio1 = studioRepository.findById(movie.getStudio().getId()).get();
+                Studio studio1 = studioRepository.findById(Integer.parseInt(movie.getStudioId())).get();
                 Language language1 = languageRepository.findById(Integer.parseInt(movie.getLanguage())).get();
                 List<String> Genre = movie.getMovieGenres();
                 List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
@@ -266,22 +262,13 @@ public class MovieServiceImpl implements MovieService {
                 }
                 movieDTO.setMovieId(movie.getMovieId());
                 movieDTO.setName(movie.getName());
-                movieDTO.setStudio(movie.getStudio());
+                movieDTO.setStudioId(String.valueOf(movie.getStudio().getId()));
                 movieDTO.setMovieGenres(movieGenreNames);
                 movieDTO.setYear(movie.getYear());
                 movieDTO.setTime(movie.getTime());
                 movieDTO.setLanguage(movie.getLanguage().getName());
                 movieDTO.setDirector(movie.getDirector());
                 // movieDTO.setRating(new Random().nextInt(1, 6));
-                movieDTO.setRating(movie.getRating());
-                movieDTO.setStory(movie.getStory());
-                movieDTO.setPremiere(movie.getPremiere());
-                movieDTO.setUrlTrailer(movie.getUrlTrailer());
-                movieDTO.setVerticalPoster(movie.getVerticalPoster());
-                movieDTO.setHorizontalPoster(movie.getHorizontalPoster());
-                movieDTO.setAge(movie.getAge());
-                return movieDTO;
-
                 movieDTO.setRating(movie.getRating());
                 movieDTO.setStory(movie.getStory());
                 movieDTO.setPremiere(movie.getPremiere());

@@ -1,12 +1,5 @@
 package com.cpkld.dto;
 
-import com.cpkld.model.entity.MovieGenre;
-import com.cpkld.model.entity.Studio;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +11,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class MovieDTO {
 
     private Integer movieId;
@@ -50,7 +42,4 @@ public class MovieDTO {
     private String language;
 
     private List<String> movieGenres;
-
-    private Integer studioId;
-
 }

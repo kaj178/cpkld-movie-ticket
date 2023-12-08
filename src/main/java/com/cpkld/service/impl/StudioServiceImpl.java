@@ -1,7 +1,6 @@
 package com.cpkld.service.impl;
 
 import com.cpkld.dto.StudioDTO;
-import com.cpkld.model.entity.ShowTime;
 import com.cpkld.model.entity.Studio;
 import com.cpkld.model.response.ApiResponse;
 import com.cpkld.repository.StudioRepository;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

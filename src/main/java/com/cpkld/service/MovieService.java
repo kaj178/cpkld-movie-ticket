@@ -1,7 +1,6 @@
 package com.cpkld.service;
 
 import com.cpkld.dto.MovieDTO;
-import com.cpkld.model.entity.Movie;
 import org.springframework.http.ResponseEntity;
 
 public interface MovieService {

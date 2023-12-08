@@ -1,8 +1,6 @@
 package com.cpkld.service;
 
 import org.springframework.http.ResponseEntity;
-
-import com.cpkld.dto.MovieDTO;
 import com.cpkld.dto.ShowTimeDTO;
 
 public interface ShowTimeService {
