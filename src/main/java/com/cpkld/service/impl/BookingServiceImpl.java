@@ -141,14 +141,15 @@ public class BookingServiceImpl implements BookingService {
         booking.setBookingTime(bookingDTO.getBookingTime());
         booking.setStatus(String.valueOf(bookingDTO.getStatus()));
         booking.setTotalPrice(bookingDTO.getTotalPrice());
-        booking.setPromotion(promotionRepository.findPromotionByName(bookingDTO.getPromotionName()).get());
+        booking.setPromotion(!bookingDTO.getPromotionName().equals("") ? promotionRepository.findPromotionByName(bookingDTO.getPromotionName()).get() : null);
         booking.setCustomer(customerRepository.findById(bookingDTO.getCustomerId()).get());
         bookingRepository.saveBooking(
                 booking.getAmount(),
                 booking.getBookingTime(),
-                booking.getStatus(),
+                //booking.getStatus(),
+                "1",
                 booking.getTotalPrice(),
-                booking.getPromotion().getId(),
+                booking.getPromotion() != null ?booking.getPromotion().getId() : null,
                 booking.getCustomer().getId());
         for (Seat seat : bookingDTO.getSeats()) {
             if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
