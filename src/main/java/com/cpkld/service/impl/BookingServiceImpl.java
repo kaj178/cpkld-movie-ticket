@@ -190,10 +190,12 @@ public class BookingServiceImpl implements BookingService {
         bookingDTO.setAmountItem(booking.amount);
         bookingDTO.setStatus(Integer.parseInt(booking.getStatus()));
 
-        String promotionName = "Khong co";
+        String promotionName = "";
         Promotion promotion = booking.getPromotion();
         if (promotion != null) {
             promotionName = promotion.getName();
+        } else {
+            promotionName = "Khong co";
         }
         bookingDTO.setPromotionName(promotionName);
 

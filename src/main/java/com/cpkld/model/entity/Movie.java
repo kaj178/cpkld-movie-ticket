@@ -74,6 +74,7 @@ public class Movie {
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, targetEntity = ShowTime.class)
     @JsonManagedReference(value = "showtime-movie")
+    @JsonIgnore
     private List<ShowTime> showTimes;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
