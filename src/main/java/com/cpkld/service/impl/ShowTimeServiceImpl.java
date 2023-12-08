@@ -24,208 +24,208 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShowTimeServiceImpl implements ShowTimeService {
-        @Autowired
-        private ShowTimeRepository showTimeRepository;
-        @Autowired
-        private FormatRepository formatRepository;
-        @Autowired
-        private RoomRepository roomRepository;
-        @Autowired
-        private MovieRepository movieRepository;
+    @Autowired
+    private ShowTimeRepository showTimeRepository;
+    @Autowired
+    private FormatRepository formatRepository;
+    @Autowired
+    private RoomRepository roomRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
-        @Override
-        public ResponseEntity<?> getAll() {
-                List<ShowTime> showTimes = showTimeRepository.findAll();
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showTimes.stream().map(this::convertEntityToDTO)
-                                                                .collect(Collectors.toList())),
-                                HttpStatus.OK);
+    @Override
+    public ResponseEntity<?> getAll() {
+        List<ShowTime> showTimes = showTimeRepository.findAll();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO)
+                                .collect(Collectors.toList())),
+                HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getShowTimeById(Integer showTimeId) {
+        Optional<ShowTime> optional = showTimeRepository.findById(showTimeId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
         }
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        optional.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-        @Override
-        public ResponseEntity<?> getShowTimeById(Integer showTimeId) {
-                Optional<ShowTime> optional = showTimeRepository.findById(showTimeId);
-                if (optional.isEmpty()) {
-                        throw new ShowTimeNotFoundException("Showtime not found!");
-                }
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                optional.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
+    @Override
+    public ResponseEntity<?> getAllShowTimeByDate(int YYYYMMDD) {
+        int year = YYYYMMDD / 10000;
+        int month = (YYYYMMDD % 10000) / 100;
+        int day = YYYYMMDD % 100;
+
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
+
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        Optional<List<ShowTime>> optional = showTimeRepository.getAllShowTimeByDate(localDateTimeStart,
+                localDateTimeEnd);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
         }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-        @Override
-        public ResponseEntity<?> getAllShowTimeByDate(int YYYYMMDD) {
-                int year = YYYYMMDD / 10000;
-                int month = (YYYYMMDD % 10000) / 100;
-                int day = YYYYMMDD % 100;
+    @Override
+    public ResponseEntity<?> getShowTimeByDateAndGenre(int YYYYMMDD, Integer genreId) {
+        int year = YYYYMMDD / 10000;
+        int month = (YYYYMMDD % 10000) / 100;
+        int day = YYYYMMDD % 100;
 
-                LocalDate localDate = LocalDate.of(year, month, day);
+        LocalDate localDate = LocalDate.of(year, month, day);
 
-                LocalTime specificTimeStart = LocalTime.of(0, 0);
-                LocalTime specificTimeEnd = LocalTime.of(23, 59);
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
 
-                LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
-                LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
 
-                Optional<List<ShowTime>> optional = showTimeRepository.getAllShowTimeByDate(localDateTimeStart,
-                                localDateTimeEnd);
-                if (optional.isEmpty()) {
-                        throw new ShowTimeNotFoundException("Showtime not found!");
-                }
-                List<ShowTime> showTimes = optional.get();
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showTimes.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndGenre(localDateTimeStart,
+                localDateTimeEnd, genreId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
         }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-        @Override
-        public ResponseEntity<?> getShowTimeByDateAndGenre(int YYYYMMDD, Integer genreId) {
-                int year = YYYYMMDD / 10000;
-                int month = (YYYYMMDD % 10000) / 100;
-                int day = YYYYMMDD % 100;
-
-                LocalDate localDate = LocalDate.of(year, month, day);
-
-                LocalTime specificTimeStart = LocalTime.of(0, 0);
-                LocalTime specificTimeEnd = LocalTime.of(23, 59);
-
-                LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
-                LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
-
-                Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndGenre(localDateTimeStart,
-                                localDateTimeEnd, genreId);
-                if (optional.isEmpty()) {
-                        throw new ShowTimeNotFoundException("Showtime not found!");
-                }
-                List<ShowTime> showTimes = optional.get();
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showTimes.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
+    @Override
+    public ResponseEntity<?> getShowTimeByMovieAndTheater(Integer movieId, Integer theaterId) {
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByMovieAndTheater(movieId, theaterId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
         }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-        @Override
-        public ResponseEntity<?> getShowTimeByMovieAndTheater(Integer movieId, Integer theaterId) {
-                Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByMovieAndTheater(movieId, theaterId);
-                if (optional.isEmpty()) {
-                        throw new ShowTimeNotFoundException("Showtime not found!");
-                }
-                List<ShowTime> showTimes = optional.get();
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showTimes.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
+    @Override
+    public ResponseEntity<?> getShowTimeByDateAndTheater(int YYYYMMDD, Integer theaterId) {
+        int year = YYYYMMDD / 10000;
+        int month = (YYYYMMDD % 10000) / 100;
+        int day = YYYYMMDD % 100;
+
+        LocalDate localDate = LocalDate.of(year, month, day);
+
+        LocalTime specificTimeStart = LocalTime.of(0, 0);
+        LocalTime specificTimeEnd = LocalTime.of(23, 59);
+
+        LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+        LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndTheater(localDateTimeStart,
+                localDateTimeEnd, theaterId);
+        if (optional.isEmpty()) {
+            throw new ShowTimeNotFoundException("Showtime not found!");
         }
+        List<ShowTime> showTimes = optional.get();
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showTimes.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-        @Override
-        public ResponseEntity<?> getShowTimeByDateAndTheater(int YYYYMMDD, Integer theaterId) {
-                int year = YYYYMMDD / 10000;
-                int month = (YYYYMMDD % 10000) / 100;
-                int day = YYYYMMDD % 100;
+    public ResponseEntity<?> add(ShowTimeDTO payload) {
+        ShowTime showtime = new ShowTime();
+        showtime.setPrice(payload.getPrice());
+        Format format = formatRepository.findById(payload.getFormatId()).get();
+        showtime.setFormat(format);
+        Room room = roomRepository.findById(payload.getRoomId()).get();
+        showtime.setRoom(room);
+        showtime.setEndTime(payload.getEndTime());
+        showtime.setStartTime(payload.getStartTime());
+        Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
+        showtime.setMovie(movie);
+        showTimeRepository.save(showtime);
+        List<ShowTime> showtimeList = new ArrayList<ShowTime>();
+        showtimeList.add(showtime);
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showtimeList.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-                LocalDate localDate = LocalDate.of(year, month, day);
+    public ResponseEntity<?> put(Integer showtimeID, ShowTimeDTO payload) {
+        ShowTime showtime = showTimeRepository.findById(showtimeID).get();
+        showtime.setPrice(payload.getPrice());
+        Format format = formatRepository.findById(payload.getFormatId()).get();
+        showtime.setFormat(format);
+        Room room = roomRepository.findById(payload.getRoomId()).get();
+        showtime.setRoom(room);
+        showtime.setEndTime(payload.getEndTime());
+        showtime.setStartTime(payload.getStartTime());
+        Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
+        showtime.setMovie(movie);
+        showTimeRepository.save(showtime);
+        List<ShowTime> showtimeList = new ArrayList<ShowTime>();
+        showtimeList.add(showtime);
+        return new ResponseEntity<>(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        showtimeList.stream().map(this::convertEntityToDTO).toList()),
+                HttpStatus.OK);
+    }
 
-                LocalTime specificTimeStart = LocalTime.of(0, 0);
-                LocalTime specificTimeEnd = LocalTime.of(23, 59);
-
-                LocalDateTime localDateTimeStart = localDate.atTime(specificTimeStart).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
-                LocalDateTime localDateTimeEnd = localDate.atTime(specificTimeEnd).atZone(ZoneId.systemDefault())
-                                .toLocalDateTime();
-
-                Optional<List<ShowTime>> optional = showTimeRepository.getShowTimeByDateAndTheater(localDateTimeStart,
-                                localDateTimeEnd, theaterId);
-                if (optional.isEmpty()) {
-                        throw new ShowTimeNotFoundException("Showtime not found!");
-                }
-                List<ShowTime> showTimes = optional.get();
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showTimes.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
+    public ShowTimeDTO convertEntityToDTO(ShowTime showTime) {
+        ShowTimeDTO showTimeDTO = new ShowTimeDTO();
+        Set<String> seatList = new HashSet<>();
+        for (Seat seat : showTime.getRoom().getSeats()) {
+            seatList.add(seat.getType());
         }
+        showTimeDTO.setShowTimeId(showTime.getId());
+        showTimeDTO.setStartTime(showTime.getStartTime());
+        showTimeDTO.setEndTime(showTime.getEndTime());
+        showTimeDTO.setPrice(showTime.getPrice());
+        showTimeDTO.setMovie(showTime.getMovie());
 
-        public ResponseEntity<?> add(ShowTimeDTO payload) {
-                ShowTime showtime = new ShowTime();
-                showtime.setPrice(payload.getPrice());
-                Format format = formatRepository.findById(payload.getFormatId()).get();
-                showtime.setFormat(format);
-                Room room = roomRepository.findById(payload.getRoomId()).get();
-                showtime.setRoom(room);
-                showtime.setEndTime(payload.getEndTime());
-                showtime.setStartTime(payload.getStartTime());
-                Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
-                showtime.setMovie(movie);
-                showTimeRepository.save(showtime);
-                List<ShowTime> showtimeList = new ArrayList<ShowTime>();
-                showtimeList.add(showtime);
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showtimeList.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
-        }
+        Room room = showTime.getRoom();
+        showTimeDTO.setRoomId(room.getRoomId());
 
-        public ResponseEntity<?> put(Integer showtimeID, ShowTimeDTO payload) {
-                ShowTime showtime = showTimeRepository.findById(showtimeID).get();
-                showtime.setPrice(payload.getPrice());
-                Format format = formatRepository.findById(payload.getFormatId()).get();
-                showtime.setFormat(format);
-                Room room = roomRepository.findById(payload.getRoomId()).get();
-                showtime.setRoom(room);
-                showtime.setEndTime(payload.getEndTime());
-                showtime.setStartTime(payload.getStartTime());
-                Movie movie = movieRepository.findById(Integer.parseInt(payload.getMovieID())).get();
-                showtime.setMovie(movie);
-                showTimeRepository.save(showtime);
-                List<ShowTime> showtimeList = new ArrayList<ShowTime>();
-                showtimeList.add(showtime);
-                return new ResponseEntity<>(
-                                new ApiResponse<>(
-                                                HttpStatus.OK.value(),
-                                                "Success",
-                                                showtimeList.stream().map(this::convertEntityToDTO).toList()),
-                                HttpStatus.OK);
-        }
+        Format format = showTime.getFormat();
+        showTimeDTO.setFormatId(format.getId());
 
-        public ShowTimeDTO convertEntityToDTO(ShowTime showTime) {
-                ShowTimeDTO showTimeDTO = new ShowTimeDTO();
-                Set<String> seatList = new HashSet<>();
-                for (Seat seat : showTime.getRoom().getSeats()) {
-                        seatList.add(seat.getType());
-                }
-                showTimeDTO.setShowTimeId(showTime.getId());
-                showTimeDTO.setStartTime(showTime.getStartTime());
-                showTimeDTO.setEndTime(showTime.getEndTime());
-                showTimeDTO.setPrice(showTime.getPrice());
-                showTimeDTO.setMovie(showTime.getMovie());
-
-                Room room = showTime.getRoom();
-                showTimeDTO.setRoomId(room.getRoomId());
-
-                Format format = showTime.getFormat();
-                showTimeDTO.setFormatId(format.getId());
-
-                return showTimeDTO;
-        }
+        return showTimeDTO;
+    }
 }

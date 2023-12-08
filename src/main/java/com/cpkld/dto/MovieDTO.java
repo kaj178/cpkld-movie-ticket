@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.cpkld.model.entity.Studio;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +40,8 @@ public class MovieDTO {
     private Integer rating;
 
     private String studioId;
+
+    private Studio studio;
 
     private String language;
 
