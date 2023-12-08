@@ -26,6 +26,7 @@ public class MovieDTO {
     private int age;
     private String story;
     private int rating;
+    private String studioId;
     private Studio studio;
     private String language;
     private List<String> movieGenres;

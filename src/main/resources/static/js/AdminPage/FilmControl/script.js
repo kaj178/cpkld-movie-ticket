@@ -243,6 +243,8 @@ async function loadAllMovies() {
   currentData = [];
   let data;
   data = await getAllMovies("../..");
+  console.log(data.data);
+
   for (let i = 0; i < data.data.length; i++) {
     currentData.push(data.data[i]);
   }

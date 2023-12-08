@@ -108,20 +108,20 @@ const updateMovie = async (
   story,
   age
 ) => {
-  const urls = `${url}/Controller/Movie/ajax.php`;
+  const urls = `${url}/api/v1/movie/${id}`;
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
       action: "updateMovie",
-      MovieID: MovieID,
-      MovieName: MovieName,
-      Director: Director,
-      Year: Year,
-      Premiere: Premiere,
-      URLTrailer: URLTrailer,
-      Time: Time,
-      StudioID: StudioID,
-      LanguageID: LanguageID,
+      movieId: MovieID,
+      name: MovieName,
+      director: Director,
+      year: Year,
+      premiere: Premiere,
+      urlTrailer: URLTrailer,
+      time: Time,
+      studioId: StudioID,
+      language: LanguageID,
       story: story,
       age: age,
     }),
@@ -131,7 +131,7 @@ const updateMovie = async (
 };
 
 const deleteMovie = async (url, id) => {
-  const data = await fetch(`${url}/Controller/Movie/ajax.php?id=${id}`, {
+  const data = await fetch(`${url}/api/v1/movie/${id}`, {
     method: "DELETE",
   });
   const datatorender = await data.json();

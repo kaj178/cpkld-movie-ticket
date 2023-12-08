@@ -85,13 +85,13 @@ const updateShowTime = async (
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
-      Price: Price,
-      StartTime: StartTime,
-      MovieID: MovieID,
-      EndTime: EndTime,
-      RoomID: RoomID,
-      FormatID: FormatID,
-      ShowtimeID: ShowtimeID,
+      price: Price,
+      startTime: StartTime,
+      movie: MovieID,
+      endTime: EndTime,
+      roomId: RoomID,
+      formatId: FormatID,
+      showTimeId: ShowtimeID,
     }),
   });
   const datatorender = await data.json();
@@ -120,12 +120,13 @@ const addShowTime = async (
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({
-      Price: Price,
-      StartTime: StartTime,
-      MovieID: MovieID,
-      EndTime: EndTime,
-      RoomID: RoomID,
-      FormatID: FormatID,
+      price: Price,
+      startTime: StartTime,
+      movie: MovieID,
+      endTime: EndTime,
+      roomId: RoomID,
+      formatId: FormatID,
+      showTimeId: ShowtimeID,
     }),
   });
   const datatorender = await data.json();

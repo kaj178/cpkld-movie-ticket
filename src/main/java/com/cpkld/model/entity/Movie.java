@@ -20,7 +20,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id", insertable=false, updatable=false)
+    @Column(name = "movie_id", insertable = false, updatable = false)
     private Integer movieId;
 
     @Column(name = "movie_name")
@@ -71,11 +71,7 @@ public class Movie {
     private List<ShowTime> showTimes;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "detail_movie_genre", 
-        joinColumns = @JoinColumn(name = "movie_id"), 
-        inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
+    @JoinTable(name = "detail_movie_genre", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<MovieGenre> movieGenres;
 
 }

@@ -86,87 +86,74 @@ function toVndCurrencyFormat(number) {
 }
 async function LoadRevenueForMonth() {
   currentData = [];
-  let yearList = [2022, 2023];
-  let monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  for (let i = 0; i < yearList.length; i++) {
-    for (let j = 0; j < monthList.length; j++) {
-      let page = 1;
-      let data = await getRevenueForMonth(
-        "../../..",
-        yearList[i],
-        monthList[j],
-        page
-      );
-      if (data.list[0]) currentData.push(data.list[0]);
-      page = 1;
-    }
-  }
-  currentData = currentData.reverse();
+  let yearList = [2022, 2023, 2024];
+  let monthList = [1, 2, 3, 4];
+  let page = 1;
+  let data = await getRevenueForQuarterOfYear("../..", page);
+  if (data.data) currentData.push(data.data);
+  console.log(currentData);
 }
 async function LoadRevenueForQuarter() {
   currentData = [];
-  let yearList = [2022, 2023];
+  let yearList = [2022, 2023, 2024];
   let monthList = [1, 2, 3, 4];
-  for (let i = 0; i < yearList.length; i++) {
-    for (let j = 0; j < monthList.length; j++) {
-      let page = 1;
-      let data = await getRevenueForQuarterOfYear(
-        "../../..",
-        yearList[i],
-        monthList[j],
-        page
-      );
-      console.log(data);
-      if (data.List[0]) currentData.push(data.List[0]);
-      page = 1;
-      console.log(currentData);
-    }
-  }
-  currentData = currentData.reverse();
+  let page = 1;
+  let data = await getRevenueForQuarterOfYear("../..", page);
+  if (data.data) currentData.push(data.data);
+  console.log(currentData);
 }
 async function LoadRevenueForYear() {
   currentData = [];
-  let yearList = [2022, 2023];
-  for (let i = 0; i < yearList.length; i++) {
-    let page = 1;
-    let data = await getRevenueForYear("../../..", yearList[i], page);
-    currentData.push(data.List[0]);
-    page = 1;
-  }
-  currentData = currentData.reverse();
+  let yearList = [2022, 2023, 2024];
+  let monthList = [1, 2, 3, 4];
+  let page = 1;
+  let data = await getRevenueForQuarterOfYear("../..", page);
+  console.log(data.data);
+  if (data.data[0]) currentData.push(data.data);
+  console.log(currentData);
 }
 function showDataYear() {
   table.clear().draw();
-  let data = currentData;
+  let data = currentData[0];
   let numRow = data.length;
   for (let i = 0; i < numRow; i++) {
     table.row
-      .add([data[i].Year, toVndCurrencyFormat(data[i].YearlyRevenue)])
+      .add([data[i].year, toVndCurrencyFormat(data[i].totalRevenue)])
       .draw();
   }
 }
 function showDataMonth() {
   table.clear().draw();
-  let data = currentData;
+  let data = currentData[0];
   let numRow = data.length;
-  console.log(currentData);
   for (let i = 0; i < numRow; i++) {
-    table.row
-      .add([data[i].Month, toVndCurrencyFormat(data[i].MonthlyRevenue)])
-      .draw();
+    const datatable = data[i].quarterlyRevenueDTOS;
+    datatable.forEach((element) => {
+      const data2 = element.monthlyRevenueDTOS;
+      data2.forEach((element2) => {
+        table.row
+          .add([
+            `${element2.month}/${element2.year}`,
+            toVndCurrencyFormat(element2.totalRevenue),
+          ])
+          .draw();
+      });
+    });
   }
 }
 function showDataQuarter() {
   table.clear().draw();
-  let data = currentData;
+  let data = currentData[0];
   let numRow = data.length;
-  console.log(currentData);
   for (let i = 0; i < numRow; i++) {
-    table.row
-      .add([
-        data[i].Year + " - " + data[i].Quarter,
-        toVndCurrencyFormat(data[i].QuarterlyRevenue),
-      ])
-      .draw();
+    const datatable = data[i].quarterlyRevenueDTOS;
+    datatable.forEach((element) => {
+      table.row
+        .add([
+          `${element.quarter}/${element.year}`,
+          toVndCurrencyFormat(element.totalRevenue),
+        ])
+        .draw();
+    });
   }
 }
