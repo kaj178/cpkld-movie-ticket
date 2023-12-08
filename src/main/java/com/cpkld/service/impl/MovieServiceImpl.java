@@ -162,7 +162,7 @@ public class MovieServiceImpl implements MovieService {
     public ResponseEntity<?> add(@RequestBody MovieDTO movieDTO) {
         Movie movie = new Movie();
 
-        Studio studio1 = studioRepository.findById(movieDTO.getStudio().getId()).get();
+        Studio studio1 = studioRepository.findById(Integer.parseInt(movieDTO.getStudioId())).get();
         Language language1 = languageRepository.findById(Integer.parseInt(movieDTO.getLanguage())).get();
         List<String> Genre = movieDTO.getMovieGenres();
         List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
@@ -213,7 +213,7 @@ public class MovieServiceImpl implements MovieService {
     public ResponseEntity<?> update(Integer movieId, @RequestBody MovieDTO movie) {
         Movie _movie = new Movie();
 
-        Studio studio1 = studioRepository.findById(movie.getStudio().getId()).get();
+        Studio studio1 = studioRepository.findById(Integer.parseInt(movie.getStudioId())).get();
         Language language1 = languageRepository.findById(Integer.parseInt(movie.getLanguage())).get();
         List<String> Genre = movie.getMovieGenres();
         List<MovieGenre> Genretoadd = new ArrayList<MovieGenre>();
@@ -266,7 +266,7 @@ public class MovieServiceImpl implements MovieService {
         }
         movieDTO.setMovieId(movie.getMovieId());
         movieDTO.setName(movie.getName());
-        movieDTO.setStudio(movie.getStudio());
+        movieDTO.setStudioId(String.valueOf(movie.getStudio().getId()));
         movieDTO.setMovieGenres(movieGenreNames);
         movieDTO.setYear(movie.getYear());
         movieDTO.setTime(movie.getTime());
