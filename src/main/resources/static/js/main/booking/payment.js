@@ -63,9 +63,16 @@ $(document).ready(function () {
     $(".after-price-content").text(toVndCurrencyFormat(newPrice));
   }
   $(".btn-grad").click(async () => {
-    if ($(".form-discount-content").val() == "Welcome") {
-      let PromotionPrice = JSON.parse(sessionStorage.getItem("TotalPrice")) / 2;
-      let newPrice = JSON.parse(sessionStorage.getItem("TotalPrice")) / 2;
+    const data = await getPromotionsEvent(
+      "../..",
+      $(".form-discount-content").val()
+    );
+    if (data.data) {
+      let PromotionPrice =
+        JSON.parse(sessionStorage.getItem("TotalPrice")) / data.data.discount;
+      let newPrice =
+        JSON.parse(sessionStorage.getItem("TotalPrice")) /
+        (1 - data.data.discount);
       ChangePrice(PromotionPrice, newPrice);
     }
     // let PromtionPrice = await calculateTotalPrice(
