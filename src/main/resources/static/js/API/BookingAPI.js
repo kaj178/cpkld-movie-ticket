@@ -22,6 +22,9 @@ const AddBooking = async (
   console.log(bodyinput);
   const bodytoadd = JSON.stringify(bodyinput);
   const data = await fetch(`${url}/api/v1/booking`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
     method: "POST",
     body: bodytoadd,
   });
@@ -48,7 +51,7 @@ const getAllBooking = async (url = "../..", page = 1) => {
 };
 
 const changeStatus = async (url = "../..", id, status) => {
-  const urls = `${url}/Controller/Booking/ajax.php?action=changeStatus`;
+  const urls = `${url}/api/v1/booking`;
   const data = await fetch(urls, {
     method: "PUT",
     body: JSON.stringify({
