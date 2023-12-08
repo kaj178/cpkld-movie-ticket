@@ -186,6 +186,7 @@ function showData() {
   table.clear().draw();
   let data = currentData;
   let numRow = data.length;
+  console.log(currentData);
   for (let i = 0; i < numRow; i++) {
     table.row
       .add([
@@ -193,9 +194,9 @@ function showData() {
         data[i].startTime,
         data[i].endTime,
         toVndCurrencyFormat(data[i].price),
-        data[i].movieId,
+        data[i].movie.movieId,
         data[i].roomId,
-        data[i].formatName,
+        data[i].formatId,
       ])
       .draw();
   }
@@ -208,8 +209,8 @@ function fillEditData(id) {
   editModal.find(".StartTime").val(data.startTime);
   editModal.find(".EndTime").val(data.endTime);
   editModal.find(".Price").val(data.price);
-  editModal.find(".MovieID").val(data.movieId);
+  editModal.find(".MovieID").val(data.movie.movieId);
   editModal.find(".RoomID").val(data.roomId);
-  editModal.find(".FormatName").val(data.formatName);
+  editModal.find(".FormatName").val(data.formatId);
   editModal.modal("show");
 }

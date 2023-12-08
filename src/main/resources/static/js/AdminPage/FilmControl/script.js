@@ -81,8 +81,8 @@ $(document).ready(() => {
     let Time = $("#ModalAddUser #time").val().trim();
     let LanguageID = $("#ModalAddUser #language").val().trim();
     let StudioID = $("#ModalAddUser #studio").val();
-    let posterFile = $("#ModalAddUser #poster")[0].files[0];
-    let imageFiles = $("#ModalAddUser #image")[0].files;
+    let posterFile = $("#ModalAddUser #poster").val();
+    let imageFiles = $("#ModalAddUser #image").val();
 
     let Director = $("#ModalAddUser #director").val().trim();
     let listActor = $("#ModalAddUser #actor").val().trim();
@@ -193,20 +193,20 @@ function showData(currentData) {
     data[i].movieGenres.forEach((genre) => {
       genreList.push(genre);
     });
-    // table.row
-    //   .add([
-    //     data[i].movieId,
-    //     data[i].name,
-    //     data[i].studio,
-    //     genreList.join(", "),
-    //     data[i].premiere,
-    //     data[i].time,
-    //     data[i].language,
-    //     data[i].director,
-    //     data[i].rating,
-    //     data[i].story,
-    //   ])
-    //   .draw();
+    table.row
+      .add([
+        data[i].movieId,
+        data[i].name,
+        data[i].studio.name,
+        genreList.join(", "),
+        data[i].premiere,
+        data[i].time,
+        data[i].language,
+        data[i].director,
+        data[i].rating,
+        data[i].story,
+      ])
+      .draw();
   }
 }
 
@@ -304,7 +304,7 @@ function fillEditData(id) {
   editModal.find("#name").val(data.name);
   editModal.find("#time").val(data.time);
   editModal.find("#language").val(data.language).change();
-  editModal.find("#studio").val(data.story).change();
+  editModal.find("#studio").val(data.studio).change();
   editModal.find("#director").val(data.director);
   editModal.find("#age").val(data.age);
   editModal.find("#trailer").val(data.urlTrailer);

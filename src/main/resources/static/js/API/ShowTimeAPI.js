@@ -117,6 +117,14 @@ const addShowTime = async (
   FormatID
 ) => {
   const urls = `${url}/api/v1/showtime`;
+  console.log({
+    price: Price,
+    startTime: StartTime,
+    movieID: MovieID,
+    endTime: EndTime,
+    roomId: RoomID,
+    formatId: FormatID,
+  });
   const data = await fetch(urls, {
     method: "POST",
     body: JSON.stringify({

@@ -48,6 +48,9 @@ public class MovieDTO {
     private Studio studio;
 
     private String language;
-    
+
     private List<String> movieGenres;
+
+    private Integer studioId;
+
 }
