@@ -21,8 +21,10 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id", insertable = false, updatable = false)
     public Integer roomId;
+    
     @Column(name = "room_name")
     public String roomName;
+
     @Column(name = "amount_seat")
     public int amountSeats;
 

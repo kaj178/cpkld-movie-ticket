@@ -40,15 +40,15 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Role.class)
     @JoinColumn(name = "role_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "user-role")
     private Role role;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Manager.class, mappedBy = "user")
-    @JsonBackReference
+    @JsonBackReference(value = "user-manager")
     private Manager manager;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, mappedBy = "user")
-    @JsonBackReference
+    @JsonBackReference(value = "user-customer")
     private Customer customer;
 
 }

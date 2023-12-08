@@ -28,7 +28,7 @@ public class Role {
     private String roleName;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = User.class, mappedBy = "role")
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-role")
     private List<User> accounts;
 
 }

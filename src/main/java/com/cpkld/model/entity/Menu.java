@@ -34,6 +34,6 @@ public class Menu {
     public Integer status;
 
     @OneToMany(mappedBy = "menu")
-    @JsonManagedReference(value = "menu-menu")
+    @JsonBackReference(value = "menu-menu")
     private List<MenuBooking> menuBookings;
 }

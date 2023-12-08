@@ -31,7 +31,7 @@ public class Customer {
     // @Column(name = "user_id")
     @OneToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value = "user-customer")
     private User user;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, targetEntity = Booking.class)

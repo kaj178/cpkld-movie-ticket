@@ -217,7 +217,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public ResponseEntity<?> add(BookingDTO bookingDTO) {
+    public ResponseEntity<?> addBooking(BookingDTO bookingDTO) {
         Booking booking = new Booking();
         // Ticket ticket = new Ticket();
 
@@ -247,7 +247,7 @@ public class BookingServiceImpl implements BookingService {
         }
         for (Menu menu : bookingDTO.getMenus()) {
             if (bookingRepository.findById(bookingRepository.getLastId()) != null) {
-                menuBookingRepository.saveMenuBooking(bookingDTO.getBookingId(), menu.getMenuId());
+                menuBookingRepository.saveMenuBooking(bookingRepository.getLastId(), menu.getMenuId());
             }
         }
         return new ResponseEntity<>(

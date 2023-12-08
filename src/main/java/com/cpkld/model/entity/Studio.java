@@ -44,7 +44,7 @@ public class Studio {
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Movie.class)
     @JoinColumn(name = "movie_id", nullable = false, insertable = false, updatable = false)
-    @JsonManagedReference(value = "movie_studio")
+    @JsonManagedReference(value = "studio-movie")
     private List<Movie> movies;
 
     public Studio(String name, String address, String phoneNumber, String email) {

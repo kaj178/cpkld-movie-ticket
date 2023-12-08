@@ -13,6 +13,6 @@ public interface BookingService {
     ResponseEntity<?> getBookingByCustomerID(int id);
 
     // ResponseEntity<?> add(com.cpkld.api.controller.BookingApi.BookingTemp bookingDTO);
-    ResponseEntity<?> add(BookingDTO bookingDTO);
+    ResponseEntity<?> addBooking(BookingDTO bookingDTO);
 
 }

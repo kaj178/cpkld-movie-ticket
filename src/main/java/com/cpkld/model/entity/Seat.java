@@ -32,7 +32,7 @@ public class Seat {
     private Room room;
 
     @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY, targetEntity = Ticket.class)
-    @JsonManagedReference(value = "ticket-seat")
+    @JsonBackReference(value = "ticket-seat")
     private List<Ticket> tickets;
 
 }

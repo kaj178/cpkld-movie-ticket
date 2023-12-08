@@ -686,6 +686,7 @@ SELECT * FROM public.booking
 SELECT * FROM public.menu
 SELECT * FROM public."menu_booking"
 SELECT * FROM public.promotion
+SELECT * FROM public.booking ORDER BY booking_id ASC
 SELECT booking_id FROM public.booking ORDER BY booking_id DESC LIMIT 1
 
 UPDATE public.promotion SET promotion_name = 'Christmas' WHERE promotion_id = 3
