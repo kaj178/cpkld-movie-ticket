@@ -75,6 +75,7 @@ $(document).ready(function () {
       } else {
         htmls = `<div id=${data.movieId} class="carousel-item">`;
       }
+
       htmls +=
         `
         <div class="movie-content">
@@ -96,7 +97,7 @@ $(document).ready(function () {
             <span class="dot">●</span>
             <span class="premier-date">${data.premiere}</span>
             <span class="dot">●</span>
-            <span class="country">${data.studio.name}</span>
+            <span class="country"></span>
           </div>
           <div class="sypnosis">
            ${data.story}

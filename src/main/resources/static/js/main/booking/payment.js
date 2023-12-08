@@ -67,12 +67,12 @@ $(document).ready(function () {
       "../..",
       $(".form-discount-content").val()
     );
-    if (data.data) {
+    if (data.data[0]) {
       let PromotionPrice =
-        JSON.parse(sessionStorage.getItem("TotalPrice")) / data.data.discount;
-      let newPrice =
         JSON.parse(sessionStorage.getItem("TotalPrice")) /
-        (1 - data.data.discount);
+        data.data[0].discount;
+      let newPrice =
+        JSON.parse(sessionStorage.getItem("TotalPrice")) - PromotionPrice;
       ChangePrice(PromotionPrice, newPrice);
     }
     // let PromtionPrice = await calculateTotalPrice(
@@ -161,7 +161,7 @@ $(document).ready(function () {
     if (seconds < 10) {
       seconds = "0" + seconds;
     }
-
+    const dateNoew = new Date();
     // display the current date and time
     const timetoadd =
       year +
@@ -179,7 +179,7 @@ $(document).ready(function () {
     let resulttoadd = await AddBooking(
       "../..",
       NumofTicket,
-      timetoadd,
+      dateNoew,
       getVoucher,
       customer_id,
       ShowTimeID,

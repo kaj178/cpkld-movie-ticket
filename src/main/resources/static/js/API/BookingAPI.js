@@ -13,7 +13,7 @@ const AddBooking = async (
     amountItem: numofticket,
     bookingTime: time,
     promotionName: voucher,
-    customer_id: CID,
+    customerId: CID,
     showTimeId: SID,
     totalPrice: total,
     seats: listtic,
