@@ -188,20 +188,17 @@ $(document).ready(function () {
       JSON.parse(MenuInfo)
     );
     console.log(resulttoadd);
-    if (resulttoadd.success) {
-      sessionStorage.removeItem("ChoosingSeat");
-      sessionStorage.removeItem("RoomIDChoosing");
-      sessionStorage.removeItem("DayChoosing");
-      sessionStorage.removeItem("ShowTimeID");
-      sessionStorage.removeItem("TimeChoosing");
-      sessionStorage.removeItem("TheaterName");
-      sessionStorage.removeItem("Pricing");
-      sessionStorage.removeItem("MenuInfo");
-      sessionStorage.removeItem("movieid");
-      sessionStorage.removeItem("TotalPrice");
-      sessionStorage.removeItem("PriceMenu");
-      sessionStorage.setItem("BillID", resulttoadd.id);
-      window.location.href = "/success-payment";
-    }
+    sessionStorage.removeItem("ChoosingSeat");
+    sessionStorage.removeItem("RoomIDChoosing");
+    sessionStorage.removeItem("DayChoosing");
+    sessionStorage.removeItem("ShowTimeID");
+    sessionStorage.removeItem("TimeChoosing");
+    sessionStorage.removeItem("TheaterName");
+    sessionStorage.removeItem("Pricing");
+    sessionStorage.removeItem("MenuInfo");
+    sessionStorage.removeItem("movieid");
+    sessionStorage.removeItem("TotalPrice");
+    sessionStorage.removeItem("PriceMenu");
+    window.location.href = "/booking/success-payment";
   });
 });

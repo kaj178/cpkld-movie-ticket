@@ -103,8 +103,15 @@ public class TicketServiceImpl implements TicketService {
             strCombos.append("Không có");
         } else {
             for (MenuBooking menuBooking : menuBookings) {
-            strCombos.append(menuBooking.getMenu().getName()).append(", ");
-        }
+                if (menuBooking.getMenu() != null) {
+                    if (menuBookings.size() > 1) {
+                        strCombos.append(menuBooking.getMenu().getName()).append(", ");
+                    } 
+                    strCombos.append(menuBooking.getMenu().getName());
+                } else { 
+                    strCombos.append("Không có");
+                }
+            }
         }
         ticketDTO.setTicketId(ticket.ticketId);
         ticketDTO.setShowTimeID(ticket.getShowTime().getId());
