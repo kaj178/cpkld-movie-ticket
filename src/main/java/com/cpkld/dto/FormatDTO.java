@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class FormatDTO {
     private Integer formatId;
     private String formatName;
-
 }

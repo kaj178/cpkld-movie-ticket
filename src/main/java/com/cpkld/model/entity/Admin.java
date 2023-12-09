@@ -30,7 +30,6 @@ public class Admin {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // @Column(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference

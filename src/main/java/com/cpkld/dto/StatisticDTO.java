@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class StatisticDTO {
     List<AnnualRevenueDTO> annualRevenueDTOS;
     List<MonthlyRevenueDTO> monthlyRevenueDTOS;

@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-
 public class SeatServiceImpl implements SeatService {
     @Autowired
     private SeatRepository seatRepository;

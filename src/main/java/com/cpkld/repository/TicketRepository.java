@@ -16,10 +16,9 @@ import java.util.Optional;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     @Query(value = "select * from ticket t " +
-            "where t.showtime_id = :showtimeId "
-    , nativeQuery = true)
+            "where t.showtime_id = :showtimeId ", 
+        nativeQuery = true)
     Optional<List<Ticket>> getTicketsByShowTimeId(@Param("showtimeId") Integer showTimeId);
-
 
     @Query(value = "select t.* from public.ticket t " +
             "join public.booking b on t.booking_id = b.booking_id " +

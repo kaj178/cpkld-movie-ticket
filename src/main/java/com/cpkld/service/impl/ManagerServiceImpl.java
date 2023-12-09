@@ -73,9 +73,6 @@ public class ManagerServiceImpl implements ManagerService {
     public ResponseEntity<?> getPaginated(int page) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("id").ascending());
         Page<Manager> pageList = repo.findAll(pageable);
-        // for (Manager m : pageList) {
-        //     System.out.println(m.toString());
-        // }
         return new ResponseEntity<>(
             new ApiResponse<>(
                 HttpStatus.OK.value(), 

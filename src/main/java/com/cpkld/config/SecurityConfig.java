@@ -46,7 +46,7 @@ public class SecurityConfig {
                     .requestMatchers("/signup/**", "/api/**").permitAll()
                     // .requestMatchers("/signup/**", "/login/**").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER", "ROLE_CUSTOMER") // .hasRole("CUSTOMER")
+                    .requestMatchers("/").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER", "ROLE_CUSTOMER")
                     .anyRequest().authenticated()
             )
             .formLogin(form -> 

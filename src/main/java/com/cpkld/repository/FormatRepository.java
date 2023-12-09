@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
 @Repository
 public interface FormatRepository extends JpaRepository<Format, Integer> {
     Optional<Format> getFormatById(Integer formatId);

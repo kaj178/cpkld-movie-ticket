@@ -98,11 +98,6 @@ public class CustomerServiceImpl implements CustomerService {
         if (optional.isPresent()) {
             throw new CustomerExistedException("Customer existed");
         }
-        // } else {
-        // repo.save(new User(
-
-        // ));
-        // }
         return new ResponseEntity<>(
                 new ApiResponse<>(HttpStatus.CREATED.value(), "Success", optional.stream().toList()),
                 HttpStatus.OK);
@@ -120,7 +115,6 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setAddress(newCustomer.getAddress());
             customer.setEmail(newCustomer.getEmail());
             customer.setPhoneNumber(newCustomer.getPhoneNumber());
-            // customer.setAccountId(newCustomer.getAccountId());
             repo.save(customer);
         }
         return new ResponseEntity<>(

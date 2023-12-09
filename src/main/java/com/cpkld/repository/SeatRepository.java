@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
-
     @Query(value = "select sea.* from public.seat as sea " +
             "join public.ticket as tic on sea.seat_id = tic.seat_id " +
             "where tic.ticket_id = :ticketId ", nativeQuery = true)

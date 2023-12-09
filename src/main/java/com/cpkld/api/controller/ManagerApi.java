@@ -20,9 +20,7 @@ public class ManagerApi {
     
     @Autowired
     private ManagerService managerService;
-    // @Autowired
-    // private AuthService userService;
-
+    
     @GetMapping
     public ResponseEntity<?> readManagers() {
         return managerService.getAll();

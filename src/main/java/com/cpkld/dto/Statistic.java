@@ -13,7 +13,6 @@ public class Statistic {
     private LocalDateTime dateTime;
     private int amountReceipt;
     private double revenue;
-
 }
 
 

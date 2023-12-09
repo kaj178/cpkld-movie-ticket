@@ -48,16 +48,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public ResponseEntity<?> add(MenuDTO menuDTO) {
-
         Menu menu = new Menu();
         menu.setName(menuDTO.getName());
         menu.setPrice(menuDTO.getPrice());
         menu.setImgUrl(menuDTO.getImgUrl());
         menu.setStatus(menuDTO.getStatus());
-
         menuRepository.save(menu);
         List<Menu> menus = new ArrayList<>();
-
         return new ResponseEntity<>(
                 new ApiResponse<>(
                         HttpStatus.CREATED.value(),
@@ -78,7 +75,6 @@ public class MenuServiceImpl implements MenuService {
         menu.setPrice(menuDTO.getPrice());
         menu.setImgUrl(menuDTO.getImgUrl());
         menu.setStatus(menuDTO.getStatus());
-
         return null;
     }
 
@@ -89,7 +85,6 @@ public class MenuServiceImpl implements MenuService {
         menuDTO.setPrice(menu.getPrice());
         menuDTO.setImgUrl(menu.getImgUrl());
         menuDTO.setStatus(menu.getStatus());
-        // menuDTO.setDescription(menu.getDescription());
         return menuDTO;
     }
 }

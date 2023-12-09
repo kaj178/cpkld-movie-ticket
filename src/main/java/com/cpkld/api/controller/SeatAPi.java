@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/seat")
 public class SeatAPi {
     @Autowired
-
     private SeatService service;
 
     @GetMapping(params = "seat_id")

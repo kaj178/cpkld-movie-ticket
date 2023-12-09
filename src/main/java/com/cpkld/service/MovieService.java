@@ -4,7 +4,6 @@ import com.cpkld.dto.MovieDTO;
 import org.springframework.http.ResponseEntity;
 
 public interface MovieService {
-
     ResponseEntity<?> getAll();
 
     ResponseEntity<?> getAll(int page);

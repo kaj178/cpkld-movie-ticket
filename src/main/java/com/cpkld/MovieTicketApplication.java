@@ -1,24 +1,9 @@
 package com.cpkld;
 
-// import org.springframework.boot.CommandLineRunner;
-
-// import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// import lombok.RequiredArgsConstructor;
-
-// import org.springframework.context.ApplicationContext; 
-// import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-
-// import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-// import com.cpkld.model.entity.Role;
-// import com.cpkld.service.RoleService;
-
-@SpringBootApplication //(exclude = {DataSourceAutoConfiguration.class })
-// @RequiredArgsConstructor
+@SpringBootApplication
 public class MovieTicketApplication {
 
     public static void main(String[] args) {

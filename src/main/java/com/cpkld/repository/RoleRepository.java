@@ -8,6 +8,5 @@ import com.cpkld.model.entity.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-    // @EntityGraph(attributePaths = "accounts")
-    // Role findByRoleId(Integer roleId);
+
 }

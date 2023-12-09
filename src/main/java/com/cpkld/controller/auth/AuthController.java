@@ -35,7 +35,6 @@ public class AuthController {
     @GetMapping("/login-error")
     public String getLoginErrorPage(HttpServletRequest req, HttpServletResponse res, Model model) {
         model.addAttribute("loginError", "Tên đăng nhập hoặc mật khẩu không đúng");
-        // res.sendRedirect("/login");
         return "View/Login_Modal/LoginModal";
     }
 
@@ -58,13 +57,10 @@ public class AuthController {
             userDTO.getPhone().equals("") || 
             userDTO.getPassword().equals("") ||
             userDTO.getRepeatPassword().equals("")) {
-            // model.addAttribute("registerError", "Vui lòng nhập đầy đủ thông tin");
-            // return "View/Signup_Modal/index";
             result.rejectValue("registerError", "Vui lòng nhập đầy đủ thông tin");
         }
         System.out.println(userDTO.toString());
         User existedUser = service.findUserByEmail(userDTO.getEmail());
-        // System.out.println(existedUser.toString());
         if (existedUser != null && existedUser.getEmail() != null && !existedUser.getEmail().isEmpty()) {
             result.rejectValue("email", null, "Email đã tồn tại!");
         }
@@ -78,6 +74,5 @@ public class AuthController {
         service.saveCustomerAccount(userDTO);
         return "redirect:/login";
     }
-    
     
 }

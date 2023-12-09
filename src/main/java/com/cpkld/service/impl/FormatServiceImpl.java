@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class FormatServiceImpl implements FormatService {
     @Autowired
     private FormatRepository formatRepository;
+    
     @Override
     public ResponseEntity<?> getAllFormat() {
         return new ResponseEntity<>(
@@ -50,7 +51,6 @@ public class FormatServiceImpl implements FormatService {
         FormatDTO formatDTO = new FormatDTO();
         formatDTO.setFormatId(format.getId());
         formatDTO.setFormatName(format.getName());
-
         return formatDTO;
     }
 }

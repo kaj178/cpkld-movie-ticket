@@ -28,7 +28,6 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // @Column(name = "user_id")
     @OneToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference(value = "user-customer")

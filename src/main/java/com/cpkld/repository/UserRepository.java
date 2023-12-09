@@ -15,8 +15,8 @@ import jakarta.transaction.Transactional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Transactional
-    // @Query("INSERT INTO User(email, password, status, role) VALUES (:#{#user.email}, :#{#user.password}, :#{#user.status}, :#{#user.role})")
-    @Query(value = "INSERT INTO public.user (email, password, status, role_id) VALUES (:email, :password, :status, :roleId)", nativeQuery = true)
+    @Query(value = "INSERT INTO public.user (email, password, status, role_id) VALUES (:email, :password, :status, :roleId)", 
+            nativeQuery = true)
     void saveUser(
         @Param("email") String email, 
         @Param("password") String password, 

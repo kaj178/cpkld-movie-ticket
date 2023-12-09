@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TheaterRepository extends JpaRepository<Theater, Integer> {
-
-
     @Query(value = "select * from public.theater "
     , nativeQuery = true)
     Page<Theater> getAllTheater(Pageable pageable);

@@ -17,7 +17,11 @@ import jakarta.transaction.Transactional;
 public interface ManagerRepository extends JpaRepository<Manager, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VALUES (:fullname, :address, :email, :phone, :userId)", nativeQuery = true)
+    @Query(
+        value = "INSERT INTO public.manager (full_name, address, email, phone_number, user_id) " + 
+                "VALUES (:fullname, :address, :email, :phone, :userId)", 
+        nativeQuery = true
+    )
     void saveManager(
         @Param("fullname") String fullname,
         @Param("address") String address,

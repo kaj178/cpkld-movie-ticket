@@ -19,7 +19,6 @@ public class BookingDTO {
     private LocalDateTime bookingTime;
     private LocalDateTime startTime;
     private Integer showTimeId;
-    // private Integer seatId;
     private List<Seat> seats;
     private Integer status;
     private double totalPrice;

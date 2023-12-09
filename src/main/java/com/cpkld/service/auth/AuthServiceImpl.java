@@ -38,7 +38,6 @@ public class AuthServiceImpl implements AuthService {
     public void saveCustomerAccount(UserDTO userDTO) {
         User user = new User();
         Customer customer = new Customer();
-        //user.setId(null);
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setStatus(1);
@@ -46,7 +45,6 @@ public class AuthServiceImpl implements AuthService {
         userRepository.saveUser(user.getEmail(), user.getPassword(), user.getStatus(), user.getRole().getRoleId());
 
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            //customer.setId(null);
             customer.setFullName(userDTO.getFullname());
             customer.setEmail(userDTO.getEmail());
             customer.setAddress(userDTO.getAddress());
@@ -54,8 +52,6 @@ public class AuthServiceImpl implements AuthService {
             customer.setUser(userRepository.findByEmail(userDTO.getEmail()));
             customerRepository.saveCustomer(userDTO.getFullname(), userDTO.getAddress(), customer.getEmail(), customer.getPhoneNumber(), customer.getUser().getId());
         }
-        // System.out.println(user.toString());
-        // System.out.println(customer.toString());
     }
 
     @Override
@@ -122,7 +118,6 @@ public class AuthServiceImpl implements AuthService {
         userRepository.saveUser(user.getEmail(), user.getPassword(), user.getStatus(), user.getRole().getRoleId());
 
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            //manager.setId(null);
             manager.setFullName(userDTO.getFullname());
             manager.setEmail(userDTO.getEmail());
             manager.setAddress(userDTO.getAddress());
@@ -131,11 +126,5 @@ public class AuthServiceImpl implements AuthService {
             managerRepository.saveManager(userDTO.getFullname(), userDTO.getAddress(), manager.getEmail(), manager.getPhoneNumber(), manager.getUser().getId());
         }
     }
-    
-    // private Role saveRoleIfNotExisted(String roleName) {
-    //     Role role = new Role();
-    //     role.setRoleName(roleName);
-    //     return roleRepository.save(role);
-    // }
 
 }

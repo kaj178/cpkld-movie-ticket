@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -135,7 +134,6 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public ResponseEntity<?> addBooking(BookingDTO bookingDTO) {
         Booking booking = new Booking();
-        // Ticket ticket = new Ticket();
 
         booking.setAmount(bookingDTO.getAmountItem());
         booking.setBookingTime(bookingDTO.getBookingTime());
@@ -148,7 +146,6 @@ public class BookingServiceImpl implements BookingService {
         bookingRepository.saveBooking(
                 booking.getAmount(),
                 booking.getBookingTime(),
-                // booking.getStatus(),
                 "1",
                 booking.getTotalPrice(),
                 booking.getPromotion() != null ? booking.getPromotion().getId() : null,

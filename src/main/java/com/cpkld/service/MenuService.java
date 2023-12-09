@@ -11,6 +11,4 @@ public interface MenuService {
     ResponseEntity<?> add(MenuDTO menuDTO);
 
     ResponseEntity<?> update(Integer id, MenuDTO menuDTO);
-
-    // ResponseEntity<?> delete(Integer id);
 }

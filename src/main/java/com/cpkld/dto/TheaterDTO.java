@@ -13,5 +13,4 @@ public class TheaterDTO {
     private String address;
     private String phoneNumber;
     private int amountRoom;
-
 }

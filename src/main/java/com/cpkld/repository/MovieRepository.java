@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
-    // @Query("SELECT m FROM Movie m JOIN FETCH m.language")\
     @Query(value = "SELECT mv.*, lg.language_name " +
             "FROM public.movie as mv " +
             "JOIN public.language as lg " +
@@ -44,7 +43,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Transactional
     @Query(
         value = "INSERT INTO public.movie (movie_name, director, year, premiere, url_trailer, url_poster_vertical, url_poster_horizontal, time, age, story, rating, studio_id, language_id) " + 
-        "VALUES (:movie_name, :director, :year, :premiere, :url_trailer, :url_poster_vertical, :url_poster_horizontal, :time, :age, :story, :rating, :studio_id, :language_id)",
+                "VALUES (:movie_name, :director, :year, :premiere, :url_trailer, :url_poster_vertical, :url_poster_horizontal, :time, :age, :story, :rating, :studio_id, :language_id)",
         nativeQuery = true
     )
     void saveMovie(

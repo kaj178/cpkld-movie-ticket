@@ -111,20 +111,6 @@ CREATE TABLE public.movie (
 );
 
 -- Edit ---
-
-'''
-CREATE TABLE public."rating" (
-	"rating_id" VARCHAR(50) NOT NULL,
-	"score" FLOAT NOT NULL,
-	"comment" TEXT NULL,
-	"day" DATE NOT NULL,
-	"movie_id" SERIAL NOT NULL,
-	"customer_id" SERIAL NOT NULL,
-	PRIMARY KEY (rating_id),
-	FOREIGN KEY (movie_id) REFERENCES public."movie"(movie_id),
-	FOREIGN KEY (customer_id) REFERENCES public."customer"(customer_id)
-);
-'''
 	
 CREATE TABLE public."detail_movie_genre" (
 	"movie_id" SERIAL NOT NULL,
@@ -260,8 +246,6 @@ INSERT INTO public.manager (full_name, address, email, phone_number, user_id) VA
 ('Phan Anh Khoa', 'Heaven', 'khoa@example.com', '0978263486', 2),
 ('Ngo Chi Cuong', 'Unspecified', 'cuong@example.com', '0862935985', 3);
 
--- Thêm dữ liệu vào bảng "customer"
--- INSERT INTO public.customer (full_name, address, email, phone_number, user_id) VALUES
 
 -- -- Thêm dữ liệu vào bảng "movie-genre"
 INSERT INTO public.movie_genre (genre_name, description) VALUES
@@ -361,11 +345,6 @@ INSERT INTO public.movie (movie_name, director, "year", premiere, url_trailer, u
 ('Khế ước', 'Guy Ritchie', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=npHvcDj45rg',  'movie32.jpg', 'movie32.jpg', '02:03:00', 18, 'Trong nhiệm vụ cuối cùng ở Afghanistan, Trung sĩ John Kinley cùng đội với phiên dịch viên bản địa Ahmed. Khi đơn vị của họ bị phục kích, Kinley và Ahmed là 2 người sống sót duy nhất. Bị kẻ địch truy đuổi, Ahmed liều mạng đưa Kinley đang bị thương băng qua nhiều dặm đường địa hình khắc nghiệt đến nơi an toàn. Trở về Mỹ, Kinley biết rằng Ahmed và gia đình không dc cấp giấy thông hành tới Mỹ như đã hứa', 5, 29, 1),
 ('Đầu gấu đụng đầu đất', 'Park Sung Kwang', 2024, '4/21/2024', 'https://www.youtube.com/watch?v=MagrY1rpOT4', 'movie33.jpg', 'movie33.jpg', '01:38:00', 16, 'Phim Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày', 3, 10, 5),
 ('Âm vực chết', 'Alessandro Antonaci, Stefano Mandalà, Daniel Lascar', 2023, '4/21/2023', 'https://www.youtube.com/watch?v=CmBuZXqkyLM', 'movie34.jpg', 'movie34.jpg', '01:33:00', 18, 'Sau cái chết của cha, Emma (Penelope Sangiorgi) vội vã bay từ New York về quê nhà ở Ý để lo hậu sự. Trong thời gian diễn ra tang lễ, Emma ở một mình trong căn nhà mà cha mẹ để lại. Lúc này, cô bị buộc phải đối mặt với một thực thể tà ác có khả năng kết nối thông qua một chiếc radio bị nguyền rủa', 4, 30, 9);
-
--- -- Thêm dữ liệu vào bảng "rating"
--- INSERT INTO public."rating" VALUES
---     ('rating001', 4.5, 'Great movie!', '2023-09-30', 'movie001', 'customer001'),
---     ('rating002', 3.0, 'Not bad', '2023-09-30', 'movie001', 'customer002');
 
 -- -- Thêm dữ liệu vào bảng "detail-movie-genre"
 INSERT INTO public."detail_movie_genre" VALUES
